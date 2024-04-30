@@ -2,7 +2,7 @@ package domain_model;
 
 import java.time.LocalDate;
 
-public abstract class Member {
+public class Member {
 
     //ATTRIBUTES
     private String firstName;
@@ -19,7 +19,10 @@ public abstract class Member {
     }
 
     //METHODS
-    public abstract double calculateMembershipRate();
+    public double calculateMembershipRate() {
+        //Her kommer kode
+        return 0;
+    }
 
     public String getFirstName() {
         return firstName;

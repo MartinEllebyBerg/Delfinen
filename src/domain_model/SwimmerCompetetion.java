@@ -17,9 +17,5 @@ public class SwimmerCompetetion extends Member {
     }
 
     //METHODS
-    @Override
-    public double calculateMembershipRate() {
-        // Her kommer kode
-        return 0;
-    }
+
 }

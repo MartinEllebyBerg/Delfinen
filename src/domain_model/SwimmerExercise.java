@@ -4,7 +4,7 @@ import domain_model.Member;
 
 import java.time.LocalDate;
 
-public abstract class SwimmerExercise extends Member {
+public class SwimmerExercise extends Member {
 
 
     //ATTRIBUTES
@@ -18,9 +18,5 @@ public abstract class SwimmerExercise extends Member {
         this.competitionResult = competitionResult;
     }
         //METHODS
-        @Override
-        public double calculateMembershipRate() {
-        // Her kommer kode
-            return 0;
-        }
+
 }
