@@ -2,7 +2,7 @@ package domain_model;
 
 import java.time.LocalDate;
 
-public class SwimmerCompetetion extends Member {
+public class SwimmerCompetition extends Member {
 
 
     //ATTRIBUTES
@@ -10,7 +10,7 @@ public class SwimmerCompetetion extends Member {
     private ResultCompetition competitionResult;
 
     //CONSTRUCTOR
-    public SwimmerCompetetion(String firstName, String lastName, LocalDate birthday, boolean memberActive, ResultTraining trainingResult, ResultCompetition competitionResult) {
+    public SwimmerCompetition(String firstName, String lastName, LocalDate birthday, boolean memberActive, ResultTraining trainingResult, ResultCompetition competitionResult) {
         super(firstName, lastName, birthday, memberActive);
         this.trainingResult = trainingResult;
         this.competitionResult = competitionResult;
