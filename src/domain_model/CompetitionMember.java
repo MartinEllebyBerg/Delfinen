@@ -10,6 +10,7 @@ public class CompetitionMember extends Member {
     private SwimDiscipline swimDiscipline2= null;
     private SwimDiscipline swimDiscipline3 = null;
     private SwimDiscipline swimDiscipline4 = null;
+    private ResultSwimmer latestResults;
 
 
     //CONSTRUCTOR
@@ -37,5 +38,12 @@ public class CompetitionMember extends Member {
 
     public SwimDiscipline getSwimDiscipline4() {
         return swimDiscipline4;
+    }
+    public void setLatestResults(ResultSwimmer latestResults) {
+        this.latestResults = latestResults;
+    }
+
+    public ResultSwimmer getLatestResults() {
+        return latestResults;
     }
 }

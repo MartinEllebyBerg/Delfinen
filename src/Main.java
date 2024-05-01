@@ -6,5 +6,7 @@ public class Main {
         UserInterface ui = new UserInterface();
         Data d = new Data();
         d.testGeneration();
+        d.testAddSwimResultCompetition();
+
     }
 }
