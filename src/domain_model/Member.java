@@ -9,7 +9,8 @@ public class Member {
     private String lastName;
     private LocalDate birthday;
     private boolean memberActive;
-    static int memberID = 1;
+    private static int nextMemberID = 1; //statisk attribut til at sammentælle memberID og sørge for unikt nummer.
+    private int memberID;
 
     //CONSTRUCTOR
     public Member(String firstName, String lastName, LocalDate birthday, boolean memberActive) {
@@ -17,7 +18,7 @@ public class Member {
         this.lastName = lastName;
         this.birthday = birthday;
         this.memberActive = memberActive;
-        memberID++;
+        memberID = nextMemberID++;
     }
 
     //METHODS
@@ -40,5 +41,9 @@ public class Member {
 
     public boolean getIsMemberActive() {
         return memberActive;
+    }
+
+    public int getMemberID() {
+        return memberID;
     }
 }

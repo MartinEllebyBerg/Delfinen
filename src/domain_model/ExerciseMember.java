@@ -6,13 +6,15 @@ public class ExerciseMember extends Member {
 
 
     //ATTRIBUTES
-    private ResultSwimmer competitionResult = null;
+
+
 
     //CONSTRUCTOR
-    public ExerciseMember(String firstName, String lastName, LocalDate birthday, boolean memberActive, ResultSwimmer competitionResult) {
+    public ExerciseMember(String firstName, String lastName, LocalDate birthday, boolean memberActive) {
         super(firstName, lastName, birthday, memberActive);
-        this.competitionResult = competitionResult;
+
     }
         //METHODS
+
 
 }
