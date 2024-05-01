@@ -14,6 +14,8 @@ public class Data {
         resultList = new ArrayList<>();
     }
 
+
+
     //METHODS
     public void testGeneration() {
         Member m1 = new SwimmerCompetition("Daniel", "Jensen", null, true, null);
@@ -29,7 +31,19 @@ public class Data {
                 System.out.println(m.getIsMemberActive());
             }
         }
-
-
+    }
+    //######################### Methods for ArrayList memberslist ################################
+    public ArrayList<Member> getMembersList() {
+        return membersList;
+    }
+    public void addToMembersList(Member member) {
+        membersList.add(member);
+    }
+    //######################### Methods for ArrayList resultlist ################################
+    public ArrayList<ResultSwimmer> getResultList() {
+        return resultList;
+    }
+    public void addSwimResultToResultList(ResultSwimmer rs) {
+        resultList.add(rs);
     }
 }

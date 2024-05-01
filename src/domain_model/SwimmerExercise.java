@@ -15,4 +15,5 @@ public class SwimmerExercise extends Member {
     }
         //METHODS
 
+
 }
