@@ -1,6 +1,8 @@
 package domain_model;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Data {
     //hardcoded data
@@ -11,13 +13,17 @@ public class Data {
     private Member m5 = new CompetitionMember("Hans", "Hansen", null, true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
 
     //ATTRIBUTES
+
     private ArrayList<Member> membersList;
     private ArrayList<ResultSwimmer> resultList;
+    private ArrayList<String[]> searchList;
 
     //CONSTRUCTOR
     public Data() {
         membersList = new ArrayList<>();
         resultList = new ArrayList<>();
+        searchList = new ArrayList<>();
+
     }
 
     //METHODS
@@ -75,5 +81,50 @@ public class Data {
         }
 
     }
+
+    /*public void testPrintSpecificMember(){
+        System.out.println("Her høres metoden printSpecificMember");
+        System.out.println(" ");
+        for(Member m : membersList){
+            for(ResultSwimmer r : resultList){
+                if(m.getMemberID() == r.getMemberID()) {
+                    System.out.println("MemberNo. " + m.getMemberID() + ", Firstname: " + m.getFirstName() + ", Lastname: " + m.getLastName() +
+                            "\nCompetition: " + r.getCompetitionName() + ", Location: " +r.getCompetitionLocation() +
+                            "\nSwimDiscipline: " + r.getSwimDiscipline() + ", time: " +r.getSwimTime());
+                }
+            }
+        }
+    }*/
+    public void testSaveSearchresult(){
+        System.out.println("Her køres metoden saveSearchresult");
+        System.out.println(" ");
+        for(Member m : membersList){
+            for(ResultSwimmer r : resultList){
+                if(m.getMemberID() == r.getMemberID()) {
+                    String[] combinedData = {
+                            String.valueOf(m.getMemberID()),
+                            m.getFirstName(),
+                            m.getLastName(),
+                            String.valueOf(r.getResultDate()),
+                            String.valueOf(r.getSwimDiscipline()),
+                            String.valueOf(r.getSwimTime()),
+                            r.getCompetitionName(),
+                            r.getCompetitionLocation(),
+                            String.valueOf(r.getPlacementCompetition())
+                    };
+                    searchList.add(combinedData);
+
+                }
+            }
+        }
+        for (String[] combinedData : searchList){
+            for(String data : combinedData){
+                System.out.println(data);
+            }
+            System.out.println();
+        }
+
+    }
+
 
 }

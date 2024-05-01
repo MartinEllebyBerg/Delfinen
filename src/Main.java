@@ -7,6 +7,9 @@ public class Main {
         Data d = new Data();
         d.testGeneration();
         d.testAddSwimResultCompetition();
+        //d.testPrintSpecificMember();
+        d.testSaveSearchresult();
+        //d.printListeSearch();
 
     }
 }
