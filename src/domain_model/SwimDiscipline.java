@@ -1,7 +1,11 @@
 package domain_model;
 
 public enum SwimDiscipline {
-    BUTTERFLY, FRONTCRAWL, BACKSTROKE, BREASTSTROKE, NULL;
+    BUTTERFLY,
+    FRONTCRAWL,
+    BACKSTROKE,
+    BREASTSTROKE,
+    NULL;
 
 }
 

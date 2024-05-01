@@ -1,10 +1,11 @@
 package domain_model;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Data {
     //hardcoded data
-    private Member m1 = new CompetitionMember("Mette", "Munch", null, true, SwimDiscipline.BUTTERFLY, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
+    private Member m1 = new CompetitionMember("Mette", "Munch", LocalDate.of(1974,2,23), true, SwimDiscipline.BUTTERFLY, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
     private Member m2 = new CompetitionMember("Daniel", "Jensen", null, false, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.NULL, SwimDiscipline.NULL);
     private Member m3 = new ExerciseMember("Martin", "Elleby", null, true);
     private Member m4 = new ExerciseMember("Mark", "Onat", null, false);
@@ -33,12 +34,11 @@ public class Data {
         membersList.add(m4);
         membersList.add(m5);
 
-        System.out.println("Debug: member added");
+        System.out.println("Print full memberlist");
 
-        System.out.println("Debug: for each loop");
+        System.out.println(" ");
         for (Member m : membersList) {
-            System.out.println("MemberID: " + m.getMemberID());
-            System.out.println(m.getFirstName() + " " + m.getLastName());
+            System.out.println("MemberID: " + m.getMemberID() + ", " +m.getFirstName() + " " + m.getLastName());
             System.out.println("Day of Birth: " + m.getBirthday());
             System.out.println("Is member active: " + m.getIsMemberActive());
 
@@ -56,12 +56,14 @@ public class Data {
                 if (!((CompetitionMember) m).getSwimDiscipline4().equals(SwimDiscipline.NULL)) {
                     System.out.println("Swim Discipline: " + ((CompetitionMember) m).getSwimDiscipline4());
                 }
-                System.out.println(" ");
+
             }
+            System.out.println(" ");
         }
 
 
     }
+
 
     public void testAddSwimResultCompetition() {
         System.out.println("Her kører addswimresultmetoden");
