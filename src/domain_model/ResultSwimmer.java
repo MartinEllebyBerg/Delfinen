@@ -15,14 +15,14 @@ public class ResultSwimmer {
     //CONSTRUCTOR
 
     //METHODS
-
     @Override
     public String toString() {
-        return "CompResult" +
-                "swimDiscipline: " + swimDiscipline + '\'' +
-                ", competitionName: " + competitionName + '\'' +
-                ", swimTime: " + swimTime +
-                ", placementCompetition: " + placementCompetition +
-                ", competitionDate: " + competitionDate;
+        return "ResultSwimmer: " +
+                "swimDiscipline='" + swimDiscipline + '\'' +
+                ", competitionName='" + competitionName + '\'' +
+                ", competitionLocation='" + competitionLocation + '\'' +
+                ", swimTime=" + swimTime +
+                ", placementCompetition=" + placementCompetition +
+                ", competitionDate=" + resultDate;
     }
 }
