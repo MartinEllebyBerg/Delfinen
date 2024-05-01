@@ -1,8 +1,6 @@
 package domain_model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Data {
     //hardcoded data
@@ -95,36 +93,49 @@ public class Data {
             }
         }
     }*/
-    public void testSaveSearchresult(){
-        System.out.println("Her køres metoden saveSearchresult");
+    public void testSearchCompSwimmersWithResultDataSaveInAnArray() {
+        System.out.println("Her køres metoden hvor de to lister kombineres, hvis der er identisk memberID, og det gemmes i ny Array");
         System.out.println(" ");
-        for(Member m : membersList){
-            for(ResultSwimmer r : resultList){
-                if(m.getMemberID() == r.getMemberID()) {
-                    String[] combinedData = {
-                            String.valueOf(m.getMemberID()),
-                            m.getFirstName(),
-                            m.getLastName(),
-                            String.valueOf(r.getResultDate()),
-                            String.valueOf(r.getSwimDiscipline()),
-                            String.valueOf(r.getSwimTime()),
-                            r.getCompetitionName(),
-                            r.getCompetitionLocation(),
-                            String.valueOf(r.getPlacementCompetition())
+        for (Member m : membersList) {
+            for (ResultSwimmer r : resultList) {
+                if (m.getMemberID() == r.getMemberID()) {
+                    String[] combinedData = { //I denne nye arrayList har jeg lavet alt om til String..
+                            String.valueOf(m.getMemberID()), //combinedData[0]
+                            m.getFirstName(), //combinedData[1]
+                            m.getLastName(), //combinedData[2]
+                            String.valueOf(r.getResultDate()), //combinedData[3]
+                            String.valueOf(r.getSwimDiscipline()), //combinedData[4]
+                            String.valueOf(r.getSwimTime()), //combinedData[5]
+                            r.getCompetitionName(), //combinedData[6]
+                            r.getCompetitionLocation(), //combinedData[7]
+                            String.valueOf(r.getPlacementCompetition()) //combinedData[8]
                     };
                     searchList.add(combinedData);
 
                 }
             }
         }
+    }
+    public void testPrintSavedArrayListWithCombinedData(){
+        System.out.println("List of swimmers with either their data from competition stored or training data:");
         for (String[] combinedData : searchList){
-            for(String data : combinedData){
-                System.out.println(data);
-            }
-            System.out.println();
+            StringBuilder sb = new StringBuilder();
+            sb.append(String.format("%-5s",combinedData[0])); //String.format er lig med en form for tabulator
+            sb.append(String.format("%-15s",combinedData[1]));
+            sb.append(String.format("%-15s",combinedData[2]));
+            sb.append(String.format("%-15s",combinedData[3]));
+            sb.append(String.format("%-15s",combinedData[4]));
+            sb.append(String.format("%-10s",combinedData[5]));
+            sb.append(String.format("%-30s",combinedData[6]));
+            sb.append(String.format("%-20s",combinedData[7]));
+            sb.append(String.format("%-15s",combinedData[8]));
+            System.out.println(sb.toString());
+
         }
 
     }
+
+
 
 
 }

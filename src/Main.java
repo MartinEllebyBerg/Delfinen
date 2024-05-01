@@ -8,8 +8,8 @@ public class Main {
         d.testGeneration();
         d.testAddSwimResultCompetition();
         //d.testPrintSpecificMember();
-        d.testSaveSearchresult();
-        //d.printListeSearch();
+        d.testSearchCompSwimmersWithResultDataSaveInAnArray();
+        d.testPrintSavedArrayListWithCombinedData();
 
     }
 }
