@@ -6,12 +6,10 @@ public class CompetitionMember extends Member {
 
 
     //ATTRIBUTES
-    private ResultSwimmer trainingResult; //arbejder på at tage ResultSwimmer ud af constructor, men i stedet skal dette kunne
-    //sættes på den enkelte svømmer senere (via unikdt medlemsID
-    private ResultSwimmer competitionResult;
+   private
 
     //CONSTRUCTOR
-    public CompetitionMember(String firstName, String lastName, LocalDate birthday, boolean memberActive, ResultSwimmer competitionResult) {
+    public CompetitionMember(String firstName, String lastName, LocalDate birthday, boolean memberActive) {
         super(firstName, lastName, birthday, memberActive);
         this.trainingResult = trainingResult;
         this.competitionResult = competitionResult;

@@ -9,6 +9,7 @@ public class Member {
     private String lastName;
     private LocalDate birthday;
     private boolean memberActive;
+    static int memberID = 1;
 
     //CONSTRUCTOR
     public Member(String firstName, String lastName, LocalDate birthday, boolean memberActive) {
@@ -16,6 +17,7 @@ public class Member {
         this.lastName = lastName;
         this.birthday = birthday;
         this.memberActive = memberActive;
+        memberID++;
     }
 
     //METHODS
