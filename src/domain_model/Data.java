@@ -6,19 +6,17 @@ public class Data {
 
     //ATTRIBUTES
     private ArrayList<Member> membersList;
-    private ArrayList<ResultTraining> trainingResultList;
-    private ArrayList<ResultCompetition> competitionResultList;
+    private ArrayList<ResultSwimmer> resultList;
 
     //CONSTRUCTOR
     public Data() {
         membersList = new ArrayList<>();
-        trainingResultList = new ArrayList<>();
-        competitionResultList = new ArrayList<>();
+        resultList = new ArrayList<>();
     }
 
     //METHODS
     public void testGeneration() {
-        Member m1 = new SwimmerCompetition("Daniel", "Jensen", null, true, null, null);
+        Member m1 = new SwimmerCompetition("Daniel", "Jensen", null, true, null);
         membersList.add(m1);
         System.out.println("Debug: member added");
 

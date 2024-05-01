@@ -2,14 +2,15 @@ package domain_model;
 
 import java.time.LocalDate;
 
-public class ResultCompetition {
+public class ResultSwimmer {
 
     //ATTRIBUTES
     private String swimDiscipline;
     private String competitionName;
+    private String competitionLocation;
     private double swimTime;
     private int placementCompetition;
-    private LocalDate competitionDate;
+    private LocalDate resultDate;
 
     //CONSTRUCTOR
 
