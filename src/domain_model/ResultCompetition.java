@@ -2,7 +2,7 @@ package domain_model;
 
 import java.time.LocalDate;
 
-public class CompResult {
+public class ResultCompetition {
 
     //ATTRIBUTES
     private String swimDiscipline;

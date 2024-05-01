@@ -6,8 +6,8 @@ public class Data {
 
     //ATTRIBUTES
     private ArrayList<Member> membersList;
-    private ArrayList<TrainingResult> trainingResultList;
-    private ArrayList<CompResult> competitionResultList;
+    private ArrayList<ResultTraining> trainingResultList;
+    private ArrayList<ResultCompetition> competitionResultList;
 
     //CONSTRUCTOR
     public Data() {
