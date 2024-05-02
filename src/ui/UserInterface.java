@@ -1,9 +1,6 @@
 package ui;
 
-import domain_model.Controller;
-import domain_model.Member;
-import domain_model.SwimmerCompetition;
-import domain_model.SwimmerExercise;
+import domain_model.*;
 
 import java.sql.SQLOutput;
 import java.time.LocalDate;
@@ -87,11 +84,13 @@ public class UserInterface {
         boolean activePassive = askForActivity(); //Metode, tjekker for aktivitet.
 
         //TODO: Spørge eller generere et memberID her.
+        //TODO: Assign svømmediscipliner enum
+
 
         boolean whichSwimmerType = compOrExerciseSwimmer(); //Assigner, om der skal laves et konkurrence eller motionist objekt.
 
         if (whichSwimmerType) {
-            Member m = new SwimmerCompetition(firstName, lastName, birthday, activePassive);
+            Member m = new CompetitionMember(firstName, lastName, birthday, activePassive, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
             controller.addToMembersList(m);
             String activity; //Bygges gennem nedenstående if-statements. Bruges bare til at display aktivitetsstatus i endelige sysout besked.
             if(activePassive) {
@@ -102,7 +101,7 @@ public class UserInterface {
             System.out.println("You have successfully added "+firstName+" "+lastName+".Their birthday was recorded at "+birthday
             +activity);
         } else if (!whichSwimmerType) {
-            Member m = new SwimmerExercise(firstName, lastName, birthday, activePassive);
+            Member m = new ExerciseMember(firstName, lastName, birthday, activePassive);
             controller.addToMembersList(m);
         } else {
             System.out.println("Something went wrong. Returning to menu.");
@@ -145,11 +144,11 @@ public class UserInterface {
     public void displayListofMembers() {
         System.out.println("Displaying list of current members: ");
         for(Member m : controller.getMembersList()) {
-            if (m instanceof SwimmerCompetition) {
+            if (m instanceof CompetitionMember) {
                 System.out.println("Competition Swimmers: ");
                 System.out.println(m.toString());
             }
-            if (m instanceof SwimmerExercise) {
+            if (m instanceof ExerciseMember) {
                 System.out.println("Exercise Swimmers: ");
                 System.out.println(m.toString());
             }
