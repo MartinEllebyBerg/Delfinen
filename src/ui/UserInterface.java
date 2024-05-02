@@ -85,6 +85,7 @@ public class UserInterface {
 
         //TODO: Spørge eller generere et memberID her.
         //TODO: Assign svømmediscipliner enum
+        userPromptSwimDiscipline();
 
 
 
@@ -106,6 +107,38 @@ public class UserInterface {
             controller.addToMembersList(m);
         } else {
             System.out.println("Something went wrong. Returning to menu.");
+        }
+    }
+
+    public SwimDiscipline findSwimDisciplineEnum(String searchTerm) {
+        for (SwimDiscipline e : SwimDiscipline.values()) {
+            if (searchTerm.equals(e.name())) {
+                System.out.println("Found matching enum: "+e+" "+e.name());
+                return e;
+            }
+        }
+        return null;
+    }
+    public void userPromptSwimDiscipline() {
+        String UPSWDInput = " ";
+        System.out.println("Please type in which discipline you would like to be assigned or attached to.");
+        System.out.println("Valid choices include breaststroke, backstroke, frontcrawl, butterfly or null.");
+
+        while(true) {
+            if(UPSWDInput.equals("done")) {
+                break;
+            }
+            UPSWDInput = input.nextLine().toLowerCase();
+            System.out.println("Please input either breaststroke, backstroke, frontcrawl, butterfly or null.");
+            if(UPSWDInput.equals("breaststroke") || UPSWDInput.equals("backstroke") || UPSWDInput.equals("frontcrawl") || UPSWDInput.equals("butterfly")||UPSWDInput.equals("null")) {
+                findSwimDisciplineEnum(UPSWDInput.toUpperCase());
+            } else if (UPSWDInput.equals()){
+
+            }
+            else {
+                System.out.println("No valid input. Please try again.");
+                userPromptSwimDiscipline();
+            }
         }
     }
 
