@@ -10,5 +10,8 @@ public class Main {
         d.testSearchCompSwimmersWithResultDataSaveInAnArray();
         d.testPrintSavedArrayListWithCombinedData();
 
+        ui.startProgram();
+        //Data d = new Data();
+        //d.testGeneration();
     }
 }
