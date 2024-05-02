@@ -70,7 +70,7 @@ public class UserInterface {
         String firstName = input.nextLine();
         System.out.println("Please input the swimmers LAST name: ");
         String lastName = input.nextLine();
-        System.out.println("Please input your birthday in the following format YY-MM-DD: ");
+        System.out.println("Please input your birthday in the following format YYYY-MM-DD: ");
         String birthdayArr = input.next();
         input.nextLine();
         String[] values = birthdayArr.split("-");
