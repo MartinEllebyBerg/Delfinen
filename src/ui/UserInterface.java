@@ -4,6 +4,7 @@ import domain_model.*;
 
 import java.sql.SQLOutput;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -31,35 +32,47 @@ public class UserInterface {
             System.out.println("2. Add Swimmer results-NOTIMPLEMENTED-");
             System.out.println("3. Register Swimmer Payments -NOTIMPLEMENTED-");
             System.out.println("4. Display list of Swimmers\n");
+            try {
 
-            System.out.print("> ");
-            switchInput = input.nextInt();
-            input.nextLine();
+                System.out.print("> ");
+                switchInput = input.nextInt();
+                input.nextLine();
 
-            switch (switchInput) {
+                switch (switchInput) {
 
-                case 1: {
-                    generateSwimmer();
-                    break;
-                }
-                case 2: {
-                    //TODO: Add Swimmer results -
-                }
-                case 3: {
-                    //TODO: Register Swimmer payments
-                }
-                case 4: {
-                    //TODO: See list of swimmers
-                    displayListofMembers();
-                }
-                case 5: {
-                    //TODO: Set multiple swim disciplines to object
-                }
-                case 9: {
-                    System.out.println("Terminating application.");
-                    break; //Failsafe
-                }
+                    case 1: {
+                        generateSwimmer();
+                        break;
+                    }
+                    case 2: {
+                        //TODO: Add Swimmer results -
+                    }
+                    case 3: {
+                        //TODO: Register Swimmer payments
+                    }
+                    case 4: {
+                        //TODO: See list of swimmers
+                        displayListofMembers();
+                        break;
+                    }
+                    case 5: {
+                        //TODO: Set multiple swim disciplines to object
+                        setMultipleDisciplines();
+                        break;
+                    }
+                    case 6: { //test af metoder
+                        //findMemberSearchWithNewArray();
+                        deleteSwimDisciplines();
+                        break;
+                    }
+                    case 9: {
+                        System.out.println("Terminating application.");
+                        break; //Failsafe
+                    }
 
+                }
+            } catch(InputMismatchException e) {
+                System.out.println("Invalid input. Try again.");
             }
         }
     }
@@ -70,27 +83,32 @@ public class UserInterface {
         String firstName = input.nextLine();
         System.out.println("Please input the swimmers LAST name: ");
         String lastName = input.nextLine();
-        System.out.println("Please input your birthday in the following format YYYY-MM-DD: ");
-        String birthdayArr = input.next();
-        input.nextLine();
-        String[] values = birthdayArr.split("-");
-        int year = Integer.parseInt(values[0]);
-        int month = Integer.parseInt(values[1]);
-        int day = Integer.parseInt(values[2]);
 
-        LocalDate birthday = LocalDate.of(year, month, day);
+        LocalDate birthday = null;
+        boolean validInput = false;
 
+        while(!validInput) {
+            System.out.println("Please input your birthday in the following format YYYY-MM-DD: ");
+
+            String birthdayStr = input.nextLine(); //Brugerinput gemmes
+
+            try {
+                birthday = LocalDate.parse(birthdayStr); //LocalDate.parse læser de nødvendige attributter fra birthdayStr og parser dem til YYYY-MM-DD
+                validInput = true; //Vi afslutter while loopet.
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid input. Please type your input in the following format YYYY-MM-DD");
+            }
+        }
         boolean activePassive = askForActivity(); //Metode, tjekker for aktivitet.
 
-        //TODO: Spørge eller generere et memberID her.
-        //TODO: Assign svømmediscipliner enum
         System.out.println("During this registration you will be able to select one swim discipline for the member.");
-        System.out.println("Afterwards, you will be able to set multiple disciplines the for selected swimmer.");
+        System.out.println("Afterwards, you will be able to set multiple disciplines the for selected swimmer.\n");
         SwimDiscipline firstDiscipline = userPromptSwimDiscipline();
 
-        boolean whichSwimmerType = compOrExerciseSwimmer(); //Assigner, om der skal laves et konkurrence eller motionist objekt.
+        boolean decidingWhatTypeOfSwimmer = compOrExerciseSwimmer(); //Assigner, om der skal laves et konkurrence eller motionist objekt.
 
-        if (whichSwimmerType) {
+        //TODO: Refactor med henblik på læsbarhed. Flyt if blokke ud i separate metoder og kald dem her i generateSwimmer()
+        if (decidingWhatTypeOfSwimmer) {
             Member m = new CompetitionMember(firstName, lastName, birthday, activePassive, firstDiscipline, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
             controller.addToMembersList(m);
             String activity; //Bygges gennem nedenstående if-statements. Bruges bare til at display aktivitetsstatus i endelige sysout besked.
@@ -99,10 +117,10 @@ public class UserInterface {
             } else {
                 activity = " This member has the following activity status: PASSIVE";
             }
-            System.out.println("You have successfully added "+firstName+" "+lastName+".Their birthday was recorded at "+birthday
+            System.out.println("You have successfully added "+firstName+" "+lastName+". Their birthday was recorded at "+birthday
             +activity);
             System.out.println("This member is on the team for: "+firstDiscipline);
-        } else if (!whichSwimmerType) {
+        } else if (!decidingWhatTypeOfSwimmer) {
             Member m = new ExerciseMember(firstName, lastName, birthday, activePassive);
             controller.addToMembersList(m);
         } else {
@@ -120,14 +138,13 @@ public class UserInterface {
                 System.out.println("You have selected a PASSIVE membership.");
             } else {
                 System.out.println("You have typed something not recognised by the program. Please try again. Error code: 88452T");
-                askForActivity();
+                return askForActivity();
             }
         return memberActive;
     }
     public boolean compOrExerciseSwimmer() {
         boolean comp = false;
-        System.out.println("Please select if the swimmer should be assigned as a competition swimmer or exercise swimmer.");
-        System.out.println("Competition/Exercise");
+        System.out.println("Please select if the swimmer should be assigned as a competition swimmer or exercise swimmer. Competition/Exercise");
         String answer = input.nextLine();
         if (answer.toLowerCase().equals("competition")) {
             comp = true;
@@ -135,7 +152,7 @@ public class UserInterface {
             comp = false;
         } else {
             System.out.println("You have inputted something not recognised by the application. Error code: 4352BT.");
-            compOrExerciseSwimmer();
+            return compOrExerciseSwimmer();
         }
 
         return comp;
@@ -169,12 +186,149 @@ public class UserInterface {
             }
             else {
                 System.out.println("No valid input. Please try again.");
-                userPromptSwimDiscipline();
+                return userPromptSwimDiscipline();
             }
         }
         return null;
     }
-    //#########################  Member - Set swim disciplines  ################################
+    //#########################  Member - Set multiple swim disciplines  ################################
+    public void setMultipleDisciplines() {
+
+        System.out.println("Reminder: The member ID can be found when fetching a list of registered swimmers.\n");
+        System.out.println("Please input the member ID you would like to apply changes to.");
+        int idToFind = input.nextInt();
+        input.nextLine();
+        Member memberToFind = findMemberById(idToFind); //Vi taster member id for at returnere et member objekt at redigere svømmediscipliner på.
+
+        if (memberToFind instanceof CompetitionMember downcastedMemberToFind) { //downcaster vores member objekt direkte i if-sætning til downcastedMemberToFind.
+            if (hasAvailableDisciplines(downcastedMemberToFind)) { //boolean hasAvailableDisciplines() tjekker, om vores objekt har tilgængeligt med plads til en svømmedisciplin.
+                SwimDiscipline selectedDiscipline = userPromptSwimDiscipline(); //Vi vælger vores disciplin og gemmer i variabel.
+                if (!hasDiscipline(downcastedMemberToFind, selectedDiscipline)) { //Hvis det specifikke objekt ikke har den disciplin, de prompter efter, kan det tildeles
+                    if (downcastedMemberToFind.getSwimDiscipline1() == SwimDiscipline.NULL) {
+                        downcastedMemberToFind.setSwimDiscipline1(selectedDiscipline);
+                        System.out.println(selectedDiscipline+" has successfully been assigned to "+downcastedMemberToFind.getFirstName()+" "+downcastedMemberToFind.getLastName()+".");
+                    }
+                    else if (downcastedMemberToFind.getSwimDiscipline2() == SwimDiscipline.NULL) {
+                        downcastedMemberToFind.setSwimDiscipline2(selectedDiscipline);
+                        System.out.println(selectedDiscipline+" has successfully been assigned to "+downcastedMemberToFind.getFirstName()+" "+downcastedMemberToFind.getLastName()+".");
+                    }
+                    else if (downcastedMemberToFind.getSwimDiscipline3() == SwimDiscipline.NULL) {
+                        downcastedMemberToFind.setSwimDiscipline3(selectedDiscipline);
+                        System.out.println(selectedDiscipline+" has successfully been assigned to "+downcastedMemberToFind.getFirstName()+" "+downcastedMemberToFind.getLastName()+".");
+                    }
+                    else if (downcastedMemberToFind.getSwimDiscipline4() == SwimDiscipline.NULL) {
+                        downcastedMemberToFind.setSwimDiscipline4(selectedDiscipline);
+                        System.out.println(selectedDiscipline+" has successfully been assigned to "+downcastedMemberToFind.getFirstName()+" "+downcastedMemberToFind.getLastName()+".");
+                    }
+                    else {
+                        System.out.println("You are currently at at max amount of attached swimming disciplines available.");
+                    }
+                }
+                else {
+                    System.out.println(selectedDiscipline+" has already been assigned to "+memberToFind.getFirstName()+" "+memberToFind.getLastName()+"("+"Member ID: "+ memberToFind.getMemberID()+")");
+                }
+            } else {
+                System.out.println("You have assigned all available disciplines. ");
+            }
+        }
+    }
+    public boolean hasAvailableDisciplines(CompetitionMember member) { //Tjekker om member objektets 4 svømmediscipliner er sandt til null.(Det er 3 per default.
+        return member.getSwimDiscipline1() == SwimDiscipline.NULL ||
+                member.getSwimDiscipline2() == SwimDiscipline.NULL ||
+                member.getSwimDiscipline3() == SwimDiscipline.NULL ||
+                member.getSwimDiscipline4() == SwimDiscipline.NULL;
+        }
+    public boolean hasDiscipline(CompetitionMember member, SwimDiscipline discipline) { //Tjekker det specifikke member objekts 4 svømmediscipliner op mod en specifik svømmedisciplin
+        return member.getSwimDiscipline1() == discipline ||
+                member.getSwimDiscipline2() == discipline ||
+                member.getSwimDiscipline3() == discipline ||
+                member.getSwimDiscipline4() == discipline;
+    }
+
+    public void deleteSwimDisciplines() throws InputMismatchException {
+        System.out.println("Reminder: The member ID can be found when fetching a list of registered swimmers.\n");
+        System.out.println("Please input the member ID you would like to apply changes to.");
+
+                int idToFind = input.nextInt();
+                input.nextLine();
+                Member memberToFind = findMemberById(idToFind);
+
+                if (memberToFind instanceof CompetitionMember downcastedMemberToFind) {
+                    //TODO: Fjerne muligheder ved null svømmediscipliner
+                    System.out.println("1. " + downcastedMemberToFind.getSwimDiscipline1());
+                    System.out.println("2. " + downcastedMemberToFind.getSwimDiscipline2());
+                    System.out.println("3. " + downcastedMemberToFind.getSwimDiscipline3());
+                    System.out.println("4. " + downcastedMemberToFind.getSwimDiscipline4());
+                    System.out.println("\nPlease select the discipline you would like to delete.");
+                    int choice = input.nextInt();
+                    input.nextLine();
+
+                    switch (choice) {
+                        case 1: {
+                            SwimDiscipline disciplineName = downcastedMemberToFind.getSwimDiscipline1();
+                            downcastedMemberToFind.setSwimDiscipline1(SwimDiscipline.NULL);
+                            System.out.println(disciplineName+" has successfully been deleted from "+downcastedMemberToFind.getFirstName()+" "+downcastedMemberToFind.getLastName()+".");
+                            break;
+                        }
+                        case 2: {
+                            SwimDiscipline disciplineName = downcastedMemberToFind.getSwimDiscipline2();
+                            downcastedMemberToFind.setSwimDiscipline2(SwimDiscipline.NULL);
+                            System.out.println(disciplineName+" has successfully been deleted from "+downcastedMemberToFind.getFirstName()+" "+downcastedMemberToFind.getLastName()+".");
+                            break;
+                        }
+                        case 3: {
+                            SwimDiscipline disciplineName = downcastedMemberToFind.getSwimDiscipline3();
+                            downcastedMemberToFind.setSwimDiscipline3(SwimDiscipline.NULL);
+                            System.out.println(disciplineName+" has successfully been deleted from "+downcastedMemberToFind.getFirstName()+" "+downcastedMemberToFind.getLastName()+".");
+                            break;
+                        }
+                        case 4: {
+                            SwimDiscipline disciplineName = downcastedMemberToFind.getSwimDiscipline4();
+                            downcastedMemberToFind.setSwimDiscipline4(SwimDiscipline.NULL);
+                            System.out.println(disciplineName+" has successfully been deleted from "+downcastedMemberToFind.getFirstName()+" "+downcastedMemberToFind.getLastName()+".");
+                            break;
+                        }
+                    }
+                }
+            }
+
+    public Member findMemberById(int idToFind) {
+        for(Member member : controller.getMembersList()) {
+            if (member.getMemberID() == idToFind) {
+                if (member instanceof CompetitionMember) {
+                    return member;
+                }
+                if (member instanceof ExerciseMember) {
+                    return member;
+                }
+            }
+        }
+        return null;
+    }
+    public void findMemberSearchWithNewArray() { // Ved ikke om vi skal bruge denne metode, men den er vel rar at have
+        System.out.println("Please type in the first name of the member you are looking for.");
+        int count = 1;
+        String memberToFind = input.nextLine();
+
+        controller.searchMember(memberToFind);
+        System.out.println("Number of members found: "+controller.getSearchMatch().size());
+        if (!controller.getSearchMatch().isEmpty()) {
+            System.out.println("The following members are registered: ");
+            for (Member member : controller.getSearchMatch()) {
+                if (member instanceof CompetitionMember) {
+                    System.out.println(count+". "+member);
+                    count++;
+                }
+                if (member instanceof ExerciseMember) {
+                    System.out.println(count+". "+member);
+                    count++;
+                }
+            }
+
+        } else {
+            System.out.println("No members with that name has been registered.");
+        }
+    }
 
 
     //######################### See list of members  ################################

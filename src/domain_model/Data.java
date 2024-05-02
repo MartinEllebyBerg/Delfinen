@@ -18,18 +18,35 @@ public class Data {
     private ArrayList<Member> membersList;
     private ArrayList<ResultSwimmer> resultList;
     private ArrayList<String[]> searchList;
+    private ArrayList<Member> searchMatch;
 
     //CONSTRUCTOR
     public Data() {
         membersList = new ArrayList<>();
         resultList = new ArrayList<>();
         searchList = new ArrayList<>();
-
+        searchMatch = new ArrayList<>();
     }
 
 
-
     //METHODS
+
+
+    public ArrayList<Member> getSearchMatch() {
+        return searchMatch;
+    }
+
+    public ArrayList<Member> searchMember(String name) {
+        searchMatch.clear();
+        for(Member member : membersList) {
+            if(member.getFirstName().toLowerCase().contains(name.toLowerCase())) {
+                searchMatch.add(member);
+            }
+        }
+        return searchMatch;
+    }
+
+    //######################### Test methods & hardcode ################################
     public void testGeneration() {
 
         membersList.add(m1);
@@ -37,8 +54,6 @@ public class Data {
         membersList.add(m3);
         membersList.add(m4);
         membersList.add(m5);
-
-
 
         System.out.println("Print full memberlist");
 

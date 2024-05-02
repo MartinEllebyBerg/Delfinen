@@ -62,4 +62,24 @@ public class CompetitionMember extends Member {
     public ResultSwimmer getLatestResults() {
         return latestResults;
     }
+
+    @Override
+    public String toString() {
+        String result ="";
+        result += "\nSwimming Disciplines: ";
+        if (getSwimDiscipline1() != SwimDiscipline.NULL) {
+            result += ""+getSwimDiscipline1();
+        }
+        if (getSwimDiscipline2() != SwimDiscipline.NULL) {
+            result += "\t|\t"+getSwimDiscipline2();
+        }
+        if (getSwimDiscipline3() != SwimDiscipline.NULL) {
+            result += "\t|\t"+getSwimDiscipline3();
+        }
+        if (getSwimDiscipline4() != SwimDiscipline.NULL) {
+            result += "\t|\t"+getSwimDiscipline4();
+        }
+
+        return super.toString()+result;
+    }
 }

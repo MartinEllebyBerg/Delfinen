@@ -31,4 +31,12 @@ public class Controller {
         data.addSwimResultToResultList(rs);
     }
 
+    //######################### Methods for Data class - SearchMatch ################################
+    public ArrayList<Member> getSearchMatch() {
+        return data.getSearchMatch();
+    }
+    public ArrayList<Member> searchMember(String name) {
+        return data.searchMember(name);
+    }
+
 }
