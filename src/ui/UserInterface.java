@@ -87,6 +87,7 @@ public class UserInterface {
         //TODO: Assign svømmediscipliner enum
 
 
+
         boolean whichSwimmerType = compOrExerciseSwimmer(); //Assigner, om der skal laves et konkurrence eller motionist objekt.
 
         if (whichSwimmerType) {
