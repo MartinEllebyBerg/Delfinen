@@ -78,6 +78,7 @@ public class Member {
         } else {
             result += "\tActivity status: Passive";
         }
+        result += "\nMember Id: "+memberID;
         return result;
     }
 }

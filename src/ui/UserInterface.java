@@ -30,7 +30,7 @@ public class UserInterface {
             System.out.println("1. Add Swimmer");
             System.out.println("2. Add Swimmer results-NOTIMPLEMENTED-");
             System.out.println("3. Register Swimmer Payments -NOTIMPLEMENTED-");
-            System.out.println("4. Display list of Swimmers");
+            System.out.println("4. Display list of Swimmers\n");
 
             System.out.print("> ");
             switchInput = input.nextInt();
@@ -43,7 +43,7 @@ public class UserInterface {
                     break;
                 }
                 case 2: {
-                    //TODO: Add Swimmer results
+                    //TODO: Add Swimmer results -
                 }
                 case 3: {
                     //TODO: Register Swimmer payments
@@ -53,7 +53,7 @@ public class UserInterface {
                     displayListofMembers();
                 }
                 case 5: {
-
+                    //TODO: Set multiple swim disciplines to object
                 }
                 case 9: {
                     System.out.println("Terminating application.");
@@ -80,19 +80,18 @@ public class UserInterface {
 
         LocalDate birthday = LocalDate.of(year, month, day);
 
-
         boolean activePassive = askForActivity(); //Metode, tjekker for aktivitet.
 
         //TODO: Spørge eller generere et memberID her.
         //TODO: Assign svømmediscipliner enum
-        userPromptSwimDiscipline();
-
-
+        System.out.println("During this registration you will be able to select one swim discipline for the member.");
+        System.out.println("Afterwards, you will be able to set multiple disciplines the for selected swimmer.");
+        SwimDiscipline firstDiscipline = userPromptSwimDiscipline();
 
         boolean whichSwimmerType = compOrExerciseSwimmer(); //Assigner, om der skal laves et konkurrence eller motionist objekt.
 
         if (whichSwimmerType) {
-            Member m = new CompetitionMember(firstName, lastName, birthday, activePassive, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
+            Member m = new CompetitionMember(firstName, lastName, birthday, activePassive, firstDiscipline, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
             controller.addToMembersList(m);
             String activity; //Bygges gennem nedenstående if-statements. Bruges bare til at display aktivitetsstatus i endelige sysout besked.
             if(activePassive) {
@@ -102,6 +101,7 @@ public class UserInterface {
             }
             System.out.println("You have successfully added "+firstName+" "+lastName+".Their birthday was recorded at "+birthday
             +activity);
+            System.out.println("This member is on the team for: "+firstDiscipline);
         } else if (!whichSwimmerType) {
             Member m = new ExerciseMember(firstName, lastName, birthday, activePassive);
             controller.addToMembersList(m);
@@ -109,39 +109,6 @@ public class UserInterface {
             System.out.println("Something went wrong. Returning to menu.");
         }
     }
-
-    public SwimDiscipline findSwimDisciplineEnum(String searchTerm) {
-        for (SwimDiscipline e : SwimDiscipline.values()) {
-            if (searchTerm.equals(e.name())) {
-                System.out.println("Found matching enum: "+e+" "+e.name());
-                return e;
-            }
-        }
-        return null;
-    }
-    public void userPromptSwimDiscipline() {
-        String UPSWDInput = " ";
-        System.out.println("Please type in which discipline you would like to be assigned or attached to.");
-        System.out.println("Valid choices include breaststroke, backstroke, frontcrawl, butterfly or null.");
-
-        while(true) {
-            if(UPSWDInput.equals("done")) {
-                break;
-            }
-            UPSWDInput = input.nextLine().toLowerCase();
-            System.out.println("Please input either breaststroke, backstroke, frontcrawl, butterfly or null.");
-            if(UPSWDInput.equals("breaststroke") || UPSWDInput.equals("backstroke") || UPSWDInput.equals("frontcrawl") || UPSWDInput.equals("butterfly")||UPSWDInput.equals("null")) {
-                findSwimDisciplineEnum(UPSWDInput.toUpperCase());
-            } else if (UPSWDInput.equals()){
-
-            }
-            else {
-                System.out.println("No valid input. Please try again.");
-                userPromptSwimDiscipline();
-            }
-        }
-    }
-
     public boolean askForActivity() {
         boolean memberActive = false;
         System.out.println("Please select your desired membership status ACTIVE/PASSIVE: ");
@@ -173,6 +140,42 @@ public class UserInterface {
 
         return comp;
     }
+
+    //######################### Adding Member - Swim disciplines  ################################
+    public SwimDiscipline findSwimDisciplineEnum(String searchTerm) {
+        for (SwimDiscipline e : SwimDiscipline.values()) {
+            if (searchTerm.equals(e.name())) {
+                System.out.println("Found matching enum: "+e+" "+e.name());
+                return e;
+            }
+        }
+        return null;
+    }
+    public SwimDiscipline userPromptSwimDiscipline() {
+        String UPSWDInput = " ";
+        System.out.println("Please type in which discipline you would like to be assigned or attached to.");
+        System.out.println("Valid choices include breaststroke, backstroke, frontcrawl, butterfly or null.");
+
+        while(true) {
+            if(UPSWDInput.equals("done")) {
+                break;
+            }
+            UPSWDInput = input.nextLine().toLowerCase();
+            if(UPSWDInput.equals("breaststroke") || UPSWDInput.equals("backstroke") || UPSWDInput.equals("frontcrawl") || UPSWDInput.equals("butterfly")||UPSWDInput.equals("null")) {
+                return findSwimDisciplineEnum(UPSWDInput.toUpperCase());
+            }
+            else if (UPSWDInput.equals("done")){
+                break;
+            }
+            else {
+                System.out.println("No valid input. Please try again.");
+                userPromptSwimDiscipline();
+            }
+        }
+        return null;
+    }
+    //#########################  Member - Set swim disciplines  ################################
+
 
     //######################### See list of members  ################################
     public void displayListofMembers() {

@@ -11,6 +11,8 @@ public class Data {
     private Member m4 = new ExerciseMember("Mark", "Onat", null, false);
     private Member m5 = new CompetitionMember("Hans", "Hansen", null, true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
 
+
+
     //ATTRIBUTES
 
     private ArrayList<Member> membersList;
@@ -35,6 +37,8 @@ public class Data {
         membersList.add(m3);
         membersList.add(m4);
         membersList.add(m5);
+
+
 
         System.out.println("Print full memberlist");
 
