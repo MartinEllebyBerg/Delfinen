@@ -11,12 +11,13 @@ public class SwimmerCompetition extends Member {
     private ResultSwimmer competitionResult;
 
     //CONSTRUCTOR
-    public SwimmerCompetition(String firstName, String lastName, LocalDate birthday, boolean memberActive, ResultSwimmer competitionResult) {
+    public SwimmerCompetition(String firstName, String lastName, LocalDate birthday, boolean memberActive) {
         super(firstName, lastName, birthday, memberActive);
         this.trainingResult = trainingResult;
         this.competitionResult = competitionResult;
     }
 
     //METHODS
+
 
 }

@@ -18,7 +18,7 @@ public class Data {
 
     //METHODS
     public void testGeneration() {
-        Member m1 = new SwimmerCompetition("Daniel", "Jensen", null, true, null);
+        Member m1 = new SwimmerCompetition("Daniel", "Jensen", null, true);
         membersList.add(m1);
         System.out.println("Debug: member added");
 

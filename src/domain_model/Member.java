@@ -10,12 +10,14 @@ public class Member {
     private LocalDate birthday;
     private boolean memberActive;
 
+
     //CONSTRUCTOR
     public Member(String firstName, String lastName, LocalDate birthday, boolean memberActive) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
         this.memberActive = memberActive;
+
     }
 
     //METHODS
@@ -38,5 +40,16 @@ public class Member {
 
     public boolean getIsMemberActive() {
         return memberActive;
+    }
+    @Override
+    public String toString() {
+        String result = "";
+        result += "Name: "+getFirstName()+" "+getLastName()+"\tBirthday: "+getBirthday();
+        if(getIsMemberActive()) {
+            result += "\tActivity status: Active";
+        } else {
+            result += "\tActivity status: Passive";
+        }
+        return result;
     }
 }

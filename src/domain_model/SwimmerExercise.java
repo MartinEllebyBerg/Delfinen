@@ -9,11 +9,10 @@ public class SwimmerExercise extends Member {
     private ResultSwimmer competitionResult = null;
 
     //CONSTRUCTOR
-    public SwimmerExercise(String firstName, String lastName, LocalDate birthday, boolean memberActive, ResultSwimmer competitionResult) {
+    public SwimmerExercise(String firstName, String lastName, LocalDate birthday, boolean memberActive) {
         super(firstName, lastName, birthday, memberActive);
         this.competitionResult = competitionResult;
     }
-        //METHODS
-
+        //METHODS''
 
 }
