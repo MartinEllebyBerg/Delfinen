@@ -23,6 +23,7 @@ public class UserInterface {
 
     //METHODS
     public void startProgram() {
+        controller.hardCodedData();
         int switchInput = 0;
 
         while (switchInput != SENTINEL) {

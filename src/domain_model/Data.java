@@ -4,14 +4,6 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class Data {
-    //hardcoded data
-    private Member m1 = new CompetitionMember("Mette", "Munch", LocalDate.of(1974,2,23), true, SwimDiscipline.BUTTERFLY, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
-    private Member m2 = new CompetitionMember("Daniel", "Jensen", null, false, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.NULL, SwimDiscipline.NULL);
-    private Member m3 = new ExerciseMember("Martin", "Elleby", null, true);
-    private Member m4 = new ExerciseMember("Mark", "Onat", null, false);
-    private Member m5 = new CompetitionMember("Hans", "Hansen", null, true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
-
-
 
     //ATTRIBUTES
 
@@ -46,14 +38,22 @@ public class Data {
         return searchMatch;
     }
 
-    //######################### Test methods & hardcode ################################
-    public void testGeneration() {
+    public void hardCodedData(){
+        Member m1 = new CompetitionMember("Mette", "Munch", LocalDate.of(1974,2,23), true, SwimDiscipline.BUTTERFLY, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
+        Member m2 = new CompetitionMember("Daniel", "Jensen", null, false, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.NULL, SwimDiscipline.NULL);
+        Member m3 = new ExerciseMember("Martin", "Elleby", null, true);
+        Member m4 = new ExerciseMember("Mark", "Onat", null, false);
+        Member m5 = new CompetitionMember("Hans", "Hansen", null, true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
 
         membersList.add(m1);
         membersList.add(m2);
         membersList.add(m3);
         membersList.add(m4);
         membersList.add(m5);
+    }
+
+    //######################### Test methods & hardcode ################################
+    public void testPrintFullListMembers() {
 
         System.out.println("Print full memberlist");
 
@@ -100,10 +100,10 @@ public class Data {
 
     public void testAddSwimResultCompetition() {
         System.out.println("Her kører addswimresultmetoden");
-        ResultSwimmer result1 = new ResultSwimmer(2,"Holbæk", "Sjællandske Mesterskaber", null, SwimDiscipline.BUTTERFLY, 20.48, 5);
-        ResultSwimmer result2 = new ResultSwimmer(2,"København", "DM", null, SwimDiscipline.BACKSTROKE, 22.85, 3);
-        ResultSwimmer result3 = new ResultSwimmer(1,SwimDiscipline.FRONTCRAWL, 15.96, null);
-        ResultSwimmer result4 = new ResultSwimmer(5,"Delfinen", "Klubmesterskaber", null, SwimDiscipline.BUTTERFLY, 20.58, 1);
+        ResultSwimmer result1 = new ResultSwimmer(6,"Holbæk", "Sjællandske Mesterskaber", null, SwimDiscipline.BUTTERFLY, 20.48, 5);
+        ResultSwimmer result2 = new ResultSwimmer(6,"København", "DM", null, SwimDiscipline.BACKSTROKE, 22.85, 3);
+        ResultSwimmer result3 = new ResultSwimmer(7,SwimDiscipline.FRONTCRAWL, 15.96, null);
+        ResultSwimmer result4 = new ResultSwimmer(8,"Delfinen", "Klubmesterskaber", null, SwimDiscipline.BUTTERFLY, 20.58, 1);
         resultList.add(result1);
         resultList.add(result2);
         resultList.add(result3);
@@ -164,7 +164,7 @@ public class Data {
             sb.append(String.format("%-30s",combinedData[6]));
             sb.append(String.format("%-20s",combinedData[7]));
             sb.append(String.format("%-15s",combinedData[8]));
-            System.out.println(sb.toString());
+            System.out.println(sb);
 
         }
 

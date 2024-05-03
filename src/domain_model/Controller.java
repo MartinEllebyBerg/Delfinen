@@ -23,6 +23,9 @@ public class Controller {
     public void addToMembersList(Member member) {
         data.addToMembersList(member);
     }
+    public void hardCodedData(){
+        data.hardCodedData();
+    }
     //######################### Methods for Data class - Resultlist ################################
     public ArrayList<ResultSwimmer> getResultList() {
         return data.getResultList();
