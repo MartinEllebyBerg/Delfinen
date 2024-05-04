@@ -2,6 +2,7 @@ package ui;
 
 import domain_model.*;
 
+import java.io.Console;
 import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -14,6 +15,7 @@ public class UserInterface {
     Controller controller;
     Scanner input;
     private final int SENTINEL = 9;
+    private int switchInput = 0;
 
     //CONSTRUCTOR
     public UserInterface() {
@@ -22,11 +24,191 @@ public class UserInterface {
     }
 
     //METHODS
-    public void startProgram() {
-        int switchInput = 0;
+    //######################### Determine position within Delfinen  ################################
+    public void DelfinenUISetPosition() {
+        System.out.println("Welcome to Delfinen's member administration program. Please input your role within Delfinen.");
+        boolean condition = true;
+
+
+        while(condition) {
+            System.out.print("> ");
+            String switchChoice = input.nextLine().toLowerCase();
+
+            switch (switchChoice) {
+                case "chairman": {
+                    startProgramChairman();
+                    condition = false;
+                    break;
+                }
+                case "treasurer": {
+                    startProgramTreasurer();
+                    condition = false;
+                    break;
+                }
+                case "coach": {
+                    startProgramCoach();
+                    condition = false;
+                    break;
+                }
+                default: {
+                    System.out.println("Invalid choice. Please input either Chairman, Treasurer or Coach.");
+                    break;
+                }
+            }
+        }
+    }
+
+    //######################### Different UI based on position within Delfinen  ################################
+    public void startProgramAll() {
 
         while (switchInput != SENTINEL) {
             System.out.println("Delfinen UI - ALPHA");
+            System.out.println(" ");
+            System.out.println("1. Add Swimmer");
+            System.out.println("2. Add Swimmer results-NOTIMPLEMENTED-");
+            System.out.println("3. Register Swimmer Payments -NOTIMPLEMENTED-");
+            System.out.println("4. Display list of Swimmers\n");
+            try {
+
+                System.out.print("> ");
+                switchInput = input.nextInt();
+                input.nextLine();
+
+                switch (switchInput) {
+
+                    case 1: {
+                        generateSwimmer();
+                        break;
+                    }
+                    case 2: {
+                        //TODO: Add Swimmer results -
+                    }
+                    case 3: {
+                        //TODO: Register Swimmer payments
+                    }
+                    case 4: {
+                        //TODO: See list of swimmers
+                        displayListofMembers();
+                        break;
+                    }
+                    case 5: {
+                        //TODO: Set multiple swim disciplines to object
+                        setMultipleDisciplines();
+                        break;
+                    }
+                    case 6: { //test af metoder
+                        //findMemberSearchWithNewArray();
+                        deleteSwimDisciplines();
+                        break;
+                    }
+                    case 9: {
+                        System.out.println("Terminating application.");
+                        break; //Failsafe
+                    }
+
+                }
+            } catch(InputMismatchException e) {
+                System.out.println("Invalid input. Try again.");
+            }
+        }
+    }
+    public void startProgramChairman() {
+
+
+        while (switchInput != SENTINEL) {
+            System.out.println("Delfinen UI - CHAIRMAN");
+            System.out.println(" ");
+            System.out.println("1. Add Swimmer");
+            System.out.println("2. Display list of Swimmers\n");
+            try {
+
+                System.out.print("> ");
+                switchInput = input.nextInt();
+                input.nextLine();
+
+                switch (switchInput) {
+
+                    case 1: {
+                        generateSwimmer();
+                        break;
+                    }
+                    case 2: {
+                        displayListofMembers();
+                        break;
+                    }
+                    case 3: {
+
+                    }
+                    case 9: {
+                        System.out.println("Terminating application.");
+                        break; //Failsafe
+                    }
+
+                }
+            } catch(InputMismatchException e) {
+                System.out.println("Invalid input. Try again.");
+            }
+        }
+    }
+    public void startProgramTreasurer() {
+
+
+        while (switchInput != SENTINEL) {
+            System.out.println("Delfinen UI - TREASURER");
+            System.out.println(" ");
+            System.out.println("1. Add Swimmer");
+            System.out.println("2. Add Swimmer results-NOTIMPLEMENTED-");
+            System.out.println("3. Register Swimmer Payments -NOTIMPLEMENTED-");
+            System.out.println("4. Display list of Swimmers\n");
+            try {
+
+                System.out.print("> ");
+                switchInput = input.nextInt();
+                input.nextLine();
+
+                switch (switchInput) {
+
+                    case 1: {
+                        generateSwimmer();
+                        break;
+                    }
+                    case 2: {
+                        //TODO: Add Swimmer results -
+                    }
+                    case 3: {
+                        //TODO: Register Swimmer payments
+                    }
+                    case 4: {
+                        //TODO: See list of swimmers
+                        displayListofMembers();
+                        break;
+                    }
+                    case 5: {
+                        //TODO: Set multiple swim disciplines to object
+                        setMultipleDisciplines();
+                        break;
+                    }
+                    case 6: { //test af metoder
+                        //findMemberSearchWithNewArray();
+                        deleteSwimDisciplines();
+                        break;
+                    }
+                    case 9: {
+                        System.out.println("Terminating application.");
+                        break; //Failsafe
+                    }
+
+                }
+            } catch(InputMismatchException e) {
+                System.out.println("Invalid input. Try again.");
+            }
+        }
+    }
+    public void startProgramCoach() {
+
+
+        while (switchInput != SENTINEL) {
+            System.out.println("Delfinen UI - COACH");
             System.out.println(" ");
             System.out.println("1. Add Swimmer");
             System.out.println("2. Add Swimmer results-NOTIMPLEMENTED-");
