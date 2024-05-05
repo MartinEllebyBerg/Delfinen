@@ -38,6 +38,20 @@ public class Data {
         return searchMatch;
     }
 
+
+    //TODO: make unit test of code
+    public double testFindSamletKontingentIndbetaling (){
+        double totalForecast = 0.0;
+        for(Member m : membersList) {
+            m.calculateYearOfMember();
+            m.calculateMembershipRate();
+            totalForecast += m.getRate();
+        }
+        return totalForecast;
+    }
+
+    //######################### Test methods & hardcode ################################
+
     public void hardCodedData(){
         Member m1 = new CompetitionMember("Mette", "Munch", LocalDate.of(1974,2,23), true, SwimDiscipline.BUTTERFLY, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
         Member m2 = new CompetitionMember("Daniel", "Jensen", LocalDate.of(1986,4,26), false, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.NULL, SwimDiscipline.NULL);
@@ -75,18 +89,6 @@ public class Data {
         membersList.add(m16);
     }
 
-    //TODO: make unit test of code
-    public double testFindSamletKontingentIndbetaling (){
-        double totalForecast = 0.0;
-        for(Member m : membersList) {
-            m.calculateYearOfMember();
-            m.calculateMembershipRate();
-            totalForecast += m.getRate();
-        }
-        return totalForecast;
-    }
-
-    //######################### Test methods & hardcode ################################
     public void testPrintFullListMembers() {
 
         System.out.println("Print full memberlist");

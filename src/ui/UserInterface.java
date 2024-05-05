@@ -26,58 +26,92 @@ public class UserInterface {
         controller.hardCodedData();
         int switchInput = 0;
 
+        //TODO: Add specific users menu as a first step, below is total menu, which belongs to the chairman of the swimclub.
+
         while (switchInput != SENTINEL) {
-            System.out.println("Delfinen UI - ALPHA");
+
+            System.out.println("Delfinen UI - ALPHA - FULL MENU - CHAIRMAN");
             System.out.println(" ");
             System.out.println("1. Add Swimmer");
-            System.out.println("2. Add Swimmer results-NOTIMPLEMENTED-");
-            System.out.println("3. Register Swimmer Payments -NOTIMPLEMENTED-");
-            System.out.println("4. Display list of Swimmers\n");
-            try {
+            System.out.println("2. Edit data of Swimmer");
+            System.out.println("3. Display list of all Swimmers");
+            System.out.println("4. Search function");
+            System.out.println("5. Add Swimmer results-NOT IMPLEMENTED-");
+            System.out.println("6. Overdue payments");
+            System.out.println("7. Registration of payment");
+            System.out.println("8. Forecast");
 
-                System.out.print("> ");
-                switchInput = input.nextInt();
-                input.nextLine();
 
-                switch (switchInput) {
+            System.out.print("> ");
+            switchInput = scanIntSafely();
 
-                    case 1: {
-                        generateSwimmer();
-                        break;
-                    }
-                    case 2: {
-                        //TODO: Add Swimmer results -
-                    }
-                    case 3: {
-                        //TODO: Register Swimmer payments
-                        calculateTotalRateForecast();
-                        break;
-                    }
-                    case 4: {
-                        //TODO: See list of swimmers
-                        displayListofMembers();
-                        break;
-                    }
-                    case 5: {
-                        //TODO: Set multiple swim disciplines to object
-                        setMultipleDisciplines();
-                        break;
-                    }
-                    case 6: { //test af metoder
-                        //findMemberSearchWithNewArray();
-                        deleteSwimDisciplines();
-                        break;
-                    }
-                    case 9: {
-                        System.out.println("Terminating application.");
-                        break; //Failsafe
-                    }
+
+
+            switch (switchInput) {
+
+                case 1: {
+                    generateSwimmer();
+                    break;
+                }
+                case 2: {
+                    editMenu();
+                    break;
+                }
+                case 3: {
+                    displayListofMembers();
+                    break;
+                }
+                case 4: {
+                    //TODO: Finish search menu and relevant search and sort methods and implement this in menu
+                    searchMenu();
+                    break;
+                }
+                case 5: {
+                    //TODO: Set multiple swim disciplines to object
+
+                    break;
+                }
+                case 6: { //test af metoder
+                    //findMemberSearchWithNewArray();
+                    deleteSwimDisciplines();
+                    break;
+                }
+                case 7: {
 
                 }
-            } catch(InputMismatchException e) {
-                System.out.println("Invalid input. Try again.");
+                case 8: {
+                    calculateTotalRateForecast();
+                    break;
+                }
+                case 9: {
+                    System.out.println("Terminating application.");
+                    break; //Failsafe
+                }
+
             }
+
         }
+    }
+    //######################### Sub menues  ################################
+
+    public void editMenu() {
+        System.out.println("Please note in order to make changes you will need the memberID of the specific member you want to alter");
+
+        System.out.println("1. Search specific Member / Swimmer to get memberID.");
+        System.out.println("2. Add extra swimdisciplines");
+        System.out.println("3. Edit data of a member");
+        System.out.println("4. Delete a member");
+
+        //TODO: Finish editMenu with switch case and calling correct methods
+
+    }
+
+
+    public void searchMenu() {
+
+        System.out.println("1. Search specific Member / Swimmer");
+        System.out.println("2. Search Swimdiscipline -NOT IMPLEMENTED-");
+
     }
 
     //######################### Adding Member  ################################
@@ -90,7 +124,7 @@ public class UserInterface {
         LocalDate birthday = null;
         boolean validInput = false;
 
-        while(!validInput) {
+        while (!validInput) {
             System.out.println("Please input your birthday in the following format YYYY-MM-DD: ");
 
             String birthdayStr = input.nextLine(); //Brugerinput gemmes
@@ -115,14 +149,14 @@ public class UserInterface {
             Member m = new CompetitionMember(firstName, lastName, birthday, activePassive, firstDiscipline, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
             controller.addToMembersList(m);
             String activity; //Bygges gennem nedenstående if-statements. Bruges bare til at display aktivitetsstatus i endelige sysout besked.
-            if(activePassive) {
+            if (activePassive) {
                 activity = " This member has the following activity status: ACTIVE";
             } else {
                 activity = " This member has the following activity status: PASSIVE";
             }
-            System.out.println("You have successfully added "+firstName+" "+lastName+". Their birthday was recorded at "+birthday
-            +activity);
-            System.out.println("This member is on the team for: "+firstDiscipline);
+            System.out.println("You have successfully added " + firstName + " " + lastName + ". Their birthday was recorded at " + birthday
+                    + activity);
+            System.out.println("This member is on the team for: " + firstDiscipline);
         } else if (!decidingWhatTypeOfSwimmer) {
             Member m = new ExerciseMember(firstName, lastName, birthday, activePassive);
             controller.addToMembersList(m);
@@ -130,21 +164,23 @@ public class UserInterface {
             System.out.println("Something went wrong. Returning to menu.");
         }
     }
+
     public boolean askForActivity() {
         boolean memberActive = false;
         System.out.println("Please select your desired membership status ACTIVE/PASSIVE: ");
-            String activePassive = input.nextLine();
-            if (activePassive.toLowerCase().equals("active")) {
-                System.out.println("You have selected an ACTIVE membership.");
-                memberActive = true;
-            } else if(activePassive.toLowerCase().equals("passive")) {
-                System.out.println("You have selected a PASSIVE membership.");
-            } else {
-                System.out.println("You have typed something not recognised by the program. Please try again. Error code: 88452T");
-                return askForActivity();
-            }
+        String activePassive = input.nextLine();
+        if (activePassive.toLowerCase().equals("active")) {
+            System.out.println("You have selected an ACTIVE membership.");
+            memberActive = true;
+        } else if (activePassive.toLowerCase().equals("passive")) {
+            System.out.println("You have selected a PASSIVE membership.");
+        } else {
+            System.out.println("You have typed something not recognised by the program. Please try again. Error code: 88452T");
+            return askForActivity();
+        }
         return memberActive;
     }
+
     public boolean compOrExerciseSwimmer() {
         boolean comp = false;
         System.out.println("Please select if the swimmer should be assigned as a competition swimmer or exercise swimmer. Competition/Exercise");
@@ -165,35 +201,35 @@ public class UserInterface {
     public SwimDiscipline findSwimDisciplineEnum(String searchTerm) {
         for (SwimDiscipline e : SwimDiscipline.values()) {
             if (searchTerm.equals(e.name())) {
-                System.out.println("Found matching enum: "+e+" "+e.name());
+                System.out.println("Found matching enum: " + e + " " + e.name());
                 return e;
             }
         }
         return null;
     }
+
     public SwimDiscipline userPromptSwimDiscipline() {
         String UPSWDInput = " ";
         System.out.println("Please type in which discipline you would like to be assigned or attached to.");
         System.out.println("Valid choices include breaststroke, backstroke, frontcrawl, butterfly or null.");
 
-        while(true) {
-            if(UPSWDInput.equals("done")) {
+        while (true) {
+            if (UPSWDInput.equals("done")) {
                 break;
             }
             UPSWDInput = input.nextLine().toLowerCase();
-            if(UPSWDInput.equals("breaststroke") || UPSWDInput.equals("backstroke") || UPSWDInput.equals("frontcrawl") || UPSWDInput.equals("butterfly")||UPSWDInput.equals("null")) {
+            if (UPSWDInput.equals("breaststroke") || UPSWDInput.equals("backstroke") || UPSWDInput.equals("frontcrawl") || UPSWDInput.equals("butterfly") || UPSWDInput.equals("null")) {
                 return findSwimDisciplineEnum(UPSWDInput.toUpperCase());
-            }
-            else if (UPSWDInput.equals("done")){
+            } else if (UPSWDInput.equals("done")) {
                 break;
-            }
-            else {
+            } else {
                 System.out.println("No valid input. Please try again.");
                 return userPromptSwimDiscipline();
             }
         }
         return null;
     }
+
     //#########################  Member - Set multiple swim disciplines  ################################
     public void setMultipleDisciplines() {
 
@@ -209,38 +245,35 @@ public class UserInterface {
                 if (!hasDiscipline(downcastedMemberToFind, selectedDiscipline)) { //Hvis det specifikke objekt ikke har den disciplin, de prompter efter, kan det tildeles
                     if (downcastedMemberToFind.getSwimDiscipline1() == SwimDiscipline.NULL) {
                         downcastedMemberToFind.setSwimDiscipline1(selectedDiscipline);
-                        System.out.println(selectedDiscipline+" has successfully been assigned to "+downcastedMemberToFind.getFirstName()+" "+downcastedMemberToFind.getLastName()+".");
-                    }
-                    else if (downcastedMemberToFind.getSwimDiscipline2() == SwimDiscipline.NULL) {
+                        System.out.println(selectedDiscipline + " has successfully been assigned to " + downcastedMemberToFind.getFirstName() + " " + downcastedMemberToFind.getLastName() + ".");
+                    } else if (downcastedMemberToFind.getSwimDiscipline2() == SwimDiscipline.NULL) {
                         downcastedMemberToFind.setSwimDiscipline2(selectedDiscipline);
-                        System.out.println(selectedDiscipline+" has successfully been assigned to "+downcastedMemberToFind.getFirstName()+" "+downcastedMemberToFind.getLastName()+".");
-                    }
-                    else if (downcastedMemberToFind.getSwimDiscipline3() == SwimDiscipline.NULL) {
+                        System.out.println(selectedDiscipline + " has successfully been assigned to " + downcastedMemberToFind.getFirstName() + " " + downcastedMemberToFind.getLastName() + ".");
+                    } else if (downcastedMemberToFind.getSwimDiscipline3() == SwimDiscipline.NULL) {
                         downcastedMemberToFind.setSwimDiscipline3(selectedDiscipline);
-                        System.out.println(selectedDiscipline+" has successfully been assigned to "+downcastedMemberToFind.getFirstName()+" "+downcastedMemberToFind.getLastName()+".");
-                    }
-                    else if (downcastedMemberToFind.getSwimDiscipline4() == SwimDiscipline.NULL) {
+                        System.out.println(selectedDiscipline + " has successfully been assigned to " + downcastedMemberToFind.getFirstName() + " " + downcastedMemberToFind.getLastName() + ".");
+                    } else if (downcastedMemberToFind.getSwimDiscipline4() == SwimDiscipline.NULL) {
                         downcastedMemberToFind.setSwimDiscipline4(selectedDiscipline);
-                        System.out.println(selectedDiscipline+" has successfully been assigned to "+downcastedMemberToFind.getFirstName()+" "+downcastedMemberToFind.getLastName()+".");
-                    }
-                    else {
+                        System.out.println(selectedDiscipline + " has successfully been assigned to " + downcastedMemberToFind.getFirstName() + " " + downcastedMemberToFind.getLastName() + ".");
+                    } else {
                         System.out.println("You are currently at at max amount of attached swimming disciplines available.");
                     }
-                }
-                else {
-                    System.out.println(selectedDiscipline+" has already been assigned to "+memberToFind.getFirstName()+" "+memberToFind.getLastName()+"("+"Member ID: "+ memberToFind.getMemberID()+")");
+                } else {
+                    System.out.println(selectedDiscipline + " has already been assigned to " + memberToFind.getFirstName() + " " + memberToFind.getLastName() + "(" + "Member ID: " + memberToFind.getMemberID() + ")");
                 }
             } else {
                 System.out.println("You have assigned all available disciplines. ");
             }
         }
     }
+
     public boolean hasAvailableDisciplines(CompetitionMember member) { //Tjekker om member objektets 4 svømmediscipliner er sandt til null.(Det er 3 per default.
         return member.getSwimDiscipline1() == SwimDiscipline.NULL ||
                 member.getSwimDiscipline2() == SwimDiscipline.NULL ||
                 member.getSwimDiscipline3() == SwimDiscipline.NULL ||
                 member.getSwimDiscipline4() == SwimDiscipline.NULL;
-        }
+    }
+
     public boolean hasDiscipline(CompetitionMember member, SwimDiscipline discipline) { //Tjekker det specifikke member objekts 4 svømmediscipliner op mod en specifik svømmedisciplin
         return member.getSwimDiscipline1() == discipline ||
                 member.getSwimDiscipline2() == discipline ||
@@ -252,51 +285,51 @@ public class UserInterface {
         System.out.println("Reminder: The member ID can be found when fetching a list of registered swimmers.\n");
         System.out.println("Please input the member ID you would like to apply changes to.");
 
-                int idToFind = input.nextInt();
-                input.nextLine();
-                Member memberToFind = findMemberById(idToFind);
+        int idToFind = input.nextInt();
+        input.nextLine();
+        Member memberToFind = findMemberById(idToFind);
 
-                if (memberToFind instanceof CompetitionMember downcastedMemberToFind) {
-                    //TODO: Fjerne muligheder ved null svømmediscipliner
-                    System.out.println("1. " + downcastedMemberToFind.getSwimDiscipline1());
-                    System.out.println("2. " + downcastedMemberToFind.getSwimDiscipline2());
-                    System.out.println("3. " + downcastedMemberToFind.getSwimDiscipline3());
-                    System.out.println("4. " + downcastedMemberToFind.getSwimDiscipline4());
-                    System.out.println("\nPlease select the discipline you would like to delete.");
-                    int choice = input.nextInt();
-                    input.nextLine();
+        if (memberToFind instanceof CompetitionMember downcastedMemberToFind) {
+            //TODO: Fjerne muligheder ved null svømmediscipliner
+            System.out.println("1. " + downcastedMemberToFind.getSwimDiscipline1());
+            System.out.println("2. " + downcastedMemberToFind.getSwimDiscipline2());
+            System.out.println("3. " + downcastedMemberToFind.getSwimDiscipline3());
+            System.out.println("4. " + downcastedMemberToFind.getSwimDiscipline4());
+            System.out.println("\nPlease select the discipline you would like to delete.");
+            int choice = input.nextInt();
+            input.nextLine();
 
-                    switch (choice) {
-                        case 1: {
-                            SwimDiscipline disciplineName = downcastedMemberToFind.getSwimDiscipline1();
-                            downcastedMemberToFind.setSwimDiscipline1(SwimDiscipline.NULL);
-                            System.out.println(disciplineName+" has successfully been deleted from "+downcastedMemberToFind.getFirstName()+" "+downcastedMemberToFind.getLastName()+".");
-                            break;
-                        }
-                        case 2: {
-                            SwimDiscipline disciplineName = downcastedMemberToFind.getSwimDiscipline2();
-                            downcastedMemberToFind.setSwimDiscipline2(SwimDiscipline.NULL);
-                            System.out.println(disciplineName+" has successfully been deleted from "+downcastedMemberToFind.getFirstName()+" "+downcastedMemberToFind.getLastName()+".");
-                            break;
-                        }
-                        case 3: {
-                            SwimDiscipline disciplineName = downcastedMemberToFind.getSwimDiscipline3();
-                            downcastedMemberToFind.setSwimDiscipline3(SwimDiscipline.NULL);
-                            System.out.println(disciplineName+" has successfully been deleted from "+downcastedMemberToFind.getFirstName()+" "+downcastedMemberToFind.getLastName()+".");
-                            break;
-                        }
-                        case 4: {
-                            SwimDiscipline disciplineName = downcastedMemberToFind.getSwimDiscipline4();
-                            downcastedMemberToFind.setSwimDiscipline4(SwimDiscipline.NULL);
-                            System.out.println(disciplineName+" has successfully been deleted from "+downcastedMemberToFind.getFirstName()+" "+downcastedMemberToFind.getLastName()+".");
-                            break;
-                        }
-                    }
+            switch (choice) {
+                case 1: {
+                    SwimDiscipline disciplineName = downcastedMemberToFind.getSwimDiscipline1();
+                    downcastedMemberToFind.setSwimDiscipline1(SwimDiscipline.NULL);
+                    System.out.println(disciplineName + " has successfully been deleted from " + downcastedMemberToFind.getFirstName() + " " + downcastedMemberToFind.getLastName() + ".");
+                    break;
+                }
+                case 2: {
+                    SwimDiscipline disciplineName = downcastedMemberToFind.getSwimDiscipline2();
+                    downcastedMemberToFind.setSwimDiscipline2(SwimDiscipline.NULL);
+                    System.out.println(disciplineName + " has successfully been deleted from " + downcastedMemberToFind.getFirstName() + " " + downcastedMemberToFind.getLastName() + ".");
+                    break;
+                }
+                case 3: {
+                    SwimDiscipline disciplineName = downcastedMemberToFind.getSwimDiscipline3();
+                    downcastedMemberToFind.setSwimDiscipline3(SwimDiscipline.NULL);
+                    System.out.println(disciplineName + " has successfully been deleted from " + downcastedMemberToFind.getFirstName() + " " + downcastedMemberToFind.getLastName() + ".");
+                    break;
+                }
+                case 4: {
+                    SwimDiscipline disciplineName = downcastedMemberToFind.getSwimDiscipline4();
+                    downcastedMemberToFind.setSwimDiscipline4(SwimDiscipline.NULL);
+                    System.out.println(disciplineName + " has successfully been deleted from " + downcastedMemberToFind.getFirstName() + " " + downcastedMemberToFind.getLastName() + ".");
+                    break;
                 }
             }
+        }
+    }
 
     public Member findMemberById(int idToFind) {
-        for(Member member : controller.getMembersList()) {
+        for (Member member : controller.getMembersList()) {
             if (member.getMemberID() == idToFind) {
                 if (member instanceof CompetitionMember) {
                     return member;
@@ -308,22 +341,23 @@ public class UserInterface {
         }
         return null;
     }
+
     public void findMemberSearchWithNewArray() { // Ved ikke om vi skal bruge denne metode, men den er vel rar at have
         System.out.println("Please type in the first name of the member you are looking for.");
         int count = 1;
         String memberToFind = input.nextLine();
 
         controller.searchMember(memberToFind);
-        System.out.println("Number of members found: "+controller.getSearchMatch().size());
+        System.out.println("Number of members found: " + controller.getSearchMatch().size());
         if (!controller.getSearchMatch().isEmpty()) {
             System.out.println("The following members are registered: ");
             for (Member member : controller.getSearchMatch()) {
                 if (member instanceof CompetitionMember) {
-                    System.out.println(count+". "+member);
+                    System.out.println(count + ". " + member);
                     count++;
                 }
                 if (member instanceof ExerciseMember) {
-                    System.out.println(count+". "+member);
+                    System.out.println(count + ". " + member);
                     count++;
                 }
             }
@@ -337,7 +371,7 @@ public class UserInterface {
     //######################### See list of members  ################################
     public void displayListofMembers() {
         System.out.println("Displaying list of current members: ");
-        for(Member m : controller.getMembersList()) {
+        for (Member m : controller.getMembersList()) {
             if (m instanceof CompetitionMember) {
                 //System.out.println("Competition Swimmers: ");
                 System.out.println(m.toString());
@@ -351,11 +385,12 @@ public class UserInterface {
         }
     }
 
-    public void calculateTotalRateForecast(){
-       System.out.println("her beregnes samlet forventet medlemsindbetaling: ");
-       double resultat = controller.calculateTotalRateForecast();
-        System.out.println("Forventet indbetaling: " +resultat + " kr");
+    public void calculateTotalRateForecast() {
+        System.out.println("her beregnes samlet forventet medlemsindbetaling: ");
+        double resultat = controller.calculateTotalRateForecast();
+        System.out.println("Forventet indbetaling: " + resultat + " kr");
     }
+
 
     private int scanIntSafely() { //Metode til at fange hvis man skriver et bogstav i en int scanner, der ellers vil melde en fejl
         try {
