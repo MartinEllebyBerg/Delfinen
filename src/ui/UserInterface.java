@@ -13,6 +13,7 @@ public class UserInterface {
     //ATTRIBUTES
     Controller controller;
     Scanner input;
+    private int switchInput = 0;
     private final int SENTINEL = 9;
 
     //CONSTRUCTOR
@@ -24,27 +25,27 @@ public class UserInterface {
     //METHODS
     public void startProgram() {
         controller.hardCodedData();
-        int switchInput = 0;
+
 
         //TODO: Add specific users menu as a first step, below is total menu, which belongs to the chairman of the swimclub.
 
         while (switchInput != SENTINEL) {
 
+            System.out.println(" ");
             System.out.println("Delfinen UI - ALPHA - FULL MENU - CHAIRMAN");
             System.out.println(" ");
             System.out.println("1. Add Swimmer");
             System.out.println("2. Edit data of Swimmer");
             System.out.println("3. Display list of all Swimmers");
             System.out.println("4. Search function");
-            System.out.println("5. Add Swimmer results-NOT IMPLEMENTED-");
-            System.out.println("6. Overdue payments");
-            System.out.println("7. Registration of payment");
+            System.out.println("5. Add Swimmer results");
+            System.out.println("6. Overdue payments-NOT IMPLEMENTED");
+            System.out.println("7. Registration of payment-NOT IMPLEMENTED");
             System.out.println("8. Forecast");
 
 
             System.out.print("> ");
             switchInput = scanIntSafely();
-
 
 
             switch (switchInput) {
@@ -67,7 +68,7 @@ public class UserInterface {
                     break;
                 }
                 case 5: {
-                    //TODO: Set multiple swim disciplines to object
+
 
                     break;
                 }
@@ -101,8 +102,27 @@ public class UserInterface {
         System.out.println("2. Add extra swimdisciplines");
         System.out.println("3. Edit data of a member");
         System.out.println("4. Delete a member");
+        System.out.print("> ");
+        switchInput = scanIntSafely();
 
-        //TODO: Finish editMenu with switch case and calling correct methods
+        switch (switchInput) {
+
+            case 1: {
+                findMemberSearchWithNewArray();
+                break;
+            }
+            case 2: {
+                setMultipleDisciplines();
+                break;
+            }
+            case 3: {
+                //TODO: make and call method to edit data of a member eg swimdiscipline or name
+
+            }
+            case 4: {
+                //TODO: make and call a method to delete member....OBS double check before deleting!
+            }
+        }
 
     }
 
@@ -110,7 +130,31 @@ public class UserInterface {
     public void searchMenu() {
 
         System.out.println("1. Search specific Member / Swimmer");
-        System.out.println("2. Search Swimdiscipline -NOT IMPLEMENTED-");
+        System.out.println("2. Search best results training within the different swim disciplines -NOT IMPLEMENTED-");
+        System.out.println("3. Search best results competition within the different swim disciplines -NOT IMPLEMENTED-");
+        System.out.println("4. Search best results training and competition on a specific member -NOT IMPLEMENTED-");
+        System.out.print("> ");
+        switchInput = scanIntSafely();
+
+        switch (switchInput) {
+
+            case 1: {
+                findMemberSearchWithNewArray();
+                break;
+            }
+            case 2: {
+                //TODO: make and call method to search for best swim results (training) within the different swimdisciplines
+                break;
+            }
+            case 3: {
+                //TODO: make and call method to search for best swim results (competition) within the different swimdisciplines
+                break;
+            }
+            case 4: {
+                //TODO: make and call method to search for best results registered on a specific swimmer
+                break;
+            }
+        }
 
     }
 
@@ -345,6 +389,7 @@ public class UserInterface {
     public void findMemberSearchWithNewArray() { // Ved ikke om vi skal bruge denne metode, men den er vel rar at have
         System.out.println("Please type in the first name of the member you are looking for.");
         int count = 1;
+        input.nextLine(); //extra line to prevent scanner bug
         String memberToFind = input.nextLine();
 
         controller.searchMember(memberToFind);
@@ -385,10 +430,11 @@ public class UserInterface {
         }
     }
 
+    //TODO: NICE_TO if we can make a forecast based on the age next year (saying we have the current members with current status.
     public void calculateTotalRateForecast() {
-        System.out.println("her beregnes samlet forventet medlemsindbetaling: ");
-        double resultat = controller.calculateTotalRateForecast();
-        System.out.println("Forventet indbetaling: " + resultat + " kr");
+        System.out.println("Calculation of expected income (payment membership rate) based on current membership status: ");
+        double result = controller.calculateTotalRateForecast();
+        System.out.println("Total: " + result + " DKK/year.");
     }
 
 

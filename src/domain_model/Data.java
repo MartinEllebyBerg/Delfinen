@@ -134,7 +134,7 @@ public class Data {
     }
 
 
-    public void testAddSwimResultCompetition() {
+    public void addSwimResultCompetition() {
         System.out.println("Her kører addswimresultmetoden");
         ResultSwimmer result1 = new ResultSwimmer(6,"Holbæk", "Sjællandske Mesterskaber", null, SwimDiscipline.BUTTERFLY, 20.48, 5);
         ResultSwimmer result2 = new ResultSwimmer(6,"København", "DM", null, SwimDiscipline.BACKSTROKE, 22.85, 3);
