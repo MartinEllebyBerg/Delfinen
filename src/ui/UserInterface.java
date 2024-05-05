@@ -50,6 +50,8 @@ public class UserInterface {
                     }
                     case 3: {
                         //TODO: Register Swimmer payments
+                        calculateTotalRateForecast();
+                        break;
                     }
                     case 4: {
                         //TODO: See list of swimmers
@@ -337,14 +339,22 @@ public class UserInterface {
         System.out.println("Displaying list of current members: ");
         for(Member m : controller.getMembersList()) {
             if (m instanceof CompetitionMember) {
-                System.out.println("Competition Swimmers: ");
+                //System.out.println("Competition Swimmers: ");
                 System.out.println(m.toString());
+                System.out.println(" ");
             }
             if (m instanceof ExerciseMember) {
-                System.out.println("Exercise Swimmers: ");
                 System.out.println(m.toString());
+                System.out.println("Exercise Swimmer");
+                System.out.println(" ");
             }
         }
+    }
+
+    public void calculateTotalRateForecast(){
+       System.out.println("her beregnes samlet forventet medlemsindbetaling: ");
+       double resultat = controller.calculateTotalRateForecast();
+        System.out.println("Forventet indbetaling: " +resultat + " kr");
     }
 
     private int scanIntSafely() { //Metode til at fange hvis man skriver et bogstav i en int scanner, der ellers vil melde en fejl

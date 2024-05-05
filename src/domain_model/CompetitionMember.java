@@ -66,7 +66,7 @@ public class CompetitionMember extends Member {
     @Override
     public String toString() {
         String result ="";
-        result += "\nSwimming Disciplines: ";
+        result += "\nComp. Swimmer. Swimming Disciplines: ";
         if (getSwimDiscipline1() != SwimDiscipline.NULL) {
             result += ""+getSwimDiscipline1();
         }

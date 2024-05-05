@@ -13,6 +13,7 @@ public class Member {
     private static int nextMemberID = 1; //statisk attribut til at sammentælle memberID og sørge for unikt nummer.
     private int memberID;
     private int yearsOfAge;
+    private double rate;
     private boolean paymentRegistered;
 
 
@@ -22,7 +23,6 @@ public class Member {
         this.lastName = lastName;
         this.birthday = birthday;
         this.memberActive = memberActive;
-
         memberID = nextMemberID++;
         paymentRegistered = false;
     }
@@ -37,7 +37,7 @@ public class Member {
     }
 
     public void calculateMembershipRate() {
-        double rate;
+
         if (memberActive == false) {
             rate = 500.00;
         } else if (yearsOfAge < 18) {
@@ -50,6 +50,9 @@ public class Member {
 
     }
 
+    public double getRate() {
+        return rate;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -70,16 +73,29 @@ public class Member {
     public int getMemberID() {
         return memberID;
     }
+
+    public boolean isMemberActive() {
+        return memberActive;
+    }
+
+    public int getYearsOfAge() {
+        return yearsOfAge;
+    }
+
+    public boolean isPaymentRegistered() {
+        return paymentRegistered;
+    }
+
     @Override
     public String toString() {
         String result = "";
-        result += "Name: "+getFirstName()+" "+getLastName()+"\tBirthday: "+getBirthday();
+        result += "Member Id: "+memberID+ "\tName: "+getFirstName()+" "+getLastName()+"\tBirthday: "+getBirthday();
         if(getIsMemberActive()) {
             result += "\tActivity status: Active";
         } else {
             result += "\tActivity status: Passive";
         }
-        result += "\nMember Id: "+memberID;
+
         return result;
     }
 }

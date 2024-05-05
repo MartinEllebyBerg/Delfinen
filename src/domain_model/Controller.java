@@ -26,6 +26,10 @@ public class Controller {
     public void hardCodedData(){
         data.hardCodedData();
     }
+
+    public double calculateTotalRateForecast(){
+        return data.testFindSamletKontingentIndbetaling();
+    }
     //######################### Methods for Data class - Resultlist ################################
     public ArrayList<ResultSwimmer> getResultList() {
         return data.getResultList();
