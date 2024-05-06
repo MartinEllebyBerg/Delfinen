@@ -10,8 +10,8 @@ public class Main {
 //        d.testSearchCompSwimmersWithResultDataSaveInAnArray();
 //        d.testPrintSavedArrayListWithCombinedData();
 //
-//        //ui.startProgramAll();
-        //ui.DelfinenUISetPosition();
+ //       ui.startProgramAll();
+        ui.DelfinenUISetPosition();
         ui.addSwimmerResults();
 //        //Data d = new Data();
 //        //d.testGeneration();
