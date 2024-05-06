@@ -34,12 +34,20 @@ public class ResultSwimmer {
     @Override
     public String toString() {
         return "ResultSwimmer: " +
-                "swimID: " +memberID + '\'' +
+                "swimID: " + memberID + '\'' +
                 ", swimDiscipline: " + swimDiscipline + '\'' +
                 ", competitionName: " + competitionName + '\'' +
                 ", competitionLocation='" + competitionLocation + '\'' +
                 ", swimTime=" + swimTime +
                 ", placementCompetition=" + placementCompetition +
+                ", competitionDate=" + resultDate;
+    }
+
+    public String toStringTraining() {
+        return "ResultSwimmer: " +
+                "swimID: " + memberID + '\'' +
+                ", swimDiscipline: " + swimDiscipline + '\'' +
+                ", swimTime=" + swimTime +
                 ", competitionDate=" + resultDate;
     }
 

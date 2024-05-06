@@ -1,5 +1,6 @@
 package domain_model;
 
+import javax.xml.transform.Result;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -11,6 +12,7 @@ public class Data {
     private Member m4 = new ExerciseMember("Mark", "Onat", null, false);
     private Member m5 = new CompetitionMember("Hans", "Hansen", null, true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
 
+    //hardcoded test af Registrere træningsobjekt
 
 
     //ATTRIBUTES
@@ -19,6 +21,8 @@ public class Data {
     private ArrayList<ResultSwimmer> resultList;
     private ArrayList<String[]> searchList;
     private ArrayList<Member> searchMatch;
+    private ArrayList<ResultSwimmer> resultListTraining;
+    private ArrayList<ResultSwimmer> resultListCompetition;
 
     //CONSTRUCTOR
     public Data() {
@@ -26,6 +30,8 @@ public class Data {
         resultList = new ArrayList<>();
         searchList = new ArrayList<>();
         searchMatch = new ArrayList<>();
+        resultListTraining = new ArrayList<>();
+        resultListCompetition = new ArrayList<>();
     }
 
 
@@ -170,7 +176,22 @@ public class Data {
 
     }
 
+    public void testAddSwimResultTraining() {
+        System.out.println("test af udprint af addSwimResultTraining metode");
+        ResultSwimmer r1 = new ResultSwimmer(30, SwimDiscipline.FRONTCRAWL, 20.35, LocalDate.of(2024, 9, 13));
+        resultListTraining.add(r1);
+        for (ResultSwimmer r : resultListTraining) {
+            System.out.println(r.toStringTraining());
+        }
+    }
 
+    public void addSwimResultTraining(int memberID, SwimDiscipline swimDiscipline, double swimTime, LocalDate resultDate) {
+        resultListTraining.add(new ResultSwimmer(memberID, swimDiscipline, swimTime, resultDate));
+    }
+
+    public void addSwimResultCompetition(int memberID, String competitionLocation, String competitionName, LocalDate resultDate, SwimDiscipline swimDiscipline, double swimTime, int placementCompetition) {
+        resultListCompetition.add(new ResultSwimmer(memberID, competitionLocation, competitionName, resultDate, swimDiscipline, swimTime, placementCompetition));
+    }
 
 
 }
