@@ -5,15 +5,6 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class Data {
-    //hardcoded data
-    private Member m1 = new CompetitionMember("Mette", "Munch", LocalDate.of(1974,2,23), true, SwimDiscipline.BUTTERFLY, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
-    private Member m2 = new CompetitionMember("Daniel", "Jensen", null, false, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.NULL, SwimDiscipline.NULL);
-    private Member m3 = new ExerciseMember("Martin", "Elleby", null, true);
-    private Member m4 = new ExerciseMember("Mark", "Onat", null, false);
-    private Member m5 = new CompetitionMember("Hans", "Hansen", null, true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
-
-    //hardcoded test af Registrere træningsobjekt
-
 
     //ATTRIBUTES
 
@@ -53,15 +44,46 @@ public class Data {
     }
 
     //######################### Test methods & hardcode ################################
-    public void testGeneration() {
+
+    public void hardCodedData(){
+        Member m1 = new CompetitionMember("Mette", "Munch", LocalDate.of(1974,2,23), true, SwimDiscipline.BUTTERFLY, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
+        Member m2 = new CompetitionMember("Daniel", "Jensen", LocalDate.of(1986,4,26), false, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.NULL, SwimDiscipline.NULL);
+        Member m3 = new ExerciseMember("Martin", "Elleby", LocalDate.of(1999,8,12), true);
+        Member m4 = new ExerciseMember("Mark", "Onat", LocalDate.of(2001,2,8), false);
+        Member m5 = new CompetitionMember("Hans", "Hansen", LocalDate.of(2005,8,26), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m6 = new CompetitionMember("Peter", "Hansen", LocalDate.of(2012,5,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m7 = new CompetitionMember("Signe", "Hansen", LocalDate.of(2016,3,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m8 = new CompetitionMember("Ulrik", "Hansen", LocalDate.of(2016,3,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m9 = new CompetitionMember("Lise", "Hansen", LocalDate.of(2016,3,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m10 = new CompetitionMember("Christian", "Hansen", LocalDate.of(2016,3,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m11 = new CompetitionMember("Malthe", "Hansen", LocalDate.of(2016,3,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m12 = new CompetitionMember("Mette", "Hansen", LocalDate.of(2016,3,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m13 = new CompetitionMember("Martin", "Hansen", LocalDate.of(2016,3,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m14 = new CompetitionMember("Anders", "Hansen", LocalDate.of(2016,3,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m15 = new ExerciseMember("Mette", "Olsen", LocalDate.of(1960,3,15), true);
+        Member m16 = new ExerciseMember("Jakob", "Jakobsen", LocalDate.of(2016,3,15), false);
+
 
         membersList.add(m1);
         membersList.add(m2);
         membersList.add(m3);
         membersList.add(m4);
         membersList.add(m5);
+        membersList.add(m6);
+        membersList.add(m7);
+        membersList.add(m8);
+        membersList.add(m9);
+        membersList.add(m10);
+        membersList.add(m11);
+        membersList.add(m12);
+        membersList.add(m13);
+        membersList.add(m14);
+        membersList.add(m15);
+        membersList.add(m16);
+    }
+    public void testGeneration() {
 
-        System.out.println("Print full memberlist");
+       System.out.println("Print full memberlist");
 
         System.out.println(" ");
         for (Member m : membersList) {
@@ -101,6 +123,15 @@ public class Data {
     }
     public void addSwimResultToResultList(ResultSwimmer rs) {
         resultList.add(rs);
+    }
+    public double calculateTotalForecast(){
+        double totalForecast = 0.0;
+        for(Member m : membersList) {
+            m.calculateYearOfMember();
+            m.calculateMembershipRate();
+            totalForecast += m.getRate();
+        }
+        return totalForecast;
     }
 
 

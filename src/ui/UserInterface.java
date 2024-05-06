@@ -27,6 +27,7 @@ public class UserInterface {
 
     //######################### Determine position within Delfinen to get a different UI  ################################
     public void DelfinenUISetPosition() {
+        controller.hardCodedData();
         System.out.println("Welcome to Delfinen's member administration program. Please input your role within Delfinen.");
         System.out.println("CHAIRMAN | TREASURER | COACH");
         boolean condition = true;
@@ -70,83 +71,75 @@ public class UserInterface {
             System.out.println("3. Register Swimmer Payments -NOTIMPLEMENTED-");
             System.out.println("4. Display list of Swimmers\n");
             System.out.println("9. Terminate program");
-            try {
 
-                System.out.print("> ");
-                switchInput = input.nextInt();
-                input.nextLine();
+            System.out.print("> ");
+            switchInput = scanIntSafely();
+            input.nextLine();
 
-                switch (switchInput) {
+            switch (switchInput) {
 
-                    case 1: {
-                        generateSwimmer();
-                        break;
-                    }
-                    case 2: {
-                        //TODO: Add Swimmer results -
-                    }
-                    case 3: {
-                        //TODO: Register Swimmer payments
-                    }
-                    case 4: {
-                        //TODO: See list of swimmers
-                        displayListofMembers();
-                        break;
-                    }
-                    case 5: {
-                        //TODO: Set multiple swim disciplines to object
-                        setMultipleDisciplines();
-                        break;
-                    }
-                    case 6: { //test af metoder
-                        //findMemberSearchWithNewArray();
-                        deleteSwimDisciplines();
-                        break;
-                    }
-                    case 9: {
-                        System.out.println("Terminating application.");
-                        break; //Failsafe
-                    }
-
+                case 1: {
+                    generateSwimmer();
+                    break;
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Try again.");
+                case 2: {
+                    //TODO: Add Swimmer results -
+                }
+                case 3: {
+                    //TODO: Register Swimmer payments
+                }
+                case 4: {
+                    //TODO: See list of swimmers
+                    displayListofMembers();
+                    break;
+                }
+                case 5: {
+                    //TODO: Set multiple swim disciplines to object
+                    setMultipleDisciplines();
+                    break;
+                }
+                case 6: { //test af metoder
+                    //findMemberSearchWithNewArray();
+                    deleteSwimDisciplines();
+                    break;
+                }
+                case 9: {
+                    System.out.println("Terminating application.");
+                    break; //Failsafe
+                }
+
             }
         }
     }
 
+
     public void startProgramChairman() {
-        displayMenuChairman();
+
 
         while (switchInput != SENTINEL) {
+            displayMenuChairman();
+            System.out.print("> ");
+            switchInput = scanIntSafely();
+            input.nextLine();
 
-            try {
+            switch (switchInput) {
 
-                System.out.print("> ");
-                switchInput = input.nextInt();
-                input.nextLine();
-
-                switch (switchInput) {
-
-                    case 1: {
-                        generateSwimmer();
-                        break;
-                    }
-                    case 2: {
-                        displayListofMembers();
-                        break;
-                    }
-                    case 3: {
-
-                    }
-                    case 9: {
-                        System.out.println("Terminating application.");
-                        break; //Failsafe
-                    }
+                case 1: {
+                    generateSwimmer();
+                    break;
+                }
+                case 2: {
+                    displayListofMembers();
+                    break;
+                }
+                case 3: {
 
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Try again.");
+                case 9: {
+                    System.out.println("Terminating application.");
+                    break; //Failsafe
+                }
+
             }
         }
     }
@@ -163,7 +156,8 @@ public class UserInterface {
         System.out.println("Delfinen UI - TREASURER");
         System.out.println(" ");
         System.out.println("1. Register Swimmer Payments -NOTIMPLEMENTED-");
-        System.out.println("2. Display list of Swimmers\n");
+        System.out.println("2. Display list of Swimmers");
+        System.out.println("3. Forecast\n");
         System.out.println("9. Terminate program");
     }
 
@@ -177,15 +171,34 @@ public class UserInterface {
     }
 
     public void startProgramTreasurer() {
-        displayMenuTreasurer();
+
         while (switchInput != SENTINEL) {
-            try {
-                System.out.print("> ");
-                switchInput = input.nextInt();
-                input.nextLine();
+            displayMenuTreasurer();
+            System.out.print("> ");
+            switchInput = scanIntSafely();
+            input.nextLine();
 
-                switch (switchInput) {
+            switch (switchInput) {
 
+                case 1: {
+                    //TODO: Register Swimmer payments
+                }
+                case 2: {
+                    //TODO: See list of swimmers
+                    displayListofMembers();
+                    break;
+                }
+                case 3: {
+                    //TODO: Forecast financials - budget
+                    calculateTotalRateForecast();
+                }
+                case 9: {
+                    System.out.println("Terminating application.");
+                    break; //Failsafe
+                }
+            }
+        }
+    }
                     case 1: {
                         //TODO: Register Swimmer payments
                     }
@@ -196,50 +209,43 @@ public class UserInterface {
                     }
                     case 3: {
                         //TODO: Forecast financials - budget
+                        calculateTotalRateForecast();
                     }
                     case 9: {
                         System.out.println("Terminating application.");
                         break; //Failsafe
                     }
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Try again.");
             }
         }
-    }
 
     public void startProgramCoach() {
-        displayMenuCoach();
+
         while (switchInput != SENTINEL) {
+            displayMenuCoach();
+            System.out.print("> ");
+            switchInput = scanIntSafely();
+            input.nextLine();
 
-            try {
+            switch (switchInput) {
 
-                System.out.print("> ");
-                switchInput = input.nextInt();
-                input.nextLine();
-
-                switch (switchInput) {
-
-                    case 1: {
-                        setMultipleDisciplines();
-                        break;
-                    }
-                    case 2: {
-                        deleteSwimDisciplines();
-                        break;
-                    }
-                    case 3: {
-                        displayListofMembers();
-                        break;
-                    }
-                    case 9: {
-                        System.out.println("Terminating application.");
-                        break; //Failsafe
-                    }
-
+                case 1: {
+                    setMultipleDisciplines();
+                    break;
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Try again.");
+                case 2: {
+                    deleteSwimDisciplines();
+                    break;
+                }
+                case 3: {
+                    displayListofMembers();
+                    break;
+                }
+                case 9: {
+                    System.out.println("Terminating application.");
+                    break; //Failsafe
+                }
+
             }
         }
     }
@@ -365,7 +371,7 @@ public class UserInterface {
 
         System.out.println("Reminder: The member ID can be found when fetching a list of registered swimmers.\n");
         System.out.println("Please input the member ID you would like to apply changes to.");
-        int idToFind = input.nextInt();
+        int idToFind = scanIntSafely();
         input.nextLine();
         Member memberToFind = findMemberById(idToFind); //Vi taster member id for at returnere et member objekt at redigere svømmediscipliner på.
 
@@ -415,7 +421,7 @@ public class UserInterface {
         System.out.println("Reminder: The member ID can be found when fetching a list of registered swimmers.\n");
         System.out.println("Please input the member ID you would like to apply changes to.");
 
-        int idToFind = input.nextInt();
+        int idToFind = scanIntSafely();
         input.nextLine();
         Member memberToFind = findMemberById(idToFind);
 
@@ -426,7 +432,7 @@ public class UserInterface {
             System.out.println("3. " + downcastedMemberToFind.getSwimDiscipline3());
             System.out.println("4. " + downcastedMemberToFind.getSwimDiscipline4());
             System.out.println("\nPlease select the discipline you would like to delete.");
-            int choice = input.nextInt();
+            int choice = scanIntSafely();
             input.nextLine();
 
             switch (choice) {
@@ -515,6 +521,12 @@ public class UserInterface {
         } else {
             System.out.println("No registered swimmers found.");
         }
+    }
+    //TODO: NICE_TO if we can make a forecast based on the age next year (saying we have the current members with current status.
+    public void calculateTotalRateForecast() {
+        System.out.println("Calculation of expected income (payment membership rate) based on current membership status: ");
+        double result = controller.calculateTotalRateForecast();
+        System.out.println("Total: " + result + " DKK/year.");
     }
 
     private int scanIntSafely() { //Metode til at fange hvis man skriver et bogstav i en int scanner, der ellers vil melde en fejl

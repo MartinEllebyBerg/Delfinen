@@ -15,6 +15,12 @@ public class Controller {
 
     //METHODS
     //######################### Methods for Data class ################################
+    public void hardCodedData(){
+        data.hardCodedData();
+    }
+    public double calculateTotalRateForecast(){
+        return data.calculateTotalForecast();
+    }
 
     //######################### Methods for Data class - Memberslist ################################
     public ArrayList<Member> getMembersList() {
