@@ -11,9 +11,10 @@ public class Main {
 //        d.testPrintSavedArrayListWithCombinedData();
 //
 //        //ui.startProgramAll();
-        ui.DelfinenUISetPosition();
+        //ui.DelfinenUISetPosition();
+        ui.addSwimmerResults();
 //        //Data d = new Data();
 //        //d.testGeneration();
-        d.testAddSwimResultTraining();
+        //d.testAddSwimResultTraining();
     }
 }

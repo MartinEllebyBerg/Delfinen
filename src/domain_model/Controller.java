@@ -1,5 +1,6 @@
 package domain_model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Controller {
@@ -43,6 +44,14 @@ public class Controller {
     }
     public ArrayList<Member> searchMember(String name) {
         return data.searchMember(name);
+    }
+
+    public void addSwimResultTraining(int memberID, SwimDiscipline swimDiscipline, double swimTime, LocalDate resultDate) {
+        data.addSwimResultTraining(memberID, swimDiscipline, swimTime, resultDate);
+    }
+
+    public void printResultListTraining() {
+        data.printResultListTraining();
     }
 
 }

@@ -224,5 +224,11 @@ public class Data {
         resultListCompetition.add(new ResultSwimmer(memberID, competitionLocation, competitionName, resultDate, swimDiscipline, swimTime, placementCompetition));
     }
 
+    public void printResultListTraining() {
+        for (ResultSwimmer r : resultListTraining) {
+            System.out.println(r.toStringTraining());
+        }
+    }
+
 
 }
