@@ -72,12 +72,18 @@ public class Member {
     }
     @Override
     public String toString() {
+        int ageCutoffSeniorTeam = 18;
         String result = "";
         result += "Name: "+getFirstName()+" "+getLastName()+"\tBirthday: "+getBirthday();
         if(getIsMemberActive()) {
             result += "\tActivity status: Active";
         } else {
             result += "\tActivity status: Passive";
+        }
+        if (yearsOfAge >= ageCutoffSeniorTeam) {
+            result+= "\nTeam: "+ "Senior";
+        } else {
+            result += "\nTeam: "+"Youth";
         }
         result += "\nMember Id: "+memberID;
         return result;
