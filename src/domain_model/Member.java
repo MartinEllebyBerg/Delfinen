@@ -103,4 +103,10 @@ public class Member {
         result += "\nMember Id: "+memberID;
         return result;
     }
+
+    public String toStringOverduePayments() {
+        String result = "";
+        result += "Member ID: " + memberID + " Name: " + getFirstName() + " " + getLastName() + "Rate paid: " + paymentRegistered + "Overdue rate: " + rate;
+        return result;
+    }
 }

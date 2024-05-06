@@ -228,7 +228,7 @@ public class UserInterface {
                     break;
                 }
                 case 4: {
-                    searchForMemberResultIdToId();
+                    //searchForMemberResultIdToId();
                     break;
                 }
                 case 9: {
@@ -524,7 +524,7 @@ public class UserInterface {
         }
     }
     //#########################  Member - Set multiple swim disciplines  ################################
-    public void searchForMemberResultIdToId() {
+    /*public void searchForMemberResultIdToId() {
         System.out.println("Please input the member ID of which you wish to access training or competition results.");
         System.out.println("> ");
         int idToFind = input.nextInt();
@@ -532,7 +532,7 @@ public class UserInterface {
         Member m = findMemberById(idToFind);
         String result = controller.findSwimmersResultTraining(m);
         System.out.println(result);
-    }
+    }*/
 
 
     //######################### See list of members  ################################
