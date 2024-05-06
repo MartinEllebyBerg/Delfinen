@@ -37,22 +37,22 @@ public class UserInterface {
             String switchChoice = input.nextLine().toLowerCase();
 
             switch (switchChoice) {
-                case "chairman": {
+                case "chairman", "ch", "cha", "chai", "chair", "chairm", "chairma" -> {
                     startProgramChairman();
                     condition = false;
                     break;
                 }
-                case "treasurer": {
+                case "treasurer", "tre", "trea", "treas", "treasu", "treasur", "treasure" -> {
                     startProgramTreasurer();
                     condition = false;
                     break;
                 }
-                case "coach": {
+                case "coach", "co", "coa", "coac" -> {
                     startProgramCoach();
                     condition = false;
                     break;
                 }
-                default: {
+                default -> {
                     System.out.println("Invalid input. Please input either Chairman, Treasurer or Coach.");
                     break;
                 }
