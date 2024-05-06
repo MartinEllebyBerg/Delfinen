@@ -27,6 +27,7 @@ public class UserInterface {
 
     //######################### Determine position within Delfinen to get a different UI  ################################
     public void DelfinenUISetPosition() {
+        controller.hardCodedData();
         System.out.println("Welcome to Delfinen's member administration program. Please input your role within Delfinen.");
         System.out.println("CHAIRMAN | TREASURER | COACH");
         boolean condition = true;

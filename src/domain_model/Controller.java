@@ -15,6 +15,9 @@ public class Controller {
 
     //METHODS
     //######################### Methods for Data class ################################
+    public void hardCodedData(){
+        data.hardCodedData();
+    }
 
     //######################### Methods for Data class - Memberslist ################################
     public ArrayList<Member> getMembersList() {
