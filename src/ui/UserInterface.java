@@ -70,11 +70,10 @@ public class UserInterface {
             System.out.println("3. Register Swimmer Payments -NOTIMPLEMENTED-");
             System.out.println("4. Display list of Swimmers\n");
             System.out.println("9. Terminate program");
-            try {
 
                 System.out.print("> ");
-                switchInput = input.nextInt();
-                input.nextLine();
+                switchInput = scanIntSafely();
+                //input.nextLine();
 
                 switch (switchInput) {
 
@@ -109,22 +108,17 @@ public class UserInterface {
                     }
 
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Try again.");
             }
         }
-    }
+
 
     public void startProgramChairman() {
         displayMenuChairman();
 
         while (switchInput != SENTINEL) {
 
-            try {
-
                 System.out.print("> ");
-                switchInput = input.nextInt();
-                input.nextLine();
+                switchInput = scanIntSafely();
 
                 switch (switchInput) {
 
@@ -145,11 +139,8 @@ public class UserInterface {
                     }
 
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Try again.");
             }
         }
-    }
 
     public void displayMenuChairman() {
         System.out.println("Delfinen UI - CHAIRMAN");
@@ -179,10 +170,8 @@ public class UserInterface {
     public void startProgramTreasurer() {
         displayMenuTreasurer();
         while (switchInput != SENTINEL) {
-            try {
                 System.out.print("> ");
-                switchInput = input.nextInt();
-                input.nextLine();
+                switchInput = scanIntSafely();
 
                 switch (switchInput) {
 
@@ -202,44 +191,35 @@ public class UserInterface {
                         break; //Failsafe
                     }
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Try again.");
             }
         }
-    }
 
     public void startProgramCoach() {
         displayMenuCoach();
         while (switchInput != SENTINEL) {
 
-            try {
+            System.out.print("> ");
+            switchInput = scanIntSafely();
 
-                System.out.print("> ");
-                switchInput = input.nextInt();
-                input.nextLine();
+            switch (switchInput) {
 
-                switch (switchInput) {
-
-                    case 1: {
-                        setMultipleDisciplines();
-                        break;
-                    }
-                    case 2: {
-                        deleteSwimDisciplines();
-                        break;
-                    }
-                    case 3: {
-                        displayListofMembers();
-                        break;
-                    }
-                    case 9: {
-                        System.out.println("Terminating application.");
-                        break; //Failsafe
-                    }
-
+                case 1: {
+                    setMultipleDisciplines();
+                    break;
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Try again.");
+                case 2: {
+                    deleteSwimDisciplines();
+                    break;
+                }
+                case 3: {
+                    displayListofMembers();
+                    break;
+                }
+                case 9: {
+                    System.out.println("Terminating application.");
+                    break; //Failsafe
+                }
+
             }
         }
     }
