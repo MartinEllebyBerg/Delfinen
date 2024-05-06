@@ -520,8 +520,21 @@ public class UserInterface {
         System.out.println("Please note in order to register a payment you will need the memberID of the specific member you want to alter");
         System.out.println("Type 1 - if you will search for memberID");
         System.out.println("Type 2 - if you have the memberID and are ready to register payment");
-        System.out.println("her køres find IndexToBechanged med MemberID nummer 8");
-        controller.registerPayment(8);
+        switchInput = scanIntSafely();
+        input.nextLine();
+
+        if(switchInput == 1){
+            findMemberSearchWithNewArray();
+
+        } else if (switchInput == 2) {
+            System.out.println("Type memberID of the member you want to register payment on:");
+            switchInput = scanIntSafely();
+            controller.registerPayment(switchInput);
+            System.out.println("you have registered payment of member: ");
+        }
+
+
+
 
 
 
