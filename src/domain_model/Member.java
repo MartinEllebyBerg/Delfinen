@@ -13,6 +13,7 @@ public class Member {
     private static int nextMemberID = 1; //statisk attribut til at sammentælle memberID og sørge for unikt nummer.
     private int memberID;
     private int yearsOfAge;
+    private double rate;
     private boolean paymentRegistered;
 
 
@@ -37,7 +38,7 @@ public class Member {
     }
 
     public void calculateMembershipRate() {
-        double rate;
+
         if (memberActive == false) {
             rate = 500.00;
         } else if (yearsOfAge < 18) {
@@ -50,6 +51,9 @@ public class Member {
 
     }
 
+    public double getRate() {
+        return rate;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -70,6 +74,7 @@ public class Member {
     public int getMemberID() {
         return memberID;
     }
+
     @Override
     public String toString() {
         String result = "";

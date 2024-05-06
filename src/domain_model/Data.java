@@ -119,6 +119,15 @@ public class Data {
     public void addSwimResultToResultList(ResultSwimmer rs) {
         resultList.add(rs);
     }
+    public double calculateTotalForecast(){
+        double totalForecast = 0.0;
+        for(Member m : membersList) {
+            m.calculateYearOfMember();
+            m.calculateMembershipRate();
+            totalForecast += m.getRate();
+        }
+        return totalForecast;
+    }
 
 
     public void testAddSwimResultCompetition() {

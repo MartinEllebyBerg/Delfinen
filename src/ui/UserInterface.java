@@ -155,7 +155,8 @@ public class UserInterface {
         System.out.println("Delfinen UI - TREASURER");
         System.out.println(" ");
         System.out.println("1. Register Swimmer Payments -NOTIMPLEMENTED-");
-        System.out.println("2. Display list of Swimmers\n");
+        System.out.println("2. Display list of Swimmers");
+        System.out.println("3. Forecast\n");
         System.out.println("9. Terminate program");
     }
 
@@ -186,6 +187,7 @@ public class UserInterface {
                     }
                     case 3: {
                         //TODO: Forecast financials - budget
+                        calculateTotalRateForecast();
                     }
                     case 9: {
                         System.out.println("Terminating application.");
@@ -496,6 +498,12 @@ public class UserInterface {
         } else {
             System.out.println("No registered swimmers found.");
         }
+    }
+    //TODO: NICE_TO if we can make a forecast based on the age next year (saying we have the current members with current status.
+    public void calculateTotalRateForecast() {
+        System.out.println("Calculation of expected income (payment membership rate) based on current membership status: ");
+        double result = controller.calculateTotalRateForecast();
+        System.out.println("Total: " + result + " DKK/year.");
     }
 
     private int scanIntSafely() { //Metode til at fange hvis man skriver et bogstav i en int scanner, der ellers vil melde en fejl
