@@ -199,25 +199,8 @@ public class UserInterface {
             }
         }
     }
-                    case 1: {
-                        //TODO: Register Swimmer payments
-                    }
-                    case 2: {
-                        //TODO: See list of swimmers
-                        displayListofMembers();
-                        break;
-                    }
-                    case 3: {
-                        //TODO: Forecast financials - budget
-                        calculateTotalRateForecast();
-                    }
-                    case 9: {
-                        System.out.println("Terminating application.");
-                        break; //Failsafe
-                    }
-                }
-            }
-        }
+
+
 
     public void startProgramCoach() {
 
@@ -524,9 +507,18 @@ public class UserInterface {
     }
     //TODO: NICE_TO if we can make a forecast based on the age next year (saying we have the current members with current status.
     public void calculateTotalRateForecast() {
+        System.out.println(" ");
         System.out.println("Calculation of expected income (payment membership rate) based on current membership status: ");
         double result = controller.calculateTotalRateForecast();
         System.out.println("Total: " + result + " DKK/year.");
+    }
+
+    public void registerPayment(){
+        System.out.println(" ");
+        System.out.println("Please note in order to register a payment you will need the memberID of the specific member you want to alter");
+        System.out.println("Type 1 - if you will search for memberID");
+        System.out.println("Type 2 - if you have the memberID and are ready to register payment");
+
     }
 
     private int scanIntSafely() { //Metode til at fange hvis man skriver et bogstav i en int scanner, der ellers vil melde en fejl

@@ -30,7 +30,6 @@ public class Member {
 
     //METHODS
 
-    //TODO: Beregninger skal tilknyttes UI
     public void calculateYearOfMember() {
         LocalDate presentTime = LocalDate.now();
         Period calculatedPeriode = Period.between(birthday, presentTime);
@@ -73,6 +72,14 @@ public class Member {
 
     public int getMemberID() {
         return memberID;
+    }
+
+    public boolean isPaymentRegistered() {
+        return paymentRegistered;
+    }
+
+    public void setPaymentRegistered(boolean paymentRegistered) {
+        this.paymentRegistered = paymentRegistered;
     }
 
     @Override
