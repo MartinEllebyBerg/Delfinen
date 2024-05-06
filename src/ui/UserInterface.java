@@ -6,6 +6,7 @@ import java.io.Console;
 import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -155,9 +156,10 @@ public class UserInterface {
     public void displayMenuTreasurer() {
         System.out.println("Delfinen UI - TREASURER");
         System.out.println(" ");
-        System.out.println("1. Register Swimmer Payments -NOTIMPLEMENTED-");
-        System.out.println("2. Display list of Swimmers");
-        System.out.println("3. Forecast\n");
+        System.out.println("1. Display list of Swimmers");
+        System.out.println("2. Register payment of Membership");
+        System.out.println("3. List of overdue Payments");
+        System.out.println("4. Forecast\n");
         System.out.println("9. Terminate program");
     }
 
@@ -181,18 +183,20 @@ public class UserInterface {
             switch (switchInput) {
 
                 case 1: {
-                    //TODO: Register Swimmer payments
-                    registerPayment();
-                    break;
-                }
-                case 2: {
-                    //TODO: See list of swimmers
                     displayListofMembers();
                     break;
                 }
+                case 2: {
+                    registerPayment();
+                    break;
+                }
                 case 3: {
-                    //TODO: Forecast financials - budget
+                    printOverduePayments();
+                    break;
+                }
+                case 4: {
                     calculateTotalRateForecast();
+                    break;
                 }
                 case 9: {
                     System.out.println("Terminating application.");
@@ -467,22 +471,13 @@ public class UserInterface {
         System.out.println("Please type in the first name of the member you are looking for.");
         int count = 1;
         String memberToFind = input.nextLine();
-
         controller.searchMember(memberToFind);
-        System.out.println("Number of members found: " + controller.getSearchMatch().size());
-        if (!controller.getSearchMatch().isEmpty()) {
-            System.out.println("The following members are registered: ");
-            for (Member member : controller.getSearchMatch()) {
-                if (member instanceof CompetitionMember) {
-                    System.out.println(count + ". " + member);
-                    count++;
-                }
-                if (member instanceof ExerciseMember) {
-                    System.out.println(count + ". " + member);
-                    count++;
-                }
-            }
 
+        if (!controller.getSearchMatch().isEmpty()) {
+            System.out.println("Following member/members are registered:");
+            for(Member member : controller.getSearchMatch()) {
+                System.out.println(member.toString());
+            }
         } else {
             System.out.println("No members with that name has been registered.");
         }
@@ -529,17 +524,26 @@ public class UserInterface {
         } else if (switchInput == 2) {
             System.out.println("Type memberID of the member you want to register payment on:");
             switchInput = scanIntSafely();
-            controller.registerPayment(switchInput);
-            System.out.println("you have registered payment of member: ");
+            controller.findIndexToBeChanged(switchInput);
+            String name = controller.findNameByIndex();
+            System.out.println("you want to register payment on member: " +name);
+            System.out.println("Is this correct? Type 1 if correct and type 2 if not.");
+            switchInput = scanIntSafely();
+            input.nextLine();
+            if(switchInput == 1){
+                controller.registerPayment();
+                System.out.println("\nPayment has now been registered on the member.");
+            } else if (switchInput == 2) {
+                registerPayment();
+            }
         }
+    }
 
-
-
-
-
-
-
-
+    public void printOverduePayments () {
+        ArrayList<String> overduePayments = controller.printOverduePayments();
+        for(String overduePayment : overduePayments){
+            System.out.println(overduePayment);
+        }
     }
 
     private int scanIntSafely() { //Metode til at fange hvis man skriver et bogstav i en int scanner, der ellers vil melde en fejl

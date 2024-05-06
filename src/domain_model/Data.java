@@ -130,16 +130,46 @@ public class Data {
         return totalForecast;
     }
 
-    public void registerPayment (int memberID) {
+    public void findIndexToBeChanged (int memberID) {
         for(Member m: membersList) {
             if(m.getMemberID() == memberID) {
                 indexToBeChanged = membersList.indexOf(m);
-                System.out.println("test af korrekt member");
+                /*System.out.println("test af korrekt member");
                 System.out.println(m.getFirstName());
                 System.out.println(indexToBeChanged);
-                m.setPaymentRegistered(true);
+                m.setPaymentRegistered(true);*/
             }
         }
+    }
+    public String findNameByIndex () {
+        String memberFirstName = null;
+        String memberLastName = null;
+        for(int i = 0; i < membersList.size(); i++){
+            if( i == indexToBeChanged) {
+                memberFirstName = membersList.get(i).getFirstName();
+                memberLastName = membersList.get(i).getLastName();
+            }
+        }
+        return memberFirstName + " "+ memberLastName;
+    }
+
+    public void registerPayment() {
+        for(int i = 0; i < membersList.size(); i++){
+            if( i == indexToBeChanged) {
+                membersList.get(i).setPaymentRegistered(true);
+            }
+        }
+    }
+
+
+    public ArrayList<String> printOverduePayments() {
+        ArrayList<String> overduePayments = new ArrayList<>();
+        for(Member member : membersList) {
+            if(!member.isPaymentRegistered()) {
+                overduePayments.add(member.toStringOverduePayments());
+            }
+        }
+        return overduePayments;
     }
 
 
@@ -214,8 +244,6 @@ public class Data {
         }
 
     }
-
-
 
     public int getIndexToBeChanged() {
         return indexToBeChanged;
