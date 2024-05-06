@@ -22,6 +22,14 @@ public class Controller {
         return data.calculateTotalForecast();
     }
 
+    public void registerPayment (int memberID) {
+        data.registerPayment(memberID);
+    }
+
+    public int getIndexToBeChanged (){
+        return data.getIndexToBeChanged();
+    }
+
     //######################### Methods for Data class - Memberslist ################################
     public ArrayList<Member> getMembersList() {
         return data.getMembersList();

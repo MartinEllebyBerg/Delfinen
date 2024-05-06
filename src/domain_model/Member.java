@@ -98,6 +98,7 @@ public class Member {
             result += "\nTeam: "+"Youth";
         }
         result += "\nMember Id: "+memberID;
+        result += "\nRate paid: "+paymentRegistered;
         return result;
     }
 }

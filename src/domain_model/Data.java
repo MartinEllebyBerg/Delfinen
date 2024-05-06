@@ -11,6 +11,7 @@ public class Data {
     private ArrayList<ResultSwimmer> resultList;
     private ArrayList<String[]> searchList;
     private ArrayList<Member> searchMatch;
+    private int indexToBeChanged;
 
     //CONSTRUCTOR
     public Data() {
@@ -129,6 +130,18 @@ public class Data {
         return totalForecast;
     }
 
+    public void registerPayment (int memberID) {
+        for(Member m: membersList) {
+            if(m.getMemberID() == memberID) {
+                indexToBeChanged = membersList.indexOf(m);
+                System.out.println("test af korrekt member");
+                System.out.println(m.getFirstName());
+                System.out.println(indexToBeChanged);
+                m.setPaymentRegistered(true);
+            }
+        }
+    }
+
 
     public void testAddSwimResultCompetition() {
         System.out.println("Her kører addswimresultmetoden");
@@ -204,5 +217,7 @@ public class Data {
 
 
 
-
+    public int getIndexToBeChanged() {
+        return indexToBeChanged;
+    }
 }
