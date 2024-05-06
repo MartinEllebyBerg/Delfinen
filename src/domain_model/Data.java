@@ -210,6 +210,7 @@ public class Data {
     public void testAddSwimResultTraining() {
         System.out.println("test af udprint af addSwimResultTraining metode");
         ResultSwimmer r1 = new ResultSwimmer(30, SwimDiscipline.FRONTCRAWL, 20.35, LocalDate.of(2024, 9, 13));
+        Member m1 = new CompetitionMember("Daniel", "Jensen," ,LocalDate.of(1998,9, 13), true, SwimDiscipline.BACKSTROKE, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
         resultListTraining.add(r1);
         for (ResultSwimmer r : resultListTraining) {
             System.out.println(r.toStringTraining());
@@ -227,7 +228,7 @@ public class Data {
     public String findSwimmersResultTraining(Member m) {
         int idToReference = m.getMemberID();
         int count = 1;
-        String result ="";
+        String result="";
         for (ResultSwimmer rs : resultListTraining) {
             if (idToReference == rs.getMemberID()) {
                 result += count+". "+rs.toStringTraining()+"\n";

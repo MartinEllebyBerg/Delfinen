@@ -11,10 +11,11 @@ public class Main {
 //        d.testPrintSavedArrayListWithCombinedData();
 //
 //        //ui.startProgramAll();
+        d.testAddSwimResultTraining();
+        d.testAddSwimResultCompetition();
+
+        ui.DelfinenUISetPosition();
         //ui.DelfinenUISetPosition();
         ui.addSwimmerResults();
-//        //Data d = new Data();
-//        //d.testGeneration();
-        //d.testAddSwimResultTraining();
     }
 }

@@ -183,7 +183,6 @@ public class UserInterface {
                     //TODO: Register Swimmer payments
                 }
                 case 2: {
-                    //TODO: See list of swimmers
                     displayListofMembers();
                     break;
                 }
@@ -534,10 +533,8 @@ public class UserInterface {
         input.nextLine();
         Member m = findMemberById(idToFind);
         if (m != null) {
-            String result = controller.findSwimmersResultTraining(m);
-            if (result.isEmpty()) {
-                System.out.println("No currently recorded results for a swimmer with that ID");
-            }
+            System.out.println(controller.findSwimmersResultTraining(m));
+
         } else {
             System.out.println("No member with that ID was found.");
         }
