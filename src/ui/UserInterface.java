@@ -82,7 +82,8 @@ public class UserInterface {
                     break;
                 }
                 case 2: {
-                    //TODO: Add Swimmer results -
+                    addSwimmerResults();
+                    break;
                 }
                 case 3: {
                     //TODO: Register Swimmer payments
@@ -281,6 +282,46 @@ public class UserInterface {
             controller.addToMembersList(m);
         } else {
             System.out.println("Something went wrong. Returning to menu.");
+        }
+    }
+
+    public void addSwimmerResults() {
+        System.out.println("Select whether you wish to register training or competition results:");
+        System.out.println("1. Training");
+        System.out.println("2. Competition");
+        String userChoice = input.nextLine();
+
+        if (userChoice.toLowerCase().equals("training")) {
+            System.out.println("Type the memberID of the swimmer results you wish to register:");
+            int memberID = scanIntSafely();
+            input.nextLine();
+
+            System.out.println("Type the swim discipline:");
+            String swimDiscipline = input.nextLine().toLowerCase();
+            SwimDiscipline disciplineName = userPromptSwimDiscipline();
+
+            System.out.println("Type the swimming time:");
+            double swimTime = input.nextDouble();
+            input.nextLine();
+
+            LocalDate localDate = null;
+            boolean validInput = false;
+
+            while (!validInput) {
+                System.out.println("Please input the result date in the following format YYYY-MM-DD: ");
+
+                String localDateInput = input.nextLine(); //Brugerinput gemmes
+
+                try {
+                    localDate = LocalDate.parse(localDateInput); //LocalDate.parse læser de nødvendige attributter fra birthdayStr og parser dem til YYYY-MM-DD
+                    validInput = true; //Vi afslutter while loopet.
+                } catch (DateTimeParseException e) {
+                    System.out.println("Invalid input. Please type your input in the following format YYYY-MM-DD");
+                }
+            }
+            controller.addSwimResultTraining(memberID, disciplineName, swimTime, localDate);
+            controller.printResultListTraining();
+
         }
     }
 

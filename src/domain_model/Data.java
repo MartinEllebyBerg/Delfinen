@@ -243,4 +243,11 @@ public class Data {
      return result;
     }
 
+    public void printResultListTraining() {
+        for (ResultSwimmer r : resultListTraining) {
+            System.out.println(r.toStringTraining());
+        }
+    }
+
+
 }
