@@ -11,7 +11,7 @@ public class Main {
 //        d.testPrintSavedArrayListWithCombinedData();
 //
 //        //ui.startProgramAll();
-//        ui.DelfinenUISetPosition();
+        ui.DelfinenUISetPosition();
 //        //Data d = new Data();
 //        //d.testGeneration();
         d.testAddSwimResultTraining();

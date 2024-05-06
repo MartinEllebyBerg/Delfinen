@@ -199,25 +199,6 @@ public class UserInterface {
             }
         }
     }
-                    case 1: {
-                        //TODO: Register Swimmer payments
-                    }
-                    case 2: {
-                        //TODO: See list of swimmers
-                        displayListofMembers();
-                        break;
-                    }
-                    case 3: {
-                        //TODO: Forecast financials - budget
-                        calculateTotalRateForecast();
-                    }
-                    case 9: {
-                        System.out.println("Terminating application.");
-                        break; //Failsafe
-                    }
-                }
-            }
-        }
 
     public void startProgramCoach() {
 
