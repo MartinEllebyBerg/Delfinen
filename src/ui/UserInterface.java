@@ -40,21 +40,20 @@ public class UserInterface {
                 case "chairman", "ch", "cha", "chai", "chair", "chairm", "chairma" -> {
                     startProgramChairman();
                     condition = false;
-                    break;
                 }
-                case "treasurer", "tre", "trea", "treas", "treasu", "treasur", "treasure" -> {
+                case "treasurer", "tre", "trea", "treas", "treasu", "treasur", "treasure", "t" -> {
                     startProgramTreasurer();
                     condition = false;
-                    break;
                 }
                 case "coach", "co", "coa", "coac" -> {
                     startProgramCoach();
                     condition = false;
-                    break;
                 }
                 default -> {
                     System.out.println("Invalid input. Please input either Chairman, Treasurer or Coach.");
-                    break;
+                    if (switchChoice.equals("c")) {
+                        System.out.println("'c' is invalid input as that could either mean Chairman or Coach.");
+                    }
                 }
             }
         }
@@ -114,8 +113,6 @@ public class UserInterface {
 
 
     public void startProgramChairman() {
-
-
         while (switchInput != SENTINEL) {
             displayMenuChairman();
             System.out.print("> ");
@@ -166,7 +163,8 @@ public class UserInterface {
         System.out.println(" ");
         System.out.println("1. Register Swimmer Disciplines");
         System.out.println("2. Delete Swimmer Disciplines");
-        System.out.println("3. Display list of Swimmers\n");
+        System.out.println("3. Display list of Swimmers");
+        System.out.println("4. Search for Training/Competition results by Swimmer ID\n");
         System.out.println("9. Terminate program");
     }
 
@@ -220,6 +218,10 @@ public class UserInterface {
                 }
                 case 3: {
                     displayListofMembers();
+                    break;
+                }
+                case 4: {
+                    searchForMemberResultIdToId();
                     break;
                 }
                 case 9: {
@@ -481,6 +483,22 @@ public class UserInterface {
 
         } else {
             System.out.println("No members with that name has been registered.");
+        }
+    }
+    //#########################  Member - Set multiple swim disciplines  ################################
+    public void searchForMemberResultIdToId() {
+        System.out.println("Please input the member ID of which you wish to access training or competition results.");
+        System.out.println("> ");
+        int idToFind = input.nextInt();
+        input.nextLine();
+        Member m = findMemberById(idToFind);
+        if (m != null) {
+            String result = controller.findSwimmersResultTraining(m);
+            if (result.isEmpty()) {
+                System.out.println("No currently recorded results for a swimmer with that ID");
+            }
+        } else {
+            System.out.println("No member with that ID was found.");
         }
     }
 

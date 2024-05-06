@@ -21,6 +21,9 @@ public class Controller {
     public double calculateTotalRateForecast(){
         return data.calculateTotalForecast();
     }
+    public String findSwimmersResultTraining(Member m) {
+        return data.findSwimmersResultTraining(m);
+    }
 
     //######################### Methods for Data class - Memberslist ################################
     public ArrayList<Member> getMembersList() {

@@ -216,6 +216,7 @@ public class Data {
         }
     }
 
+    //######################### SwimResult objects ################################
     public void addSwimResultTraining(int memberID, SwimDiscipline swimDiscipline, double swimTime, LocalDate resultDate) {
         resultListTraining.add(new ResultSwimmer(memberID, swimDiscipline, swimTime, resultDate));
     }
@@ -223,6 +224,23 @@ public class Data {
     public void addSwimResultCompetition(int memberID, String competitionLocation, String competitionName, LocalDate resultDate, SwimDiscipline swimDiscipline, double swimTime, int placementCompetition) {
         resultListCompetition.add(new ResultSwimmer(memberID, competitionLocation, competitionName, resultDate, swimDiscipline, swimTime, placementCompetition));
     }
-
+    public String findSwimmersResultTraining(Member m) {
+        int idToReference = m.getMemberID();
+        int count = 1;
+        String result ="";
+        for (ResultSwimmer rs : resultListTraining) {
+            if (idToReference == rs.getMemberID()) {
+                result += count+". "+rs.toStringTraining()+"\n";
+                count++;
+            }
+        }
+        for(ResultSwimmer rs : resultListCompetition) {
+            if (idToReference == rs.getMemberID()) {
+                result += count+". "+rs.toString()+"\n";
+                count++;
+            }
+        }
+     return result;
+    }
 
 }
