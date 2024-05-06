@@ -238,10 +238,27 @@ public class Data {
                             String.valueOf(r.getPlacementCompetition()) //combinedData[8]
                     };
                     searchList.add(combinedData);
-
                 }
             }
         }
+    }
+    public String findSwimmersResultTraining(Member m) {
+        int idToReference = m.getMemberID();
+        int count = 1;
+        String result = "";
+        for (ResultSwimmer rs : resultList) { //TODO: Ændre hvilken liste, der itereres over, når genereringsmetoden i UI udarbejdet af Mark og Martin er færdig. Der skal itereres over ResultListTraining og ResultListCompetition.
+            if (idToReference == rs.getMemberID()) {
+                result += count + ". " + rs.toStringTraining() + "\n";
+                count++;
+            }
+        }
+        for (ResultSwimmer rs : resultList) {
+            if (idToReference == rs.getMemberID()) {
+                result += count + ". " + rs.toString() + "\n";
+                count++;
+            }
+        }
+        return result;
     }
 
     public void testPrintSavedArrayListWithCombinedData() {
@@ -257,6 +274,7 @@ public class Data {
             sb.append(String.format("%-30s", combinedData[6]));
             sb.append(String.format("%-20s", combinedData[7]));
             sb.append(String.format("%-15s", combinedData[8]));
+            //TODO: Ingen sysouts i andre klasser end UI
             System.out.println(sb.toString());
 
         }
@@ -267,9 +285,11 @@ public class Data {
         return indexToBeChanged;
     }
     public void testAddSwimResultTraining() {
+        //TODO: Ingen sysouts i andre klasser end UI
         System.out.println("test af udprint af addSwimResultTraining metode");
         ResultSwimmer r1 = new ResultSwimmer(30, SwimDiscipline.FRONTCRAWL, 20.35, LocalDate.of(2024, 9, 13));
         for (ResultSwimmer r : resultListTraining) {
+            //TODO: Ingen sysouts i andre klasser end UI
             System.out.println(r.toStringTraining());
         }
     }
@@ -284,6 +304,7 @@ public class Data {
     }
 
     public void printResultListTraining() {
+        //TODO: Ingen sysouts i andre klasser end UI
         for (ResultSwimmer r : resultListTraining) {
             System.out.println(r.toStringTraining());
         }
