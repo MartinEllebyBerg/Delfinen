@@ -131,13 +131,14 @@ public class UserInterface {
                     break;
                 }
                 case 3: {
-
+                    //TODO: Hvad skal der stå her? Hvis noget.
+                    System.out.println("Whatever should be here is not implemented.");
+                    break;
                 }
                 case 9: {
                     System.out.println("Terminating application.");
                     break; //Failsafe
                 }
-
             }
         }
     }
@@ -178,7 +179,6 @@ public class UserInterface {
             input.nextLine();
 
             switch (switchInput) {
-
                 case 1: {
                     //TODO: Register Swimmer payments
                 }
@@ -369,7 +369,7 @@ public class UserInterface {
 
     public SwimDiscipline userPromptSwimDiscipline() {
         String UPSWDInput = " ";
-        System.out.println("Please type in which discipline you would like to be assigned or attached to.");
+        System.out.println("\nPlease type in which discipline you would like to be assigned or attached to.");
         System.out.println("Valid choices include breaststroke, backstroke, frontcrawl, butterfly or null.");
 
         while (true) {
@@ -532,12 +532,8 @@ public class UserInterface {
         int idToFind = input.nextInt();
         input.nextLine();
         Member m = findMemberById(idToFind);
-        if (m != null) {
-            System.out.println(controller.findSwimmersResultTraining(m));
-
-        } else {
-            System.out.println("No member with that ID was found.");
-        }
+        String result = controller.findSwimmersResultTraining(m);
+        System.out.println(result);
     }
 
 

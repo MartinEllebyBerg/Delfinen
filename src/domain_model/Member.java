@@ -26,6 +26,8 @@ public class Member {
 
         memberID = nextMemberID++;
         paymentRegistered = false;
+
+        calculateYearOfMember();
     }
 
     //METHODS
@@ -86,14 +88,11 @@ public class Member {
         } else {
             result += "\tActivity status: Passive";
         }
-        /*
         if (ageOfMember >= ageCutoffSeniorTeam) {
             result+= "\nTeam: "+ "Senior";
         } else {
             result += "\nTeam: "+"Youth";
         }
-
-         */
         result += "\nMember Id: "+memberID;
         return result;
     }
