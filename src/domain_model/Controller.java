@@ -22,6 +22,9 @@ public class Controller {
     public double calculateTotalRateForecast(){
         return data.calculateTotalForecast();
     }
+    public String findSwimmersResultTraining(Member m) {
+        return data.findSwimmersResultTraining(m);
+    }
 
     public void findIndexToBeChanged (int memberID) {
         data.findIndexToBeChanged(memberID);

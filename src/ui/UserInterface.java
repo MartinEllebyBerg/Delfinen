@@ -38,24 +38,23 @@ public class UserInterface {
             String switchChoice = input.nextLine().toLowerCase();
 
             switch (switchChoice) {
-                case "chairman": {
+                case "chairman", "ch", "cha", "chai", "chair", "chairm", "chairma" -> {
                     startProgramChairman();
                     condition = false;
-                    break;
                 }
-                case "treasurer": {
+                case "treasurer", "tre", "trea", "treas", "treasu", "treasur", "treasure", "t" -> {
                     startProgramTreasurer();
                     condition = false;
-                    break;
                 }
-                case "coach": {
+                case "coach", "co", "coa", "coac" -> {
                     startProgramCoach();
                     condition = false;
-                    break;
                 }
-                default: {
+                default -> {
                     System.out.println("Invalid input. Please input either Chairman, Treasurer or Coach.");
-                    break;
+                    if (switchChoice.equals("c")) {
+                        System.out.println("'c' is invalid input as that could either mean Chairman or Coach.");
+                    }
                 }
             }
         }
@@ -116,8 +115,6 @@ public class UserInterface {
 
 
     public void startProgramChairman() {
-
-
         while (switchInput != SENTINEL) {
             displayMenuChairman();
             System.out.print("> ");
@@ -135,13 +132,14 @@ public class UserInterface {
                     break;
                 }
                 case 3: {
-
+                    //TODO: Hvad skal der stå her? Hvis noget.
+                    System.out.println("Whatever should be here is not implemented.");
+                    break;
                 }
                 case 9: {
                     System.out.println("Terminating application.");
                     break; //Failsafe
                 }
-
             }
         }
     }
@@ -169,7 +167,8 @@ public class UserInterface {
         System.out.println(" ");
         System.out.println("1. Register Swimmer Disciplines");
         System.out.println("2. Delete Swimmer Disciplines");
-        System.out.println("3. Display list of Swimmers\n");
+        System.out.println("3. Display list of Swimmers");
+        System.out.println("4. Search for Training/Competition results by Swimmer ID\n");
         System.out.println("9. Terminate program");
     }
 
@@ -182,7 +181,6 @@ public class UserInterface {
             input.nextLine();
 
             switch (switchInput) {
-
                 case 1: {
                     displayListofMembers();
                     break;
@@ -227,6 +225,10 @@ public class UserInterface {
                 }
                 case 3: {
                     displayListofMembers();
+                    break;
+                }
+                case 4: {
+                    searchForMemberResultIdToId();
                     break;
                 }
                 case 9: {
@@ -374,7 +376,7 @@ public class UserInterface {
 
     public SwimDiscipline userPromptSwimDiscipline() {
         String UPSWDInput = " ";
-        System.out.println("Please type in which discipline you would like to be assigned or attached to.");
+        System.out.println("\nPlease type in which discipline you would like to be assigned or attached to.");
         System.out.println("Valid choices include breaststroke, backstroke, frontcrawl, butterfly or null.");
 
         while (true) {
@@ -520,6 +522,16 @@ public class UserInterface {
         } else {
             System.out.println("No members with that name has been registered.");
         }
+    }
+    //#########################  Member - Set multiple swim disciplines  ################################
+    public void searchForMemberResultIdToId() {
+        System.out.println("Please input the member ID of which you wish to access training or competition results.");
+        System.out.println("> ");
+        int idToFind = input.nextInt();
+        input.nextLine();
+        Member m = findMemberById(idToFind);
+        String result = controller.findSwimmersResultTraining(m);
+        System.out.println(result);
     }
 
 
