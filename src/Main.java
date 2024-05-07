@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         UserInterface ui = new UserInterface();
         ui.DelfinenUISetPosition();
-        ui.addSwimmerResults();
+
 
         ///////////////////////////////////////////TEST METODEKALD ///////////////////////////////////////////
         /*
@@ -14,6 +14,7 @@ public class Main {
 //        d.testAddSwimResultCompetition();
 //        d.testSearchCompSwimmersWithResultDataSaveInAnArray();
 //        d.testPrintSavedArrayListWithCombinedData();
+ //       ui.addSwimmerResults();
 /
 //        //ui.startProgramAll();
 

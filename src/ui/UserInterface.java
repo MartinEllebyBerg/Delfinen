@@ -61,6 +61,7 @@ public class UserInterface {
     }
 
     //######################### Different UI based on position within Delfinen  ################################
+    //TODO: Dette er den gamle startprogram metode, som ikke kaldes nu....slet når sikker på ikke skal bruges
     public void startProgramAll() {
 
         while (switchInput != SENTINEL) {
@@ -87,15 +88,13 @@ public class UserInterface {
                     break;
                 }
                 case 3: {
-                    //TODO: Register Swimmer payments
+                    //
                 }
                 case 4: {
-                    //TODO: See list of swimmers
                     displayListofMembers();
                     break;
                 }
                 case 5: {
-                    //TODO: Set multiple swim disciplines to object
                     setMultipleDisciplines();
                     break;
                 }
@@ -113,7 +112,7 @@ public class UserInterface {
         }
     }
 
-
+//TODO: Skal vi ikke have chairman menu til at indeholde alle muligheder?
     public void startProgramChairman() {
         while (switchInput != SENTINEL) {
             displayMenuChairman();

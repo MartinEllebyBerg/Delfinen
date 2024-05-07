@@ -27,8 +27,8 @@ public class Data {
         resultListCompetition = new ArrayList<>();
         resultSearchList = new ArrayList<>();
 
-        testAddSwimResultCompetition();
-        testAddSwimResultTraining();
+        //testAddSwimResultCompetition();
+        //testAddSwimResultTraining();
 
     }
 
@@ -88,7 +88,7 @@ public class Data {
         membersList.add(m15);
         membersList.add(m16);
     }
-
+//TODO: Hvis denne testGeneration ikke anvendes så slet
     public void testGeneration() {
 
         System.out.println("Print full memberlist");
@@ -189,7 +189,7 @@ public class Data {
         return overduePayments;
     }
 
-
+//TODO: Hvis denne testAddSwimResultCompetition ikke anvendes så slet
     public void testAddSwimResultCompetition() {
         System.out.println("Her kører addswimresultmetoden");
         ResultSwimmer result1 = new ResultSwimmer(2, "Holbæk", "Sjællandske Mesterskaber", null, SwimDiscipline.BUTTERFLY, 20.48, 5);
@@ -206,7 +206,7 @@ public class Data {
         }
 
     }
-
+//TODO: Hvis denne testPrintSpecificMember ikke anvendes så slet
     /*public void testPrintSpecificMember(){
         System.out.println("Her høres metoden printSpecificMember");
         System.out.println(" ");
@@ -220,6 +220,7 @@ public class Data {
             }
         }
     }*/
+    //TODO: Hvis denne testSearchCompSwimmerWithResultDataSaveInArray ikke anvendes så slet senere
     public void testSearchCompSwimmersWithResultDataSaveInAnArray() {
         System.out.println("Her køres metoden hvor de to lister kombineres, hvis der er identisk memberID, og det gemmes i ny Array");
         System.out.println(" ");
