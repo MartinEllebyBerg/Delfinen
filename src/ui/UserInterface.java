@@ -167,7 +167,8 @@ public class UserInterface {
         System.out.println("1. Register Swimmer Disciplines");
         System.out.println("2. Delete Swimmer Disciplines");
         System.out.println("3. Display list of Swimmers");
-        System.out.println("4. Search for Training/Competition results by Swimmer ID\n");
+        System.out.println("4. Register Swimmer Results(Training/Competition)");
+        System.out.println("5. Search for Training/Competition results by Swimmer ID\n");
         System.out.println("9. Terminate program");
     }
 
@@ -227,7 +228,11 @@ public class UserInterface {
                     break;
                 }
                 case 4: {
-                    //searchForMemberResultIdToId();
+                    addSwimmerResults();
+                    break;
+                }
+                case 5: {
+                    searchForMemberResultIdToId();
                     break;
                 }
                 case 9: {
@@ -299,6 +304,7 @@ public class UserInterface {
          */
         String userChoice = input.nextLine();
         if (userChoice.toLowerCase().equals("training")) {
+            boolean isCompetitive = false;
             System.out.println("Type the memberID of the swimmer who's results you wish to register:");
             int memberID = scanIntSafely();
             input.nextLine();
@@ -332,12 +338,13 @@ public class UserInterface {
                             "for having a birthday on the 12th of December in 1992.");
                 }
             }
-            controller.addSwimResultTraining(memberID, disciplineName, swimTime, localDate);
+            controller.addSwimResultTraining(isCompetitive, memberID, disciplineName, swimTime, localDate);
             //controller.printResultListTraining();  //Henviser til sysout beskeder i anden klasse end UI
             System.out.println("Successfully added a training result for a swimmer with the following member ID: "+memberID);
             //TODO: Eventuelt 'fetche' det specifikke member med ID. findMemberById(memberID) kan benyttes til dette formål
 
         } else if (userChoice.toLowerCase().equals("competition")) {
+            boolean isCompetitive = true;
             System.out.println("Type the memberID of the swimmer whose results you wish to register:");
             int memberID = scanIntSafely();
             input.nextLine();
@@ -381,7 +388,7 @@ public class UserInterface {
             int placementCompetition = scanIntSafely();
             input.nextLine();
 
-            controller.addSwimResultCompetition(memberID, competitionLocation, competitionName, localDate, disciplineName, swimTime, placementCompetition);
+            controller.addSwimResultCompetition(isCompetitive, memberID, competitionLocation, competitionName, localDate, disciplineName, swimTime, placementCompetition);
             //controller.printResultListCompetition(); //Henviser til sysout beskeder i anden klasse end UI
             System.out.println("Successfully added a training result for a swimmer with the following member ID: "+memberID);
             //TODO: Eventuelt 'fetche' det specifikke member med ID. findMemberById(memberID) kan benyttes til dette formål

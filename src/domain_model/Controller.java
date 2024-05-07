@@ -68,12 +68,12 @@ public class Controller {
         return data.searchMember(name);
     }
 
-    public void addSwimResultTraining(int memberID, SwimDiscipline swimDiscipline, double swimTime, LocalDate resultDate) {
-        data.addSwimResultTraining(memberID, swimDiscipline, swimTime, resultDate);
+    public void addSwimResultTraining(boolean isCompetitive, int memberID, SwimDiscipline swimDiscipline, double swimTime, LocalDate resultDate) {
+        data.addSwimResultTraining(isCompetitive,memberID, swimDiscipline, swimTime, resultDate);
     }
 
-    public void addSwimResultCompetition(int memberID, String competitionLocation,String competitionName, LocalDate resultDate, SwimDiscipline swimDiscipline, double swimTime, int placementCompetition) {
-        data.addSwimResultCompetition(memberID, competitionLocation, competitionName, resultDate, swimDiscipline, swimTime, placementCompetition);
+    public void addSwimResultCompetition(boolean isCompetitive, int memberID, String competitionLocation,String competitionName, LocalDate resultDate, SwimDiscipline swimDiscipline, double swimTime, int placementCompetition) {
+        data.addSwimResultCompetition(isCompetitive,memberID, competitionLocation, competitionName, resultDate, swimDiscipline, swimTime, placementCompetition);
     }
 
     public void printResultListTraining() {
