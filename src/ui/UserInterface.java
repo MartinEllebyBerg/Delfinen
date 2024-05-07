@@ -590,7 +590,7 @@ public class UserInterface {
     //#########################  Member - Set multiple swim disciplines  ################################
     public void searchForMemberResultIdToId() {
         System.out.println("Please input the member ID of which you wish to access training or competition results.");
-        System.out.println("> ");
+        System.out.print("> ");
         int idToFind = input.nextInt();
         input.nextLine();
         Member m = findMemberById(idToFind);
