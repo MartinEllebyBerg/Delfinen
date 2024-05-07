@@ -76,9 +76,12 @@ public class Controller {
         data.addSwimResultCompetition(isCompetitive,memberID, competitionLocation, competitionName, resultDate, swimDiscipline, swimTime, placementCompetition);
     }
 
+    /*
     public void printResultListTraining() {
         data.printResultListTraining();
     }
+
+     */
 
     public void printResultListCompetition() {
         data.printResultListCompetition();

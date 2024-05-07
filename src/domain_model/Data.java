@@ -12,10 +12,7 @@ public class Data {
     private ArrayList<ResultSwimmer> resultList;
     private ArrayList<String[]> searchList;
     private ArrayList<Member> searchMatch;
-    private ArrayList<ResultSwimmer> resultListTraining;
-    private ArrayList<ResultSwimmer> resultListCompetition;
     private int indexToBeChanged;
-    private ArrayList<ResultSwimmer> resultSearchList;
 
     //CONSTRUCTOR
     public Data() {
@@ -23,9 +20,6 @@ public class Data {
         resultList = new ArrayList<>();
         searchList = new ArrayList<>();
         searchMatch = new ArrayList<>();
-        resultListTraining = new ArrayList<>();
-        resultListCompetition = new ArrayList<>();
-        resultSearchList = new ArrayList<>();
 
         //testAddSwimResultCompetition();
         //testAddSwimResultTraining();
@@ -246,7 +240,6 @@ public class Data {
             }
         }
     }
-
     public String findSwimmersResultTraining(Member m) {
         int idToReference = m.getMemberID();
         int count = 1;
@@ -296,7 +289,8 @@ public class Data {
         return indexToBeChanged;
     }
 
-    public void testAddSwimResultTraining() {
+    /*
+    public void testAddSwimResultTraining() { //Udkommenteret, eftersom der blev fjernet 3 arraylister, der ikke skulle bruges.
         //TODO: Ingen sysouts i andre klasser end UI
         System.out.println("test af udprint af addSwimResultTraining metode");
         ResultSwimmer r1 = new ResultSwimmer(false, 30, SwimDiscipline.FRONTCRAWL, 20.35, LocalDate.of(2024, 9, 13));
@@ -310,6 +304,8 @@ public class Data {
         }
     }
 
+     */
+
     //######################### SwimResult objects ################################
     public void addSwimResultTraining(boolean isCompetitive, int memberID, SwimDiscipline swimDiscipline, double swimTime, LocalDate resultDate) {
         resultList.add(new ResultSwimmer(isCompetitive, memberID, swimDiscipline, swimTime, resultDate));
@@ -319,6 +315,7 @@ public class Data {
         resultList.add(new ResultSwimmer(isCompetitive, memberID, competitionLocation, competitionName, resultDate, swimDiscipline, swimTime, placementCompetition));
     }
 
+    /* //Udkommenteret, eftersom der blev fjernet 3 arraylister, der ikke skulle bruges.
     public void printResultListTraining() {
         //TODO: Ingen sysouts i andre klasser end UI
         for (ResultSwimmer r : resultListTraining) {
@@ -328,6 +325,8 @@ public class Data {
             System.out.println(r.toStringTraining());
         }
     }
+
+     */
 
     public void printResultListCompetition() {
         for (ResultSwimmer r : resultList) {
