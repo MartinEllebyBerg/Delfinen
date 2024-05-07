@@ -50,8 +50,16 @@ public class Controller {
         data.addSwimResultTraining(memberID, swimDiscipline, swimTime, resultDate);
     }
 
+    public void addSwimResultCompetition(int memberID, String competitionLocation,String competitionName, LocalDate resultDate, SwimDiscipline swimDiscipline, double swimTime, int placementCompetition) {
+        data.addSwimResultCompetition(memberID, competitionLocation, competitionName, resultDate, swimDiscipline, swimTime, placementCompetition);
+    }
+
     public void printResultListTraining() {
         data.printResultListTraining();
+    }
+
+    public void printResultListCompetition() {
+        data.printResultListCompetition();
     }
 
 }
