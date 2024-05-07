@@ -284,19 +284,24 @@ public class UserInterface {
     }
 
     public void addSwimmerResults() {
-        System.out.println("Select whether you wish to register training or competition results:");
-        System.out.println("1. Training");
-        System.out.println("2. Competition");
-        String userChoice = input.nextLine();
+        System.out.println("Please input Training/Competition to register training or competition results:");
+        /*
+        System.out.println("1. Training"); //Kan forvirre brugeren ved at give dem et "valg" som om de skal indtaste 1 eller 2 for henholdsvist training eller competition
+        System.out.println("2. Competition"); // + Så hellere fortælle dem, at de skal skrive enten training eller competition
 
+         */
+        String userChoice = input.nextLine();
         if (userChoice.toLowerCase().equals("training")) {
             System.out.println("Type the memberID of the swimmer who's results you wish to register:");
             int memberID = scanIntSafely();
             input.nextLine();
 
+            /*
             System.out.println("Type the swim discipline:");
             String swimDiscipline = input.nextLine().toLowerCase();
-            SwimDiscipline disciplineName = userPromptSwimDiscipline();
+
+             */
+            SwimDiscipline disciplineName = userPromptSwimDiscipline(); //Denne metode spørger om brugerinput med tilhørende sysoutbeskeder.
 
             System.out.println("Type the swim time:");
             double swimTime = input.nextDouble();
@@ -315,13 +320,17 @@ public class UserInterface {
                     validInput = true; //Vi afslutter while loopet.
                 } catch (DateTimeParseException e) {
                     System.out.println("Invalid input. Please type your input in the following format YYYY-MM-DD:");
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please type your input in the following format YYYY-MM-DD. Example: 1992-12-12" +
+                            "for having a birthday on the 12th of December in 1992.");
                 }
             }
             controller.addSwimResultTraining(memberID, disciplineName, swimTime, localDate);
-            controller.printResultListTraining();
+            //controller.printResultListTraining();  //Henviser til sysout beskeder i anden klasse end UI
+            System.out.println("Successfully added a training result for a swimmer with the following member ID: "+memberID);
+            //TODO: Eventuelt 'fetche' det specifikke member med ID. findMemberById(memberID) kan benyttes til dette formål
 
-        }
-        else if (userChoice.toLowerCase().equals("competition")) {
+        } else if (userChoice.toLowerCase().equals("competition")) {
             System.out.println("Type the memberID of the swimmer whose results you wish to register:");
             int memberID = scanIntSafely();
             input.nextLine();
@@ -345,11 +354,17 @@ public class UserInterface {
                     validInput = true; //Vi afslutter while loopet.
                 } catch (DateTimeParseException e) {
                     System.out.println("Invalid input. Please type your input in the following format YYYY-MM-DD:");
+                }catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please type your input in the following format YYYY-MM-DD. Example: 1992-12-12" +
+                            "for having a birthday on the 12th of December in 1992.");
                 }
             }
+            /*
             System.out.println("Type the swim discipline:");
             String swimDiscipline = input.nextLine().toLowerCase();
-            SwimDiscipline disciplineName = userPromptSwimDiscipline();
+
+             */
+            SwimDiscipline disciplineName = userPromptSwimDiscipline(); //Denne metode spørger om brugerinput med tilhørende sysoutbeskeder.
 
             System.out.println("Type the swim time:");
             double swimTime = input.nextDouble();
@@ -360,9 +375,12 @@ public class UserInterface {
             input.nextLine();
 
             controller.addSwimResultCompetition(memberID, competitionLocation, competitionName, localDate, disciplineName, swimTime, placementCompetition);
-            controller.printResultListCompetition();
+            //controller.printResultListCompetition(); //Henviser til sysout beskeder i anden klasse end UI
+            System.out.println("Successfully added a training result for a swimmer with the following member ID: "+memberID);
+            //TODO: Eventuelt 'fetche' det specifikke member med ID. findMemberById(memberID) kan benyttes til dette formål
         }
     }
+
     public boolean askForActivity() {
         boolean memberActive = false;
         System.out.println("Please select your desired membership status ACTIVE/PASSIVE: ");
@@ -408,7 +426,7 @@ public class UserInterface {
 
     public SwimDiscipline userPromptSwimDiscipline() {
         String UPSWDInput = " ";
-        System.out.println("Please type in which discipline you would like to be assigned or attached to.");
+        System.out.println("Please type in which swim discipline to assign.");
         System.out.println("Valid choices include breaststroke, backstroke, frontcrawl, butterfly or null.");
 
         while (true) {
@@ -584,6 +602,7 @@ public class UserInterface {
             System.out.println("No registered swimmers found.");
         }
     }
+
     //TODO: NICE_TO if we can make a forecast based on the age next year (saying we have the current members with current status.
     public void calculateTotalRateForecast() {
         System.out.println("Calculation of expected income (payment membership rate) based on current membership status: ");
