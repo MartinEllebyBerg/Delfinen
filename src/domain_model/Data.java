@@ -12,6 +12,10 @@ public class Data {
     private ArrayList<ResultSwimmer> resultList;
     private ArrayList<String[]> searchList;
     private ArrayList<Member> searchMatch;
+    private ArrayList<ResultSwimmer> resultListTraining;
+    private ArrayList<ResultSwimmer> resultListCompetition;
+    private int indexToBeChanged;
+    private ArrayList<ResultSwimmer> resultSearchList;
 
     //CONSTRUCTOR
     public Data() {
@@ -19,6 +23,13 @@ public class Data {
         resultList = new ArrayList<>();
         searchList = new ArrayList<>();
         searchMatch = new ArrayList<>();
+        resultListTraining = new ArrayList<>();
+        resultListCompetition = new ArrayList<>();
+        resultSearchList = new ArrayList<>();
+
+        //testAddSwimResultCompetition();
+        //testAddSwimResultTraining();
+
     }
 
 
@@ -31,8 +42,8 @@ public class Data {
 
     public ArrayList<Member> searchMember(String name) {
         searchMatch.clear();
-        for(Member member : membersList) {
-            if(member.getFirstName().toLowerCase().contains(name.toLowerCase())) {
+        for (Member member : membersList) {
+            if (member.getFirstName().toLowerCase().contains(name.toLowerCase())) {
                 searchMatch.add(member);
             }
         }
@@ -41,23 +52,23 @@ public class Data {
 
     //######################### Test methods & hardcode ################################
 
-    public void hardCodedData(){
-        Member m1 = new CompetitionMember("Mette", "Munch", LocalDate.of(1974,2,23), true, SwimDiscipline.BUTTERFLY, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
-        Member m2 = new CompetitionMember("Daniel", "Jensen", LocalDate.of(1986,4,26), false, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.NULL, SwimDiscipline.NULL);
-        Member m3 = new ExerciseMember("Martin", "Elleby", LocalDate.of(1999,8,12), true);
-        Member m4 = new ExerciseMember("Mark", "Onat", LocalDate.of(2001,2,8), false);
-        Member m5 = new CompetitionMember("Hans", "Hansen", LocalDate.of(2005,8,26), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
-        Member m6 = new CompetitionMember("Peter", "Hansen", LocalDate.of(2012,5,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
-        Member m7 = new CompetitionMember("Signe", "Hansen", LocalDate.of(2016,3,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
-        Member m8 = new CompetitionMember("Ulrik", "Hansen", LocalDate.of(2016,3,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
-        Member m9 = new CompetitionMember("Lise", "Hansen", LocalDate.of(2016,3,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
-        Member m10 = new CompetitionMember("Christian", "Hansen", LocalDate.of(2016,3,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
-        Member m11 = new CompetitionMember("Malthe", "Hansen", LocalDate.of(2016,3,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
-        Member m12 = new CompetitionMember("Mette", "Hansen", LocalDate.of(2016,3,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
-        Member m13 = new CompetitionMember("Martin", "Hansen", LocalDate.of(2016,3,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
-        Member m14 = new CompetitionMember("Anders", "Hansen", LocalDate.of(2016,3,15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
-        Member m15 = new ExerciseMember("Mette", "Olsen", LocalDate.of(1960,3,15), true);
-        Member m16 = new ExerciseMember("Jakob", "Jakobsen", LocalDate.of(2016,3,15), false);
+    public void hardCodedData() {
+        Member m1 = new CompetitionMember("Mette", "Munch", LocalDate.of(1974, 2, 23), true, SwimDiscipline.BUTTERFLY, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
+        Member m2 = new CompetitionMember("Daniel", "Jensen", LocalDate.of(1986, 4, 26), false, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.NULL, SwimDiscipline.NULL);
+        Member m3 = new ExerciseMember("Martin", "Elleby", LocalDate.of(1999, 8, 12), true);
+        Member m4 = new ExerciseMember("Mark", "Onat", LocalDate.of(2001, 2, 8), false);
+        Member m5 = new CompetitionMember("Hans", "Hansen", LocalDate.of(2005, 8, 26), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m6 = new CompetitionMember("Peter", "Hansen", LocalDate.of(2012, 5, 15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m7 = new CompetitionMember("Signe", "Hansen", LocalDate.of(2016, 3, 15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m8 = new CompetitionMember("Ulrik", "Hansen", LocalDate.of(2016, 3, 15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m9 = new CompetitionMember("Lise", "Hansen", LocalDate.of(2016, 3, 15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m10 = new CompetitionMember("Christian", "Hansen", LocalDate.of(2016, 3, 15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m11 = new CompetitionMember("Malthe", "Hansen", LocalDate.of(2016, 3, 15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m12 = new CompetitionMember("Mette", "Hansen", LocalDate.of(2016, 3, 15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m13 = new CompetitionMember("Martin", "Hansen", LocalDate.of(2016, 3, 15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m14 = new CompetitionMember("Anders", "Hansen", LocalDate.of(2016, 3, 15), true, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.BUTTERFLY, SwimDiscipline.BREASTSTROKE);
+        Member m15 = new ExerciseMember("Mette", "Olsen", LocalDate.of(1960, 3, 15), true);
+        Member m16 = new ExerciseMember("Jakob", "Jakobsen", LocalDate.of(2016, 3, 15), false);
 
 
         membersList.add(m1);
@@ -77,13 +88,14 @@ public class Data {
         membersList.add(m15);
         membersList.add(m16);
     }
+//TODO: Hvis denne testGeneration ikke anvendes så slet
     public void testGeneration() {
 
-       System.out.println("Print full memberlist");
+        System.out.println("Print full memberlist");
 
         System.out.println(" ");
         for (Member m : membersList) {
-            System.out.println("MemberID: " + m.getMemberID() + ", " +m.getFirstName() + " " + m.getLastName());
+            System.out.println("MemberID: " + m.getMemberID() + ", " + m.getFirstName() + " " + m.getLastName());
             System.out.println("Day of Birth: " + m.getBirthday());
             System.out.println("Is member active: " + m.getIsMemberActive());
 
@@ -106,23 +118,28 @@ public class Data {
             System.out.println(" ");
         }
     }
+
     //######################### Methods for ArrayList memberslist ################################
     public ArrayList<Member> getMembersList() {
         return membersList;
     }
+
     public void addToMembersList(Member member) {
         membersList.add(member);
     }
+
     //######################### Methods for ArrayList resultlist ################################
     public ArrayList<ResultSwimmer> getResultList() {
         return resultList;
     }
+
     public void addSwimResultToResultList(ResultSwimmer rs) {
         resultList.add(rs);
     }
-    public double calculateTotalForecast(){
+
+    public double calculateTotalForecast() {
         double totalForecast = 0.0;
-        for(Member m : membersList) {
+        for (Member m : membersList) {
             m.calculateYearOfMember();
             m.calculateMembershipRate();
             totalForecast += m.getRate();
@@ -130,24 +147,66 @@ public class Data {
         return totalForecast;
     }
 
+    public void findIndexToBeChanged (int memberID) {
+        for(Member m: membersList) {
+            if(m.getMemberID() == memberID) {
+                indexToBeChanged = membersList.indexOf(m);
+                /*System.out.println("test af korrekt member");
+                System.out.println(m.getFirstName());
+                System.out.println(indexToBeChanged);
+                m.setPaymentRegistered(true);*/
+            }
+        }
+    }
+    public String findNameByIndex () {
+        String memberFirstName = null;
+        String memberLastName = null;
+        for(int i = 0; i < membersList.size(); i++){
+            if( i == indexToBeChanged) {
+                memberFirstName = membersList.get(i).getFirstName();
+                memberLastName = membersList.get(i).getLastName();
+            }
+        }
+        return memberFirstName + " "+ memberLastName;
+    }
 
+    public void registerPayment() {
+        for(int i = 0; i < membersList.size(); i++){
+            if( i == indexToBeChanged) {
+                membersList.get(i).setPaymentRegistered(true);
+            }
+        }
+    }
+
+
+    public ArrayList<String> printOverduePayments() {
+        ArrayList<String> overduePayments = new ArrayList<>();
+        for(Member member : membersList) {
+            if(!member.isPaymentRegistered()) {
+                overduePayments.add(member.toStringOverduePayments());
+            }
+        }
+        return overduePayments;
+    }
+
+//TODO: Hvis denne testAddSwimResultCompetition ikke anvendes så slet
     public void testAddSwimResultCompetition() {
         System.out.println("Her kører addswimresultmetoden");
-        ResultSwimmer result1 = new ResultSwimmer(2,"Holbæk", "Sjællandske Mesterskaber", null, SwimDiscipline.BUTTERFLY, 20.48, 5);
-        ResultSwimmer result2 = new ResultSwimmer(2,"København", "DM", null, SwimDiscipline.BACKSTROKE, 22.85, 3);
-        ResultSwimmer result3 = new ResultSwimmer(1,SwimDiscipline.FRONTCRAWL, 15.96, null);
-        ResultSwimmer result4 = new ResultSwimmer(5,"Delfinen", "Klubmesterskaber", null, SwimDiscipline.BUTTERFLY, 20.58, 1);
+        ResultSwimmer result1 = new ResultSwimmer(2, "Holbæk", "Sjællandske Mesterskaber", null, SwimDiscipline.BUTTERFLY, 20.48, 5);
+        ResultSwimmer result2 = new ResultSwimmer(2, "København", "DM", null, SwimDiscipline.BACKSTROKE, 22.85, 3);
+        ResultSwimmer result3 = new ResultSwimmer(1, SwimDiscipline.FRONTCRAWL, 15.96, null);
+        ResultSwimmer result4 = new ResultSwimmer(5, "Delfinen", "Klubmesterskaber", null, SwimDiscipline.BUTTERFLY, 20.58, 1);
         resultList.add(result1);
         resultList.add(result2);
         resultList.add(result3);
         resultList.add(result4);
-        for (ResultSwimmer r : resultList){
+        for (ResultSwimmer r : resultList) {
             System.out.println("udprint af listen med toString");
             System.out.println(r.toString());
         }
 
     }
-
+//TODO: Hvis denne testPrintSpecificMember ikke anvendes så slet
     /*public void testPrintSpecificMember(){
         System.out.println("Her høres metoden printSpecificMember");
         System.out.println(" ");
@@ -161,6 +220,7 @@ public class Data {
             }
         }
     }*/
+    //TODO: Hvis denne testSearchCompSwimmerWithResultDataSaveInArray ikke anvendes så slet senere
     public void testSearchCompSwimmersWithResultDataSaveInAnArray() {
         System.out.println("Her køres metoden hvor de to lister kombineres, hvis der er identisk memberID, og det gemmes i ny Array");
         System.out.println(" ");
@@ -179,39 +239,67 @@ public class Data {
                             String.valueOf(r.getPlacementCompetition()) //combinedData[8]
                     };
                     searchList.add(combinedData);
-
                 }
             }
         }
     }
-    public void testPrintSavedArrayListWithCombinedData(){
+    public String findSwimmersResultTraining(Member m) {
+        int idToReference = m.getMemberID();
+        int count = 1;
+        String result = "";
+        for (ResultSwimmer rs : resultList) { //TODO: Ændre hvilken liste, der itereres over, når genereringsmetoden i UI udarbejdet af Mark og Martin er færdig. Der skal itereres over ResultListTraining og ResultListCompetition.
+            if (idToReference == rs.getMemberID()) {
+                result += count + ". " + rs.toStringTraining() + "\n";
+                count++;
+            }
+        }
+        for (ResultSwimmer rs : resultList) {
+            if (idToReference == rs.getMemberID()) {
+                result += count + ". " + rs.toString() + "\n";
+                count++;
+            }
+        }
+        return result;
+    }
+
+    public void testPrintSavedArrayListWithCombinedData() {
         System.out.println("List of swimmers with either their data from competition stored or training data:");
-        for (String[] combinedData : searchList){
+        for (String[] combinedData : searchList) {
             StringBuilder sb = new StringBuilder();
-            sb.append(String.format("%-5s",combinedData[0])); //String.format er lig med en form for tabulator
-            sb.append(String.format("%-15s",combinedData[1]));
-            sb.append(String.format("%-15s",combinedData[2]));
-            sb.append(String.format("%-15s",combinedData[3]));
-            sb.append(String.format("%-15s",combinedData[4]));
-            sb.append(String.format("%-10s",combinedData[5]));
-            sb.append(String.format("%-30s",combinedData[6]));
-            sb.append(String.format("%-20s",combinedData[7]));
-            sb.append(String.format("%-15s",combinedData[8]));
+            sb.append(String.format("%-5s", combinedData[0])); //String.format er lig med en form for tabulator
+            sb.append(String.format("%-15s", combinedData[1]));
+            sb.append(String.format("%-15s", combinedData[2]));
+            sb.append(String.format("%-15s", combinedData[3]));
+            sb.append(String.format("%-15s", combinedData[4]));
+            sb.append(String.format("%-10s", combinedData[5]));
+            sb.append(String.format("%-30s", combinedData[6]));
+            sb.append(String.format("%-20s", combinedData[7]));
+            sb.append(String.format("%-15s", combinedData[8]));
+            //TODO: Ingen sysouts i andre klasser end UI
             System.out.println(sb.toString());
 
         }
 
     }
 
+    public int getIndexToBeChanged() {
+        return indexToBeChanged;
+    }
     public void testAddSwimResultTraining() {
+        //TODO: Ingen sysouts i andre klasser end UI
         System.out.println("test af udprint af addSwimResultTraining metode");
         ResultSwimmer r1 = new ResultSwimmer(30, SwimDiscipline.FRONTCRAWL, 20.35, LocalDate.of(2024, 9, 13));
+        for (ResultSwimmer r : resultListTraining) {
+
+        }
+            //TODO: Ingen sysouts i andre klasser end UI
         resultList.add(r1);
         for (ResultSwimmer r : resultList) {
             System.out.println(r.toStringTraining());
         }
     }
 
+    //######################### SwimResult objects ################################
     public void addSwimResultTraining(int memberID, SwimDiscipline swimDiscipline, double swimTime, LocalDate resultDate) {
         resultList.add(new ResultSwimmer(memberID, swimDiscipline, swimTime, resultDate));
     }
@@ -221,6 +309,10 @@ public class Data {
     }
 
     public void printResultListTraining() {
+        //TODO: Ingen sysouts i andre klasser end UI
+        for (ResultSwimmer r : resultListTraining) {
+            System.out.println(r);
+        }
         for (ResultSwimmer r : resultList) {
             System.out.println(r.toStringTraining());
         }

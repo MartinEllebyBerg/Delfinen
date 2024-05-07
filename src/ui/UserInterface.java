@@ -6,6 +6,7 @@ import java.io.Console;
 import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -37,30 +38,30 @@ public class UserInterface {
             String switchChoice = input.nextLine().toLowerCase();
 
             switch (switchChoice) {
-                case "chairman": {
+                case "chairman", "ch", "cha", "chai", "chair", "chairm", "chairma" -> {
                     startProgramChairman();
                     condition = false;
-                    break;
                 }
-                case "treasurer": {
+                case "treasurer", "tre", "trea", "treas", "treasu", "treasur", "treasure", "t" -> {
                     startProgramTreasurer();
                     condition = false;
-                    break;
                 }
-                case "coach": {
+                case "coach", "co", "coa", "coac" -> {
                     startProgramCoach();
                     condition = false;
-                    break;
                 }
-                default: {
+                default -> {
                     System.out.println("Invalid input. Please input either Chairman, Treasurer or Coach.");
-                    break;
+                    if (switchChoice.equals("c")) {
+                        System.out.println("'c' is invalid input as that could either mean Chairman or Coach.");
+                    }
                 }
             }
         }
     }
 
     //######################### Different UI based on position within Delfinen  ################################
+    //TODO: Dette er den gamle startprogram metode, som ikke kaldes nu....slet når sikker på ikke skal bruges
     public void startProgramAll() {
 
         while (switchInput != SENTINEL) {
@@ -87,15 +88,13 @@ public class UserInterface {
                     break;
                 }
                 case 3: {
-                    //TODO: Register Swimmer payments
+                    //
                 }
                 case 4: {
-                    //TODO: See list of swimmers
                     displayListofMembers();
                     break;
                 }
                 case 5: {
-                    //TODO: Set multiple swim disciplines to object
                     setMultipleDisciplines();
                     break;
                 }
@@ -113,10 +112,8 @@ public class UserInterface {
         }
     }
 
-
+//TODO: Skal vi ikke have chairman menu til at indeholde alle muligheder?
     public void startProgramChairman() {
-
-
         while (switchInput != SENTINEL) {
             displayMenuChairman();
             System.out.print("> ");
@@ -134,13 +131,14 @@ public class UserInterface {
                     break;
                 }
                 case 3: {
-
+                    //TODO: Hvad skal der stå her? Hvis noget.
+                    System.out.println("Whatever should be here is not implemented.");
+                    break;
                 }
                 case 9: {
                     System.out.println("Terminating application.");
                     break; //Failsafe
                 }
-
             }
         }
     }
@@ -156,9 +154,10 @@ public class UserInterface {
     public void displayMenuTreasurer() {
         System.out.println("Delfinen UI - TREASURER");
         System.out.println(" ");
-        System.out.println("1. Register Swimmer Payments -NOTIMPLEMENTED-");
-        System.out.println("2. Display list of Swimmers");
-        System.out.println("3. Forecast\n");
+        System.out.println("1. Display list of Swimmers");
+        System.out.println("2. Register payment of Membership");
+        System.out.println("3. List of overdue Payments");
+        System.out.println("4. Forecast\n");
         System.out.println("9. Terminate program");
     }
 
@@ -167,7 +166,8 @@ public class UserInterface {
         System.out.println(" ");
         System.out.println("1. Register Swimmer Disciplines");
         System.out.println("2. Delete Swimmer Disciplines");
-        System.out.println("3. Display list of Swimmers\n");
+        System.out.println("3. Display list of Swimmers");
+        System.out.println("4. Search for Training/Competition results by Swimmer ID\n");
         System.out.println("9. Terminate program");
     }
 
@@ -180,18 +180,21 @@ public class UserInterface {
             input.nextLine();
 
             switch (switchInput) {
-
                 case 1: {
-                    //TODO: Register Swimmer payments
-                }
-                case 2: {
-                    //TODO: See list of swimmers
                     displayListofMembers();
                     break;
                 }
+                case 2: {
+                    registerPayment();
+                    break;
+                }
                 case 3: {
-                    //TODO: Forecast financials - budget
+                    printOverduePayments();
+                    break;
+                }
+                case 4: {
                     calculateTotalRateForecast();
+                    break;
                 }
                 case 9: {
                     System.out.println("Terminating application.");
@@ -221,6 +224,10 @@ public class UserInterface {
                 }
                 case 3: {
                     displayListofMembers();
+                    break;
+                }
+                case 4: {
+                    //searchForMemberResultIdToId();
                     break;
                 }
                 case 9: {
@@ -426,7 +433,7 @@ public class UserInterface {
 
     public SwimDiscipline userPromptSwimDiscipline() {
         String UPSWDInput = " ";
-        System.out.println("Please type in which swim discipline to assign.");
+        System.out.println("\nPlease type in which swim discipline to assign.");
         System.out.println("Valid choices include breaststroke, backstroke, frontcrawl, butterfly or null.");
 
         while (true) {
@@ -562,25 +569,26 @@ public class UserInterface {
         System.out.println("Please type in the first name of the member you are looking for.");
         int count = 1;
         String memberToFind = input.nextLine();
-
         controller.searchMember(memberToFind);
-        System.out.println("Number of members found: " + controller.getSearchMatch().size());
-        if (!controller.getSearchMatch().isEmpty()) {
-            System.out.println("The following members are registered: ");
-            for (Member member : controller.getSearchMatch()) {
-                if (member instanceof CompetitionMember) {
-                    System.out.println(count + ". " + member);
-                    count++;
-                }
-                if (member instanceof ExerciseMember) {
-                    System.out.println(count + ". " + member);
-                    count++;
-                }
-            }
 
+        if (!controller.getSearchMatch().isEmpty()) {
+            System.out.println("Following member/members are registered:");
+            for(Member member : controller.getSearchMatch()) {
+                System.out.println(member.toString());
+            }
         } else {
             System.out.println("No members with that name has been registered.");
         }
+    }
+    //#########################  Member - Set multiple swim disciplines  ################################
+    public void searchForMemberResultIdToId() {
+        System.out.println("Please input the member ID of which you wish to access training or competition results.");
+        System.out.println("> ");
+        int idToFind = input.nextInt();
+        input.nextLine();
+        Member m = findMemberById(idToFind);
+        String result = controller.findSwimmersResultTraining(m);
+        System.out.println(result);
     }
 
 
@@ -605,9 +613,46 @@ public class UserInterface {
 
     //TODO: NICE_TO if we can make a forecast based on the age next year (saying we have the current members with current status.
     public void calculateTotalRateForecast() {
+        System.out.println(" ");
         System.out.println("Calculation of expected income (payment membership rate) based on current membership status: ");
         double result = controller.calculateTotalRateForecast();
         System.out.println("Total: " + result + " DKK/year.");
+    }
+
+    public void registerPayment(){
+        System.out.println(" ");
+        System.out.println("Please note in order to register a payment you will need the memberID of the specific member you want to alter");
+        System.out.println("Type 1 - if you will search for memberID");
+        System.out.println("Type 2 - if you have the memberID and are ready to register payment");
+        switchInput = scanIntSafely();
+        input.nextLine();
+
+        if(switchInput == 1){
+            findMemberSearchWithNewArray();
+
+        } else if (switchInput == 2) {
+            System.out.println("Type memberID of the member you want to register payment on:");
+            switchInput = scanIntSafely();
+            controller.findIndexToBeChanged(switchInput);
+            String name = controller.findNameByIndex();
+            System.out.println("you want to register payment on member: " +name);
+            System.out.println("Is this correct? Type 1 if correct and type 2 if not.");
+            switchInput = scanIntSafely();
+            input.nextLine();
+            if(switchInput == 1){
+                controller.registerPayment();
+                System.out.println("\nPayment has now been registered on the member.");
+            } else if (switchInput == 2) {
+                registerPayment();
+            }
+        }
+    }
+
+    public void printOverduePayments () {
+        ArrayList<String> overduePayments = controller.printOverduePayments();
+        for(String overduePayment : overduePayments){
+            System.out.println(overduePayment);
+        }
     }
 
     private int scanIntSafely() { //Metode til at fange hvis man skriver et bogstav i en int scanner, der ellers vil melde en fejl

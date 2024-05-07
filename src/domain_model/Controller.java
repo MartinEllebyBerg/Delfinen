@@ -22,6 +22,24 @@ public class Controller {
     public double calculateTotalRateForecast(){
         return data.calculateTotalForecast();
     }
+    public String findSwimmersResultTraining(Member m) {
+        return data.findSwimmersResultTraining(m);
+    }
+
+    public void findIndexToBeChanged (int memberID) {
+        data.findIndexToBeChanged(memberID);
+    }
+
+    public String findNameByIndex(){
+        return data.findNameByIndex();
+    }
+    public void registerPayment() {
+        data.registerPayment();
+    }
+
+    public int getIndexToBeChanged (){
+        return data.getIndexToBeChanged();
+    }
 
     //######################### Methods for Data class - Memberslist ################################
     public ArrayList<Member> getMembersList() {
@@ -41,6 +59,10 @@ public class Controller {
     //######################### Methods for Data class - SearchMatch ################################
     public ArrayList<Member> getSearchMatch() {
         return data.getSearchMatch();
+    }
+
+    public ArrayList<String> printOverduePayments(){
+        return data.printOverduePayments();
     }
     public ArrayList<Member> searchMember(String name) {
         return data.searchMember(name);

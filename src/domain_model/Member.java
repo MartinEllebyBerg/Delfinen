@@ -26,11 +26,12 @@ public class Member {
 
         memberID = nextMemberID++;
         paymentRegistered = false;
+        calculateYearOfMember();
+        calculateMembershipRate();
     }
 
     //METHODS
 
-    //TODO: Beregninger skal tilknyttes UI
     public void calculateYearOfMember() {
         LocalDate presentTime = LocalDate.now();
         Period calculatedPeriode = Period.between(birthday, presentTime);
@@ -75,22 +76,37 @@ public class Member {
         return memberID;
     }
 
+    public boolean isPaymentRegistered() {
+        return paymentRegistered;
+    }
+
+    public void setPaymentRegistered(boolean paymentRegistered) {
+        this.paymentRegistered = paymentRegistered;
+    }
+
     @Override
     public String toString() {
         int ageCutoffSeniorTeam = 18;
         String result = "";
-        result += "Name: "+getFirstName()+" "+getLastName()+"\tBirthday: "+getBirthday();
+        int ageOfMember = yearsOfAge;
+        result += "Name: "+getFirstName()+" "+getLastName()+"\tBirthday: "+getBirthday()+"\t Years of age: "+yearsOfAge;
         if(getIsMemberActive()) {
             result += "\tActivity status: Active";
         } else {
             result += "\tActivity status: Passive";
         }
-        if (yearsOfAge >= ageCutoffSeniorTeam) {
+        if (ageOfMember >= ageCutoffSeniorTeam) {
             result+= "\nTeam: "+ "Senior";
         } else {
             result += "\nTeam: "+"Youth";
         }
         result += "\nMember Id: "+memberID;
+        return result;
+    }
+
+    public String toStringOverduePayments() {
+        String result = "";
+        result += "Member ID: " + memberID + " Name: " + getFirstName() + " " + getLastName() + "Rate paid: " + paymentRegistered + "Overdue rate: " + rate;
         return result;
     }
 }
