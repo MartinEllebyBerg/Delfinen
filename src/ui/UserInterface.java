@@ -498,7 +498,6 @@ public class UserInterface {
 
 
         }*/
-     */
 
     //#########################  Member - Set multiple swim disciplines  ################################
     public void setMultipleDisciplines() {
