@@ -103,7 +103,7 @@ public class UserInterface {
                     deleteSwimDisciplines();
                     break;
                 }
-                case 9: {
+                case 0: {
                     System.out.println("Terminating application.");
                     break; //Failsafe
                 }
@@ -131,9 +131,28 @@ public class UserInterface {
                     break;
                 }
                 case 3: {
+                    deleteSwimDisciplines();
+                    break;
+                }
+                case 4: {
+                    displayListofMembers();
+                    break;
+                }
+                case 5: {
                     //TODO: Hvad skal der stå her? Hvis noget.
                     System.out.println("Whatever should be here is not implemented.");
                     break;
+                }
+                case 6: {
+                    registerPayment();
+                    break;
+                }
+                case 7: {
+                    calculateTotalRateForecast();
+                    break;
+                }
+                case 8: {
+                    searchForMemberResultIdToId();
                 }
                 case 9: {
                     System.out.println("Terminating application.");
@@ -147,7 +166,13 @@ public class UserInterface {
         System.out.println("Delfinen UI - CHAIRMAN");
         System.out.println(" ");
         System.out.println("1. Add Swimmer");
-        System.out.println("2. Display list of Swimmers\n");
+        System.out.println("2. Display list of Swimmers");
+        System.out.println("3. Register Swimmer Disciplines");
+        System.out.println("4. Delete Swimmer Disciplines");
+        System.out.println("5. List of overdue Payments");
+        System.out.println("6. Register payment of Membership");
+        System.out.println("7. Forecast");
+        System.out.println("8. Search for Training/Competition results by Swimmer ID\n");
         System.out.println("9. Terminate program");
     }
 
