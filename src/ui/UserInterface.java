@@ -112,7 +112,7 @@ public class UserInterface {
         }
     }
 
-//TODO: Skal vi ikke have chairman menu til at indeholde alle muligheder?
+    //TODO: Skal vi ikke have chairman menu til at indeholde alle muligheder?
     public void startProgramChairman() {
         while (switchInput != SENTINEL) {
             displayMenuChairman();
@@ -190,10 +190,13 @@ public class UserInterface {
                 }
                 case 3: {
                     printOverduePayments();
+                    showSumOverduePayments();
                     break;
                 }
                 case 4: {
                     calculateTotalRateForecast();
+                    calculateTotalRateForecastPlus5Youth();
+                    calculateTotalRateForecastPlus5Senior();
                     break;
                 }
                 case 9: {
@@ -264,7 +267,7 @@ public class UserInterface {
         boolean activePassive = askForActivity(); //Metode, tjekker for aktivitet.
 
         System.out.println("During this registration you will be able to select one swim discipline for the member.");
-        System.out.println("Afterwards, you will be able to set multiple disciplines the for selected swimmer.\n");
+        System.out.println("Afterwards, you will be able to set multiple disciplines for selected swimmer.\n");
         SwimDiscipline firstDiscipline = userPromptSwimDiscipline();
 
         boolean decidingWhatTypeOfSwimmer = compOrExerciseSwimmer(); //Assigner, om der skal laves et konkurrence eller motionist objekt.
@@ -366,7 +369,7 @@ public class UserInterface {
     public SwimDiscipline findSwimDisciplineEnum(String searchTerm) {
         for (SwimDiscipline e : SwimDiscipline.values()) {
             if (searchTerm.equals(e.name())) {
-                System.out.println("Found matching enum: " + e + " " + e.name());
+                System.out.println("Found matching enum: " + e + " " + e.name());//TODO: denne virker lidt malplaceret...skal vi nok have udkommenteret. Måske metoden helt over i data klassen uden sysout?
                 return e;
             }
         }
@@ -375,24 +378,20 @@ public class UserInterface {
 
     public SwimDiscipline userPromptSwimDiscipline() {
         String UPSWDInput = " ";
-        System.out.println("\nPlease type in which discipline you would like to be assigned or attached to.");
+        System.out.println("\nPlease type in which discipline you would like to be assigned to.");
         System.out.println("Valid choices include breaststroke, backstroke, frontcrawl, butterfly or null.");
 
-        while (true) {
-            if (UPSWDInput.equals("done")) {
-                break;
-            }
-            UPSWDInput = input.nextLine().toLowerCase();
-            if (UPSWDInput.equals("breaststroke") || UPSWDInput.equals("backstroke") || UPSWDInput.equals("frontcrawl") || UPSWDInput.equals("butterfly") || UPSWDInput.equals("null")) {
-                return findSwimDisciplineEnum(UPSWDInput.toUpperCase());
-            } else if (UPSWDInput.equals("done")) {
-                break;
-            } else {
-                System.out.println("No valid input. Please try again.");
-                return userPromptSwimDiscipline();
-            }
+        UPSWDInput = input.nextLine().toLowerCase();
+        if (UPSWDInput.equals("breaststroke") || UPSWDInput.equals("backstroke") || UPSWDInput.equals("frontcrawl") || UPSWDInput.equals("butterfly") || UPSWDInput.equals("null")) {
+            return findSwimDisciplineEnum(UPSWDInput.toUpperCase());
+
+        } else {
+            System.out.println("No valid input. Please try again.");
+            return userPromptSwimDiscipline();
+
+
         }
-        return null;
+
     }
 
     //#########################  Member - Set multiple swim disciplines  ################################
@@ -515,13 +514,14 @@ public class UserInterface {
 
         if (!controller.getSearchMatch().isEmpty()) {
             System.out.println("Following member/members are registered:");
-            for(Member member : controller.getSearchMatch()) {
+            for (Member member : controller.getSearchMatch()) {
                 System.out.println(member.toString());
             }
         } else {
             System.out.println("No members with that name has been registered.");
         }
     }
+
     //#########################  Member - Set multiple swim disciplines  ################################
     public void searchForMemberResultIdToId() {
         System.out.println("Please input the member ID of which you wish to access training or competition results.");
@@ -552,6 +552,7 @@ public class UserInterface {
             System.out.println("No registered swimmers found.");
         }
     }
+
     //TODO: NICE_TO if we can make a forecast based on the age next year (saying we have the current members with current status.
     public void calculateTotalRateForecast() {
         System.out.println(" ");
@@ -560,7 +561,21 @@ public class UserInterface {
         System.out.println("Total: " + result + " DKK/year.");
     }
 
-    public void registerPayment(){
+    public void calculateTotalRateForecastPlus5Youth() {
+        System.out.println(" ");
+        System.out.println("Calculation of expected income if 5% increase in Youth members: ");
+        double result = controller.calculateTotalRateForecastPlus5Youth();
+        System.out.println("Total: " + result + " DKK/year.");
+    }
+
+    public void calculateTotalRateForecastPlus5Senior() {
+        System.out.println(" ");
+        System.out.println("Calculation of expected income if 5% increase in Senior members: ");
+        double result = controller.calculateTotalRateForecastPlus5Senior();
+        System.out.println("Total: " + result + " DKK/year.");
+    }
+
+    public void registerPayment() {
         System.out.println(" ");
         System.out.println("Please note in order to register a payment you will need the memberID of the specific member you want to alter");
         System.out.println("Type 1 - if you will search for memberID");
@@ -568,7 +583,7 @@ public class UserInterface {
         switchInput = scanIntSafely();
         input.nextLine();
 
-        if(switchInput == 1){
+        if (switchInput == 1) {
             findMemberSearchWithNewArray();
 
         } else if (switchInput == 2) {
@@ -576,11 +591,11 @@ public class UserInterface {
             switchInput = scanIntSafely();
             controller.findIndexToBeChanged(switchInput);
             String name = controller.findNameByIndex();
-            System.out.println("you want to register payment on member: " +name);
+            System.out.println("you want to register payment on member: " + name);
             System.out.println("Is this correct? Type 1 if correct and type 2 if not.");
             switchInput = scanIntSafely();
             input.nextLine();
-            if(switchInput == 1){
+            if (switchInput == 1) {
                 controller.registerPayment();
                 System.out.println("\nPayment has now been registered on the member.");
             } else if (switchInput == 2) {
@@ -589,11 +604,15 @@ public class UserInterface {
         }
     }
 
-    public void printOverduePayments () {
+    public void printOverduePayments() {
         ArrayList<String> overduePayments = controller.printOverduePayments();
-        for(String overduePayment : overduePayments){
+        for (String overduePayment : overduePayments) {
             System.out.println(overduePayment);
         }
+    }
+
+    public void showSumOverduePayments() {
+        System.out.println("In total overdue: " + controller.sumOverduePayments() + " DKK");
     }
 
     private int scanIntSafely() { //Metode til at fange hvis man skriver et bogstav i en int scanner, der ellers vil melde en fejl

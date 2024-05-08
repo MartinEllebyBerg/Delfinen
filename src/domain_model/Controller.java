@@ -22,6 +22,14 @@ public class Controller {
     public double calculateTotalRateForecast(){
         return data.calculateTotalForecast();
     }
+
+    public double calculateTotalRateForecastPlus5Youth () {
+        return data.calculateTotalForecastPlus5Youth();
+    }
+
+    public double calculateTotalRateForecastPlus5Senior () {
+        return data.calculateTotalForecastPlus5Senior();
+    }
     public String findSwimmersResultTraining(Member m) {
         return data.findSwimmersResultTraining(m);
     }
@@ -63,6 +71,10 @@ public class Controller {
 
     public ArrayList<String> printOverduePayments(){
         return data.printOverduePayments();
+    }
+
+    public double sumOverduePayments () {
+        return data.sumOverduePayments();
     }
     public ArrayList<Member> searchMember(String name) {
         return data.searchMember(name);

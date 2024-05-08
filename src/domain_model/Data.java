@@ -8,14 +8,14 @@ public class Data {
 
     //ATTRIBUTES
 
-    private ArrayList<Member> membersList;
-    private ArrayList<ResultSwimmer> resultList;
-    private ArrayList<String[]> searchList;
-    private ArrayList<Member> searchMatch;
-    private ArrayList<ResultSwimmer> resultListTraining;
-    private ArrayList<ResultSwimmer> resultListCompetition;
+    private ArrayList<Member> membersList; //Dette er den fulde medlemsliste som skal saves og loades
+    private ArrayList<ResultSwimmer> resultList; //Dette er den fulde resultat liste (træning og konkurrence), som saves og loades
+    private ArrayList<String[]> searchList;//Dette er searchList med datatype String. Gemmes ikke men skal cleares hver gang, den skal anvendes i metode
+    private ArrayList<Member> searchMatch;//Dette er searchList med datatype member. Gemmes ikke men skal cleares hver gang, den skal anvendes i metode
+    private ArrayList<ResultSwimmer> resultListTraining;//Hvad er denne til?
+    private ArrayList<ResultSwimmer> resultListCompetition;//Hvad er denne til?
     private int indexToBeChanged;
-    private ArrayList<ResultSwimmer> resultSearchList;
+    private ArrayList<ResultSwimmer> resultSearchList;//Hvad er denne til?
 
     //CONSTRUCTOR
     public Data() {
@@ -146,15 +146,43 @@ public class Data {
         }
         return totalForecast;
     }
+    public double calculateTotalForecastPlus5Youth() {
+        double forecastYouth = 0.0;
+        double forecastSenior = 0.0;
+        double totalForecast = 0.0;
+        for (Member m : membersList) {
+            m.calculateYearOfMember();
+            if (m.getYearsOfAge() < 18){
+                forecastYouth += m.getRate()*1.05;
+            } else {
+                m.calculateMembershipRate();
+                forecastSenior += m.getRate();
+            }
+            totalForecast = forecastYouth + forecastSenior;
+        }
+        return totalForecast;
+    }
+    public double calculateTotalForecastPlus5Senior() {
+        double forecastYouth = 0.0;
+        double forecastSenior = 0.0;
+        double totalForecast = 0.0;
+        for (Member m : membersList) {
+            m.calculateYearOfMember();
+            if (m.getYearsOfAge() > 18){
+                forecastSenior += m.getRate()*1.05;
+            } else {
+                m.calculateMembershipRate();
+                forecastYouth += m.getRate();
+            }
+            totalForecast = forecastYouth + forecastSenior;
+        }
+        return totalForecast;
+    }
 
     public void findIndexToBeChanged (int memberID) {
         for(Member m: membersList) {
             if(m.getMemberID() == memberID) {
                 indexToBeChanged = membersList.indexOf(m);
-                /*System.out.println("test af korrekt member");
-                System.out.println(m.getFirstName());
-                System.out.println(indexToBeChanged);
-                m.setPaymentRegistered(true);*/
             }
         }
     }
@@ -178,15 +206,24 @@ public class Data {
         }
     }
 
-
     public ArrayList<String> printOverduePayments() {
         ArrayList<String> overduePayments = new ArrayList<>();
-        for(Member member : membersList) {
+        for (Member member : membersList) {
             if(!member.isPaymentRegistered()) {
                 overduePayments.add(member.toStringOverduePayments());
             }
         }
         return overduePayments;
+    }
+
+    public double sumOverduePayments () {
+        double result = 0.0;
+        for (Member member : membersList) {
+            if(!member.isPaymentRegistered()) {
+                result += member.getRate();
+            }
+        }
+        return result;
     }
 
 //TODO: Hvis denne testAddSwimResultCompetition ikke anvendes så slet

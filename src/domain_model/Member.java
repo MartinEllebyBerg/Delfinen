@@ -76,6 +76,10 @@ public class Member {
         return memberID;
     }
 
+    public int getYearsOfAge() {
+        return yearsOfAge;
+    }
+
     public boolean isPaymentRegistered() {
         return paymentRegistered;
     }
