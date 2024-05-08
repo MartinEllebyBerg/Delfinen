@@ -12,9 +12,11 @@ public class ResultSwimmer {
     private int placementCompetition;
     private LocalDate resultDate;
     private int memberID;
+    private boolean isCompetitive;
 
     //CONSTRUCTOR
-    public ResultSwimmer(int memberID, String competitionLocation,String competitionName, LocalDate resultDate, SwimDiscipline swimDiscipline, double swimTime, int placementCompetition){
+    public ResultSwimmer(boolean isCompetitive, int memberID, String competitionLocation,String competitionName, LocalDate resultDate, SwimDiscipline swimDiscipline, double swimTime, int placementCompetition){
+        this.isCompetitive = isCompetitive;
         this.memberID = memberID;
         this.competitionLocation = competitionLocation;
         this.competitionName = competitionName;
@@ -23,7 +25,21 @@ public class ResultSwimmer {
         this.swimTime = swimTime;
         this.placementCompetition = placementCompetition;
     }
-    public ResultSwimmer(int memberID, SwimDiscipline swimDiscipline, double swimTime, LocalDate resultDate){
+
+    public void setMemberID(int memberID) {
+        this.memberID = memberID;
+    }
+
+    public boolean isCompetitive() {
+        return isCompetitive;
+    }
+
+    public void setCompetitive(boolean competitive) {
+        isCompetitive = competitive;
+    }
+
+    public ResultSwimmer(boolean isCompetitive, int memberID, SwimDiscipline swimDiscipline, double swimTime, LocalDate resultDate){
+        this.isCompetitive = isCompetitive;
         this.memberID = memberID;
         this.swimDiscipline = swimDiscipline;
         this.swimTime = swimTime;
@@ -31,8 +47,55 @@ public class ResultSwimmer {
     }
 
     //METHODS
+    //######################### Getter methods  ################################
+    public int getMemberID() {
+        return memberID;
+    }
+
+    public SwimDiscipline getSwimDiscipline() {
+        return swimDiscipline;
+    }
+    public String getCompetitionName() {
+        return competitionName;
+    }
+    public String getCompetitionLocation() {
+        return competitionLocation;
+    }
+    public double getSwimTime() {
+        return swimTime;
+    }
+    public int getPlacementCompetition() {
+        return placementCompetition;
+    }
+    public LocalDate getResultDate() {
+        return resultDate;
+    }
+
+
+    //######################### Setter methods  ################################
+    public void setSwimDiscipline(SwimDiscipline swimDiscipline) {
+        this.swimDiscipline = swimDiscipline;
+    }
+    public void setCompetitionName(String competitionName) {
+        this.competitionName = competitionName;
+    }
+    public void setCompetitionLocation(String competitionLocation) {
+        this.competitionLocation = competitionLocation;
+    }
+    public void setSwimTime(double swimTime) {
+        this.swimTime = swimTime;
+    }
+    public void setPlacementCompetition(int placementCompetition) {
+        this.placementCompetition = placementCompetition;
+    }
+    public void setResultDate(LocalDate resultDate) {
+        this.resultDate = resultDate;
+    }
+
+    //######################### toString methods  ################################
     @Override
     public String toString() {
+        //TODO: Gøre begge toString metoder lidt pænere. Eventuelt en ifblok, der tjekker på den nye boolean isCompetitive og derefter retter til
         return "ResultSwimmer: " +
                 "swimID: " + memberID + '\'' +
                 ", swimDiscipline: " + swimDiscipline + '\'' +
@@ -51,55 +114,6 @@ public class ResultSwimmer {
                 ", competitionDate=" + resultDate;
     }
 
-    public int getMemberID() {
-        return memberID;
-    }
 
-    public SwimDiscipline getSwimDiscipline() {
-        return swimDiscipline;
-    }
 
-    public void setSwimDiscipline(SwimDiscipline swimDiscipline) {
-        this.swimDiscipline = swimDiscipline;
-    }
-
-    public String getCompetitionName() {
-        return competitionName;
-    }
-
-    public void setCompetitionName(String competitionName) {
-        this.competitionName = competitionName;
-    }
-
-    public String getCompetitionLocation() {
-        return competitionLocation;
-    }
-
-    public void setCompetitionLocation(String competitionLocation) {
-        this.competitionLocation = competitionLocation;
-    }
-
-    public double getSwimTime() {
-        return swimTime;
-    }
-
-    public void setSwimTime(double swimTime) {
-        this.swimTime = swimTime;
-    }
-
-    public int getPlacementCompetition() {
-        return placementCompetition;
-    }
-
-    public void setPlacementCompetition(int placementCompetition) {
-        this.placementCompetition = placementCompetition;
-    }
-
-    public LocalDate getResultDate() {
-        return resultDate;
-    }
-
-    public void setResultDate(LocalDate resultDate) {
-        this.resultDate = resultDate;
-    }
 }

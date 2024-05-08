@@ -8,14 +8,11 @@ public class Data {
 
     //ATTRIBUTES
 
-    private ArrayList<Member> membersList; //Dette er den fulde medlemsliste som skal saves og loades
-    private ArrayList<ResultSwimmer> resultList; //Dette er den fulde resultat liste (træning og konkurrence), som saves og loades
-    private ArrayList<String[]> searchList;//Dette er searchList med datatype String. Gemmes ikke men skal cleares hver gang, den skal anvendes i metode
-    private ArrayList<Member> searchMatch;//Dette er searchList med datatype member. Gemmes ikke men skal cleares hver gang, den skal anvendes i metode
-    private ArrayList<ResultSwimmer> resultListTraining;//Hvad er denne til?
-    private ArrayList<ResultSwimmer> resultListCompetition;//Hvad er denne til?
+    private ArrayList<Member> membersList;
+    private ArrayList<ResultSwimmer> resultList;
+    private ArrayList<String[]> searchList;
+    private ArrayList<Member> searchMatch;
     private int indexToBeChanged;
-    private ArrayList<ResultSwimmer> resultSearchList;//Hvad er denne til?
 
     //CONSTRUCTOR
     public Data() {
@@ -23,9 +20,6 @@ public class Data {
         resultList = new ArrayList<>();
         searchList = new ArrayList<>();
         searchMatch = new ArrayList<>();
-        resultListTraining = new ArrayList<>();
-        resultListCompetition = new ArrayList<>();
-        resultSearchList = new ArrayList<>();
 
         //testAddSwimResultCompetition();
         //testAddSwimResultTraining();
@@ -88,7 +82,8 @@ public class Data {
         membersList.add(m15);
         membersList.add(m16);
     }
-//TODO: Hvis denne testGeneration ikke anvendes så slet
+
+    //TODO: Hvis denne testGeneration ikke anvendes så slet
     public void testGeneration() {
 
         System.out.println("Print full memberlist");
@@ -179,28 +174,29 @@ public class Data {
         return totalForecast;
     }
 
-    public void findIndexToBeChanged (int memberID) {
-        for(Member m: membersList) {
-            if(m.getMemberID() == memberID) {
+    public void findIndexToBeChanged(int memberID) {
+        for (Member m : membersList) {
+            if (m.getMemberID() == memberID) {
                 indexToBeChanged = membersList.indexOf(m);
             }
         }
     }
-    public String findNameByIndex () {
+
+    public String findNameByIndex() {
         String memberFirstName = null;
         String memberLastName = null;
-        for(int i = 0; i < membersList.size(); i++){
-            if( i == indexToBeChanged) {
+        for (int i = 0; i < membersList.size(); i++) {
+            if (i == indexToBeChanged) {
                 memberFirstName = membersList.get(i).getFirstName();
                 memberLastName = membersList.get(i).getLastName();
             }
         }
-        return memberFirstName + " "+ memberLastName;
+        return memberFirstName + " " + memberLastName;
     }
 
     public void registerPayment() {
-        for(int i = 0; i < membersList.size(); i++){
-            if( i == indexToBeChanged) {
+        for (int i = 0; i < membersList.size(); i++) {
+            if (i == indexToBeChanged) {
                 membersList.get(i).setPaymentRegistered(true);
             }
         }
@@ -227,12 +223,13 @@ public class Data {
     }
 
 //TODO: Hvis denne testAddSwimResultCompetition ikke anvendes så slet
+    //TODO: Hvis denne testAddSwimResultCompetition ikke anvendes så slet
     public void testAddSwimResultCompetition() {
         System.out.println("Her kører addswimresultmetoden");
-        ResultSwimmer result1 = new ResultSwimmer(2, "Holbæk", "Sjællandske Mesterskaber", null, SwimDiscipline.BUTTERFLY, 20.48, 5);
-        ResultSwimmer result2 = new ResultSwimmer(2, "København", "DM", null, SwimDiscipline.BACKSTROKE, 22.85, 3);
-        ResultSwimmer result3 = new ResultSwimmer(1, SwimDiscipline.FRONTCRAWL, 15.96, null);
-        ResultSwimmer result4 = new ResultSwimmer(5, "Delfinen", "Klubmesterskaber", null, SwimDiscipline.BUTTERFLY, 20.58, 1);
+        ResultSwimmer result1 = new ResultSwimmer(true, 2, "Holbæk", "Sjællandske Mesterskaber", null, SwimDiscipline.BUTTERFLY, 20.48, 5);
+        ResultSwimmer result2 = new ResultSwimmer(true, 2, "København", "DM", null, SwimDiscipline.BACKSTROKE, 22.85, 3);
+        ResultSwimmer result3 = new ResultSwimmer(true, 1, SwimDiscipline.FRONTCRAWL, 15.96, null);
+        ResultSwimmer result4 = new ResultSwimmer(true, 5, "Delfinen", "Klubmesterskaber", null, SwimDiscipline.BUTTERFLY, 20.58, 1);
         resultList.add(result1);
         resultList.add(result2);
         resultList.add(result3);
@@ -243,7 +240,8 @@ public class Data {
         }
 
     }
-//TODO: Hvis denne testPrintSpecificMember ikke anvendes så slet
+
+    //TODO: Hvis denne testPrintSpecificMember ikke anvendes så slet
     /*public void testPrintSpecificMember(){
         System.out.println("Her høres metoden printSpecificMember");
         System.out.println(" ");
@@ -284,16 +282,22 @@ public class Data {
         int idToReference = m.getMemberID();
         int count = 1;
         String result = "";
+        result += "Competition results: \n";
         for (ResultSwimmer rs : resultList) { //TODO: Ændre hvilken liste, der itereres over, når genereringsmetoden i UI udarbejdet af Mark og Martin er færdig. Der skal itereres over ResultListTraining og ResultListCompetition.
             if (idToReference == rs.getMemberID()) {
-                result += count + ". " + rs.toStringTraining() + "\n";
-                count++;
+                if (rs.isCompetitive()) {
+                    result += count + ". " + rs + "\n";
+                    count++;
+                }
             }
         }
+        result += "\nTraining results: \n";
         for (ResultSwimmer rs : resultList) {
             if (idToReference == rs.getMemberID()) {
-                result += count + ". " + rs.toString() + "\n";
-                count++;
+                if (!rs.isCompetitive()) {
+                    result += count + ". " + rs.toStringTraining() + "\n";
+                    count++;
+                }
             }
         }
         return result;
@@ -322,29 +326,49 @@ public class Data {
     public int getIndexToBeChanged() {
         return indexToBeChanged;
     }
-    public void testAddSwimResultTraining() {
+
+    /*
+    public void testAddSwimResultTraining() { //Udkommenteret, eftersom der blev fjernet 3 arraylister, der ikke skulle bruges.
         //TODO: Ingen sysouts i andre klasser end UI
         System.out.println("test af udprint af addSwimResultTraining metode");
-        ResultSwimmer r1 = new ResultSwimmer(30, SwimDiscipline.FRONTCRAWL, 20.35, LocalDate.of(2024, 9, 13));
+        ResultSwimmer r1 = new ResultSwimmer(false, 30, SwimDiscipline.FRONTCRAWL, 20.35, LocalDate.of(2024, 9, 13));
         for (ResultSwimmer r : resultListTraining) {
-            //TODO: Ingen sysouts i andre klasser end UI
+
+        }
+        //TODO: Ingen sysouts i andre klasser end UI
+        resultList.add(r1);
+        for (ResultSwimmer r : resultList) {
             System.out.println(r.toStringTraining());
         }
     }
 
+     */
+
     //######################### SwimResult objects ################################
-    public void addSwimResultTraining(int memberID, SwimDiscipline swimDiscipline, double swimTime, LocalDate resultDate) {
-        resultListTraining.add(new ResultSwimmer(memberID, swimDiscipline, swimTime, resultDate));
+    public void addSwimResultTraining(boolean isCompetitive, int memberID, SwimDiscipline swimDiscipline, double swimTime, LocalDate resultDate) {
+        resultList.add(new ResultSwimmer(isCompetitive, memberID, swimDiscipline, swimTime, resultDate));
     }
 
-    public void addSwimResultCompetition(int memberID, String competitionLocation, String competitionName, LocalDate resultDate, SwimDiscipline swimDiscipline, double swimTime, int placementCompetition) {
-        resultListCompetition.add(new ResultSwimmer(memberID, competitionLocation, competitionName, resultDate, swimDiscipline, swimTime, placementCompetition));
+    public void addSwimResultCompetition(boolean isCompetitive, int memberID, String competitionLocation, String competitionName, LocalDate resultDate, SwimDiscipline swimDiscipline, double swimTime, int placementCompetition) {
+        resultList.add(new ResultSwimmer(isCompetitive, memberID, competitionLocation, competitionName, resultDate, swimDiscipline, swimTime, placementCompetition));
     }
 
+    /* //Udkommenteret, eftersom der blev fjernet 3 arraylister, der ikke skulle bruges.
     public void printResultListTraining() {
         //TODO: Ingen sysouts i andre klasser end UI
         for (ResultSwimmer r : resultListTraining) {
+            System.out.println(r);
+        }
+        for (ResultSwimmer r : resultList) {
             System.out.println(r.toStringTraining());
+        }
+    }
+
+     */
+
+    public void printResultListCompetition() {
+        for (ResultSwimmer r : resultList) {
+            System.out.println(r.toString());
         }
     }
 

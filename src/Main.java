@@ -16,11 +16,9 @@ public class Main {
 //        d.testPrintSavedArrayListWithCombinedData();
  //       ui.addSwimmerResults();
 /
-        ui.startProgramAll();
-
+//        //ui.startProgramAll();
         d.testAddSwimResultTraining();
         d.testAddSwimResultCompetition();
-
         //ui.DelfinenUISetPosition();
  //       ui.startProgramAll();
          */
