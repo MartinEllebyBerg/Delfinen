@@ -14,6 +14,7 @@ public class Controller {
         data = new Data();
     }
 
+
     //METHODS
     //######################### Methods for Data class ################################
     public void hardCodedData(){
@@ -63,6 +64,7 @@ public class Controller {
     public void addSwimResultToResultList(ResultSwimmer rs) {
         data.addSwimResultToResultList(rs);
     }
+
 
     //######################### Methods for Data class - SearchMatch ################################
     public ArrayList<Member> getSearchMatch() {

@@ -49,7 +49,6 @@ public class Member {
         } else {
             rate = 1200.00;
         }
-
     }
 
     public double getRate() {
@@ -93,18 +92,18 @@ public class Member {
         int ageCutoffSeniorTeam = 18;
         String result = "";
         int ageOfMember = yearsOfAge;
-        result += "Name: "+getFirstName()+" "+getLastName()+"\tBirthday: "+getBirthday()+"\t Years of age: "+yearsOfAge;
+        result += "Name: " + getFirstName() + " " + getLastName() + "\nBirthday: " + getBirthday() + "\nYears of age: " + yearsOfAge;
         if(getIsMemberActive()) {
-            result += "\tActivity status: Active";
+            result += "\nActivity status: Active";
         } else {
-            result += "\tActivity status: Passive";
+            result += "\nActivity status: Passive";
         }
         if (ageOfMember >= ageCutoffSeniorTeam) {
-            result+= "\nTeam: "+ "Senior";
+            result+= "\nTeam: " + "Senior";
         } else {
-            result += "\nTeam: "+"Youth";
+            result += "\nTeam: " + "Youth";
         }
-        result += "\nMember Id: "+memberID;
+        result += "\nMember Id: " + memberID + "\n";
         return result;
     }
 

@@ -92,28 +92,26 @@ public class ResultSwimmer {
         this.resultDate = resultDate;
     }
 
+
     //######################### toString methods  ################################
     @Override
     public String toString() {
         //TODO: Gøre begge toString metoder lidt pænere. Eventuelt en ifblok, der tjekker på den nye boolean isCompetitive og derefter retter til
         return "ResultSwimmer: " +
-                "swimID: " + memberID + '\'' +
-                ", swimDiscipline: " + swimDiscipline + '\'' +
-                ", competitionName: " + competitionName + '\'' +
-                ", competitionLocation='" + competitionLocation + '\'' +
-                ", swimTime=" + swimTime +
-                ", placementCompetition=" + placementCompetition +
-                ", competitionDate=" + resultDate;
+                "\nSwimID: " + memberID +
+                "\nSwimDiscipline: " + swimDiscipline +
+                "\nCompetitionName: " + competitionName +
+                "\nCompetitionLocation: " + competitionLocation +
+                "\nSwimTime: " + swimTime +
+                "\nPlacementCompetition: " + placementCompetition +
+                "\nCompetitionDate: " + resultDate;
     }
 
     public String toStringTraining() {
         return "ResultSwimmer: " +
-                "swimID: " + memberID + '\'' +
-                ", swimDiscipline: " + swimDiscipline + '\'' +
-                ", swimTime=" + swimTime +
-                ", competitionDate=" + resultDate;
+                "\nSwimID: " + memberID +
+                "\nSwimDiscipline: " + swimDiscipline +
+                "\nSwimTime: " + swimTime +
+                "\nCompetitionDate: " + resultDate;
     }
-
-
-
 }

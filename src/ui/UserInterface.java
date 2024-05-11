@@ -107,7 +107,6 @@ public class UserInterface {
                     System.out.println("Terminating application.");
                     break; //Failsafe
                 }
-
             }
         }
     }
@@ -267,7 +266,6 @@ public class UserInterface {
                     System.out.println("Terminating application.");
                     break; //Failsafe
                 }
-
             }
         }
     }
@@ -451,7 +449,6 @@ public class UserInterface {
             System.out.println("You have inputted something not recognised by the application. Error code: 4352BT.");
             return compOrExerciseSwimmer();
         }
-
         return comp;
     }
 
@@ -525,7 +522,7 @@ public class UserInterface {
                         downcastedMemberToFind.setSwimDiscipline4(selectedDiscipline);
                         System.out.println(selectedDiscipline + " has successfully been assigned to " + downcastedMemberToFind.getFirstName() + " " + downcastedMemberToFind.getLastName() + ".");
                     } else {
-                        System.out.println("You are currently at at max amount of attached swimming disciplines available.");
+                        System.out.println("You are currently at at max amount of attached swimmingdisciplines available.");
                     }
                 } else {
                     System.out.println(selectedDiscipline + " has already been assigned to " + memberToFind.getFirstName() + " " + memberToFind.getLastName() + "(" + "Member ID: " + memberToFind.getMemberID() + ")");
@@ -645,11 +642,11 @@ public class UserInterface {
             System.out.println("Displaying list of current members: ");
             for (Member m : controller.getMembersList()) {
                 if (m instanceof CompetitionMember) {
-                    System.out.println("Competition Swimmers: ");
+                    System.out.println("Competition swimmer ");
                     System.out.println(m.toString());
                 }
                 if (m instanceof ExerciseMember) {
-                    System.out.println("Exercise Swimmers: ");
+                    System.out.println("Exercise swimmer ");
                     System.out.println(m.toString());
                 }
             }
@@ -696,7 +693,7 @@ public class UserInterface {
             switchInput = scanIntSafely();
             controller.findIndexToBeChanged(switchInput);
             String name = controller.findNameByIndex();
-            System.out.println("you want to register payment on member: " + name);
+            System.out.println("You want to register payment on member: " + name);
             System.out.println("Is this correct? Type 1 if correct and type 2 if not.");
             switchInput = scanIntSafely();
             input.nextLine();
@@ -729,5 +726,4 @@ public class UserInterface {
             return scanIntSafely(); // Rekursion: Metoden kalder sig selv, og starter dermed forfra med et nyt try!
         }
     }
-
 }

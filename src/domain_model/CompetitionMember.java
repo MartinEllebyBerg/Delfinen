@@ -37,9 +37,8 @@ public class CompetitionMember extends Member {
         this.swimDiscipline3 = swimDiscipline3;
         this.swimDiscipline4 = swimDiscipline4;}
 
+
     //METHODS
-
-
     public SwimDiscipline getSwimDiscipline1() {
         return swimDiscipline1;
     }
@@ -66,7 +65,7 @@ public class CompetitionMember extends Member {
     @Override
     public String toString() {
         String result ="";
-        result += "\nSwimming Disciplines: ";
+        result += "\nSwimming disciplines: ";
         if (getSwimDiscipline1() != SwimDiscipline.NULL) {
             result += ""+getSwimDiscipline1();
         }
@@ -77,9 +76,8 @@ public class CompetitionMember extends Member {
             result += "\t|\t"+getSwimDiscipline3();
         }
         if (getSwimDiscipline4() != SwimDiscipline.NULL) {
-            result += "\t|\t"+getSwimDiscipline4();
+            result += "\t|\t"+getSwimDiscipline4() + "\n";
         }
-
         return super.toString()+result;
     }
 }

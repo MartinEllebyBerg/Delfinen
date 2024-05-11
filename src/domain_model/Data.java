@@ -91,22 +91,22 @@ public class Data {
         System.out.println(" ");
         for (Member m : membersList) {
             System.out.println("MemberID: " + m.getMemberID() + ", " + m.getFirstName() + " " + m.getLastName());
-            System.out.println("Day of Birth: " + m.getBirthday());
+            System.out.println("Day of birth: " + m.getBirthday());
             System.out.println("Is member active: " + m.getIsMemberActive());
 
             if (m instanceof CompetitionMember) {
                 System.out.println("Competition swimmer");
                 if (!((CompetitionMember) m).getSwimDiscipline1().equals(SwimDiscipline.NULL)) {
-                    System.out.println("Swim Discipline: " + ((CompetitionMember) m).getSwimDiscipline1());
+                    System.out.println("Swim discipline: " + ((CompetitionMember) m).getSwimDiscipline1());
                 }
                 if (!((CompetitionMember) m).getSwimDiscipline2().equals(SwimDiscipline.NULL)) {
-                    System.out.println("Swim Discipline: " + ((CompetitionMember) m).getSwimDiscipline2());
+                    System.out.println("Swim discipline: " + ((CompetitionMember) m).getSwimDiscipline2());
                 }
                 if (!((CompetitionMember) m).getSwimDiscipline3().equals(SwimDiscipline.NULL)) {
-                    System.out.println("Swim Discipline: " + ((CompetitionMember) m).getSwimDiscipline3());
+                    System.out.println("Swim discipline: " + ((CompetitionMember) m).getSwimDiscipline3());
                 }
                 if (!((CompetitionMember) m).getSwimDiscipline4().equals(SwimDiscipline.NULL)) {
-                    System.out.println("Swim Discipline: " + ((CompetitionMember) m).getSwimDiscipline4());
+                    System.out.println("Swim discipline: " + ((CompetitionMember) m).getSwimDiscipline4());
                 }
 
             }
@@ -238,7 +238,6 @@ public class Data {
             System.out.println("udprint af listen med toString");
             System.out.println(r.toString());
         }
-
     }
 
     //TODO: Hvis denne testPrintSpecificMember ikke anvendes så slet
@@ -278,6 +277,7 @@ public class Data {
             }
         }
     }
+
     public String findSwimmersResultTraining(Member m) {
         int idToReference = m.getMemberID();
         int count = 1;
@@ -291,6 +291,7 @@ public class Data {
                 }
             }
         }
+
         result += "\nTraining results: \n";
         for (ResultSwimmer rs : resultList) {
             if (idToReference == rs.getMemberID()) {
@@ -318,9 +319,7 @@ public class Data {
             sb.append(String.format("%-15s", combinedData[8]));
             //TODO: Ingen sysouts i andre klasser end UI
             System.out.println(sb.toString());
-
         }
-
     }
 
     public int getIndexToBeChanged() {
@@ -371,6 +370,4 @@ public class Data {
             System.out.println(r.toString());
         }
     }
-
-
 }
