@@ -91,25 +91,24 @@ public class Member {
     public String toString() {
         int ageCutoffSeniorTeam = 18;
         String result = "";
-        int ageOfMember = yearsOfAge;
-        result += "\nMemberID: " +memberID+ " Name: " + getFirstName() + " " + getLastName() + "\nBirthday: " + getBirthday() + "\nYears of age: " + yearsOfAge;
+        result += "\nMemberID: " +memberID+ " Name: " + getFirstName() + " " + getLastName() + " Birthday: " + getBirthday() + " Years of age: " + yearsOfAge;
         if(getIsMemberActive()) {
-            result += "\nActivity status: Active";
+            result += " Activity status: Active";
         } else {
-            result += "\nActivity status: Passive";
+            result += " Activity status: Passive";
         }
-        if (ageOfMember >= ageCutoffSeniorTeam) {
-            result+= "\nTeam: " + "Senior";
+        if (yearsOfAge >= ageCutoffSeniorTeam) {
+            result+= " Team: " + "Senior";
         } else {
-            result += "\nTeam: " + "Youth";
+            result += " Team: " + "Youth";
         }
-        result += "\nMembership rate paid: " + paymentRegistered;
+        result += " Membership rate paid: " + paymentRegistered;
         return result;
     }
 
     public String toStringOverduePayments() {
         String result = "";
-        result += "Member ID: " + memberID + " Name: " + getFirstName() + " " + getLastName() + "Rate paid: " + paymentRegistered + "Overdue rate: " + rate;
+        result += "Member ID: " + memberID + " Name: " + getFirstName() + " " + getLastName() + " Rate paid: " + paymentRegistered + " Overdue rate: " + rate;
         return result;
     }
 }

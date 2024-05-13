@@ -18,4 +18,9 @@ public class ExerciseMember extends Member {
         //METHODS
 
 
+    @Override
+    public String toString() {
+        String result = " ";
+        return super.toString();
+    }
 }

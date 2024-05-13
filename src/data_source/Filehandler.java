@@ -29,7 +29,7 @@ public class Filehandler {
         try {
             scannerInput = new Scanner(file);
         } catch (FileNotFoundException e) {
-            System.out.println("Sorry something went wrong with loading the MovieCollection.");
+            System.out.println("Sorry something went wrong with loading the Memberslist.");
             throw new RuntimeException(e);
         }
 
@@ -75,7 +75,7 @@ public class Filehandler {
         try {
             scannerInput = new Scanner(file);
         } catch (FileNotFoundException e) {
-            System.out.println("Sorry something went wrong with loading the MovieCollection.");
+            System.out.println("Sorry something went wrong with loading the MembersList.");
             throw new RuntimeException(e);
         }
 
@@ -118,7 +118,6 @@ public class Filehandler {
                     output.println(memberString);
                 }
             }
-            System.out.println("Members list has been saved successfully - CompetitionMembers");
         } catch (IOException e) {
             System.out.println("Error saving movies: " + e.getMessage());
             e.printStackTrace();
@@ -138,9 +137,8 @@ public class Filehandler {
                     output.println(memberString);
                 }
             }
-            System.out.println("Members list has been saved successfully - ExerciseMembers");
         } catch (IOException e) {
-            System.out.println("Error saving movies: " + e.getMessage());
+            System.out.println("Error saving members: " + e.getMessage());
             e.printStackTrace();
         }
     }

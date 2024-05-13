@@ -678,8 +678,8 @@ public class UserInterface {
                     System.out.println("Competition swimmer ");
                 }
                 if (m instanceof ExerciseMember) {
-                    System.out.println("Exercise swimmer ");
                     System.out.println(m.toString());
+                    System.out.println("Exercise swimmer ");
                 }
             }
         } else {
@@ -751,19 +751,19 @@ public class UserInterface {
     //######################### Save & load list  ################################
     public void saveListofCompMembers() {
         controller.saveCompMemberList(controller.getMembersList());
-        System.out.println("Successfully saved list of members.");
+        System.out.println("Successfully saved list of members_competition.");
     }
     public void loadListOfCompMembers() {
         controller.loadSavedCompMemberList(controller.getMembersList());
-        System.out.println("Successfully loaded list of members");
+        System.out.println("Successfully loaded list of members_competition");
     }
     public void saveListOfExerciseMembers() {
         controller.saveExerciseMemberList(controller.getMembersList());
-        System.out.println("Successfully saved list of members.");
+        System.out.println("Successfully saved list of members_exercise.");
     }
     public void loadListOfExerciseMembers() {
         controller.loadSavedExerciseMemberList(controller.getMembersList());
-        System.out.println("Successfully loaded list of members");
+        System.out.println("Successfully loaded list of members_exercise");
     }
 
 
