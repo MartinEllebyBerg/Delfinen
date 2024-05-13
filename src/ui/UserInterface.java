@@ -111,7 +111,6 @@ public class UserInterface {
         }
     }
 
-//TODO: Skal vi ikke have chairman menu til at indeholde alle muligheder?
     public void startProgramChairman() {
         while (switchInput != SENTINEL) {
             displayMenuChairman();
