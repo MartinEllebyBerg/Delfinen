@@ -299,6 +299,8 @@ public class UserInterface {
 
     //######################### Adding Member  ################################
     public void generateSwimmer() {
+        int memberID = controller.nextMemberID(); //her kaldes metode som tager antal poster i memberslist plus 1
+
         boolean paymentRegistered = false;
         System.out.println("Please input the swimmers FIRST name: ");
         String firstName = input.nextLine();
@@ -333,7 +335,7 @@ public class UserInterface {
             System.out.println("During this registration you will be able to select one swim discipline for the member.");
             System.out.println("Afterwards, you will be able to set multiple disciplines for selected swimmer.\n");
             SwimDiscipline firstDiscipline = userPromptSwimDiscipline();
-            Member m = new CompetitionMember(firstName, lastName, birthday, activePassive, paymentRegistered, firstDiscipline, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
+            Member m = new CompetitionMember(memberID, firstName, lastName, birthday, activePassive, paymentRegistered, firstDiscipline, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
             controller.addToMembersList(m);
             String activity; //Bygges gennem nedenstående if-statements. Bruges bare til at display aktivitetsstatus i endelige sysout besked.
             if (activePassive) {
@@ -345,7 +347,7 @@ public class UserInterface {
                     + activity);
             System.out.println("This member is on the team for: " + firstDiscipline);
         } else if (!decidingWhatTypeOfSwimmer) {
-            Member m = new ExerciseMember(firstName, lastName, birthday, activePassive, paymentRegistered);
+            Member m = new ExerciseMember(memberID, firstName, lastName, birthday, activePassive, paymentRegistered);
             controller.addToMembersList(m);
             System.out.println("You have now successfully added " + firstName + " " + lastName);
         } else {

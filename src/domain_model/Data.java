@@ -51,7 +51,7 @@ public class Data {
 
     //######################### Test methods & hardcode ################################
 
-    public void hardCodedData() {
+    /*public void hardCodedData() {
         Member m1 = new CompetitionMember("Mette", "Munch", LocalDate.of(1974, 2, 23), true, false,SwimDiscipline.BUTTERFLY, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
         Member m2 = new CompetitionMember("Daniel", "Jensen", LocalDate.of(1986, 4, 26), false, false, SwimDiscipline.FRONTCRAWL, SwimDiscipline.BACKSTROKE, SwimDiscipline.NULL, SwimDiscipline.NULL);
         Member m3 = new ExerciseMember("Martin", "Elleby", LocalDate.of(1999, 8, 12), true, false);
@@ -86,7 +86,7 @@ public class Data {
         membersList.add(m14);
         membersList.add(m15);
         membersList.add(m16);
-    }
+    }*/
 
     //TODO: Hvis denne testGeneration ikke anvendes så slet
     public void testGeneration() {
@@ -126,6 +126,12 @@ public class Data {
 
     public void addToMembersList(Member member) {
         membersList.add(member);
+    }
+
+    public int nextMemberID() {
+        int result = 0;
+        result = membersList.size()+ 1;
+        return result;
     }
 
     //######################### Methods for ArrayList resultlist ################################

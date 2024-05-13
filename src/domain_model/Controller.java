@@ -34,9 +34,13 @@ public class Controller {
         return fh.loadSavedExerciseMemberList(arr);
     }
 
-    public void hardCodedData(){
-        data.hardCodedData();
+    public int nextMemberID() {
+        return data.nextMemberID();
     }
+
+    /*public void hardCodedData(){
+        data.hardCodedData();
+    }*/
     public double calculateTotalRateForecast(){
         return data.calculateTotalForecast();
     }

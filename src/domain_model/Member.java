@@ -10,7 +10,7 @@ public class Member {
     private String lastName;
     private LocalDate birthday;
     private boolean memberActive;
-    private static int nextMemberID = 1; //statisk attribut til at sammentælle memberID og sørge for unikt nummer.
+    //private static int nextMemberID = 1; //statisk attribut til at sammentælle memberID og sørge for unikt nummer.
     private int memberID;
     private int yearsOfAge;
     private double rate;
@@ -18,14 +18,15 @@ public class Member {
 
 
     //CONSTRUCTOR
-    public Member(String firstName, String lastName, LocalDate birthday, boolean memberActive,boolean paymentRegistered) {
+    public Member(int memberID, String firstName, String lastName, LocalDate birthday, boolean memberActive,boolean paymentRegistered) {
+        this.memberID = memberID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
         this.memberActive = memberActive;
         this.paymentRegistered = paymentRegistered;
 
-        memberID = nextMemberID++;
+        //memberID = nextMemberID++;
         calculateYearOfMember();
         calculateMembershipRate();
     }

@@ -1,18 +1,19 @@
-Mette;Munch;1974-02-23;true;false;Butterfly;Null;Null;Null
-Daniel;Jensen;1986-04-26;false;false;Frontcrawl;Backstroke;Null;Null
-Hans;Hansen;2005-08-26;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
-Peter;Hansen;2012-05-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
-Signe;Hansen;2016-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
-Ulrik;Hansen;2016-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
-Lise;Hansen;2016-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
-Christian;Hansen;2016-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
-Malthe;Hansen;2016-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
-Mette;Hansen;2016-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
-Martin;Hansen;2016-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
-Anders;Hansen;2016-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
-Daniel;Sørensen;2012-12-12;false;false;Backstroke;Null;Null;Null
-Lasse;Munch;2012-12-12;true;false;Backstroke;Null;Null;Null
-Rio;Munch Frank;2005-10-10;true;false;Frontcrawl;Null;Null;Null
-Tanja;Hansen;1974-02-25;false;true;Butterfly;Null;Null;Null
-Tilde;Jensen;2001-08-28;true;false;Butterfly;Null;Null;Null
-testComp;Compesen;2002-10-10;true;false;Butterfly;Null;Null;Null
+1;Mette;Munch;1974-02-23;true;false;Butterfly;Null;Null;Null
+3;Daniel;Jensen;1986-04-26;false;false;Frontcrawl;Backstroke;Null;Null
+5;Hans;Hansen;2005-08-26;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
+7;Peter;Hansen;2012-05-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
+8;Signe;Hansen;2016-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
+9;Ulrik;Hansen;2016-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
+11;Lise;Hansen;2016-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
+14;Christian;Hansen;2016-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
+15;Malthe;Hansen;2016-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
+16;Mette;Hansen;2016-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
+17;Martin;Hansen;2016-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
+18;Anders;Hansen;2016-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
+19;Daniel;Sørensen;2012-12-12;false;false;Backstroke;Null;Null;Null
+20;Lasse;Munch;2012-12-12;true;false;Backstroke;Null;Null;Null
+21;Rio;Munch Frank;2005-10-10;true;false;Frontcrawl;Null;Null;Null
+22;Tanja;Hansen;1974-02-25;false;true;Butterfly;Null;Null;Null
+23;Tilde;Jensen;2001-08-28;true;false;Butterfly;Null;Null;Null
+24;testComp;Compesen;2002-10-10;true;false;Butterfly;Null;Null;Null
+25;Nummer25;Hansen;1970-02-23;true;false;Backstroke;Null;Null;Null

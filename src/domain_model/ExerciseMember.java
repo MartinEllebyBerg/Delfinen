@@ -10,8 +10,8 @@ public class ExerciseMember extends Member {
 
 
     //CONSTRUCTOR
-    public ExerciseMember(String firstName, String lastName, LocalDate birthday, boolean memberActive, boolean paymentRegistered) {
-        super(firstName, lastName, birthday, memberActive, paymentRegistered);
+    public ExerciseMember(int memberID, String firstName, String lastName, LocalDate birthday, boolean memberActive, boolean paymentRegistered) {
+        super(memberID, firstName, lastName, birthday, memberActive, paymentRegistered);
 
 
     }
