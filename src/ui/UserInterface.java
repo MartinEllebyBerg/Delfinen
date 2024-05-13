@@ -28,7 +28,7 @@ public class UserInterface {
 
     //######################### Determine position within Delfinen to get a different UI  ################################
     public void DelfinenUISetPosition() {
-        controller.hardCodedData();
+        //controller.hardCodedData();
         System.out.println("Welcome to Delfinen's member administration program. Please input your role within Delfinen.");
         System.out.println("CHAIRMAN | TREASURER | COACH");
         boolean condition = true;
@@ -119,7 +119,7 @@ public class UserInterface {
             switchInput = scanIntSafely();
             input.nextLine();
 
-            switch (switchInput) {
+            switch (switchInput) { //TODO: Rette cases, duplicate displaylist, mangler delete swimmer disciplines.
 
                 case 1: {
                     generateSwimmer();
@@ -181,7 +181,9 @@ public class UserInterface {
         System.out.println("1. Display list of Swimmers");
         System.out.println("2. Register payment of Membership");
         System.out.println("3. List of overdue Payments");
-        System.out.println("4. Forecast\n");
+        System.out.println("4. Forecast");
+        System.out.println("5. Save list");
+        System.out.println("6. load list");
         System.out.println("9. Terminate program");
     }
 
@@ -222,6 +224,18 @@ public class UserInterface {
                     calculateTotalRateForecast();
                     calculateTotalRateForecastPlus5Youth();
                     calculateTotalRateForecastPlus5Senior();
+                    break;
+                }
+                case 5: { //TODO: test af comp members
+                    saveListofCompMembers();
+                    break;
+                }
+                case 6: {
+                    loadListOfCompMembers();
+                    break;
+                }
+                case 7: {
+                    generateSwimmer();
                     break;
                 }
                 case 9: {
@@ -716,6 +730,16 @@ public class UserInterface {
     public void showSumOverduePayments() {
         System.out.println("In total overdue: " + controller.sumOverduePayments() + " DKK");
     }
+    //######################### Save & load list  ################################
+    public void saveListofCompMembers() {
+        controller.saveCompMemberList(controller.getMembersList());
+        System.out.println("Successfully saved list of members.");
+    }
+    public void loadListOfCompMembers() {
+        controller.loadSavedCompMemberList(controller.getMembersList());
+        System.out.println("Successfully loaded list of members");
+    }
+
 
     private int scanIntSafely() { //Metode til at fange hvis man skriver et bogstav i en int scanner, der ellers vil melde en fejl
         try {

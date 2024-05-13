@@ -1,5 +1,7 @@
 package domain_model;
 
+import data_source.Filehandler;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -7,6 +9,7 @@ public class Controller {
 
     //ATTRIBUTES
     Data data;
+    private Filehandler fh = new Filehandler();
 
 
     //CONSTRUCTOR
@@ -17,6 +20,13 @@ public class Controller {
 
     //METHODS
     //######################### Methods for Data class ################################
+    public void saveCompMemberList(ArrayList<Member> arr) {
+        fh.saveListOfMembersCompetition(arr);
+    }
+    public ArrayList<Member> loadSavedCompMemberList(ArrayList<Member> arr) {
+        return fh.loadSavedCompMemberList(arr);
+    }
+
     public void hardCodedData(){
         data.hardCodedData();
     }

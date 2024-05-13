@@ -1,8 +1,11 @@
 package domain_model;
 
+import data_source.Filehandler;
+
 import javax.xml.transform.Result;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.logging.FileHandler;
 
 public class Data {
 
@@ -13,6 +16,7 @@ public class Data {
     private ArrayList<String[]> searchList;
     private ArrayList<Member> searchMatch;
     private int indexToBeChanged;
+
 
     //CONSTRUCTOR
     public Data() {
@@ -28,6 +32,7 @@ public class Data {
 
 
     //METHODS
+
 
 
     public ArrayList<Member> getSearchMatch() {
