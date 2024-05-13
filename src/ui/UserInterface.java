@@ -15,8 +15,8 @@ public class UserInterface {
     //ATTRIBUTES
     Controller controller;
     Scanner input;
-    private final int SENTINEL = 9;
-    private int switchInput = 0;
+    private final int SENTINEL = 0;
+    private int switchInput = -1;
 
     //CONSTRUCTOR
     public UserInterface() {
@@ -120,12 +120,12 @@ public class UserInterface {
 
             switch (switchInput) { //TODO: Rette cases, duplicate displaylist, mangler delete swimmer disciplines.
 
-                case 0: {
+                case 10: {
                     loadListOfCompMembers();
                     loadListOfExerciseMembers();
                     break;
                 }
-                case 10: {
+                case 11: {
                     saveListofCompMembers();
                     saveListOfExerciseMembers();
                     break;
@@ -162,9 +162,14 @@ public class UserInterface {
                     break;
                 }
                 case 8: {
-                    searchForMemberResultIdToId();
+                    addSwimmerResults();
+                    break;
                 }
                 case 9: {
+                    searchForMemberResultIdToId();
+                    break;
+                }
+                case 0: {
                     System.out.println("Terminating application.");
                     break; //Failsafe
                 }
@@ -173,10 +178,9 @@ public class UserInterface {
     }
 
     public void displayMenuChairman() {
+        System.out.println(" ");
         System.out.println("Delfinen UI - CHAIRMAN");
         System.out.println(" ");
-        System.out.println("0. MIDLERTIDIG LOAD");
-        System.out.println("10. MIDLERTIDIG SAVE");
         System.out.println("1. Add Swimmer");
         System.out.println("2. Display list of Swimmers");
         System.out.println("3. Register Swimmer Disciplines");
@@ -184,11 +188,15 @@ public class UserInterface {
         System.out.println("5. List of overdue Payments");
         System.out.println("6. Register payment of Membership");
         System.out.println("7. Forecast");
-        System.out.println("8. Search for Training/Competition results by Swimmer ID\n");
-        System.out.println("9. Terminate program");
+        System.out.println("8. Search for Training/Competition results by Swimmer ID");
+        System.out.println("9. AddTraining/Competition results by Swimmer ID");
+        System.out.println("10. MIDLERTIDIG LOAD");
+        System.out.println("11. MIDLERTIDIG SAVE\n");
+        System.out.println("0. Terminate program");
     }
 
     public void displayMenuTreasurer() {
+        System.out.println(" ");
         System.out.println("Delfinen UI - TREASURER");
         System.out.println(" ");
         System.out.println("1. Display list of Swimmers");
@@ -196,11 +204,12 @@ public class UserInterface {
         System.out.println("3. List of overdue Payments");
         System.out.println("4. Forecast");
         System.out.println("5. Save list");
-        System.out.println("6. load list");
-        System.out.println("9. Terminate program");
+        System.out.println("6. load list\n");
+        System.out.println("0. Terminate program");
     }
 
     public void displayMenuCoach() {
+        System.out.println(" ");
         System.out.println("Delfinen UI - COACH");
         System.out.println(" ");
         System.out.println("1. Register Swimmer Disciplines");
@@ -208,7 +217,7 @@ public class UserInterface {
         System.out.println("3. Display list of Swimmers");
         System.out.println("4. Register Swimmer Results(Training/Competition)");
         System.out.println("5. Search for Training/Competition results by Swimmer ID\n");
-        System.out.println("9. Terminate program");
+        System.out.println("0. Terminate program");
     }
 
     public void startProgramTreasurer() {
@@ -689,7 +698,7 @@ public class UserInterface {
         }
     }
 
-    //TODO: NICE_TO if we can make a forecast based on the age next year (saying we have the current members with current status.
+    //TODO: NICE_TO if we can make a forecast based on the age next year, saying we have the current members with current status.
     public void calculateTotalRateForecast() {
         System.out.println(" ");
         System.out.println("Calculation of expected income (payment membership rate) based on current membership status: ");
