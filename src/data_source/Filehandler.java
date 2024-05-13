@@ -1,8 +1,6 @@
 package data_source;
 
-import domain_model.CompetitionMember;
-import domain_model.Member;
-import domain_model.SwimDiscipline;
+import domain_model.*;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -85,6 +83,86 @@ public class Filehandler {
                     output.println(memberString);
                 }
             }
+            System.out.println("Members' list has been saved successfully.");
+        } catch (IOException e) {
+            System.out.println("Error saving movies: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<ResultSwimmer> loadSavedMemberResults(ArrayList<ResultSwimmer> arr) { //Load competitionMembers
+        File file = new File("src/data_source/saveTestResults.csv");
+        Scanner scannerInput = null;
+        int numOfAttributesCompetitiveConstructor = 8;
+        int numOfAttributesTrainingConstructor = 5;
+        try {
+            scannerInput = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Sorry something went wrong with loading the MovieCollection.");
+            throw new RuntimeException(e);
+        }
+
+        while (scannerInput.hasNext()) {
+
+            String line = scannerInput.nextLine();
+            String[] values = line.split(";");
+
+            if(values.length == numOfAttributesCompetitiveConstructor) { //Competition result.
+                boolean isCompetitive = Boolean.parseBoolean(values[0]);
+
+                int memberID = Integer.parseInt(values[1]);
+                String competitionLocation = values[2];
+                String competitionName = values[3];
+                LocalDate resultDate = LocalDate.parse(values[4], DateTimeFormatter.ISO_LOCAL_DATE);
+                SwimDiscipline swimDiscipline1 = null;
+                double swimTime = Double.parseDouble(values[6]);
+                int placementCompetition = Integer.parseInt(values[7]);
+
+                try {
+                    swimDiscipline1 = SwimDiscipline.valueOf(values[5].toUpperCase());
+                }catch(IllegalArgumentException e) {
+                    System.out.println("DEBUG: Invalid discipline: "+values[4]);
+                }
+
+                arr.add(new ResultSwimmer(isCompetitive, memberID, competitionLocation, competitionName, resultDate, swimDiscipline1,
+                        swimTime, placementCompetition));
+
+            } else if (values.length == numOfAttributesTrainingConstructor) { //Training result
+                boolean isCompetitive = Boolean.parseBoolean(values[0]);
+                int memberID = Integer.parseInt(values[1]);
+                int swimTime = Integer.parseInt(values[3]);
+                LocalDate resultDate = LocalDate.parse(values[4], DateTimeFormatter.ISO_LOCAL_DATE);
+
+
+                SwimDiscipline swimDiscipline1 = null;
+                try {
+                    swimDiscipline1 = SwimDiscipline.valueOf(values[2].toUpperCase());
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Invalid Discipline: " + values[2]);
+                }
+                arr.add(new ResultSwimmer(isCompetitive, memberID, swimDiscipline1, swimTime, resultDate));
+            } else {
+                //TODO: fjern sysout fra filehandler linje 69-70
+                System.out.println("DEBUG: Fejl ved tilføjelse af member objekt. Filehandler, linje 69.");
+            }
+        }
+        scannerInput.close();
+        return arr;
+
+    }
+
+    public void saveListOfMemberResults(ArrayList<ResultSwimmer> list) {
+        try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/saveTestResults.csv"))) {
+
+            for (ResultSwimmer rs : list) {
+                    String memberString = String.format("%s;%s;%s;%s;%s;%s;%s;%s",
+                            rs.isCompetitive(), rs.getMemberID(), rs.getCompetitionLocation(), rs.getCompetitionName(),
+                    rs.getResultDate(), rs.getSwimDiscipline(), rs.getSwimTime(), rs.getPlacementCompetition());
+
+                    output.println(memberString);
+
+            }
+            //TODO: Fjern sysout fra FH linje 95-96, samt linje 98.
             System.out.println("Members' list has been saved successfully.");
         } catch (IOException e) {
             System.out.println("Error saving movies: " + e.getMessage());

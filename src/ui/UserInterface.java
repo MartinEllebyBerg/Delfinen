@@ -194,7 +194,9 @@ public class UserInterface {
         System.out.println("2. Delete Swimmer Disciplines");
         System.out.println("3. Display list of Swimmers");
         System.out.println("4. Register Swimmer Results(Training/Competition)");
-        System.out.println("5. Search for Training/Competition results by Swimmer ID\n");
+        System.out.println("5. Search for Training/Competition results by Swimmer ID");
+        System.out.println("6. Save results to list");
+        System.out.println("7. Load results from list\n");
         System.out.println("9. Terminate program");
     }
 
@@ -249,6 +251,7 @@ public class UserInterface {
     public void startProgramCoach() {
 
         while (switchInput != SENTINEL) {
+            loadListOfCompMembers(); //TODO: Fjern, når vi vælger et andet sted til at loade medlemslisten. Brugt til testing. findMemberIDtoResultID virker ikke uden en aktiv memberliste.
             displayMenuCoach();
             System.out.print("> ");
             switchInput = scanIntSafely();
@@ -274,6 +277,14 @@ public class UserInterface {
                 }
                 case 5: {
                     searchForMemberResultIdToId();
+                    break;
+                }
+                case 6: {
+                    saveListOfResults();
+                    break;
+                }
+                case 7: {
+                    loadListOfResults();
                     break;
                 }
                 case 9: {
@@ -738,6 +749,12 @@ public class UserInterface {
     public void loadListOfCompMembers() {
         controller.loadSavedCompMemberList(controller.getMembersList());
         System.out.println("Successfully loaded list of members");
+    }
+    public void saveListOfResults() {
+        controller.saveListOfMemberResults(controller.getResultList());
+    }
+    public void loadListOfResults() {
+        controller.loadSavedMemberResults(controller.getResultList());
     }
 
 

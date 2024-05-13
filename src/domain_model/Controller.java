@@ -26,6 +26,13 @@ public class Controller {
     public ArrayList<Member> loadSavedCompMemberList(ArrayList<Member> arr) {
         return fh.loadSavedCompMemberList(arr);
     }
+    public ArrayList<ResultSwimmer> loadSavedMemberResults(ArrayList<ResultSwimmer> arr) {
+        return fh.loadSavedMemberResults(arr);
+    }
+    public void saveListOfMemberResults(ArrayList<ResultSwimmer> list) {
+        fh.saveListOfMemberResults(list);
+    }
+
 
     public void hardCodedData(){
         data.hardCodedData();
