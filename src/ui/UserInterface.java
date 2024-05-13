@@ -188,8 +188,8 @@ public class UserInterface {
         System.out.println("5. List of overdue Payments");
         System.out.println("6. Register payment of Membership");
         System.out.println("7. Forecast");
-        System.out.println("8. Search for Training/Competition results by Swimmer ID");
-        System.out.println("9. AddTraining/Competition results by Swimmer ID");
+        System.out.println("8. Add Training/Competition results by Swimmer ID");
+        System.out.println("9. Search for Training/Competition results by Swimmer ID");
         System.out.println("10. MIDLERTIDIG LOAD");
         System.out.println("11. MIDLERTIDIG SAVE\n");
         System.out.println("0. Terminate program");
@@ -202,9 +202,7 @@ public class UserInterface {
         System.out.println("1. Display list of Swimmers");
         System.out.println("2. Register payment of Membership");
         System.out.println("3. List of overdue Payments");
-        System.out.println("4. Forecast");
-        System.out.println("5. Save list");
-        System.out.println("6. load list\n");
+        System.out.println("4. Forecast\n");
         System.out.println("0. Terminate program");
     }
 
@@ -248,19 +246,7 @@ public class UserInterface {
                     calculateTotalRateForecastPlus5Senior();
                     break;
                 }
-                case 5: { //TODO: test af comp members
-                    saveListofCompMembers();
-                    break;
-                }
-                case 6: {
-                    loadListOfCompMembers();
-                    break;
-                }
-                case 7: {
-                    generateSwimmer();
-                    break;
-                }
-                case 9: {
+                case 0: {
                     System.out.println("Terminating application.");
                     break; //Failsafe
                 }
@@ -298,7 +284,7 @@ public class UserInterface {
                     searchForMemberResultIdToId();
                     break;
                 }
-                case 9: {
+                case 0: {
                     System.out.println("Terminating application.");
                     break; //Failsafe
                 }
@@ -547,6 +533,9 @@ public class UserInterface {
         int idToFind = scanIntSafely();
         input.nextLine();
         Member memberToFind = findMemberById(idToFind); //Vi taster member id for at returnere et member objekt at redigere svømmediscipliner på.
+        String memberFirstName = memberToFind.getFirstName();
+        String memberLastName = memberToFind.getLastName();
+        System.out.println("You are in the process of making changes to: " +memberFirstName + " " +memberLastName);
 
         if (memberToFind instanceof CompetitionMember downcastedMemberToFind) { //downcaster vores member objekt direkte i if-sætning til downcastedMemberToFind.
             if (hasAvailableDisciplines(downcastedMemberToFind)) { //boolean hasAvailableDisciplines() tjekker, om vores objekt har tilgængeligt med plads til en svømmedisciplin.
