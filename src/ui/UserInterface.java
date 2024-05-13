@@ -17,6 +17,10 @@ public class UserInterface {
     Scanner input;
     private final int SENTINEL = 9;
     private int switchInput = 0;
+    //ATTRIBUTES - FARVEKODER
+    public final String ANSI_RESET = "\u001B[0m";
+    public final String ANSI_RED = "\u001B[31m";
+    public final String ANSI_GREEN = "\u001B[32m";
 
     //CONSTRUCTOR
     public UserInterface() {
@@ -286,8 +290,10 @@ public class UserInterface {
 
     //######################### Adding Member  ################################
     public void generateSwimmer() {
+        System.out.println(ANSI_RED+"First name |"+ANSI_RESET+"Last name |"+"Birthday |"+"Active/Passive |"+"Swim Discipline |"+"Type of Swimmer |");
         System.out.println("Please input the swimmers FIRST name: ");
         String firstName = input.nextLine();
+        System.out.println(ANSI_GREEN+"First name |"+ANSI_RESET+ANSI_RED+" Last name |"+ANSI_RESET+"Birthday |"+" Active/Passive |"+" Swim Discipline |"+" Type of Swimmer |");
         System.out.println("Please input the swimmers LAST name: ");
         String lastName = input.nextLine();
 
@@ -295,6 +301,7 @@ public class UserInterface {
         boolean validInput = false;
 
         while (!validInput) {
+            System.out.println(ANSI_GREEN+"First name |"+" Last name |"+ANSI_RESET+ANSI_RED+"Birthday |"+ANSI_RESET+" Active/Passive |"+" Swim Discipline |"+" Type of Swimmer |");
             System.out.println("Please input your birthday in the following format YYYY-MM-DD: ");
 
             String birthdayStr = input.nextLine(); //Brugerinput gemmes
@@ -306,12 +313,15 @@ public class UserInterface {
                 System.out.println("Invalid input. Please type your input in the following format YYYY-MM-DD");
             }
         }
+        System.out.println(ANSI_GREEN+"First name |"+" Last name |"+"Birthday |"+ANSI_RESET+ANSI_RED+" Active/Passive |"+ANSI_RESET+" Swim Discipline |"+" Type of Swimmer |");
         boolean activePassive = askForActivity(); //Metode, tjekker for aktivitet.
 
         System.out.println("During this registration you will be able to select one swim discipline for the member.");
         System.out.println("Afterwards, you will be able to set multiple disciplines for selected swimmer.\n");
+        System.out.println(ANSI_GREEN+"First name |"+" Last name |"+"Birthday |"+" Active/Passive |"+ANSI_RESET+ANSI_RED+" Swim Discipline |"+ANSI_RESET+" Type of Swimmer |");
         SwimDiscipline firstDiscipline = userPromptSwimDiscipline();
 
+        System.out.println(ANSI_GREEN+"First name |"+" Last name |"+"Birthday |"+" Active/Passive |"+" Swim Discipline |"+ANSI_RESET+ANSI_RED+" Type of Swimmer |"+ANSI_RESET);
         boolean decidingWhatTypeOfSwimmer = compOrExerciseSwimmer(); //Assigner, om der skal laves et konkurrence eller motionist objekt.
 
         //TODO: Refactor med henblik på læsbarhed. Flyt if blokke ud i separate metoder og kald dem her i generateSwimmer()
