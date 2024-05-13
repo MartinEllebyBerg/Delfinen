@@ -121,6 +121,14 @@ public class UserInterface {
 
             switch (switchInput) { //TODO: Rette cases, duplicate displaylist, mangler delete swimmer disciplines.
 
+                case 0: {
+                    loadListOfCompMembers();
+                    break;
+                }
+                case 10: {
+                    saveListofCompMembers();
+                    break;
+                }
                 case 1: {
                     generateSwimmer();
                     break;
@@ -130,16 +138,16 @@ public class UserInterface {
                     break;
                 }
                 case 3: {
-                    deleteSwimDisciplines();
+                    setMultipleDisciplines();
                     break;
                 }
                 case 4: {
-                    displayListofMembers();
+                    deleteSwimDisciplines();
                     break;
                 }
                 case 5: {
-                    //TODO: Hvad skal der stå her? Hvis noget.
-                    System.out.println("Whatever should be here is not implemented.");
+                    printOverduePayments();
+                    showSumOverduePayments();
                     break;
                 }
                 case 6: {
@@ -164,6 +172,8 @@ public class UserInterface {
     public void displayMenuChairman() {
         System.out.println("Delfinen UI - CHAIRMAN");
         System.out.println(" ");
+        System.out.println("0. MIDLERTIDIG LOAD");
+        System.out.println("10. MIDLERTIDIG SAVE");
         System.out.println("1. Add Swimmer");
         System.out.println("2. Display list of Swimmers");
         System.out.println("3. Register Swimmer Disciplines");
@@ -286,6 +296,7 @@ public class UserInterface {
 
     //######################### Adding Member  ################################
     public void generateSwimmer() {
+        boolean paymentRegistered = false;
         System.out.println("Please input the swimmers FIRST name: ");
         String firstName = input.nextLine();
         System.out.println("Please input the swimmers LAST name: ");
@@ -308,15 +319,18 @@ public class UserInterface {
         }
         boolean activePassive = askForActivity(); //Metode, tjekker for aktivitet.
 
-        System.out.println("During this registration you will be able to select one swim discipline for the member.");
+        /*System.out.println("During this registration you will be able to select one swim discipline for the member.");
         System.out.println("Afterwards, you will be able to set multiple disciplines for selected swimmer.\n");
-        SwimDiscipline firstDiscipline = userPromptSwimDiscipline();
+        SwimDiscipline firstDiscipline = userPromptSwimDiscipline();*/
 
         boolean decidingWhatTypeOfSwimmer = compOrExerciseSwimmer(); //Assigner, om der skal laves et konkurrence eller motionist objekt.
 
         //TODO: Refactor med henblik på læsbarhed. Flyt if blokke ud i separate metoder og kald dem her i generateSwimmer()
         if (decidingWhatTypeOfSwimmer) {
-            Member m = new CompetitionMember(firstName, lastName, birthday, activePassive, firstDiscipline, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
+            System.out.println("During this registration you will be able to select one swim discipline for the member.");
+            System.out.println("Afterwards, you will be able to set multiple disciplines for selected swimmer.\n");
+            SwimDiscipline firstDiscipline = userPromptSwimDiscipline();
+            Member m = new CompetitionMember(firstName, lastName, birthday, activePassive, paymentRegistered, firstDiscipline, SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
             controller.addToMembersList(m);
             String activity; //Bygges gennem nedenstående if-statements. Bruges bare til at display aktivitetsstatus i endelige sysout besked.
             if (activePassive) {
@@ -328,8 +342,9 @@ public class UserInterface {
                     + activity);
             System.out.println("This member is on the team for: " + firstDiscipline);
         } else if (!decidingWhatTypeOfSwimmer) {
-            Member m = new ExerciseMember(firstName, lastName, birthday, activePassive);
+            Member m = new ExerciseMember(firstName, lastName, birthday, activePassive, paymentRegistered, SwimDiscipline.NULL,SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
             controller.addToMembersList(m);
+            System.out.println("You have now successfully added " + firstName + " " + lastName);
         } else {
             System.out.println("Something went wrong. Returning to menu.");
         }
@@ -656,8 +671,8 @@ public class UserInterface {
             System.out.println("Displaying list of current members: ");
             for (Member m : controller.getMembersList()) {
                 if (m instanceof CompetitionMember) {
-                    System.out.println("Competition swimmer ");
                     System.out.println(m.toString());
+                    System.out.println("Competition swimmer ");
                 }
                 if (m instanceof ExerciseMember) {
                     System.out.println("Exercise swimmer ");

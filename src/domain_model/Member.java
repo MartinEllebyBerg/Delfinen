@@ -18,14 +18,14 @@ public class Member {
 
 
     //CONSTRUCTOR
-    public Member(String firstName, String lastName, LocalDate birthday, boolean memberActive) {
+    public Member(String firstName, String lastName, LocalDate birthday, boolean memberActive,boolean paymentRegistered) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
         this.memberActive = memberActive;
+        this.paymentRegistered = paymentRegistered;
 
         memberID = nextMemberID++;
-        paymentRegistered = false;
         calculateYearOfMember();
         calculateMembershipRate();
     }
@@ -92,7 +92,7 @@ public class Member {
         int ageCutoffSeniorTeam = 18;
         String result = "";
         int ageOfMember = yearsOfAge;
-        result += "Name: " + getFirstName() + " " + getLastName() + "\nBirthday: " + getBirthday() + "\nYears of age: " + yearsOfAge;
+        result += "\nMemberID: " +memberID+ " Name: " + getFirstName() + " " + getLastName() + "\nBirthday: " + getBirthday() + "\nYears of age: " + yearsOfAge;
         if(getIsMemberActive()) {
             result += "\nActivity status: Active";
         } else {
@@ -103,7 +103,7 @@ public class Member {
         } else {
             result += "\nTeam: " + "Youth";
         }
-        result += "\nMember Id: " + memberID + "\n";
+        result += "\nMembership rate paid: " + paymentRegistered;
         return result;
     }
 

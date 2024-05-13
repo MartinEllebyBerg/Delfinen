@@ -30,8 +30,8 @@ public class CompetitionMember extends Member {
     }
 
     //CONSTRUCTOR
-    public CompetitionMember(String firstName, String lastName, LocalDate birthday, boolean memberActive, SwimDiscipline swimDiscipline1, SwimDiscipline swimDiscipline2, SwimDiscipline swimDiscipline3, SwimDiscipline swimDiscipline4) {
-        super(firstName, lastName, birthday, memberActive);
+    public CompetitionMember(String firstName, String lastName, LocalDate birthday, boolean memberActive, boolean paymentRegistered, SwimDiscipline swimDiscipline1, SwimDiscipline swimDiscipline2, SwimDiscipline swimDiscipline3, SwimDiscipline swimDiscipline4) {
+        super(firstName, lastName, birthday, memberActive, paymentRegistered);
         this.swimDiscipline1 = swimDiscipline1;
         this.swimDiscipline2 = swimDiscipline2;
         this.swimDiscipline3 = swimDiscipline3;
@@ -76,7 +76,7 @@ public class CompetitionMember extends Member {
             result += "\t|\t"+getSwimDiscipline3();
         }
         if (getSwimDiscipline4() != SwimDiscipline.NULL) {
-            result += "\t|\t"+getSwimDiscipline4() + "\n";
+            result += "\t|\t"+getSwimDiscipline4();
         }
         return super.toString()+result;
     }

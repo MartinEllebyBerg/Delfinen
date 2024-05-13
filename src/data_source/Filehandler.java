@@ -40,28 +40,29 @@ public class Filehandler {
             String lastName = values[1];
             LocalDate birthDay = LocalDate.parse(values[2], DateTimeFormatter.ISO_LOCAL_DATE);
             boolean memberActive = Boolean.parseBoolean(values[3]);
+            boolean paymentRegistered = Boolean.parseBoolean(values[4]);
 
             SwimDiscipline swimDiscipline1 = null;
             SwimDiscipline swimDiscipline2 = null;
             SwimDiscipline swimDiscipline3 = null;
             SwimDiscipline swimDiscipline4 = null;
             try {
-                swimDiscipline1 = SwimDiscipline.valueOf(values[4].toUpperCase());
-                swimDiscipline2 = SwimDiscipline.valueOf(values[5].toUpperCase());
-                swimDiscipline3 = SwimDiscipline.valueOf(values[6].toUpperCase());
-                swimDiscipline4 = SwimDiscipline.valueOf(values[7].toUpperCase());
+                swimDiscipline1 = SwimDiscipline.valueOf(values[5].toUpperCase());
+                swimDiscipline2 = SwimDiscipline.valueOf(values[6].toUpperCase());
+                swimDiscipline3 = SwimDiscipline.valueOf(values[7].toUpperCase());
+                swimDiscipline4 = SwimDiscipline.valueOf(values[8].toUpperCase());
 
             } catch (IllegalArgumentException e) {
-                System.out.println("Invalid Discipline: " + values[4]);
+                System.out.println("Invalid Discipline: " + values[5]);
             } // Handle the error appropriately, such as skipping this entry or asking for correct input
             //continue;
 
-            Member member = new CompetitionMember(firstName, lastName, birthDay, memberActive, swimDiscipline1,
+            Member member = new CompetitionMember(firstName, lastName, birthDay, memberActive, paymentRegistered, swimDiscipline1,
                     swimDiscipline2, swimDiscipline3, swimDiscipline4);
-            // Laver en ny movie baseret på scannerinput fra fil
+            // Opretter ny Member fra fil
 
             arr.add(member);
-            // Tilføjer filmene til vores filmsamling
+            // Tilføjer member til listen
         }
         scannerInput.close();
         return arr;
@@ -73,11 +74,12 @@ public class Filehandler {
 
             for (Member member : list) {
                 if (member instanceof CompetitionMember downcastMember) {
-                    String memberString = String.format("%s;%s;%s;%b;%s;%s;%s;%s",
+                    String memberString = String.format("%s;%s;%s;%b;%b;%s;%s;%s;%s",
                             member.getFirstName(),
                             member.getLastName(),
                             member.getBirthday().format(DateTimeFormatter.ISO_LOCAL_DATE),
                             member.getIsMemberActive(),
+                            member.isPaymentRegistered(),
                             downcastMember.getSwimDiscipline1() != null ? downcastMember.getSwimDiscipline1().toString() : "", // Handle possible nulls
                             downcastMember.getSwimDiscipline2() != null ? downcastMember.getSwimDiscipline2().toString() : "",
                             downcastMember.getSwimDiscipline3() != null ? downcastMember.getSwimDiscipline3().toString() : "",
