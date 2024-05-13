@@ -27,6 +27,13 @@ public class Controller {
         return fh.loadSavedCompMemberList(arr);
     }
 
+    public void saveExerciseMemberList(ArrayList<Member> arr) {
+        fh.saveListOfMembersExercise(arr);
+    }
+    public ArrayList<Member> loadSavedExerciseMemberList(ArrayList<Member> arr) {
+        return fh.loadSavedExerciseMemberList(arr);
+    }
+
     public void hardCodedData(){
         data.hardCodedData();
     }

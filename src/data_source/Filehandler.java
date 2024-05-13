@@ -1,6 +1,7 @@
 package data_source;
 
 import domain_model.CompetitionMember;
+import domain_model.ExerciseMember;
 import domain_model.Member;
 import domain_model.SwimDiscipline;
 
@@ -23,7 +24,7 @@ public class Filehandler {
     //metode til at loade resultList ved opstart
     //metode til at save resultList ved ændringer
     public ArrayList<Member> loadSavedCompMemberList(ArrayList<Member> arr) { //Load competitionMembers
-        File file = new File("src/data_source/saveTestData.csv");
+        File file = new File("src/data_source/CompetitionMembers.csv");
         Scanner scannerInput = null;
         try {
             scannerInput = new Scanner(file);
@@ -68,9 +69,39 @@ public class Filehandler {
         return arr;
 
     }
+    public ArrayList<Member> loadSavedExerciseMemberList(ArrayList<Member> arr) { //Load exercise
+        File file = new File("src/data_source/ExerciseMembers.csv");
+        Scanner scannerInput = null;
+        try {
+            scannerInput = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Sorry something went wrong with loading the MovieCollection.");
+            throw new RuntimeException(e);
+        }
+
+        while (scannerInput.hasNext()) {
+            String line = scannerInput.nextLine();
+            String[] values = line.split(";");
+
+            String firstName = values[0];
+            String lastName = values[1];
+            LocalDate birthDay = LocalDate.parse(values[2], DateTimeFormatter.ISO_LOCAL_DATE);
+            boolean memberActive = Boolean.parseBoolean(values[3]);
+            boolean paymentRegistered = Boolean.parseBoolean(values[4]);
+
+            Member member = new ExerciseMember(firstName, lastName, birthDay, memberActive, paymentRegistered);
+            // Opretter ny Member fra fil
+
+            arr.add(member);
+            // Tilføjer member til listen
+        }
+        scannerInput.close();
+        return arr;
+
+    }
 
     public void saveListOfMembersCompetition(ArrayList<Member> list) {
-        try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/saveTestData.csv"))) {
+        try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/CompetitionMembers.csv"))) {
 
             for (Member member : list) {
                 if (member instanceof CompetitionMember downcastMember) {
@@ -87,7 +118,27 @@ public class Filehandler {
                     output.println(memberString);
                 }
             }
-            System.out.println("Members' list has been saved successfully.");
+            System.out.println("Members list has been saved successfully - CompetitionMembers");
+        } catch (IOException e) {
+            System.out.println("Error saving movies: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    public void saveListOfMembersExercise(ArrayList<Member> list) {
+        try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/ExerciseMembers.csv"))) {
+
+            for (Member member : list) {
+                if(member instanceof ExerciseMember) {
+                    String memberString = String.format("%s;%s;%s;%b;%b",
+                            member.getFirstName(),
+                            member.getLastName(),
+                            member.getBirthday().format(DateTimeFormatter.ISO_LOCAL_DATE),
+                            member.getIsMemberActive(),
+                            member.isPaymentRegistered());
+                    output.println(memberString);
+                }
+            }
+            System.out.println("Members list has been saved successfully - ExerciseMembers");
         } catch (IOException e) {
             System.out.println("Error saving movies: " + e.getMessage());
             e.printStackTrace();

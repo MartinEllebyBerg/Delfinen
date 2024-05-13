@@ -123,10 +123,12 @@ public class UserInterface {
 
                 case 0: {
                     loadListOfCompMembers();
+                    loadListOfExerciseMembers();
                     break;
                 }
                 case 10: {
-                    saveListofCompMembers();
+                    //saveListofCompMembers();
+                    saveListOfExerciseMembers();
                     break;
                 }
                 case 1: {
@@ -342,7 +344,7 @@ public class UserInterface {
                     + activity);
             System.out.println("This member is on the team for: " + firstDiscipline);
         } else if (!decidingWhatTypeOfSwimmer) {
-            Member m = new ExerciseMember(firstName, lastName, birthday, activePassive, paymentRegistered, SwimDiscipline.NULL,SwimDiscipline.NULL, SwimDiscipline.NULL, SwimDiscipline.NULL);
+            Member m = new ExerciseMember(firstName, lastName, birthday, activePassive, paymentRegistered);
             controller.addToMembersList(m);
             System.out.println("You have now successfully added " + firstName + " " + lastName);
         } else {
@@ -752,6 +754,14 @@ public class UserInterface {
     }
     public void loadListOfCompMembers() {
         controller.loadSavedCompMemberList(controller.getMembersList());
+        System.out.println("Successfully loaded list of members");
+    }
+    public void saveListOfExerciseMembers() {
+        controller.saveExerciseMemberList(controller.getMembersList());
+        System.out.println("Successfully saved list of members.");
+    }
+    public void loadListOfExerciseMembers() {
+        controller.loadSavedExerciseMemberList(controller.getMembersList());
         System.out.println("Successfully loaded list of members");
     }
 
