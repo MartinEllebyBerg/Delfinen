@@ -121,6 +121,7 @@ public class Data {
 
     //######################### Methods for ArrayList memberslist ################################
     public ArrayList<Member> getMembersList() {
+        Collections.sort(membersList); //Her bruger vi comparabel fra Member, som sørger for sortering på memberID
         return membersList;
     }
 

@@ -3,7 +3,7 @@ package domain_model;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Member {
+public class Member implements Comparable<Member> {
 
     //ATTRIBUTES
     private String firstName;
@@ -111,5 +111,10 @@ public class Member {
         String result = "";
         result += "Member ID: " + memberID + " Name: " + getFirstName() + " " + getLastName() + " Rate paid: " + paymentRegistered + " Overdue rate: " + rate;
         return result;
+    }
+
+    @Override
+    public int compareTo(Member o) {
+        return Integer.compare(this.memberID, o.memberID);
     }
 }
