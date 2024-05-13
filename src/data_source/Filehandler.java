@@ -70,7 +70,7 @@ public class Filehandler {
 
     public void saveListOfMembersCompetition(ArrayList<Member> list) {
         try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/saveTestData.csv"))) {
-            ;
+
             for (Member member : list) {
                 if (member instanceof CompetitionMember downcastMember) {
                     String memberString = String.format("%s;%s;%s;%b;%s;%s;%s;%s",
