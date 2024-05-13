@@ -127,7 +127,7 @@ public class UserInterface {
                     break;
                 }
                 case 10: {
-                    //saveListofCompMembers();
+                    saveListofCompMembers();
                     saveListOfExerciseMembers();
                     break;
                 }
@@ -158,6 +158,8 @@ public class UserInterface {
                 }
                 case 7: {
                     calculateTotalRateForecast();
+                    calculateTotalRateForecastPlus5Youth();
+                    calculateTotalRateForecastPlus5Senior();
                     break;
                 }
                 case 8: {
