@@ -15,6 +15,7 @@
 21;Rio;Munch Frank;2005-10-10;true;false;Frontcrawl;Null;Null;Null
 22;Tanja;Hansen;1974-02-25;false;true;Butterfly;Null;Null;Null
 23;Tilde;Jensen;2001-08-28;true;false;Butterfly;Null;Null;Null
-24;testComp;Compesen;2002-10-10;true;false;Butterfly;Null;Null;Null
+24;testComp;Compesen;2002-10-10;true;true;Butterfly;Frontcrawl;Null;Null
 25;Nummer25;Hansen;1970-02-23;true;false;Backstroke;Null;Null;Null
 26;Jens;Jensen;2005-10-10;true;false;Butterfly;Frontcrawl;Null;Null
+28;Knud;Knudsen;2005-02-25;true;true;Backstroke;Null;Null;Null
