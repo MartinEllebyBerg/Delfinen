@@ -775,6 +775,10 @@ public class UserInterface {
         controller.saveCompetitionResult(controller.getResultList());
         System.out.println("Successfully saved competition result");
     }
+    public void saveTrainingResult(){
+        controller.saveTrainingResult(controller.getResultList());
+        System.out.println("Successfully saved training result");
+    }
 
 
     private int scanIntSafely() { //Metode til at fange hvis man skriver et bogstav i en int scanner, der ellers vil melde en fejl
