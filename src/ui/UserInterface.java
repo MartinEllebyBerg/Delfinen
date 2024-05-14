@@ -119,21 +119,21 @@ public class UserInterface {
             switch (switchInput) { //TODO: Rette cases, duplicate displaylist, mangler delete swimmer disciplines.
 
                 case 10: {
-                    loadListOfCompMembers();
+                    loadListOfMembers();
                     //loadListOfExerciseMembers();
                     break;
                 }
                 case 11: {
-                    saveListofCompMembers();
+                    saveMembersToList();
                     //saveListOfExerciseMembers();
                     break;
                 }
                 case 12: {
-                    saveCompetitionResult();
+                    saveAllResults();
                     break;
                 }
                 case 13: {
-                    loadSavedMemberResults();
+                    loadAllResults();
                     break;
                 }
                 case 1: {
@@ -196,9 +196,11 @@ public class UserInterface {
         System.out.println("7. Forecast");
         System.out.println("8. Add Training/Competition results by Swimmer ID");
         System.out.println("9. Search for Training/Competition results by Swimmer ID");
-        System.out.println("10. MIDLERTIDIG LOAD");
-        System.out.println("11. MIDLERTIDIG SAVE\n");
+        System.out.println("10. MIDLERTIDIG LOAD MEMBERS");
+        System.out.println("11. MIDLERTIDIG SAVE MEMBERS\n");
         System.out.println("12. MIDLERTIDIG SAVE RESULTS\n");
+        System.out.println("13. MIDLERTIDIG LOAD RESULTS");
+        System.out.println("VIGTIG - at fylde medlemslisten med LOAD og resultatlisten med LOAD før der påbegyndes en søgning."); //TODO: Fjern når det passer
         System.out.println("0. Terminate program");
     }
 
@@ -761,12 +763,12 @@ public class UserInterface {
         System.out.println("In total overdue: " + controller.sumOverduePayments() + " DKK");
     }
     //######################### Save & load list  ################################
-    public void saveListofCompMembers() {
-        controller.saveCompMemberList(controller.getMembersList());
+    public void saveMembersToList() {
+        controller.saveAllMembersToList(controller.getMembersList());
         System.out.println("Successfully saved list of members_competition.");
     }
-    public void loadListOfCompMembers() {
-        controller.loadSavedCompMemberList(controller.getMembersList());
+    public void loadListOfMembers() {
+        controller.loadAllMembersFromList(controller.getMembersList());
         System.out.println("Successfully loaded list of members_competition");
     }
     /*
@@ -781,11 +783,11 @@ public class UserInterface {
 
      */
 
-    public void saveCompetitionResult(){
-        controller.saveCompetitionResult(controller.getResultList());
+    public void saveAllResults(){
+        controller.saveAllResults(controller.getResultList());
         System.out.println("Successfully saved competition result");
     }
-    public void loadSavedMemberResults() {
+    public void loadAllResults() {
         controller.loadSavedMemberResults(controller.getResultList());
         System.out.println("Successfully loaded member results.");
     }

@@ -20,10 +20,10 @@ public class Controller {
 
     //METHODS
     //######################### Methods for Data class ################################
-    public void saveCompMemberList(ArrayList<Member> arr) {
+    public void saveAllMembersToList(ArrayList<Member> arr) {
         fh.saveListOfAllMembers(arr);
     }
-    public ArrayList<Member> loadSavedCompMemberList(ArrayList<Member> arr) {
+    public ArrayList<Member> loadAllMembersFromList(ArrayList<Member> arr) {
         return fh.loadSavedAllMembersList(arr);
     }
 
@@ -36,8 +36,8 @@ public class Controller {
     }
 
      */
-    public void saveCompetitionResult(ArrayList<ResultSwimmer> arr) {
-        fh.saveCompetitionResults(arr);
+    public void saveAllResults(ArrayList<ResultSwimmer> arr) {
+        fh.saveAllResults(arr);
     }
 
     public ArrayList<ResultSwimmer> loadSavedMemberResults(ArrayList<ResultSwimmer> arr) {

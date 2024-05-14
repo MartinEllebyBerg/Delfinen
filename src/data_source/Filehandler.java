@@ -158,7 +158,7 @@ public class Filehandler {
     }
 
      */
-    public void saveCompetitionResults(ArrayList<ResultSwimmer> list) {
+    public void saveAllResults(ArrayList<ResultSwimmer> list) {
         try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/newSwimmerResultsFull.csv"))) {
 
             for (ResultSwimmer comp : list) {
