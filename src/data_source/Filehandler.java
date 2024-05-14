@@ -21,7 +21,7 @@ public class Filehandler {
     //metode til at loade resultList ved opstart
     //metode til at save resultList ved ændringer
     public ArrayList<Member> loadSavedAllMembersList(ArrayList<Member> arr) { //Load competitionMembers
-        File file = new File("src/data_source/newMembersLOAD.csv");
+        File file = new File("src/data_source/newMembersFull.csv");
         Scanner scannerInput = null;
         int numOfAttributesExerciseConstructor = 6;
         int numOfAttributesCompConstructor = 10;
@@ -103,7 +103,7 @@ public class Filehandler {
      */
 
     public void saveListOfAllMembers(ArrayList<Member> list) {
-        try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/newMembersSAVE.csv"))) {
+        try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/newMembersFull.csv"))) {
 
             for (Member member : list) {
                 if (member instanceof CompetitionMember downcastMember) {
@@ -159,10 +159,11 @@ public class Filehandler {
 
      */
     public void saveCompetitionResults(ArrayList<ResultSwimmer> list) {
-        try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/CompetitionResults.csv"))) {
+        try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/newSwimmerResultsFull.csv"))) {
 
             for (ResultSwimmer comp : list) {
-                    String compString = String.format("%d;%s;%s;%s;%s;%f;%d",
+                    String compString = String.format("%s;%d;%s;%s;%s;%s;%s;%d",
+                    comp.isCompetitive(),
                     comp.getMemberID(),
                     comp.getCompetitionLocation(),
                     comp.getCompetitionName(),
@@ -178,6 +179,68 @@ public class Filehandler {
             e.printStackTrace();
         }
     }
+    public ArrayList<ResultSwimmer> loadSavedMemberResults(ArrayList<ResultSwimmer> arr) { //Load competitionMembers
+        File file = new File("src/data_source/newSwimmerResultsFull.csv");
+        Scanner scannerInput = null;
+        int numOfAttributesCompetitiveConstructor = 8;
+        int numOfAttributesTrainingConstructor = 5;
+        try {
+            scannerInput = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Sorry something went wrong with loading the MovieCollection.");
+            throw new RuntimeException(e);
+        }
+
+        while (scannerInput.hasNext()) {
+
+            String line = scannerInput.nextLine();
+            String[] values = line.split(";");
+
+            if(values.length == numOfAttributesCompetitiveConstructor) { //Competition result.
+                boolean isCompetitive = Boolean.parseBoolean(values[0]);
+
+                int memberID = Integer.parseInt(values[1]);
+                String competitionLocation = values[2];
+                String competitionName = values[3];
+                LocalDate resultDate = LocalDate.parse(values[4], DateTimeFormatter.ISO_LOCAL_DATE);
+                SwimDiscipline swimDiscipline1 = null;
+                double swimTime = Double.parseDouble(values[6]);
+                int placementCompetition = Integer.parseInt(values[7]);
+
+                try {
+                    swimDiscipline1 = SwimDiscipline.valueOf(values[5].toUpperCase());
+                }catch(IllegalArgumentException e) {
+                    System.out.println("DEBUG: Invalid discipline: "+values[4]);
+                }
+
+                arr.add(new ResultSwimmer(isCompetitive, memberID, competitionLocation, competitionName, resultDate, swimDiscipline1,
+                        swimTime, placementCompetition));
+
+            } else if (values.length == numOfAttributesTrainingConstructor) { //Training result
+                boolean isCompetitive = Boolean.parseBoolean(values[0]);
+                int memberID = Integer.parseInt(values[1]);
+                double swimTime = Double.parseDouble(values[3]);
+                LocalDate resultDate = LocalDate.parse(values[4], DateTimeFormatter.ISO_LOCAL_DATE);
+
+
+                SwimDiscipline swimDiscipline1 = null;
+                try {
+                    swimDiscipline1 = SwimDiscipline.valueOf(values[2].toUpperCase());
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Invalid Discipline: " + values[2]);
+                }
+                arr.add(new ResultSwimmer(isCompetitive, memberID, swimDiscipline1, swimTime, resultDate));
+            } else {
+                //TODO: fjern sysout fra filehandler linje 69-70
+                System.out.println("DEBUG: Fejl ved tilføjelse af member objekt. Filehandler, linje 69.");
+            }
+        }
+        scannerInput.close();
+        return arr;
+
+    }
+
+    /*
     public void saveTrainingResults(ArrayList<ResultSwimmer> list) {
         try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/TrainingResults.csv"))) {
 
@@ -195,4 +258,5 @@ public class Filehandler {
             e.printStackTrace();
         }
     }
+    */
 }

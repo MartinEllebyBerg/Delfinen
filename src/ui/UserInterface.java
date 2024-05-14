@@ -2,8 +2,6 @@ package ui;
 
 import domain_model.*;
 
-import java.io.Console;
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -132,6 +130,10 @@ public class UserInterface {
                 }
                 case 12: {
                     saveCompetitionResult();
+                    break;
+                }
+                case 13: {
+                    loadSavedMemberResults();
                     break;
                 }
                 case 1: {
@@ -668,8 +670,13 @@ public class UserInterface {
         int idToFind = input.nextInt();
         input.nextLine();
         Member m = findMemberById(idToFind);
-        String result = controller.findSwimmersResultTraining(m);
-        System.out.println(result);
+        if (m != null) {
+            String result = controller.findSwimmersResultTraining(m);
+            System.out.println(result);
+        } else {
+            System.out.println("Something went wrong. No member ID or result ID was found. Try again with an active member list or load the list from the CSV file.");
+        }
+
     }
 
 
@@ -778,10 +785,17 @@ public class UserInterface {
         controller.saveCompetitionResult(controller.getResultList());
         System.out.println("Successfully saved competition result");
     }
+    public void loadSavedMemberResults() {
+        controller.loadSavedMemberResults(controller.getResultList());
+        System.out.println("Successfully loaded member results.");
+    }
+    /*
     public void saveTrainingResult(){
         controller.saveTrainingResult(controller.getResultList());
         System.out.println("Successfully saved training result");
     }
+
+     */
 
 
     private int scanIntSafely() { //Metode til at fange hvis man skriver et bogstav i en int scanner, der ellers vil melde en fejl
