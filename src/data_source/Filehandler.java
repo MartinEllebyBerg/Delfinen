@@ -167,7 +167,7 @@ public class Filehandler {
         try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/TrainingResults.csv"))) {
 
             for (ResultSwimmer training : list) {
-                    String trainingString = String.format("%d;%s;%f;%s",
+                    String trainingString = String.format("%d;%s;%.2f;%s",
                             training.getMemberID(),
                             training.getSwimDiscipline(),
                             training.getSwimTime(),

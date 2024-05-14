@@ -377,7 +377,7 @@ public class UserInterface {
             SwimDiscipline disciplineName = userPromptSwimDiscipline(); //Denne metode spørger om brugerinput med tilhørende sysoutbeskeder.
 
             System.out.println("Type the swim time:");
-            double swimTime = input.nextDouble();
+            double swimTime = input.nextDouble();//TODO: vi skal have noget exception handling her...jeg kan ikke få den til at godtage et tal med decimaler
             input.nextLine();
 
             LocalDate localDate = null;
