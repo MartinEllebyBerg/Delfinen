@@ -20,9 +20,11 @@ public class Filehandler {
     //metode til at save membersList ved ændringer
     //metode til at loade resultList ved opstart
     //metode til at save resultList ved ændringer
-    public ArrayList<Member> loadSavedCompMemberList(ArrayList<Member> arr) { //Load competitionMembers
-        File file = new File("src/data_source/CompetitionMembers.csv");
+    public ArrayList<Member> loadSavedAllMembersList(ArrayList<Member> arr) { //Load competitionMembers
+        File file = new File("src/data_source/newMembersLOAD.csv");
         Scanner scannerInput = null;
+        int numOfAttributesExerciseConstructor = 6;
+        int numOfAttributesCompConstructor = 10;
         try {
             scannerInput = new Scanner(file);
         } catch (FileNotFoundException e) {
@@ -41,32 +43,31 @@ public class Filehandler {
             boolean memberActive = Boolean.parseBoolean(values[4]);
             boolean paymentRegistered = Boolean.parseBoolean(values[5]);
 
-            SwimDiscipline swimDiscipline1 = null;
-            SwimDiscipline swimDiscipline2 = null;
-            SwimDiscipline swimDiscipline3 = null;
-            SwimDiscipline swimDiscipline4 = null;
-            try {
-                swimDiscipline1 = SwimDiscipline.valueOf(values[6].toUpperCase());
-                swimDiscipline2 = SwimDiscipline.valueOf(values[7].toUpperCase());
-                swimDiscipline3 = SwimDiscipline.valueOf(values[8].toUpperCase());
-                swimDiscipline4 = SwimDiscipline.valueOf(values[9].toUpperCase());
+            if (values.length == numOfAttributesExerciseConstructor) {
+                arr.add(new ExerciseMember(memberID, firstName, lastName, birthDay, memberActive, paymentRegistered));
+            } else if (values.length == numOfAttributesCompConstructor) {
+                SwimDiscipline swimDiscipline1 = null;
+                SwimDiscipline swimDiscipline2 = null;
+                SwimDiscipline swimDiscipline3 = null;
+                SwimDiscipline swimDiscipline4 = null;
+                try {
+                    swimDiscipline1 = SwimDiscipline.valueOf(values[6].toUpperCase());
+                    swimDiscipline2 = SwimDiscipline.valueOf(values[7].toUpperCase());
+                    swimDiscipline3 = SwimDiscipline.valueOf(values[8].toUpperCase());
+                    swimDiscipline4 = SwimDiscipline.valueOf(values[9].toUpperCase());
 
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid Discipline: " + values[6]);
-            } // Handle the error appropriately, such as skipping this entry or asking for correct input
-            //continue;
-
-            Member member = new CompetitionMember(memberID, firstName, lastName, birthDay, memberActive, paymentRegistered, swimDiscipline1,
-                    swimDiscipline2, swimDiscipline3, swimDiscipline4);
-            // Opretter ny Member fra fil
-
-            arr.add(member);
-            // Tilføjer member til listen
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Invalid Discipline: " + values[6]);
+                }
+                arr.add(new CompetitionMember(memberID, firstName, lastName, birthDay, memberActive, paymentRegistered, swimDiscipline1,
+                        swimDiscipline2, swimDiscipline3, swimDiscipline4));
+            }
         }
         scannerInput.close();
         return arr;
 
     }
+    /*
     public ArrayList<Member> loadSavedExerciseMemberList(ArrayList<Member> arr) { //Load exercise
         File file = new File("src/data_source/ExerciseMembers.csv");
         Scanner scannerInput = null;
@@ -99,8 +100,10 @@ public class Filehandler {
 
     }
 
-    public void saveListOfMembersCompetition(ArrayList<Member> list) {
-        try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/CompetitionMembers.csv"))) {
+     */
+
+    public void saveListOfAllMembers(ArrayList<Member> list) {
+        try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/newMembersSAVE.csv"))) {
 
             for (Member member : list) {
                 if (member instanceof CompetitionMember downcastMember) {
@@ -116,6 +119,15 @@ public class Filehandler {
                             downcastMember.getSwimDiscipline3() != null ? downcastMember.getSwimDiscipline3().toString() : "",
                             downcastMember.getSwimDiscipline4() != null ? downcastMember.getSwimDiscipline4().toString() : "");
                     output.println(memberString);
+                } else if (member instanceof ExerciseMember) {
+                    String memberString = String.format("%d;%s;%s;%s;%b;%b",
+                            member.getMemberID(),
+                            member.getFirstName(),
+                            member.getLastName(),
+                            member.getBirthday().format(DateTimeFormatter.ISO_LOCAL_DATE),
+                            member.getIsMemberActive(),
+                            member.isPaymentRegistered());
+                    output.println(memberString);
                 }
             }
         } catch (IOException e) {
@@ -123,6 +135,7 @@ public class Filehandler {
             e.printStackTrace();
         }
     }
+    /*
     public void saveListOfMembersExercise(ArrayList<Member> list) {
         try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/ExerciseMembers.csv"))) {
 
@@ -143,6 +156,8 @@ public class Filehandler {
             e.printStackTrace();
         }
     }
+
+     */
     public void saveCompetitionResults(ArrayList<ResultSwimmer> list) {
         try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/CompetitionResults.csv"))) {
 

@@ -122,12 +122,12 @@ public class UserInterface {
 
                 case 10: {
                     loadListOfCompMembers();
-                    loadListOfExerciseMembers();
+                    //loadListOfExerciseMembers();
                     break;
                 }
                 case 11: {
                     saveListofCompMembers();
-                    saveListOfExerciseMembers();
+                    //saveListOfExerciseMembers();
                     break;
                 }
                 case 12: {
@@ -762,6 +762,7 @@ public class UserInterface {
         controller.loadSavedCompMemberList(controller.getMembersList());
         System.out.println("Successfully loaded list of members_competition");
     }
+    /*
     public void saveListOfExerciseMembers() {
         controller.saveExerciseMemberList(controller.getMembersList());
         System.out.println("Successfully saved list of members_exercise.");
@@ -770,6 +771,8 @@ public class UserInterface {
         controller.loadSavedExerciseMemberList(controller.getMembersList());
         System.out.println("Successfully loaded list of members_exercise");
     }
+
+     */
 
     public void saveCompetitionResult(){
         controller.saveCompetitionResult(controller.getResultList());

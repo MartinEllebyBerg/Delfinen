@@ -21,24 +21,29 @@ public class Controller {
     //METHODS
     //######################### Methods for Data class ################################
     public void saveCompMemberList(ArrayList<Member> arr) {
-        fh.saveListOfMembersCompetition(arr);
+        fh.saveListOfAllMembers(arr);
     }
     public ArrayList<Member> loadSavedCompMemberList(ArrayList<Member> arr) {
-        return fh.loadSavedCompMemberList(arr);
+        return fh.loadSavedAllMembersList(arr);
     }
 
+    /*
     public void saveExerciseMemberList(ArrayList<Member> arr) {
         fh.saveListOfMembersExercise(arr);
     }
     public ArrayList<Member> loadSavedExerciseMemberList(ArrayList<Member> arr) {
         return fh.loadSavedExerciseMemberList(arr);
     }
+
+     */
     public void saveCompetitionResult(ArrayList<ResultSwimmer> arr) {
         fh.saveCompetitionResults(arr);
     }
-    /*public ArrayList<ResultSwimmer> loadSavedCompetitionResult(ArrayList<ResultSwimmer> arr) {
+    /*
+    public ArrayList<ResultSwimmer> loadSavedCompetitionResult(ArrayList<ResultSwimmer> arr) {
         return fh.loadSavedCompetitionResult(arr);
-    }*/
+    }
+    */
     public void saveTrainingResult(ArrayList<ResultSwimmer> arr) {
         fh.saveTrainingResults(arr);
     }
