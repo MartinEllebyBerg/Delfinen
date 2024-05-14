@@ -196,11 +196,11 @@ public class UserInterface {
         System.out.println("7. Forecast");
         System.out.println("8. Add Training/Competition results by Swimmer ID");
         System.out.println("9. Search for Training/Competition results by Swimmer ID");
-        System.out.println("10. MIDLERTIDIG LOAD MEMBERS");
-        System.out.println("11. MIDLERTIDIG SAVE MEMBERS\n");
-        System.out.println("12. MIDLERTIDIG SAVE RESULTS\n");
+        System.out.println("\n10. MIDLERTIDIG LOAD MEMBERS");
+        System.out.println("11. MIDLERTIDIG SAVE MEMBERS");
+        System.out.println("12. MIDLERTIDIG SAVE RESULTS");
         System.out.println("13. MIDLERTIDIG LOAD RESULTS");
-        System.out.println("VIGTIG - at fylde medlemslisten med LOAD og resultatlisten med LOAD før der påbegyndes en søgning."); //TODO: Fjern når det passer
+        System.out.println("\nVIGTIG - at fylde medlemslisten med LOAD og resultatlisten med LOAD før der påbegyndes en søgning.\n"); //TODO: Fjern når det passer
         System.out.println("0. Terminate program");
     }
 
