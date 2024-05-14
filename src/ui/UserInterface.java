@@ -130,6 +130,10 @@ public class UserInterface {
                     saveListOfExerciseMembers();
                     break;
                 }
+                case 12: {
+                    saveCompetitionResult();
+                    break;
+                }
                 case 1: {
                     generateSwimmer();
                     break;
@@ -192,6 +196,7 @@ public class UserInterface {
         System.out.println("9. Search for Training/Competition results by Swimmer ID");
         System.out.println("10. MIDLERTIDIG LOAD");
         System.out.println("11. MIDLERTIDIG SAVE\n");
+        System.out.println("12. MIDLERTIDIG SAVE RESULTS\n");
         System.out.println("0. Terminate program");
     }
 
@@ -764,6 +769,11 @@ public class UserInterface {
     public void loadListOfExerciseMembers() {
         controller.loadSavedExerciseMemberList(controller.getMembersList());
         System.out.println("Successfully loaded list of members_exercise");
+    }
+
+    public void saveCompetitionResult(){
+        controller.saveCompetitionResult(controller.getResultList());
+        System.out.println("Successfully saved competition result");
     }
 
 

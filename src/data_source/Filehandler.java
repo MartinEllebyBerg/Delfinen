@@ -1,9 +1,6 @@
 package data_source;
 
-import domain_model.CompetitionMember;
-import domain_model.ExerciseMember;
-import domain_model.Member;
-import domain_model.SwimDiscipline;
+import domain_model.*;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -140,6 +137,43 @@ public class Filehandler {
                             member.isPaymentRegistered());
                     output.println(memberString);
                 }
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving members: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    public void saveCompetitionResults(ArrayList<ResultSwimmer> list) {
+        try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/CompetitionResults.csv"))) {
+
+            for (ResultSwimmer comp : list) {
+                    String compString = String.format("%d;%s;%s;%s;%s;%f;%d",
+                    comp.getMemberID(),
+                    comp.getCompetitionLocation(),
+                    comp.getCompetitionName(),
+                    comp.getResultDate().format(DateTimeFormatter.ISO_LOCAL_DATE),
+                    comp.getSwimDiscipline(),
+                    comp.getSwimTime(),
+                    comp.getPlacementCompetition());
+                    output.println(compString);
+
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving movies: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    public void saveTrainingResults(ArrayList<ResultSwimmer> list) {
+        try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/TrainingResults.csv"))) {
+
+            for (ResultSwimmer training : list) {
+                    String trainingString = String.format("%d;%s;%f;%s",
+                            training.getMemberID(),
+                            training.getSwimDiscipline(),
+                            training.getSwimTime(),
+                            training.getResultDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
+                    output.println(trainingString);
+
             }
         } catch (IOException e) {
             System.out.println("Error saving members: " + e.getMessage());

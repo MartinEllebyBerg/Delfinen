@@ -33,6 +33,19 @@ public class Controller {
     public ArrayList<Member> loadSavedExerciseMemberList(ArrayList<Member> arr) {
         return fh.loadSavedExerciseMemberList(arr);
     }
+    public void saveCompetitionResult(ArrayList<ResultSwimmer> arr) {
+        fh.saveCompetitionResults(arr);
+    }
+    /*public ArrayList<ResultSwimmer> loadSavedCompetitionResult(ArrayList<ResultSwimmer> arr) {
+        return fh.loadSavedCompetitionResult(arr);
+    }*/
+    public void saveTrainingResult(ArrayList<ResultSwimmer> arr) {
+        fh.saveTrainingResults(arr);
+    }
+    /*public ArrayList<ResultSwimmer> loadSavedTrainingResult(ArrayList<ResultSwimmer> arr) {
+        return fh.loadSavedTrainingResult(arr);
+    }*/
+
 
     public int nextMemberID() {
         return data.nextMemberID();
