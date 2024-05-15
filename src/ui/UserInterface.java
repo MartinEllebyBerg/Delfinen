@@ -356,6 +356,7 @@ public class UserInterface {
         } else {
             System.out.println("Something went wrong. Returning to menu.");
         }
+        saveMembersToList();
     }
 
     public void addSwimmerResults() {
@@ -371,6 +372,9 @@ public class UserInterface {
             System.out.println("Type the memberID of the swimmer who's results you wish to register:");
             int memberID = scanIntSafely();
             input.nextLine();
+            controller.findIndexToBeChanged(memberID);
+            String name = controller.findNameByIndex();
+            System.out.println("You are registering training result on member: " + name);
 
             /*
             System.out.println("Type the swim discipline:");
@@ -380,7 +384,7 @@ public class UserInterface {
             SwimDiscipline disciplineName = userPromptSwimDiscipline(); //Denne metode spørger om brugerinput med tilhørende sysoutbeskeder.
 
             System.out.println("Type the swim time:");
-            double swimTime = input.nextDouble();//TODO: vi skal have noget exception handling her...jeg kan ikke få den til at godtage et tal med decimaler
+            double swimTime = input.nextDouble();//TODO: vi skal have noget exception handling her...hvis der skrives med punktum kommer der fejl...skal skrives med komma
             input.nextLine();
 
             LocalDate localDate = null;
@@ -404,13 +408,16 @@ public class UserInterface {
             controller.addSwimResultTraining(isCompetitive, memberID, disciplineName, swimTime, localDate);
             //controller.printResultListTraining();  //Henviser til sysout beskeder i anden klasse end UI
             System.out.println("Successfully added a training result for a swimmer with the following member ID: "+memberID);
-            //TODO: Eventuelt 'fetche' det specifikke member med ID. findMemberById(memberID) kan benyttes til dette formål
+
 
         } else if (userChoice.toLowerCase().equals("competition")) {
             boolean isCompetitive = true;
             System.out.println("Type the memberID of the swimmer whose results you wish to register:");
             int memberID = scanIntSafely();
             input.nextLine();
+            controller.findIndexToBeChanged(memberID);
+            String name = controller.findNameByIndex();
+            System.out.println("You are registering competition result on member: " + name);
 
             System.out.println("Type the competition location:");
             String competitionLocation = input.nextLine();
@@ -452,10 +459,10 @@ public class UserInterface {
             input.nextLine();
 
             controller.addSwimResultCompetition(isCompetitive, memberID, competitionLocation, competitionName, localDate, disciplineName, swimTime, placementCompetition);
-            //controller.printResultListCompetition(); //Henviser til sysout beskeder i anden klasse end UI
-            System.out.println("Successfully added a training result for a swimmer with the following member ID: "+memberID);
-            //TODO: Eventuelt 'fetche' det specifikke member med ID. findMemberById(memberID) kan benyttes til dette formål
+            System.out.println("Successfully added a competition result for a swimmer with the following member ID: "+memberID);
+
         }
+        saveAllResults();
     }
 
     public boolean askForActivity() {
@@ -493,7 +500,7 @@ public class UserInterface {
     public SwimDiscipline findSwimDisciplineEnum(String searchTerm) {
         for (SwimDiscipline e : SwimDiscipline.values()) {
             if (searchTerm.equals(e.name())) {
-                System.out.println("Found matching enum: " + e + " " + e.name());//TODO: denne virker lidt malplaceret...skal vi nok have udkommenteret. Måske metoden helt over i data klassen uden sysout?
+                //System.out.println("Found matching enum: " + e + " " + e.name());//TODO: denne virker lidt malplaceret...skal vi nok have udkommenteret. Måske metoden helt over i data klassen uden sysout?
                 return e;
             }
         }
@@ -544,7 +551,7 @@ public class UserInterface {
         String memberFirstName = memberToFind.getFirstName();
         String memberLastName = memberToFind.getLastName();
         System.out.println("You are in the process of making changes to: " +memberFirstName + " " +memberLastName);
-        System.out.println("Press 1 if you want to proceed or 2 if you will search for a new member and memberID");
+        System.out.println("Press 1 if you want to proceed with this member, press 2 if you want to see some more information on this member \nor press 3 if you will search for a new member and memberID");
         int choice = scanIntSafely();
 
         if(choice == 1) {
@@ -576,13 +583,15 @@ public class UserInterface {
                 }
             }
         } else if (choice == 2) {
+            System.out.println(controller.showDataSpecificMember(idToFind));
+        } else if (choice == 3) {
+            input.nextLine();//for at undgå scanner bug
             findMemberSearchWithNewArray();
             setMultipleDisciplines();
-        } else if (choice == 3) {
-
         } else {
             System.out.println("Invalid input");
         }
+        saveMembersToList();
     }
 
     public boolean hasAvailableDisciplines(CompetitionMember member) { //Tjekker om member objektets 4 svømmediscipliner er sandt til null.(Det er 3 per default.
@@ -606,6 +615,10 @@ public class UserInterface {
         int idToFind = scanIntSafely();
         input.nextLine();
         Member memberToFind = findMemberById(idToFind);
+        String memberFirstName = memberToFind.getFirstName();
+        String memberLastName = memberToFind.getLastName();
+
+        System.out.println("You have picked: " +memberFirstName + " " +memberLastName);
 
         if (memberToFind instanceof CompetitionMember downcastedMemberToFind) {
             //TODO: Fjerne muligheder ved null svømmediscipliner
@@ -644,6 +657,7 @@ public class UserInterface {
                 }
             }
         }
+        saveMembersToList();
     }
     public void showAllDataSpecificMember (){
 
@@ -718,7 +732,6 @@ public class UserInterface {
         }
     }
 
-    //TODO: NICE_TO if we can make a forecast based on the age next year, saying we have the current members with current status.
     public void calculateTotalRateForecast() {
         System.out.println(" ");
         System.out.println("Calculation of expected income (payment membership rate) based on current membership status: ");
@@ -768,6 +781,7 @@ public class UserInterface {
                 registerPayment();
             }
         }
+        saveMembersToList();
     }
 
     public void printOverduePayments() {
@@ -783,40 +797,13 @@ public class UserInterface {
     //######################### Save & load list  ################################
     public void saveMembersToList() {
         controller.saveAllMembersToList(controller.getMembersList());
-        System.out.println("Successfully saved list of members_competition.");
+        System.out.println("Successfully saved list of members.");
     }
-    /*public void loadListOfMembers() {
-        controller.loadAllMembersFromList(controller.getMembersList());
-        System.out.println("Successfully loaded list of members_competition");
-    }*/
-    /*
-    public void saveListOfExerciseMembers() {
-        controller.saveExerciseMemberList(controller.getMembersList());
-        System.out.println("Successfully saved list of members_exercise.");
-    }
-    public void loadListOfExerciseMembers() {
-        controller.loadSavedExerciseMemberList(controller.getMembersList());
-        System.out.println("Successfully loaded list of members_exercise");
-    }
-
-     */
 
     public void saveAllResults(){
         controller.saveAllResults(controller.getResultList());
         System.out.println("Successfully saved competition result");
     }
-    /*public void loadAllResults() {
-        controller.loadSavedMemberResults(controller.getResultList());
-        System.out.println("Successfully loaded member results.");
-    }*/
-    /*
-    public void saveTrainingResult(){
-        controller.saveTrainingResult(controller.getResultList());
-        System.out.println("Successfully saved training result");
-    }
-
-     */
-
 
     private int scanIntSafely() { //Metode til at fange hvis man skriver et bogstav i en int scanner, der ellers vil melde en fejl
         try {
