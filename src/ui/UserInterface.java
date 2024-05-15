@@ -666,7 +666,7 @@ public class UserInterface {
         System.out.println(controller.showDataSpecificMember(memberID));
     }
 
-    public Member findMemberById(int idToFind) {
+    public Member findMemberById (int idToFind) {
         for (Member member : controller.getMembersList()) {
             if (member.getMemberID() == idToFind) {
                 if (member instanceof CompetitionMember) {
@@ -680,9 +680,8 @@ public class UserInterface {
         return null;
     }
 
-    public void findMemberSearchWithNewArray() { // Ved ikke om vi skal bruge denne metode, men den er vel rar at have
+    public void findMemberSearchWithNewArray() {
         System.out.println("Please type in the first name of the member you are looking for.");
-        //int count = 1;
         String memberToFind = input.nextLine();
         controller.searchMember(memberToFind);
 
