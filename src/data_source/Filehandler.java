@@ -96,7 +96,6 @@ public class Filehandler {
         }
         scannerInput.close();
         return arr;
-
     }
 
     public void saveListOfMembersCompetition(ArrayList<Member> list) {

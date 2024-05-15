@@ -18,7 +18,7 @@ public class Member implements Comparable<Member> {
 
 
     //CONSTRUCTOR
-    public Member(int memberID, String firstName, String lastName, LocalDate birthday, boolean memberActive,boolean paymentRegistered) {
+    public Member(int memberID, String firstName, String lastName, LocalDate birthday, boolean memberActive, boolean paymentRegistered) {
         this.memberID = memberID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -92,24 +92,34 @@ public class Member implements Comparable<Member> {
     public String toString() {
         int ageCutoffSeniorTeam = 18;
         String result = "";
-        result += "\nMemberID: " +memberID+ " Name: " + getFirstName() + " " + getLastName() + " Birthday: " + getBirthday() + " Years of age: " + yearsOfAge;
-        if(getIsMemberActive()) {
-            result += " Activity status: Active";
+        result += "\nMemberID: " + memberID + " | Name: " + getFirstName() + " " + getLastName() + " | Birthday: " + getBirthday() + " | Years of age: " + yearsOfAge;
+        if (getIsMemberActive()) {
+            result += " | Activity status: Active";
         } else {
-            result += " Activity status: Passive";
+            result += " | Activity status: Passive";
         }
         if (yearsOfAge >= ageCutoffSeniorTeam) {
-            result+= " Team: " + "Senior";
+            result += " | Team: " + "Senior";
         } else {
-            result += " Team: " + "Youth";
+            result += " | Team: " + "Youth";
         }
-        result += " Membership rate paid: " + paymentRegistered;
+        if (paymentRegistered == true)
+            result += " | Membership is paid";
+        else {
+            result += " | Membership is not paid";
+        }
         return result;
     }
 
     public String toStringOverduePayments() {
         String result = "";
-        result += "Member ID: " + memberID + " Name: " + getFirstName() + " " + getLastName() + " Rate paid: " + paymentRegistered + " Overdue rate: " + rate;
+        result += "Member ID: " + memberID + " Name: " + getFirstName() + " " + getLastName();
+        if (paymentRegistered == true)
+            result += " | Membership is paid";
+        else {
+            result += " | Membership is not paid";
+        }
+        result += " | Overdue rate: " + rate;
         return result;
     }
 
