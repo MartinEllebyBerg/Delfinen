@@ -15,6 +15,9 @@ public class Controller {
     //CONSTRUCTOR
     public Controller() {
         data = new Data();
+        loadAllMembersFromList(getMembersList()); //denne sørger for at Medlemslisten csv bliver downloaded ved opstart
+        loadSavedMemberResults(getResultList());//denne sørger for at reg tider downloades ved opstart af programmet
+
     }
 
 
@@ -57,6 +60,10 @@ public class Controller {
 
     public int nextMemberID() {
         return data.nextMemberID();
+    }
+
+    public String showDataSpecificMember(int memberID){
+        return data.showDataSpecificMember(memberID);
     }
 
     /*public void hardCodedData(){

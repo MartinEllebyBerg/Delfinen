@@ -10,16 +10,10 @@ import java.util.Scanner;
 
 public class Filehandler {
 
-    //ATTRIBUTES
+    public Filehandler () {
+    }
 
-    //CONSTRUCTOR
 
-    //METHODS
-
-    //metode til at loade membersList ved opstart
-    //metode til at save membersList ved ændringer
-    //metode til at loade resultList ved opstart
-    //metode til at save resultList ved ændringer
     public ArrayList<Member> loadSavedAllMembersList(ArrayList<Member> arr) { //Load competitionMembers
         File file = new File("src/data_source/newMembersFull.csv");
         Scanner scannerInput = null;

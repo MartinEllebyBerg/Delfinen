@@ -205,6 +205,33 @@ public class Data {
         }
         return memberFirstName + " " + memberLastName;
     }
+    public String showDataSpecificMember(int memberID){
+        StringBuilder result = new StringBuilder();
+        System.out.println("Her høres metoden printSpecificMember");
+        System.out.println(" ");
+        for(Member m : membersList){
+            if(m.getMemberID() == memberID) {
+                result.append("MemberNo. ").append(m.getMemberID())
+                        .append("\nFirstname: ").append(m.getFirstName())
+                        .append(", Lastname: ").append(m.getLastName())
+                        .append(", Birthday: ").append(m.getBirthday());
+                for (ResultSwimmer r : resultList) {
+                    if (m.getMemberID() == r.getMemberID()) {
+                        if(!r.getCompetitionName().equals("null")) {
+                            result.append("\nCompetition: ").append(r.getCompetitionName());
+                        } else {
+                            result.append("\nTraining result");
+                        }
+                        result.append("\nSwimDiscipline: ").append(r.getSwimDiscipline())
+                                .append(", time: ").append(r.getSwimTime())
+                                .append(", date: ").append(r.getResultDate());
+
+                    }
+                }
+            }
+        }
+        return result.toString();
+    }
 
     public void registerPayment() {
         for (int i = 0; i < membersList.size(); i++) {

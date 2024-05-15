@@ -119,8 +119,7 @@ public class UserInterface {
             switch (switchInput) { //TODO: Rette cases, duplicate displaylist, mangler delete swimmer disciplines.
 
                 case 10: {
-                    loadListOfMembers();
-                    //loadListOfExerciseMembers();
+                    showAllDataSpecificMember();
                     break;
                 }
                 case 11: {
@@ -133,7 +132,7 @@ public class UserInterface {
                     break;
                 }
                 case 13: {
-                    loadAllResults();
+//                    loadAllResults();
                     break;
                 }
                 case 1: {
@@ -196,7 +195,7 @@ public class UserInterface {
         System.out.println("7. Forecast");
         System.out.println("8. Add Training/Competition results by Swimmer ID");
         System.out.println("9. Search for Training/Competition results by Swimmer ID");
-        System.out.println("\n10. MIDLERTIDIG LOAD MEMBERS");
+        System.out.println("\n10. MIDLERTIDIG show all data specific member");
         System.out.println("11. MIDLERTIDIG SAVE MEMBERS");
         System.out.println("12. MIDLERTIDIG SAVE RESULTS");
         System.out.println("13. MIDLERTIDIG LOAD RESULTS");
@@ -545,32 +544,44 @@ public class UserInterface {
         String memberFirstName = memberToFind.getFirstName();
         String memberLastName = memberToFind.getLastName();
         System.out.println("You are in the process of making changes to: " +memberFirstName + " " +memberLastName);
+        System.out.println("Press 1 if you want to proceed or 2 if you will search for a new member and memberID");
+        int choice = scanIntSafely();
 
-        if (memberToFind instanceof CompetitionMember downcastedMemberToFind) { //downcaster vores member objekt direkte i if-sætning til downcastedMemberToFind.
-            if (hasAvailableDisciplines(downcastedMemberToFind)) { //boolean hasAvailableDisciplines() tjekker, om vores objekt har tilgængeligt med plads til en svømmedisciplin.
-                SwimDiscipline selectedDiscipline = userPromptSwimDiscipline(); //Vi vælger vores disciplin og gemmer i variabel.
-                if (!hasDiscipline(downcastedMemberToFind, selectedDiscipline)) { //Hvis det specifikke objekt ikke har den disciplin, de prompter efter, kan det tildeles
-                    if (downcastedMemberToFind.getSwimDiscipline1() == SwimDiscipline.NULL) {
-                        downcastedMemberToFind.setSwimDiscipline1(selectedDiscipline);
-                        System.out.println(selectedDiscipline + " has successfully been assigned to " + downcastedMemberToFind.getFirstName() + " " + downcastedMemberToFind.getLastName() + ".");
-                    } else if (downcastedMemberToFind.getSwimDiscipline2() == SwimDiscipline.NULL) {
-                        downcastedMemberToFind.setSwimDiscipline2(selectedDiscipline);
-                        System.out.println(selectedDiscipline + " has successfully been assigned to " + downcastedMemberToFind.getFirstName() + " " + downcastedMemberToFind.getLastName() + ".");
-                    } else if (downcastedMemberToFind.getSwimDiscipline3() == SwimDiscipline.NULL) {
-                        downcastedMemberToFind.setSwimDiscipline3(selectedDiscipline);
-                        System.out.println(selectedDiscipline + " has successfully been assigned to " + downcastedMemberToFind.getFirstName() + " " + downcastedMemberToFind.getLastName() + ".");
-                    } else if (downcastedMemberToFind.getSwimDiscipline4() == SwimDiscipline.NULL) {
-                        downcastedMemberToFind.setSwimDiscipline4(selectedDiscipline);
-                        System.out.println(selectedDiscipline + " has successfully been assigned to " + downcastedMemberToFind.getFirstName() + " " + downcastedMemberToFind.getLastName() + ".");
+        if(choice == 1) {
+
+            if (memberToFind instanceof CompetitionMember downcastedMemberToFind) { //downcaster vores member objekt direkte i if-sætning til downcastedMemberToFind.
+                if (hasAvailableDisciplines(downcastedMemberToFind)) { //boolean hasAvailableDisciplines() tjekker, om vores objekt har tilgængeligt med plads til en svømmedisciplin.
+                    SwimDiscipline selectedDiscipline = userPromptSwimDiscipline(); //Vi vælger vores disciplin og gemmer i variabel.
+                    if (!hasDiscipline(downcastedMemberToFind, selectedDiscipline)) { //Hvis det specifikke objekt ikke har den disciplin, de prompter efter, kan det tildeles
+                        if (downcastedMemberToFind.getSwimDiscipline1() == SwimDiscipline.NULL) {
+                            downcastedMemberToFind.setSwimDiscipline1(selectedDiscipline);
+                            System.out.println(selectedDiscipline + " has successfully been assigned to " + downcastedMemberToFind.getFirstName() + " " + downcastedMemberToFind.getLastName() + ".");
+                        } else if (downcastedMemberToFind.getSwimDiscipline2() == SwimDiscipline.NULL) {
+                            downcastedMemberToFind.setSwimDiscipline2(selectedDiscipline);
+                            System.out.println(selectedDiscipline + " has successfully been assigned to " + downcastedMemberToFind.getFirstName() + " " + downcastedMemberToFind.getLastName() + ".");
+                        } else if (downcastedMemberToFind.getSwimDiscipline3() == SwimDiscipline.NULL) {
+                            downcastedMemberToFind.setSwimDiscipline3(selectedDiscipline);
+                            System.out.println(selectedDiscipline + " has successfully been assigned to " + downcastedMemberToFind.getFirstName() + " " + downcastedMemberToFind.getLastName() + ".");
+                        } else if (downcastedMemberToFind.getSwimDiscipline4() == SwimDiscipline.NULL) {
+                            downcastedMemberToFind.setSwimDiscipline4(selectedDiscipline);
+                            System.out.println(selectedDiscipline + " has successfully been assigned to " + downcastedMemberToFind.getFirstName() + " " + downcastedMemberToFind.getLastName() + ".");
+                        } else {
+                            System.out.println("You are currently at at max amount of attached swimmingdisciplines available.");
+                        }
                     } else {
-                        System.out.println("You are currently at at max amount of attached swimmingdisciplines available.");
+                        System.out.println(selectedDiscipline + " has already been assigned to " + memberToFind.getFirstName() + " " + memberToFind.getLastName() + "(" + "Member ID: " + memberToFind.getMemberID() + ")");
                     }
                 } else {
-                    System.out.println(selectedDiscipline + " has already been assigned to " + memberToFind.getFirstName() + " " + memberToFind.getLastName() + "(" + "Member ID: " + memberToFind.getMemberID() + ")");
+                    System.out.println("You have assigned all available disciplines. ");
                 }
-            } else {
-                System.out.println("You have assigned all available disciplines. ");
             }
+        } else if (choice == 2) {
+            findMemberSearchWithNewArray();
+            setMultipleDisciplines();
+        } else if (choice == 3) {
+
+        } else {
+            System.out.println("Invalid input");
         }
     }
 
@@ -634,6 +645,12 @@ public class UserInterface {
             }
         }
     }
+    public void showAllDataSpecificMember (){
+
+        System.out.println("Enter memberID of the member you want to see all data registered on.");
+        int memberID =scanIntSafely();
+        System.out.println(controller.showDataSpecificMember(memberID));
+    }
 
     public Member findMemberById(int idToFind) {
         for (Member member : controller.getMembersList()) {
@@ -651,7 +668,7 @@ public class UserInterface {
 
     public void findMemberSearchWithNewArray() { // Ved ikke om vi skal bruge denne metode, men den er vel rar at have
         System.out.println("Please type in the first name of the member you are looking for.");
-        int count = 1;
+        //int count = 1;
         String memberToFind = input.nextLine();
         controller.searchMember(memberToFind);
 
@@ -733,6 +750,7 @@ public class UserInterface {
 
         if (switchInput == 1) {
             findMemberSearchWithNewArray();
+            registerPayment();
 
         } else if (switchInput == 2) {
             System.out.println("Type memberID of the member you want to register payment on:");
@@ -767,10 +785,10 @@ public class UserInterface {
         controller.saveAllMembersToList(controller.getMembersList());
         System.out.println("Successfully saved list of members_competition.");
     }
-    public void loadListOfMembers() {
+    /*public void loadListOfMembers() {
         controller.loadAllMembersFromList(controller.getMembersList());
         System.out.println("Successfully loaded list of members_competition");
-    }
+    }*/
     /*
     public void saveListOfExerciseMembers() {
         controller.saveExerciseMemberList(controller.getMembersList());
@@ -787,10 +805,10 @@ public class UserInterface {
         controller.saveAllResults(controller.getResultList());
         System.out.println("Successfully saved competition result");
     }
-    public void loadAllResults() {
+    /*public void loadAllResults() {
         controller.loadSavedMemberResults(controller.getResultList());
         System.out.println("Successfully loaded member results.");
-    }
+    }*/
     /*
     public void saveTrainingResult(){
         controller.saveTrainingResult(controller.getResultList());
