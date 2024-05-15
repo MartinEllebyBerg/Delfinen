@@ -43,6 +43,12 @@ public class Controller {
     public ArrayList<ResultSwimmer> loadSavedMemberResults(ArrayList<ResultSwimmer> arr) {
         return fh.loadSavedMemberResults(arr);
     }
+    public void copyResultListToListToBeSorted() {
+        data.copyResultListToListToBeSorted();
+    }
+    public ArrayList<ResultSwimmer> getListToBeSorted() {
+        return data.getListToBeSorted();
+    }
 
     /*
     public void saveTrainingResult(ArrayList<ResultSwimmer> arr) {
@@ -131,6 +137,10 @@ public class Controller {
     public void addSwimResultCompetition(boolean isCompetitive, int memberID, String competitionLocation,String competitionName, LocalDate resultDate, SwimDiscipline swimDiscipline, double swimTime, int placementCompetition) {
         data.addSwimResultCompetition(isCompetitive,memberID, competitionLocation, competitionName, resultDate, swimDiscipline, swimTime, placementCompetition);
     }
+    //######################### Methods for Data class - Sorting ################################
+    public String sortBySwimTime() {
+        return data.sortBySwimTime();
+    }
 
     /*
     public void printResultListTraining() {
@@ -143,4 +153,7 @@ public class Controller {
         data.printResultListCompetition();
     }
 
+    public Member findMemberById(int idToFind) {
+        return data.findMemberById(idToFind);
+    }
 }

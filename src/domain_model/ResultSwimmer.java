@@ -111,7 +111,35 @@ public class ResultSwimmer {
         return "ResultSwimmer: " +
                 "\nSwimID: " + memberID +
                 "\nSwimDiscipline: " + swimDiscipline +
-                "\nSwimTime: " + swimTime +
+                "\nSwimTime: " + swimTime +//
                 "\nCompetitionDate: " + resultDate;
+    }
+    public String placementSTNDRD(int placementCompetition) {
+        String result ="";
+        if (placementCompetition == 1) {
+            result = placementCompetition+"st";
+        } else if (placementCompetition == 2) {
+            result = placementCompetition+"nd";
+        } else if (placementCompetition == 3){
+            result = placementCompetition+"rd";
+        } else {
+            result = placementCompetition+"th";
+        }
+        return result;
+    }
+    public String toStringSortSwimTime() {
+        String result =
+                "SwimTime: "+swimTime+
+                "\tMemberID: "+memberID+
+                "\tDate performed: "+resultDate;
+        if (isCompetitive) {
+            result +=
+                    "\tCompetition: "+competitionName+
+                            "\tCompetition Location: "+competitionLocation+
+                            "\tRanked at Competition: "+placementSTNDRD(placementCompetition)+" place\n";
+        } else {
+            result += "\n";
+        }
+        return result;
     }
 }
