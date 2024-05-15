@@ -220,8 +220,8 @@ public class UserInterface {
 
         while (switchInput != SENTINEL) {
             displayMenuCoach();
-            loadAllResults(); //TODO: Fjern når testing er færdig
-            loadListOfMembers(); //TODO: fjern når testing er færdig
+            //loadAllResults(); //TODO: Fjern når loadResults() og loadMembers() er implementeret et specifikt sted. Se nedenstående case 6.
+            //loadListOfMembers();
             System.out.print("> ");
             switchInput = scanIntSafely();
             input.nextLine();
@@ -249,7 +249,7 @@ public class UserInterface {
                     break;
                 }
                 case 6: {
-                    sortBySwimTime();
+                    sortBySwimTime(); //TODO: "Crasher", hvis medlemslisten og resultatlisten ikke er fyldt ved eksekvering. Har implementeret exception handling de relevante steder, men funktionen vil ikke virke ved tom medlems- og resultatliste.
                     break;
                 }
                 case 0: {

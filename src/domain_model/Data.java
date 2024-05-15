@@ -351,7 +351,7 @@ public class Data {
         int count = 1;
         String result = "";
         result += "Competition results: \n";
-        for (ResultSwimmer rs : resultList) { //TODO: Ændre hvilken liste, der itereres over, når genereringsmetoden i UI udarbejdet af Mark og Martin er færdig. Der skal itereres over ResultListTraining og ResultListCompetition.
+        for (ResultSwimmer rs : resultList) {
             if (idToReference == rs.getMemberID()) {
                 if (rs.isCompetitive()) {
                     result += count + ". " + rs + "\n";
