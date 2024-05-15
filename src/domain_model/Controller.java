@@ -20,28 +20,36 @@ public class Controller {
 
     //METHODS
     //######################### Methods for Data class ################################
-    public void saveCompMemberList(ArrayList<Member> arr) {
-        fh.saveListOfMembersCompetition(arr);
+    public void saveAllMembersToList(ArrayList<Member> arr) {
+        fh.saveListOfAllMembers(arr);
     }
-    public ArrayList<Member> loadSavedCompMemberList(ArrayList<Member> arr) {
-        return fh.loadSavedCompMemberList(arr);
+    public ArrayList<Member> loadAllMembersFromList(ArrayList<Member> arr) {
+        return fh.loadSavedAllMembersList(arr);
     }
 
+    /*
     public void saveExerciseMemberList(ArrayList<Member> arr) {
         fh.saveListOfMembersExercise(arr);
     }
     public ArrayList<Member> loadSavedExerciseMemberList(ArrayList<Member> arr) {
         return fh.loadSavedExerciseMemberList(arr);
     }
-    public void saveCompetitionResult(ArrayList<ResultSwimmer> arr) {
-        fh.saveCompetitionResults(arr);
+
+     */
+    public void saveAllResults(ArrayList<ResultSwimmer> arr) {
+        fh.saveAllResults(arr);
     }
-    /*public ArrayList<ResultSwimmer> loadSavedCompetitionResult(ArrayList<ResultSwimmer> arr) {
-        return fh.loadSavedCompetitionResult(arr);
-    }*/
+
+    public ArrayList<ResultSwimmer> loadSavedMemberResults(ArrayList<ResultSwimmer> arr) {
+        return fh.loadSavedMemberResults(arr);
+    }
+
+    /*
     public void saveTrainingResult(ArrayList<ResultSwimmer> arr) {
         fh.saveTrainingResults(arr);
     }
+
+     */
     /*public ArrayList<ResultSwimmer> loadSavedTrainingResult(ArrayList<ResultSwimmer> arr) {
         return fh.loadSavedTrainingResult(arr);
     }*/

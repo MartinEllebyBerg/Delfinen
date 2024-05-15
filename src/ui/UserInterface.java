@@ -2,8 +2,6 @@ package ui;
 
 import domain_model.*;
 
-import java.io.Console;
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -121,17 +119,21 @@ public class UserInterface {
             switch (switchInput) { //TODO: Rette cases, duplicate displaylist, mangler delete swimmer disciplines.
 
                 case 10: {
-                    loadListOfCompMembers();
-                    loadListOfExerciseMembers();
+                    loadListOfMembers();
+                    //loadListOfExerciseMembers();
                     break;
                 }
                 case 11: {
-                    saveListofCompMembers();
-                    saveListOfExerciseMembers();
+                    saveMembersToList();
+                    //saveListOfExerciseMembers();
                     break;
                 }
                 case 12: {
-                    saveCompetitionResult();
+                    saveAllResults();
+                    break;
+                }
+                case 13: {
+                    loadAllResults();
                     break;
                 }
                 case 1: {
@@ -194,9 +196,11 @@ public class UserInterface {
         System.out.println("7. Forecast");
         System.out.println("8. Add Training/Competition results by Swimmer ID");
         System.out.println("9. Search for Training/Competition results by Swimmer ID");
-        System.out.println("10. MIDLERTIDIG LOAD");
-        System.out.println("11. MIDLERTIDIG SAVE\n");
-        System.out.println("12. MIDLERTIDIG SAVE RESULTS\n");
+        System.out.println("\n10. MIDLERTIDIG LOAD MEMBERS");
+        System.out.println("11. MIDLERTIDIG SAVE MEMBERS");
+        System.out.println("12. MIDLERTIDIG SAVE RESULTS");
+        System.out.println("13. MIDLERTIDIG LOAD RESULTS");
+        System.out.println("\nVIGTIG - at fylde medlemslisten med LOAD og resultatlisten med LOAD før der påbegyndes en søgning.\n"); //TODO: Fjern når det passer
         System.out.println("0. Terminate program");
     }
 
@@ -668,8 +672,13 @@ public class UserInterface {
         int idToFind = input.nextInt();
         input.nextLine();
         Member m = findMemberById(idToFind);
-        String result = controller.findSwimmersResultTraining(m);
-        System.out.println(result);
+        if (m != null) {
+            String result = controller.findSwimmersResultTraining(m);
+            System.out.println(result);
+        } else {
+            System.out.println("Something went wrong. No member ID or result ID was found. Try again with an active member list or load the list from the CSV file.");
+        }
+
     }
 
 
@@ -754,14 +763,15 @@ public class UserInterface {
         System.out.println("In total overdue: " + controller.sumOverduePayments() + " DKK");
     }
     //######################### Save & load list  ################################
-    public void saveListofCompMembers() {
-        controller.saveCompMemberList(controller.getMembersList());
+    public void saveMembersToList() {
+        controller.saveAllMembersToList(controller.getMembersList());
         System.out.println("Successfully saved list of members_competition.");
     }
-    public void loadListOfCompMembers() {
-        controller.loadSavedCompMemberList(controller.getMembersList());
+    public void loadListOfMembers() {
+        controller.loadAllMembersFromList(controller.getMembersList());
         System.out.println("Successfully loaded list of members_competition");
     }
+    /*
     public void saveListOfExerciseMembers() {
         controller.saveExerciseMemberList(controller.getMembersList());
         System.out.println("Successfully saved list of members_exercise.");
@@ -771,14 +781,23 @@ public class UserInterface {
         System.out.println("Successfully loaded list of members_exercise");
     }
 
-    public void saveCompetitionResult(){
-        controller.saveCompetitionResult(controller.getResultList());
+     */
+
+    public void saveAllResults(){
+        controller.saveAllResults(controller.getResultList());
         System.out.println("Successfully saved competition result");
     }
+    public void loadAllResults() {
+        controller.loadSavedMemberResults(controller.getResultList());
+        System.out.println("Successfully loaded member results.");
+    }
+    /*
     public void saveTrainingResult(){
         controller.saveTrainingResult(controller.getResultList());
         System.out.println("Successfully saved training result");
     }
+
+     */
 
 
     private int scanIntSafely() { //Metode til at fange hvis man skriver et bogstav i en int scanner, der ellers vil melde en fejl
