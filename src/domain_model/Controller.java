@@ -173,6 +173,12 @@ public class Controller {
     public void printCompetitionSenior() {
         data.printCompetitionSenior();
     }
+    public ArrayList<Member> getJuniorList() {
+       return data.getJuniorList();
+    }
+    public ArrayList<Member> getSeniorList() {
+        return data.getSeniorList();
+    }
     public void testStringBuilder() {
         data.testPrintSavedArrayListWithCombinedData();
     }

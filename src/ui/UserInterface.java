@@ -826,11 +826,17 @@ public class UserInterface {
     public void printCompetitionJunior() {
         System.out.println("\nCompetitionmembers under 18 years:");
         controller.printCompetitionJunior();
+        for (Member m : controller.getJuniorList()) {
+            System.out.println(m.toString());
+        }
     }
 
     public void printCompetitionSenior() {
         System.out.println("Competitionmembers over 18 years:");
         controller.printCompetitionSenior();
+        for (Member m : controller.getSeniorList()) {
+            System.out.println(m.toString());
+        }
     }
 
     public void printResultListCompetition() {
