@@ -40,7 +40,7 @@ public class UserInterface {
                     startProgramChairman();
                     condition = false;
                 }
-                case "treasurer", "tre", "trea", "treas", "treasu", "treasur", "treasure", "t" -> {
+                case "treasurer", "tre", "trea", "treas", "treasu", "treasur", "treasure", "t", "tr" -> {
                     startProgramTreasurer();
                     condition = false;
                 }
@@ -63,7 +63,7 @@ public class UserInterface {
     public void startProgramAll() {
 
         while (switchInput != SENTINEL) {
-            System.out.println("Delfinen UI - DEBUG - ALL CHOICES");
+            System.out.println("Delfinen - DEBUG - ALL CHOICES");
             System.out.println(" ");
             System.out.println("1. Add Swimmer");
             System.out.println("2. Add Swimmer results-NOTIMPLEMENTED-");
@@ -118,39 +118,6 @@ public class UserInterface {
 
             switch (switchInput) { //TODO: Rette cases, duplicate displaylist, mangler delete swimmer disciplines.
 
-                case 10: {
-                    showAllDataSpecificMember();
-                    break;
-                }
-                case 11: {
-                    saveMembersToList();
-                    //saveListOfExerciseMembers();
-                    break;
-                }
-                case 12: {
-                    saveAllResults();
-                    break;
-                }
-                case 13: {
-//                    loadAllResults();
-                    break;
-                }
-                case 14: {
-                    printCompetitionJunior();
-                    break;
-                }
-                case 15: {
-                    printCompetitionSenior();
-                    break;
-                }
-                case 16: {
-                    showResultListCompetition();
-                    break;
-                }
-                case 17: {
-                    showResultListCompetition();
-                    break;
-                }
                 case 1: {
                     generateSwimmer();
                     break;
@@ -160,36 +127,17 @@ public class UserInterface {
                     break;
                 }
                 case 3: {
-                    setMultipleDisciplines();
+                    displayChairmanShowTreasurerMenu();
                     break;
                 }
                 case 4: {
-                    deleteSwimDisciplines();
+                    displayChairmanShowCoachMenu();
                     break;
                 }
                 case 5: {
-                    printOverduePayments();
-                    showSumOverduePayments();
-                    break;
+                    displayMembersResultsCompTrain();
                 }
-                case 6: {
-                    registerPayment();
-                    break;
-                }
-                case 7: {
-                    calculateTotalRateForecast();
-                    calculateTotalRateForecastPlus5Youth();
-                    calculateTotalRateForecastPlus5Senior();
-                    break;
-                }
-                case 8: {
-                    addSwimmerResults();
-                    break;
-                }
-                case 9: {
-                    searchForMemberResultIdToId();
-                    break;
-                }
+
                 case 0: {
                     System.out.println("Terminating application.");
                     break; //Failsafe
@@ -200,32 +148,111 @@ public class UserInterface {
 
     public void displayMenuChairman() {
         System.out.println(" ");
-        System.out.println("Delfinen UI - CHAIRMAN");
+        System.out.println("Delfinen - CHAIRMAN");
         System.out.println(" ");
         System.out.println("1. Add Swimmer");
         System.out.println("2. Display list of Swimmers");
-        System.out.println("3. Register Swimmer Disciplines");
-        System.out.println("4. Delete Swimmer Disciplines");
-        System.out.println("5. List of overdue Payments");
-        System.out.println("6. Register payment of Membership");
-        System.out.println("7. Forecast");
-        System.out.println("8. Add Training/Competition results by Swimmer ID");
-        System.out.println("9. Search for Training/Competition results by Swimmer ID");
-        System.out.println("\n10. MIDLERTIDIG show all data specific member");
-        System.out.println("11. MIDLERTIDIG SAVE MEMBERS");
-        System.out.println("12. MIDLERTIDIG SAVE RESULTS");
-        System.out.println("13. MIDLERTIDIG LOAD RESULTS");
-        System.out.println("14. Print competition Junior");
-        System.out.println("15. Print competition Senior");
-        System.out.println("16. Print resultlist competition");
-        System.out.println("17. Print resultlist training");
-        System.out.println("\nVIGTIG - at fylde medlemslisten med LOAD og resultatlisten med LOAD før der påbegyndes en søgning.\n"); //TODO: Fjern når det passer
+        System.out.println("3. Show Treasurer Menu");
+        System.out.println("4. Show Coach Menu");
+        System.out.println("5. Show Member/Result Overview");
         System.out.println("0. Terminate program");
+    } //TODO: Delfinen i stedet for UI
+    public void displayChairmanShowCoachMenu() {
+        displayMenuCoach();
+        switchInput = scanIntSafely();
+        input.nextLine();
+
+        switch (switchInput) {
+            case 1: {
+                setMultipleDisciplines();
+                break;
+            }
+            case 2: {
+                deleteSwimDisciplines();
+                break;
+            }
+            case 3: {
+                displayListofMembers();
+                break;
+            }
+            case 4: {
+                addSwimmerResults();
+                break;
+            }
+            case 5: {
+                searchForMemberResultIdToId();
+                break;
+            }
+            case 6: {
+                sortBySwimTime();
+                break;
+            }
+            case 7: {
+                displayMembersResultsCompTrain();
+                break;
+            }
+        }
     }
+    public void displayChairmanShowTreasurerMenu() {
+        displayMenuTreasurer();
+        switchInput = scanIntSafely();
+        input.nextLine();
+
+        switch (switchInput) {
+            case 1: {
+                displayListofMembers();
+                break;
+            }
+            case 2: {
+                registerPayment();
+                break;
+            }
+            case 3: {
+                printOverduePayments();
+                showSumOverduePayments();
+                break;
+            }
+            case 4: {
+                calculateTotalRateForecast();
+                calculateTotalRateForecastPlus5Youth();
+                calculateTotalRateForecastPlus5Senior();
+                break;
+            }
+        }
+
+    }
+    public void displayMembersResultsCompTrain() {
+        System.out.println("1. Show Competition Members - Junior");
+        System.out.println("2. Show Competition Members - Senior");
+        System.out.println("3. Show Competition Results");
+        System.out.println("4. Show Training Results");
+        switchInput = scanIntSafely();
+        input.nextLine();
+
+        switch (switchInput) {
+            case 1: {
+                printCompetitionJunior();
+                break;
+            }
+            case 2: {
+                printCompetitionSenior();
+                break;
+            }
+            case 3: {
+                printResultListCompetition();
+                break;
+            }
+            case 4: {
+                //TODO: printResultListTraining();
+                break;
+            }
+        }
+    }
+
 
     public void displayMenuTreasurer() {
         System.out.println(" ");
-        System.out.println("Delfinen UI - TREASURER");
+        System.out.println("Delfinen - TREASURER");
         System.out.println(" ");
         System.out.println("1. Display list of Swimmers");
         System.out.println("2. Register payment of Membership");
@@ -236,16 +263,15 @@ public class UserInterface {
 
     public void displayMenuCoach() {
         System.out.println(" ");
-        System.out.println("Delfinen UI - COACH");
+        System.out.println("Delfinen - COACH");
         System.out.println(" ");
         System.out.println("1. Register Swimmer Disciplines");
         System.out.println("2. Delete Swimmer Disciplines");
         System.out.println("3. Display list of Swimmers");
         System.out.println("4. Register Swimmer Results(Training/Competition)");
         System.out.println("5. Search for Training/Competition results by Swimmer ID");
-        System.out.println("6. Print competition Junior");
-        System.out.println("7. Print competition Senior");
-        System.out.println("8. Sort by SwimTime\n");
+        System.out.println("6. Sort by Swimtime");
+        System.out.println("7. Show Member/Result Overview\n");
         System.out.println("0. Terminate program");
     }
 
@@ -313,16 +339,12 @@ public class UserInterface {
                     searchForMemberResultIdToId();
                     break;
                 }
-                case 8: {
-                    sortBySwimTime(); //TODO: "Crasher", hvis medlemslisten og resultatlisten ikke er fyldt ved eksekvering. Har implementeret exception handling de relevante steder, men funktionen vil ikke virke ved tom medlems- og resultatliste.
-                    break;
-                }
                 case 6: {
-                    printCompetitionJunior();
+                    displayMembersResultsCompTrain();
                     break;
                 }
                 case 7: {
-                    printCompetitionSenior();
+                    sortBySwimTime(); //TODO: "Crasher", hvis medlemslisten og resultatlisten ikke er fyldt ved eksekvering. Har implementeret exception handling de relevante steder, men funktionen vil ikke virke ved tom medlems- og resultatliste.
                     break;
                 }
                 case 0: {
