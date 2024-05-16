@@ -40,7 +40,7 @@ public class UserInterface {
                     startProgramChairman();
                     condition = false;
                 }
-                case "treasurer", "tre", "trea", "treas", "treasu", "treasur", "treasure", "t" -> {
+                case "treasurer", "tre", "trea", "treas", "treasu", "treasur", "treasure", "t", "tr" -> {
                     startProgramTreasurer();
                     condition = false;
                 }
