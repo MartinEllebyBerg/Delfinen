@@ -231,11 +231,11 @@ public class UserInterface {
 
         switch (switchInput) {
             case 1: {
-                printCompetitionJunior();
+                showCompetitionJunior();
                 break;
             }
             case 2: {
-                printCompetitionSenior();
+                showCompetitionSenior();
                 break;
             }
             case 3: {
@@ -243,7 +243,7 @@ public class UserInterface {
                 break;
             }
             case 4: {
-                //TODO: printResultListTraining();
+                showResultListTraining();
                 break;
             }
         }
@@ -382,10 +382,6 @@ public class UserInterface {
             }
         }
         boolean activePassive = askForActivity(); //Metode, tjekker for aktivitet.
-
-        /*System.out.println("During this registration you will be able to select one swim discipline for the member.");
-        System.out.println("Afterwards, you will be able to set multiple disciplines for selected swimmer.\n");
-        SwimDiscipline firstDiscipline = userPromptSwimDiscipline();*/
 
         boolean decidingWhatTypeOfSwimmer = compOrExerciseSwimmer(); //Assigner, om der skal laves et konkurrence eller motionist objekt.
 
@@ -559,7 +555,6 @@ public class UserInterface {
     public SwimDiscipline findSwimDisciplineEnum(String searchTerm) {
         for (SwimDiscipline e : SwimDiscipline.values()) {
             if (searchTerm.equals(e.name())) {
-                //System.out.println("Found matching enum: " + e + " " + e.name());//TODO: denne virker lidt malplaceret...skal vi nok have udkommenteret. Måske metoden helt over i data klassen uden sysout?
                 return e;
             }
         }
@@ -724,7 +719,7 @@ public class UserInterface {
         System.out.println(controller.showDataSpecificMember(memberID));
     }
 
-    public void findMemberSearchWithNewArray() { // Ved ikke om vi skal bruge denne metode, men den er vel rar at have
+    public void findMemberSearchWithNewArray() {
         System.out.println("Please type in the first name of the member you are looking for.");
         String memberToFind = input.nextLine();
         controller.searchMember(memberToFind);
@@ -847,16 +842,16 @@ public class UserInterface {
         System.out.println("Successfully saved competition result");
     }
 
-    public void printCompetitionJunior() {
-        System.out.println("\nCompetitionmembers under 18 years:");
+    public void showCompetitionJunior() {
+        System.out.println("\nCompetition members under 18 years:");
         controller.printCompetitionJunior();
         for (Member m : controller.getJuniorList()) {
             System.out.println(m.toString());
         }
     }
 
-    public void printCompetitionSenior() {
-        System.out.println("Competitionmembers over 18 years:");
+    public void showCompetitionSenior() {
+        System.out.println("Competition members over 18 years:");
         controller.printCompetitionSenior();
         for (Member m : controller.getSeniorList()) {
             System.out.println(m.toString());
@@ -866,6 +861,14 @@ public class UserInterface {
     public void showResultListCompetition() {
         System.out.println("\nCompetition results:");
         controller.showResultListCompetition();
+        for (ResultSwimmer rs : controller.getSearchList()) {
+            Member m = controller.findMemberById(rs.getMemberID());
+            System.out.println(rs.toStringSwimIDMemberId(m));
+        }
+    }
+    public void showResultListTraining() {
+        System.out.println("\nTraining results:");
+        controller.showResultListTraining();
         for (ResultSwimmer rs : controller.getSearchList()) {
             Member m = controller.findMemberById(rs.getMemberID());
             System.out.println(rs.toStringSwimIDMemberId(m));
