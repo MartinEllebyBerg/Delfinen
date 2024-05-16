@@ -135,6 +135,21 @@ public class UserInterface {
 //                    loadAllResults();
                     break;
                 }
+                case 14: {
+                    printCompetitionJunior();
+                    break;
+                }
+                case 15: {
+                    printCompetitionSenior();
+                    break;
+                }
+                case 16: {
+                    printResultListCompetition();
+                    break;
+                }
+                case 17: {
+                    controller.testStringBuilder();
+                }
                 case 1: {
                     generateSwimmer();
                     break;
@@ -199,6 +214,10 @@ public class UserInterface {
         System.out.println("11. MIDLERTIDIG SAVE MEMBERS");
         System.out.println("12. MIDLERTIDIG SAVE RESULTS");
         System.out.println("13. MIDLERTIDIG LOAD RESULTS");
+        System.out.println("14. Print competition Junior");
+        System.out.println("15. Print competition Senior");
+        System.out.println("16. Print resultlist competition");
+        System.out.println("17. Print resultlist training");
         System.out.println("\nVIGTIG - at fylde medlemslisten med LOAD og resultatlisten med LOAD før der påbegyndes en søgning.\n"); //TODO: Fjern når det passer
         System.out.println("0. Terminate program");
     }
@@ -222,7 +241,9 @@ public class UserInterface {
         System.out.println("2. Delete Swimmer Disciplines");
         System.out.println("3. Display list of Swimmers");
         System.out.println("4. Register Swimmer Results(Training/Competition)");
-        System.out.println("5. Search for Training/Competition results by Swimmer ID\n");
+        System.out.println("5. Search for Training/Competition results by Swimmer ID");
+        System.out.println("6. Print competition Junior");
+        System.out.println("7. Print competition Senior");
         System.out.println("0. Terminate program");
     }
 
@@ -290,8 +311,16 @@ public class UserInterface {
                     searchForMemberResultIdToId();
                     break;
                 }
-                case 6: {
+                case 8: {
                     sortBySwimTime(); //TODO: "Crasher", hvis medlemslisten og resultatlisten ikke er fyldt ved eksekvering. Har implementeret exception handling de relevante steder, men funktionen vil ikke virke ved tom medlems- og resultatliste.
+                    break;
+                }
+                case 6: {
+                    printCompetitionJunior();
+                    break;
+                }
+                case 7: {
+                    printCompetitionSenior();
                     break;
                 }
                 case 0: {
@@ -666,7 +695,6 @@ public class UserInterface {
         saveMembersToList();
     }
     public void showAllDataSpecificMember (){
-
         System.out.println("Enter memberID of the member you want to see all data registered on.");
         int memberID =scanIntSafely();
         System.out.println(controller.showDataSpecificMember(memberID));
@@ -790,10 +818,26 @@ public class UserInterface {
         System.out.println("Successfully saved list of members.");
     }
 
-    public void saveAllResults(){
+    public void saveAllResults() {
         controller.saveAllResults(controller.getResultList());
         System.out.println("Successfully saved competition result");
     }
+
+    public void printCompetitionJunior() {
+        System.out.println("\nCompetitionmembers under 18 years:");
+        controller.printCompetitionJunior();
+    }
+
+    public void printCompetitionSenior() {
+        System.out.println("Competitionmembers over 18 years:");
+        controller.printCompetitionSenior();
+    }
+
+    public void printResultListCompetition() {
+        System.out.println("\nResultlist competition swimmers:");
+        controller.printResultListCompetition();
+    }
+
     //######################### Sorting ResultSwimmer - Training & Competition results  ################################
     public void sortBySwimTime() {
         controller.copyResultListToListToBeSorted();

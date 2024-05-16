@@ -97,22 +97,21 @@ public class ResultSwimmer {
     @Override
     public String toString() {
         //TODO: Gøre begge toString metoder lidt pænere. Eventuelt en ifblok, der tjekker på den nye boolean isCompetitive og derefter retter til
-        return "ResultSwimmer: " +
-                "\nSwimID: " + memberID +
-                "\nSwimDiscipline: " + swimDiscipline +
-                "\nCompetitionName: " + competitionName +
-                "\nCompetitionLocation: " + competitionLocation +
-                "\nSwimTime: " + swimTime +
-                "\nPlacementCompetition: " + placementCompetition +
-                "\nCompetitionDate: " + resultDate;
+        return "SwimID: " + memberID +
+                " | SwimDiscipline: " + swimDiscipline +
+                " | SwimTime: " + swimTime +
+                " | CompetitionName: " + competitionName +
+                " | CompetitionLocation: " + competitionLocation +
+                " | PlacementCompetition: " + placementCompetition +
+                " | CompetitionDate: " + resultDate;
     }
 
+    //Er den relevant?
     public String toStringTraining() {
-        return "ResultSwimmer: " +
-                "\nSwimID: " + memberID +
-                "\nSwimDiscipline: " + swimDiscipline +
-                "\nSwimTime: " + swimTime +//
-                "\nCompetitionDate: " + resultDate;
+        return "SwimID: " + memberID +
+                " | SwimDiscipline: " + swimDiscipline +
+                " | SwimTime: " + swimTime +
+                " | TrainingDate: " + resultDate + "\n";
     }
     public String placementSTNDRD(int placementCompetition) {
         String result ="";
