@@ -45,6 +45,16 @@ public class Data {
         }
         return null;
     }
+
+    public CompetitionMember findCompetitionMemberById(int idToFind) {
+        for (Member member : getMembersList()) {
+            if (member.getMemberID() == idToFind && member instanceof CompetitionMember) {
+                return (CompetitionMember) member;
+            }
+        }
+        return null;
+    }
+
     public String returnSortJuniorSeniorSwimTime(int totalCount, int maxAmountOfResultsToPrint, int seniorAge, ArrayList<ResultSwimmer> arr, SwimDiscipline disciplineEnum) {
         int count = totalCount;
         String result ="\n|"+disciplineEnum+"|\n";

@@ -364,106 +364,109 @@ public class UserInterface {
 
     public void addSwimmerResults() {
         System.out.println("Please input Training/Competition to register training or competition results:");
-        /*
-        System.out.println("1. Training"); //Kan forvirre brugeren ved at give dem et "valg" som om de skal indtaste 1 eller 2 for henholdsvist training eller competition
-        System.out.println("2. Competition"); // + Så hellere fortælle dem, at de skal skrive enten training eller competition
 
-         */
         String userChoice = input.nextLine();
         if (userChoice.toLowerCase().equals("training")) {
-            boolean isCompetitive = false;
-            System.out.println("Type the memberID of the swimmer who's results you wish to register:");
-            int memberID = scanIntSafely();
-            input.nextLine();
-            controller.findIndexToBeChanged(memberID);
-            String name = controller.findNameByIndex();
-            System.out.println("You are registering training result on member: " + name);
+            boolean resultInputFinished = false; // boolean til at slutte while loopet herunder når brugeren er færdig med at inputte resultatet.
+            while (!resultInputFinished) { // while loop der tvinger brugeren til at inputte et memberID på en competition member.
+                boolean isCompetitive = false;
+                System.out.println("Type the memberID of a competition member whose training results you wish to register:");
+                int memberID = scanIntSafely();
+                input.nextLine();
 
-            /*
-            System.out.println("Type the swim discipline:");
-            String swimDiscipline = input.nextLine().toLowerCase();
+                controller.findIndexToBeChanged(memberID);
+                String name = controller.findNameByIndex();
+                System.out.println("You are registering training result on member: " + name);
 
-             */
-            SwimDiscipline disciplineName = userPromptSwimDiscipline(); //Denne metode spørger om brugerinput med tilhørende sysoutbeskeder.
+                CompetitionMember competitionMember = controller.findCompetitionMemberById(memberID); // instans af CompetitionMember som tjekker om det inputtede memberID tilhører en competition member.
+                if (competitionMember != null) { // hvis den finder et memberID der tilhører en competition member så begynder resultatregistreringen.
+                    SwimDiscipline disciplineName = userPromptSwimDiscipline(); //Denne metode spørger om brugerinput med tilhørende sysoutbeskeder.
 
-            System.out.println("Type the swim time:");
-            double swimTime = scanDoubleSafely();//TODO: vi skal have noget exception handling her...jeg kan ikke få den til at godtage et tal med decimaler
-            input.nextLine();
+                    System.out.println("Type the swim time:");
+                    double swimTime = scanDoubleSafely();//TODO: vi skal have noget exception handling her...jeg kan ikke få den til at godtage et tal med decimaler
+                    input.nextLine();
 
-            LocalDate localDate = null;
-            boolean validInput = false;
+                    LocalDate localDate = null;
+                    boolean validInput = false;
 
-            while (!validInput) {
-                System.out.println("Please input the result date in the following format YYYY-MM-DD: ");
+                    while (!validInput) {
+                        System.out.println("Type the result date in the following format YYYY-MM-DD: ");
 
-                String localDateInput = input.nextLine(); //Brugerinput gemmes
+                        String localDateInput = input.nextLine(); //Brugerinput gemmes
 
-                try {
-                    localDate = LocalDate.parse(localDateInput); //LocalDate.parse læser de nødvendige attributter fra birthdayStr og parser dem til YYYY-MM-DD
-                    validInput = true; //Vi afslutter while loopet.
-                } catch (DateTimeParseException e) {
-                    System.out.println("Invalid input. Please type your input in the following format YYYY-MM-DD:");
-                } catch (InputMismatchException e) {
-                    System.out.println("Invalid input. Please type your input in the following format YYYY-MM-DD. Example: 1992-12-12" +
-                            "for having a birthday on the 12th of December in 1992.");
+                        try {
+                            localDate = LocalDate.parse(localDateInput); //LocalDate.parse læser de nødvendige attributter fra birthdayStr og parser dem til YYYY-MM-DD
+                            validInput = true; //Vi afslutter while loopet.
+                        } catch (DateTimeParseException e) {
+                            System.out.println("Invalid input. Please type your input in the following format YYYY-MM-DD:");
+                        } catch (InputMismatchException e) {
+                            System.out.println("Invalid input. Please type your input in the following format YYYY-MM-DD. Example: 1992-12-12" +
+                                    "if the date of the result was the 12th of December in 1992.");
+                        }
+                    }
+                    controller.addSwimResultTraining(isCompetitive, memberID, disciplineName, swimTime, localDate);
+                    System.out.println("Successfully added a training result for a swimmer with the following member ID: " + memberID);
+                    resultInputFinished = true;
+                } else {
+                    System.out.println("You cannot register results for exercise members.");
                 }
             }
-            controller.addSwimResultTraining(isCompetitive, memberID, disciplineName, swimTime, localDate);
-            //controller.printResultListTraining();  //Henviser til sysout beskeder i anden klasse end UI
-            System.out.println("Successfully added a training result for a swimmer with the following member ID: "+memberID);
-
-
         } else if (userChoice.toLowerCase().equals("competition")) {
-            boolean isCompetitive = true;
-            System.out.println("Type the memberID of the swimmer whose results you wish to register:");
-            int memberID = scanIntSafely();
-            input.nextLine();
-            controller.findIndexToBeChanged(memberID);
-            String name = controller.findNameByIndex();
-            System.out.println("You are registering competition result on member: " + name);
+            boolean resultInputFinished = false; // boolean til at slutte while loopet herunder når brugeren er færdig med at inputte resultatet.
+            while (!resultInputFinished) { // while loop der sørger for at den bliver ved med at tvinge brugeren til at inputte et memberID på en competition member.
+                boolean isCompetitive = true;
+                System.out.println("Type the memberID of a competition member whose competition results you wish to register:");
+                int memberID = scanIntSafely();
+                input.nextLine();
 
-            System.out.println("Type the competition location:");
-            String competitionLocation = input.nextLine();
+                controller.findIndexToBeChanged(memberID);
+                String name = controller.findNameByIndex();
+                System.out.println("You are registering competition result on member: " + name);
 
-            System.out.println("Type the competition name:");
-            String competitionName = input.nextLine();
+                CompetitionMember competitionMember = controller.findCompetitionMemberById(memberID); // instans af CompetitionMember som tjekker om det inputtede memberID tilhører en competition member.
+                if (competitionMember != null) { // hvis den finder et memberID der tilhører en competition member så begynder resultatregistreringen.
+                    System.out.println("Type the competition location:");
+                    String competitionLocation = input.nextLine();
 
-            LocalDate localDate = null;
-            boolean validInput = false;
+                    System.out.println("Type the competition name:");
+                    String competitionName = input.nextLine();
 
-            while (!validInput) {
-                System.out.println("Please input the result date in the following format YYYY-MM-DD: ");
+                    LocalDate localDate = null;
+                    boolean validInput = false;
 
-                String localDateInput = input.nextLine(); //Brugerinput gemmes
+                    while (!validInput) {
+                        System.out.println("Type the result date in the following format YYYY-MM-DD: ");
 
-                try {
-                    localDate = LocalDate.parse(localDateInput); //LocalDate.parse læser de nødvendige attributter fra birthdayStr og parser dem til YYYY-MM-DD
-                    validInput = true; //Vi afslutter while loopet.
-                } catch (DateTimeParseException e) {
-                    System.out.println("Invalid input. Please type your input in the following format YYYY-MM-DD:");
-                }catch (InputMismatchException e) {
-                    System.out.println("Invalid input. Please type your input in the following format YYYY-MM-DD. Example: 1992-12-12" +
-                            "for having a birthday on the 12th of December in 1992.");
+                        String localDateInput = input.nextLine(); //Brugerinput gemmes
+
+                        try {
+                            localDate = LocalDate.parse(localDateInput); //LocalDate.parse læser de nødvendige attributter fra birthdayStr og parser dem til YYYY-MM-DD
+                            validInput = true; //Vi afslutter while loopet.
+                        } catch (DateTimeParseException e) {
+                            System.out.println("Invalid input. Please type your input in the following format YYYY-MM-DD:");
+                        } catch (InputMismatchException e) {
+                            System.out.println("Invalid input. Please type your input in the following format YYYY-MM-DD. Example: 1992-12-12" +
+                                    "if the date of the result was the 12th of December in 1992.");
+                        }
+                    }
+
+                    SwimDiscipline disciplineName = userPromptSwimDiscipline(); //Denne metode spørger om brugerinput med tilhørende sysoutbeskeder.
+
+                    System.out.println("Type the swim time:");
+                    double swimTime = scanDoubleSafely();
+                    input.nextLine();
+
+                    System.out.println("Type the placement:");
+                    int placementCompetition = scanIntSafely();
+                    input.nextLine();
+
+                    controller.addSwimResultCompetition(isCompetitive, memberID, competitionLocation, competitionName, localDate, disciplineName, swimTime, placementCompetition);
+                    System.out.println("Successfully added a competition result for a swimmer with the following member ID: " + memberID);
+                    resultInputFinished = true;
+                } else {
+                    System.out.println("You cannot register results for exercise members.");
                 }
             }
-            /*
-            System.out.println("Type the swim discipline:");
-            String swimDiscipline = input.nextLine().toLowerCase();
-
-             */
-            SwimDiscipline disciplineName = userPromptSwimDiscipline(); //Denne metode spørger om brugerinput med tilhørende sysoutbeskeder.
-
-            System.out.println("Type the swim time:");
-            double swimTime = scanDoubleSafely();
-            input.nextLine();
-
-            System.out.println("Type the placement:");
-            int placementCompetition = scanIntSafely();
-            input.nextLine();
-
-            controller.addSwimResultCompetition(isCompetitive, memberID, competitionLocation, competitionName, localDate, disciplineName, swimTime, placementCompetition);
-            System.out.println("Successfully added a competition result for a swimmer with the following member ID: "+memberID);
-
         }
         saveAllResults();
     }

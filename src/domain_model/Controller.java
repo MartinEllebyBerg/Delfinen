@@ -163,4 +163,8 @@ public class Controller {
     public Member findMemberById(int idToFind) {
         return data.findMemberById(idToFind);
     }
+
+    public CompetitionMember findCompetitionMemberById(int idToFind) {
+        return data.findCompetitionMemberById(idToFind);
+    }
 }
