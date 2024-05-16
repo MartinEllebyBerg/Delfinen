@@ -1,11 +1,7 @@
 package domain_model;
 
-import data_source.Filehandler;
-
-import javax.xml.transform.Result;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.logging.FileHandler;
 
 public class Data {
 
@@ -15,6 +11,7 @@ public class Data {
     private ArrayList<ResultSwimmer> resultList;
     private ArrayList<String[]> searchList;
     private ArrayList<Member> searchMatch;
+    private ArrayList<ResultSwimmer> listToBeSorted;
     private int indexToBeChanged;
 
 
@@ -24,6 +21,7 @@ public class Data {
         resultList = new ArrayList<>();
         searchList = new ArrayList<>();
         searchMatch = new ArrayList<>();
+        listToBeSorted = new ArrayList<>();
 
         //testAddSwimResultCompetition();
         //testAddSwimResultTraining();
@@ -34,6 +32,62 @@ public class Data {
     //METHODS
 
 
+    public Member findMemberById(int idToFind) {
+        for (Member member : getMembersList()) {
+            if (member.getMemberID() == idToFind) {
+                if (member instanceof CompetitionMember) {
+                    return member;
+                }
+                if (member instanceof ExerciseMember) {
+                    return member;
+                }
+            }
+        }
+        return null;
+    }
+    public String returnSortJuniorSeniorSwimTime(int totalCount, int maxAmountOfResultsToPrint, int seniorAge, ArrayList<ResultSwimmer> arr, SwimDiscipline disciplineEnum) {
+        int count = totalCount;
+        String result ="\n|"+disciplineEnum+"|\n";
+
+        result += "\n\t|"+ disciplineEnum+" - Senior |\n";
+        for (ResultSwimmer rs : arr) {
+            if (rs.getSwimDiscipline().equals(disciplineEnum)) {
+                Member m = findMemberById(rs.getMemberID());
+                int memberAge = m.getYearsOfAge();
+                if (memberAge >= seniorAge) {
+                    result += count + ". " + rs.toStringSortSwimTime();
+                    if (count == maxAmountOfResultsToPrint) {
+                        break;
+                    }
+                    count++;
+                }
+            }
+        }
+        result += "\n\t|"+ disciplineEnum+" - Junior |\n";
+        count = totalCount;
+        for (ResultSwimmer rs : arr) {
+            if (rs.getSwimDiscipline().equals(disciplineEnum)) {
+                Member m = findMemberById(rs.getMemberID());
+                int memberAge = m.getYearsOfAge();
+                if (memberAge < seniorAge) {
+                    result += count +". "+rs.toStringSortSwimTime();
+                    if (count == maxAmountOfResultsToPrint) {
+                        break;
+                    }
+                    count++;
+                }
+            }
+        }
+        return result;
+    }
+    public void copyResultListToListToBeSorted() {
+        for (ResultSwimmer rs : resultList) {
+            listToBeSorted.add(rs);
+        }
+    }
+    public ArrayList<ResultSwimmer> getListToBeSorted() {
+        return listToBeSorted;
+    }
 
     public ArrayList<Member> getSearchMatch() {
         return searchMatch;
@@ -131,7 +185,7 @@ public class Data {
 
     public int nextMemberID() {
         int result = 0;
-        result = membersList.size()+ 1;
+        result = membersList.size() + 1;
         return result;
     }
 
@@ -153,14 +207,15 @@ public class Data {
         }
         return totalForecast;
     }
+
     public double calculateTotalForecastPlus5Youth() {
         double forecastYouth = 0.0;
         double forecastSenior = 0.0;
         double totalForecast = 0.0;
         for (Member m : membersList) {
             m.calculateYearOfMember();
-            if (m.getYearsOfAge() < 18){
-                forecastYouth += m.getRate()*1.05;
+            if (m.getYearsOfAge() < 18) {
+                forecastYouth += m.getRate() * 1.05;
             } else {
                 m.calculateMembershipRate();
                 forecastSenior += m.getRate();
@@ -169,14 +224,15 @@ public class Data {
         }
         return totalForecast;
     }
+
     public double calculateTotalForecastPlus5Senior() {
         double forecastYouth = 0.0;
         double forecastSenior = 0.0;
         double totalForecast = 0.0;
         for (Member m : membersList) {
             m.calculateYearOfMember();
-            if (m.getYearsOfAge() > 18){
-                forecastSenior += m.getRate()*1.05;
+            if (m.getYearsOfAge() > 18) {
+                forecastSenior += m.getRate() * 1.05;
             } else {
                 m.calculateMembershipRate();
                 forecastYouth += m.getRate();
@@ -244,24 +300,24 @@ public class Data {
     public ArrayList<String> printOverduePayments() {
         ArrayList<String> overduePayments = new ArrayList<>();
         for (Member member : membersList) {
-            if(!member.isPaymentRegistered()) {
+            if (!member.isPaymentRegistered()) {
                 overduePayments.add(member.toStringOverduePayments());
             }
         }
         return overduePayments;
     }
 
-    public double sumOverduePayments () {
+    public double sumOverduePayments() {
         double result = 0.0;
         for (Member member : membersList) {
-            if(!member.isPaymentRegistered()) {
+            if (!member.isPaymentRegistered()) {
                 result += member.getRate();
             }
         }
         return result;
     }
 
-//TODO: Hvis denne testAddSwimResultCompetition ikke anvendes så slet
+    //TODO: Hvis denne testAddSwimResultCompetition ikke anvendes så slet
     //TODO: Hvis denne testAddSwimResultCompetition ikke anvendes så slet
     public void testAddSwimResultCompetition() {
         System.out.println("Her kører addswimresultmetoden");
@@ -322,7 +378,7 @@ public class Data {
         int count = 1;
         String result = "";
         result += "Competition results: \n";
-        for (ResultSwimmer rs : resultList) { //TODO: Ændre hvilken liste, der itereres over, når genereringsmetoden i UI udarbejdet af Mark og Martin er færdig. Der skal itereres over ResultListTraining og ResultListCompetition.
+        for (ResultSwimmer rs : resultList) {
             if (idToReference == rs.getMemberID()) {
                 if (rs.isCompetitive()) {
                     result += count + ". " + rs + "\n";
@@ -408,5 +464,31 @@ public class Data {
         for (ResultSwimmer r : resultList) {
             System.out.println(r.toString());
         }
+    }
+
+    //######################### Sorting methods ################################
+    public String sortBySwimTime() {
+        int totalCount = 1;
+        int maxAmountOfResultsToPrint = 5;
+        int seniorAge = 18;
+        String result = "";
+        if (!listToBeSorted.isEmpty()) {
+            result = "Sorted by swim time: \n";
+            listToBeSorted.sort(new disciplineComparator().thenComparing(new swimTimeComparator()));
+
+            result += returnSortJuniorSeniorSwimTime(totalCount, maxAmountOfResultsToPrint, seniorAge, listToBeSorted, SwimDiscipline.BREASTSTROKE);
+
+            result += returnSortJuniorSeniorSwimTime(totalCount, maxAmountOfResultsToPrint, seniorAge, listToBeSorted, SwimDiscipline.BACKSTROKE);
+
+            result += returnSortJuniorSeniorSwimTime(totalCount, maxAmountOfResultsToPrint, seniorAge, listToBeSorted, SwimDiscipline.FRONTCRAWL);
+
+            result += returnSortJuniorSeniorSwimTime(totalCount, maxAmountOfResultsToPrint, seniorAge, listToBeSorted, SwimDiscipline.BUTTERFLY);
+
+
+            System.out.println("DEBUG: Vi er i if blok og listToBeSorted er IKKE tom, linje 395.");
+        } else {
+            result = "There was an error sorting the list. (Error: Data.L454)";
+        }
+        return result;
     }
 }

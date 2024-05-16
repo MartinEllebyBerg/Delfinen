@@ -227,7 +227,6 @@ public class UserInterface {
     }
 
     public void startProgramTreasurer() {
-
         while (switchInput != SENTINEL) {
             displayMenuTreasurer();
             System.out.print("> ");
@@ -261,7 +260,6 @@ public class UserInterface {
             }
         }
     }
-
     public void startProgramCoach() {
 
         while (switchInput != SENTINEL) {
@@ -292,6 +290,10 @@ public class UserInterface {
                     searchForMemberResultIdToId();
                     break;
                 }
+                case 6: {
+                    sortBySwimTime(); //TODO: "Crasher", hvis medlemslisten og resultatlisten ikke er fyldt ved eksekvering. Har implementeret exception handling de relevante steder, men funktionen vil ikke virke ved tom medlems- og resultatliste.
+                    break;
+                }
                 case 0: {
                     System.out.println("Terminating application.");
                     break; //Failsafe
@@ -299,6 +301,7 @@ public class UserInterface {
             }
         }
     }
+    //######################### POSITIONS - Menu displays  ################################
 
     //######################### Adding Member  ################################
     public void generateSwimmer() {
@@ -384,7 +387,7 @@ public class UserInterface {
             SwimDiscipline disciplineName = userPromptSwimDiscipline(); //Denne metode spørger om brugerinput med tilhørende sysoutbeskeder.
 
             System.out.println("Type the swim time:");
-            double swimTime = input.nextDouble();//TODO: vi skal have noget exception handling her...hvis der skrives med punktum kommer der fejl...skal skrives med komma
+            double swimTime = scanDoubleSafely();//TODO: vi skal have noget exception handling her...jeg kan ikke få den til at godtage et tal med decimaler
             input.nextLine();
 
             LocalDate localDate = null;
@@ -451,7 +454,7 @@ public class UserInterface {
             SwimDiscipline disciplineName = userPromptSwimDiscipline(); //Denne metode spørger om brugerinput med tilhørende sysoutbeskeder.
 
             System.out.println("Type the swim time:");
-            double swimTime = input.nextDouble();
+            double swimTime = scanDoubleSafely();
             input.nextLine();
 
             System.out.println("Type the placement:");
@@ -509,7 +512,7 @@ public class UserInterface {
 
     public SwimDiscipline userPromptSwimDiscipline() {
         String UPSWDInput = " ";
-        System.out.println("\nPlease type in which swim discipline to assign.");
+        System.out.println("\nPlease type in which swim discipline to register.");
         System.out.println("Valid choices include breaststroke, backstroke, frontcrawl, butterfly or null.");
 
         while (true) {
@@ -547,7 +550,7 @@ public class UserInterface {
         System.out.println("Please input the member ID you would like to apply changes to.");
         int idToFind = scanIntSafely();
         input.nextLine();
-        Member memberToFind = findMemberById(idToFind); //Vi taster member id for at returnere et member objekt at redigere svømmediscipliner på.
+        Member memberToFind = controller.findMemberById(idToFind); //Vi taster member id for at returnere et member objekt at redigere svømmediscipliner på.
         String memberFirstName = memberToFind.getFirstName();
         String memberLastName = memberToFind.getLastName();
         System.out.println("You are in the process of making changes to: " +memberFirstName + " " +memberLastName);
@@ -614,7 +617,7 @@ public class UserInterface {
 
         int idToFind = scanIntSafely();
         input.nextLine();
-        Member memberToFind = findMemberById(idToFind);
+        Member memberToFind = controller.findMemberById(idToFind);
         String memberFirstName = memberToFind.getFirstName();
         String memberLastName = memberToFind.getLastName();
 
@@ -666,21 +669,7 @@ public class UserInterface {
         System.out.println(controller.showDataSpecificMember(memberID));
     }
 
-    public Member findMemberById (int idToFind) {
-        for (Member member : controller.getMembersList()) {
-            if (member.getMemberID() == idToFind) {
-                if (member instanceof CompetitionMember) {
-                    return member;
-                }
-                if (member instanceof ExerciseMember) {
-                    return member;
-                }
-            }
-        }
-        return null;
-    }
-
-    public void findMemberSearchWithNewArray() {
+    public void findMemberSearchWithNewArray() { // Ved ikke om vi skal bruge denne metode, men den er vel rar at have
         System.out.println("Please type in the first name of the member you are looking for.");
         String memberToFind = input.nextLine();
         controller.searchMember(memberToFind);
@@ -701,7 +690,7 @@ public class UserInterface {
         System.out.print("> ");
         int idToFind = input.nextInt();
         input.nextLine();
-        Member m = findMemberById(idToFind);
+        Member m = controller.findMemberById(idToFind);
         if (m != null) {
             String result = controller.findSwimmersResultTraining(m);
             System.out.println(result);
@@ -710,7 +699,6 @@ public class UserInterface {
         }
 
     }
-
 
     //######################### See list of members  ################################
     public void displayListofMembers() {
@@ -731,6 +719,8 @@ public class UserInterface {
         }
     }
 
+    //######################### Economic forecasting  ################################
+    //TODO: NICE_TO if we can make a forecast based on the age next year, saying we have the current members with current status.
     public void calculateTotalRateForecast() {
         System.out.println(" ");
         System.out.println("Calculation of expected income (payment membership rate) based on current membership status: ");
@@ -751,7 +741,7 @@ public class UserInterface {
         double result = controller.calculateTotalRateForecastPlus5Senior();
         System.out.println("Total: " + result + " DKK/year.");
     }
-
+    //######################### Payments  ################################
     public void registerPayment() {
         System.out.println(" ");
         System.out.println("Please note in order to register a payment you will need the memberID of the specific member you want to alter");
@@ -782,14 +772,12 @@ public class UserInterface {
         }
         saveMembersToList();
     }
-
     public void printOverduePayments() {
         ArrayList<String> overduePayments = controller.printOverduePayments();
         for (String overduePayment : overduePayments) {
             System.out.println(overduePayment);
         }
     }
-
     public void showSumOverduePayments() {
         System.out.println("In total overdue: " + controller.sumOverduePayments() + " DKK");
     }
@@ -803,7 +791,19 @@ public class UserInterface {
         controller.saveAllResults(controller.getResultList());
         System.out.println("Successfully saved competition result");
     }
+    //######################### Sorting ResultSwimmer - Training & Competition results  ################################
+    public void sortBySwimTime() {
+        controller.copyResultListToListToBeSorted();
+        if (!controller.getListToBeSorted().isEmpty()) {
+            System.out.println("Resultlist successfully copied to listToBeSorted.");
+        } else {
+            System.out.println("listToBeSorted failed to populate. UI.793.");
+        }
+        System.out.println(controller.sortBySwimTime());
+    }
 
+
+    //######################### Scanning int & doubles safely - recursion  ################################
     private int scanIntSafely() { //Metode til at fange hvis man skriver et bogstav i en int scanner, der ellers vil melde en fejl
         try {
             return input.nextInt(); // Her tester den om der bliver tastet en int ind i scanneren
@@ -811,6 +811,16 @@ public class UserInterface {
             input.nextLine(); // Scanneren skal lige forstå, at den nu skal være klar til at læse på en ny linje
             System.out.println("You didn't type in a number - please try again:");
             return scanIntSafely(); // Rekursion: Metoden kalder sig selv, og starter dermed forfra med et nyt try!
+        }
+    }
+
+    private double scanDoubleSafely() {
+        try {
+            return input.nextDouble();
+        } catch(InputMismatchException ime) {
+            input.nextLine();
+            System.out.println("You didn't type in a number correctly. Please use the comma (' , ') as a decimal separator. (Example: 21,5) ");
+            return scanDoubleSafely();
         }
     }
 }
