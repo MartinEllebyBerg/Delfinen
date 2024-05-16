@@ -65,7 +65,7 @@ public class Data {
                 Member m = findMemberById(rs.getMemberID());
                 int memberAge = m.getYearsOfAge();
                 if (memberAge >= seniorAge) {
-                    result += count + ". " + rs.toStringSortSwimTime();
+                    result += count + ". " + rs.toStringSortSwimTime(m);
                     if (count == maxAmountOfResultsToPrint) {
                         break;
                     }
@@ -80,7 +80,7 @@ public class Data {
                 Member m = findMemberById(rs.getMemberID());
                 int memberAge = m.getYearsOfAge();
                 if (memberAge < seniorAge) {
-                    result += count +". "+rs.toStringSortSwimTime();
+                    result += count +". "+rs.toStringSortSwimTime(m);
                     if (count == maxAmountOfResultsToPrint) {
                         break;
                     }

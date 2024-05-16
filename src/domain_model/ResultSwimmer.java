@@ -127,10 +127,11 @@ public class ResultSwimmer {
         }
         return result;
     }
-    public String toStringSortSwimTime() {
+    public String toStringSortSwimTime(Member m) {
         String result =
                 "SwimTime: "+swimTime+
                 "\tMemberID: "+memberID+
+                        "\tMember name: "+"("+m.getFirstName()+" "+m.getLastName()+")"+
                 "\tDate performed: "+resultDate;
         if (isCompetitive) {
             result +=

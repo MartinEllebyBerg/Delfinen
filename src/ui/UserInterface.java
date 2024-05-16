@@ -222,7 +222,8 @@ public class UserInterface {
         System.out.println("2. Delete Swimmer Disciplines");
         System.out.println("3. Display list of Swimmers");
         System.out.println("4. Register Swimmer Results(Training/Competition)");
-        System.out.println("5. Search for Training/Competition results by Swimmer ID\n");
+        System.out.println("5. Search for Training/Competition results by Swimmer ID");
+        System.out.println("6. Sort by SwimTime\n");
         System.out.println("0. Terminate program");
     }
 
