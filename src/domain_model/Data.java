@@ -12,6 +12,17 @@ public class Data {
     private ArrayList<String[]> searchList;
     private ArrayList<Member> searchMatch;
     private ArrayList<ResultSwimmer> listToBeSorted;
+
+    public ArrayList<Member> getJuniorList() {
+        return juniorList;
+    }
+
+    public ArrayList<Member> getSeniorList() {
+        return seniorList;
+    }
+
+    private ArrayList<Member> juniorList;
+    private ArrayList<Member> seniorList;
     private int indexToBeChanged;
 
 
@@ -22,6 +33,8 @@ public class Data {
         searchList = new ArrayList<>();
         searchMatch = new ArrayList<>();
         listToBeSorted = new ArrayList<>();
+        juniorList = new ArrayList<>();
+        seniorList = new ArrayList<>();
 
         //testAddSwimResultCompetition();
         //testAddSwimResultTraining();
@@ -57,9 +70,9 @@ public class Data {
 
     public String returnSortJuniorSeniorSwimTime(int totalCount, int maxAmountOfResultsToPrint, int seniorAge, ArrayList<ResultSwimmer> arr, SwimDiscipline disciplineEnum) {
         int count = totalCount;
-        String result ="\n|"+disciplineEnum+"|\n";
+        String result = "\n|" + disciplineEnum + "|\n";
 
-        result += "\n\t|"+ disciplineEnum+" - Senior |\n";
+        result += "\n\t|" + disciplineEnum + " - Senior |\n";
         for (ResultSwimmer rs : arr) {
             if (rs.getSwimDiscipline().equals(disciplineEnum)) {
                 Member m = findMemberById(rs.getMemberID());
@@ -73,7 +86,7 @@ public class Data {
                 }
             }
         }
-        result += "\n\t|"+ disciplineEnum+" - Junior |\n";
+        result += "\n\t|" + disciplineEnum + " - Junior |\n";
         count = totalCount;
         for (ResultSwimmer rs : arr) {
             if (rs.getSwimDiscipline().equals(disciplineEnum)) {
@@ -90,11 +103,13 @@ public class Data {
         }
         return result;
     }
+
     public void copyResultListToListToBeSorted() {
         for (ResultSwimmer rs : resultList) {
             listToBeSorted.add(rs);
         }
     }
+
     public ArrayList<ResultSwimmer> getListToBeSorted() {
         return listToBeSorted;
     }
@@ -271,19 +286,20 @@ public class Data {
         }
         return memberFirstName + " " + memberLastName;
     }
-    public String showDataSpecificMember(int memberID){
+
+    public String showDataSpecificMember(int memberID) {
         StringBuilder result = new StringBuilder();
         System.out.println("Her høres metoden printSpecificMember");
         System.out.println(" ");
-        for(Member m : membersList){
-            if(m.getMemberID() == memberID) {
+        for (Member m : membersList) {
+            if (m.getMemberID() == memberID) {
                 result.append("MemberNo. ").append(m.getMemberID())
                         .append("\nFirstname: ").append(m.getFirstName())
                         .append(", Lastname: ").append(m.getLastName())
                         .append(", Birthday: ").append(m.getBirthday());
                 for (ResultSwimmer r : resultList) {
                     if (m.getMemberID() == r.getMemberID()) {
-                        if(!r.getCompetitionName().equals("null")) {
+                        if (!r.getCompetitionName().equals("null")) {
                             result.append("\nCompetition: ").append(r.getCompetitionName());
                         } else {
                             result.append("\nTraining result");
@@ -500,5 +516,27 @@ public class Data {
             result = "There was an error sorting the list. (Error: Data.L454)";
         }
         return result;
+    }
+
+    public void printCompetitionJunior() {
+        juniorList.clear();
+        for (Member m : membersList) {
+            if (m instanceof CompetitionMember) {
+                if (m.getYearsOfAge() < 18) {
+                    juniorList.add(m);
+                }
+            }
+        }
+    }
+
+    public void printCompetitionSenior() {
+        seniorList.clear();
+        for (Member m : membersList) {
+            if (m instanceof CompetitionMember) {
+                if (m.getYearsOfAge() >= 18) {
+                    seniorList.add(m);
+                }
+            }
+        }
     }
 }

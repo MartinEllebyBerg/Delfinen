@@ -167,4 +167,19 @@ public class Controller {
     public CompetitionMember findCompetitionMemberById(int idToFind) {
         return data.findCompetitionMemberById(idToFind);
     }
+    public void printCompetitionJunior() {
+        data.printCompetitionJunior();
+    }
+    public void printCompetitionSenior() {
+        data.printCompetitionSenior();
+    }
+    public ArrayList<Member> getJuniorList() {
+       return data.getJuniorList();
+    }
+    public ArrayList<Member> getSeniorList() {
+        return data.getSeniorList();
+    }
+    public void testStringBuilder() {
+        data.testPrintSavedArrayListWithCombinedData();
+    }
 }
