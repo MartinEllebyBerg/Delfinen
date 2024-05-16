@@ -13,16 +13,9 @@ public class Data {
     private ArrayList<Member> searchMatch;
     private ArrayList<ResultSwimmer> listToBeSorted;
 
-    public ArrayList<Member> getJuniorList() {
-        return juniorList;
-    }
-
-    public ArrayList<Member> getSeniorList() {
-        return seniorList;
-    }
-
     private ArrayList<Member> juniorList;
     private ArrayList<Member> seniorList;
+    private ArrayList<ResultSwimmer> searchListResult;
     private int indexToBeChanged;
 
 
@@ -35,6 +28,7 @@ public class Data {
         listToBeSorted = new ArrayList<>();
         juniorList = new ArrayList<>();
         seniorList = new ArrayList<>();
+        searchListResult = new ArrayList<>();
 
         //testAddSwimResultCompetition();
         //testAddSwimResultTraining();
@@ -93,7 +87,7 @@ public class Data {
                 Member m = findMemberById(rs.getMemberID());
                 int memberAge = m.getYearsOfAge();
                 if (memberAge < seniorAge) {
-                    result += count +". "+rs.toStringSortSwimTime(m);
+                    result += count + ". " + rs.toStringSortSwimTime(m);
                     if (count == maxAmountOfResultsToPrint) {
                         break;
                     }
@@ -446,6 +440,17 @@ public class Data {
     public int getIndexToBeChanged() {
         return indexToBeChanged;
     }
+    public ArrayList<Member> getJuniorList() {
+        return juniorList;
+    }
+
+    public ArrayList<Member> getSeniorList() {
+        return seniorList;
+    }
+
+    public ArrayList<ResultSwimmer> getSearchListResult() {
+        return searchListResult;
+    }
 
     /*
     public void testAddSwimResultTraining() { //Udkommenteret, eftersom der blev fjernet 3 arraylister, der ikke skulle bruges.
@@ -486,11 +491,26 @@ public class Data {
 
      */
 
-    public void printResultListCompetition() {
+    //TODO: Mangler at kunne kun printe Competetitionresultater
+    public void showResultListCompetition() {
+        searchListResult.clear();
         for (ResultSwimmer r : resultList) {
-            System.out.println(r.toString());
+            if (r.isCompetitive() == true) {
+                searchListResult.add(r);
+            }
         }
     }
+
+    public void showResultListTraining() {
+        searchListResult.clear();
+        for (ResultSwimmer r : resultList) {
+            if (r.isCompetitive() == false) {
+                searchListResult.add(r);
+            }
+        }
+    }
+
+    //TODO: Metode til at printe resultatlister fra træning
 
     //######################### Sorting methods ################################
     public String sortBySwimTime() {

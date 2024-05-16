@@ -157,7 +157,7 @@ public class Controller {
      */
 
     public void printResultListCompetition() {
-        data.printResultListCompetition();
+        data.showResultListCompetition();
     }
 
     public Member findMemberById(int idToFind) {
@@ -178,6 +178,15 @@ public class Controller {
     }
     public ArrayList<Member> getSeniorList() {
         return data.getSeniorList();
+    }
+    public ArrayList<ResultSwimmer> getSearchList() {
+        return data.getSearchListResult();
+    }
+    public void showResultListCompetition() {
+        data.showResultListCompetition();
+    }
+    public void showResultListTraining() {
+        data.showResultListTraining();
     }
     public void testStringBuilder() {
         data.testPrintSavedArrayListWithCombinedData();

@@ -144,11 +144,11 @@ public class UserInterface {
                     break;
                 }
                 case 16: {
-                    printResultListCompetition();
+                    showResultListCompetition();
                     break;
                 }
                 case 17: {
-                    controller.testStringBuilder();
+                    showResultListCompetition();
                 }
                 case 1: {
                     generateSwimmer();
@@ -840,9 +840,12 @@ public class UserInterface {
         }
     }
 
-    public void printResultListCompetition() {
-        System.out.println("\nResultlist competition swimmers:");
-        controller.printResultListCompetition();
+    public void showResultListCompetition() {
+        System.out.println("\nCompetition results:");
+        controller.showResultListCompetition();
+        for (ResultSwimmer rs : controller.getSearchList()) {
+            System.out.println(rs.toString());
+        }
     }
 
     //######################### Sorting ResultSwimmer - Training & Competition results  ################################
