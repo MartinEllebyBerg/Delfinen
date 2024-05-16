@@ -149,6 +149,7 @@ public class UserInterface {
                 }
                 case 17: {
                     showResultListCompetition();
+                    break;
                 }
                 case 1: {
                     generateSwimmer();
@@ -844,7 +845,8 @@ public class UserInterface {
         System.out.println("\nCompetition results:");
         controller.showResultListCompetition();
         for (ResultSwimmer rs : controller.getSearchList()) {
-            System.out.println(rs.toString());
+            Member m = controller.findMemberById(rs.getMemberID());
+            System.out.println(rs.toStringSwimIDMemberId(m));
         }
     }
 

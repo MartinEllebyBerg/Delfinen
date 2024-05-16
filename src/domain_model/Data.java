@@ -393,6 +393,29 @@ public class Data {
         }
     }
 
+    public void combineMemberAndResult(int memberID) {
+        System.out.println("Her køres metoden hvor de to lister kombineres, hvis der er identisk memberID, og det gemmes i ny Array");
+        System.out.println(" ");
+        for (Member m : membersList) {
+            for (ResultSwimmer r : resultList) {
+                if (m.getMemberID() == r.getMemberID()) {
+                    String[] combinedData = { //I denne nye arrayList har jeg lavet alt om til String..
+                            String.valueOf(m.getMemberID()), //combinedData[0]
+                            m.getFirstName(), //combinedData[1]
+                            m.getLastName(), //combinedData[2]
+                            String.valueOf(r.getResultDate()), //combinedData[3]
+                            String.valueOf(r.getSwimDiscipline()), //combinedData[4]
+                            String.valueOf(r.getSwimTime()), //combinedData[5]
+                            r.getCompetitionName(), //combinedData[6]
+                            r.getCompetitionLocation(), //combinedData[7]
+                            String.valueOf(r.getPlacementCompetition()) //combinedData[8]
+                    };
+                    searchList.add(combinedData);
+                }
+            }
+        }
+    }
+
     public String findSwimmersResultTraining(Member m) {
         int idToReference = m.getMemberID();
         int count = 1;
@@ -419,7 +442,8 @@ public class Data {
         return result;
     }
 
-    public void testPrintSavedArrayListWithCombinedData() {
+    public String testPrintSavedArrayListWithCombinedData() {
+        String result = "";
         System.out.println("List of swimmers with either their data from competition stored or training data:");
         for (String[] combinedData : searchList) {
             StringBuilder sb = new StringBuilder();
@@ -432,9 +456,10 @@ public class Data {
             sb.append(String.format("%-30s", combinedData[6]));
             sb.append(String.format("%-20s", combinedData[7]));
             sb.append(String.format("%-15s", combinedData[8]));
+            result = sb.toString();
             //TODO: Ingen sysouts i andre klasser end UI
-            System.out.println(sb.toString());
-        }
+
+        } return result;
     }
 
     public int getIndexToBeChanged() {
@@ -452,6 +477,9 @@ public class Data {
         return searchListResult;
     }
 
+    public ArrayList<String[]> getSearchListString() {
+        return searchList;
+    }
     /*
     public void testAddSwimResultTraining() { //Udkommenteret, eftersom der blev fjernet 3 arraylister, der ikke skulle bruges.
         //TODO: Ingen sysouts i andre klasser end UI

@@ -182,11 +182,20 @@ public class Controller {
     public ArrayList<ResultSwimmer> getSearchList() {
         return data.getSearchListResult();
     }
+    public ArrayList<String[]> getSearchListString() {
+        return data.getSearchListString();
+    }
     public void showResultListCompetition() {
         data.showResultListCompetition();
     }
     public void showResultListTraining() {
         data.showResultListTraining();
+    }
+    public void combineMemberAndResult(int memberID) {
+        data.combineMemberAndResult(memberID);
+    }
+    public String testPrintSavedArrayListWithCombinedData (){
+        return data.testPrintSavedArrayListWithCombinedData();
     }
     public void testStringBuilder() {
         data.testPrintSavedArrayListWithCombinedData();

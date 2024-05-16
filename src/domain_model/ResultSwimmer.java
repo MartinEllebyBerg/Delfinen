@@ -97,7 +97,16 @@ public class ResultSwimmer {
     @Override
     public String toString() {
         //TODO: Gøre begge toString metoder lidt pænere. Eventuelt en ifblok, der tjekker på den nye boolean isCompetitive og derefter retter til
-        return "SwimID: " + memberID +
+        return "MemberID: " + memberID+
+                " | SwimDiscipline: " + swimDiscipline +
+                " | SwimTime: " + swimTime +
+                " | CompetitionName: " + competitionName +
+                " | CompetitionLocation: " + competitionLocation +
+                " | PlacementCompetition: " + placementCompetition +
+                " | CompetitionDate: " + resultDate;
+    }
+    public String toStringSwimIDMemberId(Member m) {
+        return "MemberID: " + memberID +" ("+m.getFirstName()+" "+m.getLastName()+")"+
                 " | SwimDiscipline: " + swimDiscipline +
                 " | SwimTime: " + swimTime +
                 " | CompetitionName: " + competitionName +
