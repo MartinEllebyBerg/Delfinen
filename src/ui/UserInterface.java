@@ -239,7 +239,7 @@ public class UserInterface {
                 break;
             }
             case 3: {
-                printResultListCompetition();
+                showResultListCompetition();
                 break;
             }
             case 4: {
