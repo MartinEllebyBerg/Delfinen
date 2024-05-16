@@ -183,16 +183,12 @@ public class UserInterface {
                 searchForMemberResultIdToId();
                 break;
             }
-            case 8: {
+            case 6: {
                 sortBySwimTime();
                 break;
             }
-            case 6: {
-                printCompetitionJunior();
-                break;
-            }
             case 7: {
-                printCompetitionSenior();
+                displayMembersResultsCompTrain();
                 break;
             }
         }
@@ -274,8 +270,8 @@ public class UserInterface {
         System.out.println("3. Display list of Swimmers");
         System.out.println("4. Register Swimmer Results(Training/Competition)");
         System.out.println("5. Search for Training/Competition results by Swimmer ID");
-        System.out.println("6. Show Member/Result Overview");
-        System.out.println("7. Sort by SwimTime\n");
+        System.out.println("6. Sort by Swimtime");
+        System.out.println("7. Show Member/Result Overview\n");
         System.out.println("0. Terminate program");
     }
 
@@ -345,6 +341,7 @@ public class UserInterface {
                 }
                 case 6: {
                     displayMembersResultsCompTrain();
+                    break;
                 }
                 case 7: {
                     sortBySwimTime(); //TODO: "Crasher", hvis medlemslisten og resultatlisten ikke er fyldt ved eksekvering. Har implementeret exception handling de relevante steder, men funktionen vil ikke virke ved tom medlems- og resultatliste.
