@@ -121,6 +121,7 @@ public class UserInterface {
         System.out.println("5. Show Member/Result Overview");
         System.out.println("0. Terminate program");
     }
+
     public void startProgramChairman() {
         while (switchInput != SENTINEL) {
             displayMenuChairman();
@@ -157,6 +158,7 @@ public class UserInterface {
             }
         }
     }
+
     public void displayChairmanShowCoachMenu() {
         displayMenuCoach();
         switchInput = scanIntSafely();
@@ -193,6 +195,7 @@ public class UserInterface {
             }
         }
     }
+
     public void displayChairmanShowTreasurerMenu() {
         displayMenuTreasurer();
         switchInput = scanIntSafely();
@@ -221,6 +224,7 @@ public class UserInterface {
         }
 
     }
+
     //######################### Treasurer Menu  ################################
     public void displayMenuTreasurer() {
         System.out.println(" ");
@@ -232,6 +236,7 @@ public class UserInterface {
         System.out.println("4. Forecast\n");
         System.out.println("0. Terminate program");
     }
+
     public void startProgramTreasurer() {
         while (switchInput != SENTINEL) {
             displayMenuTreasurer();
@@ -266,6 +271,7 @@ public class UserInterface {
             }
         }
     }
+
     //######################### Coach menu(s)  ################################
     public void displayMenuCoach() {
         System.out.println(" ");
@@ -280,6 +286,7 @@ public class UserInterface {
         System.out.println("7. Show Member/Result Overview\n");
         System.out.println("0. Terminate program");
     }
+
     public void startProgramCoach() {
 
         while (switchInput != SENTINEL) {
@@ -325,6 +332,7 @@ public class UserInterface {
             }
         }
     }
+
     public void displayMembersResultsCompTrain() {
         System.out.println("1. Show Competition Members - Junior");
         System.out.println("2. Show Competition Members - Senior");
@@ -352,6 +360,7 @@ public class UserInterface {
             }
         }
     }
+
     //######################### Adding Member  ################################
     public void generateSwimmer() {
         int memberID = controller.nextMemberID(); //her kaldes metode som tager antal poster i memberslist plus 1
@@ -559,6 +568,20 @@ public class UserInterface {
         System.out.println("Valid choices include breaststroke, backstroke, frontcrawl, butterfly or null.");
 
         while (true) {
+            switch (UPSWDInput) {
+                case "breaststroke", "backstroke", "frontcrawl", "butterfly", "null" -> {
+                    return findSwimDisciplineEnum(UPSWDInput.toUpperCase());
+                }
+                case "done", "exit" -> {
+                    return null;
+                }
+                default -> {
+                    System.out.println("No valid input. Please try again.");
+                }
+            }
+        }
+        /*
+        while (true) {
             if (UPSWDInput.equals("done")) {
                 break;
             }
@@ -573,11 +596,11 @@ public class UserInterface {
             }
         }
         return null;
+        */
     }
 
     //#########################  Member - Set multiple swim disciplines  ################################
     public void setMultipleDisciplines() {
-
         System.out.println("Reminder: The member ID can be found when fetching a list of registered swimmers.\n");
         System.out.println("Please input the member ID you would like to apply changes to.");
         int idToFind = scanIntSafely();
@@ -585,13 +608,12 @@ public class UserInterface {
         Member memberToFind = controller.findMemberById(idToFind); //Vi taster member id for at returnere et member objekt at redigere svømmediscipliner på.
         String memberFirstName = memberToFind.getFirstName();
         String memberLastName = memberToFind.getLastName();
-        System.out.println("You are in the process of making changes to: " +memberFirstName + " " +memberLastName);
+        System.out.println("You are in the process of making changes to: " + memberFirstName + " " + memberLastName);
         System.out.println("Press 1 if you want to proceed with this member, press 2 if you want to see some more information on this member \nor press 3 if you will search for a new member and memberID");
         int choice = scanIntSafely();
 
-        if(choice == 1) {
-
-            if (memberToFind instanceof CompetitionMember downcastedMemberToFind) { //downcaster vores member objekt direkte i if-sætning til downcastedMemberToFind.
+        if (choice == 1) {
+            if (memberToFind instanceof CompetitionMember downcastedMemberToFind) { //downcaster vores member objekt direkte i if-sætning til downcastedMemberToFin
                 if (hasAvailableDisciplines(downcastedMemberToFind)) { //boolean hasAvailableDisciplines() tjekker, om vores objekt har tilgængeligt med plads til en svømmedisciplin.
                     SwimDiscipline selectedDiscipline = userPromptSwimDiscipline(); //Vi vælger vores disciplin og gemmer i variabel.
                     if (!hasDiscipline(downcastedMemberToFind, selectedDiscipline)) { //Hvis det specifikke objekt ikke har den disciplin, de prompter efter, kan det tildeles
@@ -628,7 +650,6 @@ public class UserInterface {
         }
         saveMembersToList();
     }
-
     public boolean hasAvailableDisciplines(CompetitionMember member) { //Tjekker om member objektets 4 svømmediscipliner er sandt til null.(Det er 3 per default.
         return member.getSwimDiscipline1() == SwimDiscipline.NULL ||
                 member.getSwimDiscipline2() == SwimDiscipline.NULL ||
@@ -653,7 +674,7 @@ public class UserInterface {
         String memberFirstName = memberToFind.getFirstName();
         String memberLastName = memberToFind.getLastName();
 
-        System.out.println("You have picked: " +memberFirstName + " " +memberLastName);
+        System.out.println("You have picked: " + memberFirstName + " " + memberLastName);
 
         if (memberToFind instanceof CompetitionMember downcastedMemberToFind) {
             //TODO: Fjerne muligheder ved null svømmediscipliner
@@ -694,12 +715,14 @@ public class UserInterface {
         }
         saveMembersToList();
     }
-    public void showAllDataSpecificMember (){
+
+    public void showAllDataSpecificMember() {
         System.out.println("Enter memberID of the member you want to see all data registered on.");
-        int memberID =scanIntSafely();
+        int memberID = scanIntSafely();
         System.out.println(controller.showDataSpecificMember(memberID));
     }
 
+    //#########################  Member - Search methods ################################
     public void findMemberSearchWithNewArray() {
         System.out.println("Please type in the first name of the member you are looking for.");
         String memberToFind = input.nextLine();
@@ -714,8 +737,6 @@ public class UserInterface {
             System.out.println("No members with that name has been registered.");
         }
     }
-
-    //#########################  Member - Set multiple swim disciplines  ################################
     public void searchForMemberResultIdToId() {
         System.out.println("Please input the member ID of which you wish to access training or competition results.");
         System.out.print("> ");
@@ -772,6 +793,7 @@ public class UserInterface {
         double result = controller.calculateTotalRateForecastPlus5Senior();
         System.out.println("Total: " + result + " DKK/year.");
     }
+
     //######################### Payments  ################################
     public void registerPayment() {
         System.out.println(" ");
@@ -803,15 +825,18 @@ public class UserInterface {
         }
         saveMembersToList();
     }
+
     public void printOverduePayments() {
         ArrayList<String> overduePayments = controller.printOverduePayments();
         for (String overduePayment : overduePayments) {
             System.out.println(overduePayment);
         }
     }
+
     public void showSumOverduePayments() {
         System.out.println("In total overdue: " + controller.sumOverduePayments() + " DKK");
     }
+
     //######################### Save & load list  ################################
     public void saveMembersToList() {
         controller.saveAllMembersToList(controller.getMembersList());
@@ -823,6 +848,7 @@ public class UserInterface {
         System.out.println("Successfully saved competition result");
     }
 
+    //#########################  Showing lists of recorded swimmer results - Comp/Train - Senior/Junior  ################################
     public void showCompetitionJunior() {
         System.out.println("\nCompetition members under 18 years:");
         controller.printCompetitionJunior();
@@ -847,6 +873,7 @@ public class UserInterface {
             System.out.println(rs.toStringSwimIDMemberId(m));
         }
     }
+
     public void showResultListTraining() {
         System.out.println("\nTraining results:");
         controller.showResultListTraining();
@@ -882,7 +909,7 @@ public class UserInterface {
     private double scanDoubleSafely() {
         try {
             return input.nextDouble();
-        } catch(InputMismatchException ime) {
+        } catch (InputMismatchException ime) {
             input.nextLine();
             System.out.println("You didn't type in a number correctly. Please use the comma (' , ') as a decimal separator. (Example: 21,5) ");
             return scanDoubleSafely();

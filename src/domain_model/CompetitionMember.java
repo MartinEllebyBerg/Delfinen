@@ -39,6 +39,7 @@ public class CompetitionMember extends Member {
 
 
     //METHODS
+    //######################### Getters ################################
     public SwimDiscipline getSwimDiscipline1() {
         return swimDiscipline1;
     }
@@ -54,13 +55,16 @@ public class CompetitionMember extends Member {
     public SwimDiscipline getSwimDiscipline4() {
         return swimDiscipline4;
     }
+    public ResultSwimmer getLatestResults() {
+        return latestResults;
+    }
+
+    //######################### Setters ################################
     public void setLatestResults(ResultSwimmer latestResults) {
         this.latestResults = latestResults;
     }
 
-    public ResultSwimmer getLatestResults() {
-        return latestResults;
-    }
+
 
     @Override
     public String toString() {

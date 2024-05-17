@@ -32,26 +32,7 @@ public class Member implements Comparable<Member> {
     }
 
     //METHODS
-
-    public void calculateYearOfMember() {
-        LocalDate presentTime = LocalDate.now();
-        Period calculatedPeriode = Period.between(birthday, presentTime);
-        yearsOfAge = calculatedPeriode.getYears();
-    }
-
-    public void calculateMembershipRate() {
-
-        if (memberActive == false) {
-            rate = 500.00;
-        } else if (yearsOfAge < 18) {
-            rate = 1000.00;
-        } else if (yearsOfAge >= 18 && yearsOfAge < 60) {
-            rate = 1600.00;
-        } else {
-            rate = 1200.00;
-        }
-    }
-
+    //######################### Getters ################################
     public double getRate() {
         return rate;
     }
@@ -84,10 +65,33 @@ public class Member implements Comparable<Member> {
         return paymentRegistered;
     }
 
+    //######################### Setters ################################
     public void setPaymentRegistered(boolean paymentRegistered) {
         this.paymentRegistered = paymentRegistered;
     }
 
+    //######################### Calculate age & membership rate ################################
+    public void calculateYearOfMember() {
+        LocalDate presentTime = LocalDate.now();
+        Period calculatedPeriode = Period.between(birthday, presentTime);
+        yearsOfAge = calculatedPeriode.getYears();
+    }
+
+    public void calculateMembershipRate() {
+
+        if (memberActive == false) {
+            rate = 500.00;
+        } else if (yearsOfAge < 18) {
+            rate = 1000.00;
+        } else if (yearsOfAge >= 18 && yearsOfAge < 60) {
+            rate = 1600.00;
+        } else {
+            rate = 1200.00;
+        }
+    }
+
+
+    //######################### toString() Methods ################################
     @Override
     public String toString() {
         int ageCutoffSeniorTeam = 18;

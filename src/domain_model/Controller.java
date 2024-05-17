@@ -23,6 +23,9 @@ public class Controller {
 
     //METHODS
     //######################### Methods for Data class ################################
+
+
+    //#########################  Save & Load - Members  ################################
     public void saveAllMembersToList(ArrayList<Member> arr) {
         fh.saveListOfAllMembers(arr);
     }
@@ -30,15 +33,7 @@ public class Controller {
         return fh.loadSavedAllMembersList(arr);
     }
 
-    /*
-    public void saveExerciseMemberList(ArrayList<Member> arr) {
-        fh.saveListOfMembersExercise(arr);
-    }
-    public ArrayList<Member> loadSavedExerciseMemberList(ArrayList<Member> arr) {
-        return fh.loadSavedExerciseMemberList(arr);
-    }
-
-     */
+    //#########################  Save & Load - Results  ################################
     public void saveAllResults(ArrayList<ResultSwimmer> arr) {
         fh.saveAllResults(arr);
     }
@@ -46,35 +41,16 @@ public class Controller {
     public ArrayList<ResultSwimmer> loadSavedMemberResults(ArrayList<ResultSwimmer> arr) {
         return fh.loadSavedMemberResults(arr);
     }
-    public void copyResultListToListToBeSorted() {
-        data.copyResultListToListToBeSorted();
-    }
+
+    //#########################  ListToBeSorted Methods  ################################
     public ArrayList<ResultSwimmer> getListToBeSorted() {
         return data.getListToBeSorted();
     }
-
-    /*
-    public void saveTrainingResult(ArrayList<ResultSwimmer> arr) {
-        fh.saveTrainingResults(arr);
+    public void copyResultListToListToBeSorted() {
+        data.copyResultListToListToBeSorted();
     }
 
-     */
-    /*public ArrayList<ResultSwimmer> loadSavedTrainingResult(ArrayList<ResultSwimmer> arr) {
-        return fh.loadSavedTrainingResult(arr);
-    }*/
-
-
-    public int nextMemberID() {
-        return data.nextMemberID();
-    }
-
-    public String showDataSpecificMember(int memberID){
-        return data.showDataSpecificMember(memberID);
-    }
-
-    /*public void hardCodedData(){
-        data.hardCodedData();
-    }*/
+    //#########################  Forecasting Methods  ################################
     public double calculateTotalRateForecast(){
         return data.calculateTotalForecast();
     }
@@ -86,24 +62,8 @@ public class Controller {
     public double calculateTotalRateForecastPlus5Senior () {
         return data.calculateTotalForecastPlus5Senior();
     }
-    public String findSwimmersResultTraining(Member m) {
-        return data.findSwimmersResultTraining(m);
-    }
 
-    public void findIndexToBeChanged (int memberID) {
-        data.findIndexToBeChanged(memberID);
-    }
 
-    public String findNameByIndex(){
-        return data.findNameByIndex();
-    }
-    public void registerPayment() {
-        data.registerPayment();
-    }
-
-    public int getIndexToBeChanged (){
-        return data.getIndexToBeChanged();
-    }
 
     //######################### Methods for Data class - Memberslist ################################
     public ArrayList<Member> getMembersList() {
@@ -137,6 +97,7 @@ public class Controller {
         return data.searchMember(name);
     }
 
+    //######################### Methods for Data class - add ResultSwimmer to list ################################
     public void addSwimResultTraining(boolean isCompetitive, int memberID, SwimDiscipline swimDiscipline, double swimTime, LocalDate resultDate) {
         data.addSwimResultTraining(isCompetitive,memberID, swimDiscipline, swimTime, resultDate);
     }
@@ -149,13 +110,6 @@ public class Controller {
         return data.sortBySwimTime();
     }
 
-    /*
-    public void printResultListTraining() {
-        data.printResultListTraining();
-    }
-
-     */
-
     public void printResultListCompetition() {
         data.showResultListCompetition();
     }
@@ -167,30 +121,69 @@ public class Controller {
     public CompetitionMember findCompetitionMemberById(int idToFind) {
         return data.findCompetitionMemberById(idToFind);
     }
+
+    //######################### Methods for Data class - Print Competition/Junior/Senior ################################
     public void printCompetitionJunior() {
         data.printCompetitionJunior();
     }
     public void printCompetitionSenior() {
         data.printCompetitionSenior();
     }
+
+    //######################### Methods for Data class - Getters Junior/Senior Lists ################################
     public ArrayList<Member> getJuniorList() {
        return data.getJuniorList();
     }
     public ArrayList<Member> getSeniorList() {
         return data.getSeniorList();
     }
+
+    //######################### Methods for Data class - SearchList Getter ################################
     public ArrayList<ResultSwimmer> getSearchList() {
         return data.getSearchListResult();
     }
     public ArrayList<String[]> getSearchListString() {
         return data.getSearchListString();
     }
+
+    //######################### Methods for Data class - ResultListComp/Train ################################
     public void showResultListCompetition() {
         data.showResultListCompetition();
     }
     public void showResultListTraining() {
         data.showResultListTraining();
     }
+
+    //######################### Methods for Data class - Miscellaneous ################################
+    public int nextMemberID() {
+        return data.nextMemberID();
+    }
+
+    public String showDataSpecificMember(int memberID){
+        return data.showDataSpecificMember(memberID);
+    }
+
+    public String findSwimmersResultTraining(Member m) {
+        return data.findSwimmersResultTraining(m);
+    }
+
+    public void findIndexToBeChanged (int memberID) {
+        data.findIndexToBeChanged(memberID);
+    }
+
+    public String findNameByIndex(){
+        return data.findNameByIndex();
+    }
+    public void registerPayment() {
+        data.registerPayment();
+    }
+
+    public int getIndexToBeChanged (){
+        return data.getIndexToBeChanged();
+    }
+
+
+
     public void combineMemberAndResult(int memberID) {
         data.combineMemberAndResult(memberID);
     }

@@ -25,19 +25,6 @@ public class ResultSwimmer {
         this.swimTime = swimTime;
         this.placementCompetition = placementCompetition;
     }
-
-    public void setMemberID(int memberID) {
-        this.memberID = memberID;
-    }
-
-    public boolean isCompetitive() {
-        return isCompetitive;
-    }
-
-    public void setCompetitive(boolean competitive) {
-        isCompetitive = competitive;
-    }
-
     public ResultSwimmer(boolean isCompetitive, int memberID, SwimDiscipline swimDiscipline, double swimTime, LocalDate resultDate){
         this.isCompetitive = isCompetitive;
         this.memberID = memberID;
@@ -46,12 +33,13 @@ public class ResultSwimmer {
         this.resultDate = resultDate;
     }
 
+
+
     //METHODS
     //######################### Getter methods  ################################
     public int getMemberID() {
         return memberID;
     }
-
     public SwimDiscipline getSwimDiscipline() {
         return swimDiscipline;
     }
@@ -70,7 +58,9 @@ public class ResultSwimmer {
     public LocalDate getResultDate() {
         return resultDate;
     }
-
+    public boolean isCompetitive() {
+        return isCompetitive;
+    }
 
     //######################### Setter methods  ################################
     public void setSwimDiscipline(SwimDiscipline swimDiscipline) {
@@ -90,6 +80,12 @@ public class ResultSwimmer {
     }
     public void setResultDate(LocalDate resultDate) {
         this.resultDate = resultDate;
+    }
+    public void setMemberID(int memberID) {
+        this.memberID = memberID;
+    }
+    public void setCompetitive(boolean competitive) {
+        isCompetitive = competitive;
     }
 
 
@@ -122,6 +118,24 @@ public class ResultSwimmer {
                 " | SwimTime: " + swimTime +
                 " | TrainingDate: " + resultDate + "\n";
     }
+    public String toStringSortSwimTime(Member m) {
+        String result =
+                "SwimTime: "+swimTime+
+                        "\tMemberID: "+memberID+
+                        "\tMember name: "+"("+m.getFirstName()+" "+m.getLastName()+")"+
+                        "\tDate performed: "+resultDate;
+        if (isCompetitive) {
+            result +=
+                    "\tCompetition: "+competitionName+
+                            "\tCompetition Location: "+competitionLocation+
+                            "\tRanked at Competition: "+placementSTNDRD(placementCompetition)+" place\n";
+        } else {
+            result += "\n";
+        }
+        return result;
+    }
+
+    //######################### Helper Methods  ################################
     public String placementSTNDRD(int placementCompetition) {
         String result ="";
         if (placementCompetition == 1) {
@@ -135,20 +149,5 @@ public class ResultSwimmer {
         }
         return result;
     }
-    public String toStringSortSwimTime(Member m) {
-        String result =
-                "SwimTime: "+swimTime+
-                "\tMemberID: "+memberID+
-                        "\tMember name: "+"("+m.getFirstName()+" "+m.getLastName()+")"+
-                "\tDate performed: "+resultDate;
-        if (isCompetitive) {
-            result +=
-                    "\tCompetition: "+competitionName+
-                            "\tCompetition Location: "+competitionLocation+
-                            "\tRanked at Competition: "+placementSTNDRD(placementCompetition)+" place\n";
-        } else {
-            result += "\n";
-        }
-        return result;
-    }
+
 }

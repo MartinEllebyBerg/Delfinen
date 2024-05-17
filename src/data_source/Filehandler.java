@@ -13,7 +13,7 @@ public class Filehandler {
     public Filehandler () {
     }
 
-
+    //#########################  Save & Load - Members  ################################
     public ArrayList<Member> loadSavedAllMembersList(ArrayList<Member> arr) { //Load competitionMembers
         File file = new File("src/data_source/newMembersFull.csv");
         Scanner scannerInput = null;
@@ -25,7 +25,6 @@ public class Filehandler {
             System.out.println("Sorry something went wrong with loading the Memberslist.");
             throw new RuntimeException(e);
         }
-
         while (scannerInput.hasNext()) {
             String line = scannerInput.nextLine();
             String[] values = line.split(";");
@@ -61,40 +60,6 @@ public class Filehandler {
         return arr;
 
     }
-    /*
-    public ArrayList<Member> loadSavedExerciseMemberList(ArrayList<Member> arr) { //Load exercise
-        File file = new File("src/data_source/ExerciseMembers.csv");
-        Scanner scannerInput = null;
-        try {
-            scannerInput = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            System.out.println("Sorry something went wrong with loading the MembersList.");
-            throw new RuntimeException(e);
-        }
-
-        while (scannerInput.hasNext()) {
-            String line = scannerInput.nextLine();
-            String[] values = line.split(";");
-
-            int memberID = Integer.parseInt(values[0]);
-            String firstName = values[1];
-            String lastName = values[2];
-            LocalDate birthDay = LocalDate.parse(values[3], DateTimeFormatter.ISO_LOCAL_DATE);
-            boolean memberActive = Boolean.parseBoolean(values[4]);
-            boolean paymentRegistered = Boolean.parseBoolean(values[5]);
-
-            Member member = new ExerciseMember(memberID, firstName, lastName, birthDay, memberActive, paymentRegistered);
-            // Opretter ny Member fra fil
-
-            arr.add(member);
-            // Tilføjer member til listen
-        }
-        scannerInput.close();
-        return arr;
-    }
-
-     */
-
     public void saveListOfAllMembers(ArrayList<Member> list) {
         try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/newMembersFull.csv"))) {
 
@@ -128,29 +93,7 @@ public class Filehandler {
             e.printStackTrace();
         }
     }
-    /*
-    public void saveListOfMembersExercise(ArrayList<Member> list) {
-        try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/ExerciseMembers.csv"))) {
-
-            for (Member member : list) {
-                if(member instanceof ExerciseMember) {
-                    String memberString = String.format("%d;%s;%s;%s;%b;%b",
-                            member.getMemberID(),
-                            member.getFirstName(),
-                            member.getLastName(),
-                            member.getBirthday().format(DateTimeFormatter.ISO_LOCAL_DATE),
-                            member.getIsMemberActive(),
-                            member.isPaymentRegistered());
-                    output.println(memberString);
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error saving members: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-     */
+    //#########################  Save & Load - Results  ################################
     public void saveAllResults(ArrayList<ResultSwimmer> list) {
         try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/newSwimmerResultsFull.csv"))) {
 
@@ -232,24 +175,4 @@ public class Filehandler {
         return arr;
 
     }
-
-    /*
-    public void saveTrainingResults(ArrayList<ResultSwimmer> list) {
-        try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/TrainingResults.csv"))) {
-
-            for (ResultSwimmer training : list) {
-                    String trainingString = String.format("%d;%s;%.2f;%s",
-                            training.getMemberID(),
-                            training.getSwimDiscipline(),
-                            training.getSwimTime(),
-                            training.getResultDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
-                    output.println(trainingString);
-
-            }
-        } catch (IOException e) {
-            System.out.println("Error saving members: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-    */
 }
