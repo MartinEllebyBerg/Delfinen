@@ -109,6 +109,18 @@ public class UserInterface {
         }
     }
 
+    //######################### Chairman menu(s)  ################################
+    public void displayMenuChairman() {
+        System.out.println(" ");
+        System.out.println("Delfinen - CHAIRMAN");
+        System.out.println(" ");
+        System.out.println("1. Add Swimmer");
+        System.out.println("2. Display list of Swimmers");
+        System.out.println("3. Show Treasurer Menu");
+        System.out.println("4. Show Coach Menu");
+        System.out.println("5. Show Member/Result Overview");
+        System.out.println("0. Terminate program");
+    }
     public void startProgramChairman() {
         while (switchInput != SENTINEL) {
             displayMenuChairman();
@@ -145,18 +157,6 @@ public class UserInterface {
             }
         }
     }
-
-    public void displayMenuChairman() {
-        System.out.println(" ");
-        System.out.println("Delfinen - CHAIRMAN");
-        System.out.println(" ");
-        System.out.println("1. Add Swimmer");
-        System.out.println("2. Display list of Swimmers");
-        System.out.println("3. Show Treasurer Menu");
-        System.out.println("4. Show Coach Menu");
-        System.out.println("5. Show Member/Result Overview");
-        System.out.println("0. Terminate program");
-    } //TODO: Delfinen i stedet for UI
     public void displayChairmanShowCoachMenu() {
         displayMenuCoach();
         switchInput = scanIntSafely();
@@ -221,35 +221,7 @@ public class UserInterface {
         }
 
     }
-    public void displayMembersResultsCompTrain() {
-        System.out.println("1. Show Competition Members - Junior");
-        System.out.println("2. Show Competition Members - Senior");
-        System.out.println("3. Show Competition Results");
-        System.out.println("4. Show Training Results");
-        switchInput = scanIntSafely();
-        input.nextLine();
-
-        switch (switchInput) {
-            case 1: {
-                showCompetitionJunior();
-                break;
-            }
-            case 2: {
-                showCompetitionSenior();
-                break;
-            }
-            case 3: {
-                showResultListCompetition();
-                break;
-            }
-            case 4: {
-                showResultListTraining();
-                break;
-            }
-        }
-    }
-
-
+    //######################### Treasurer Menu  ################################
     public void displayMenuTreasurer() {
         System.out.println(" ");
         System.out.println("Delfinen - TREASURER");
@@ -260,21 +232,6 @@ public class UserInterface {
         System.out.println("4. Forecast\n");
         System.out.println("0. Terminate program");
     }
-
-    public void displayMenuCoach() {
-        System.out.println(" ");
-        System.out.println("Delfinen - COACH");
-        System.out.println(" ");
-        System.out.println("1. Register Swimmer Disciplines");
-        System.out.println("2. Delete Swimmer Disciplines");
-        System.out.println("3. Display list of Swimmers");
-        System.out.println("4. Register Swimmer Results(Training/Competition)");
-        System.out.println("5. Search for Training/Competition results by Swimmer ID");
-        System.out.println("6. Sort by Swimtime");
-        System.out.println("7. Show Member/Result Overview\n");
-        System.out.println("0. Terminate program");
-    }
-
     public void startProgramTreasurer() {
         while (switchInput != SENTINEL) {
             displayMenuTreasurer();
@@ -308,6 +265,20 @@ public class UserInterface {
                 }
             }
         }
+    }
+    //######################### Coach menu(s)  ################################
+    public void displayMenuCoach() {
+        System.out.println(" ");
+        System.out.println("Delfinen - COACH");
+        System.out.println(" ");
+        System.out.println("1. Register Swimmer Disciplines");
+        System.out.println("2. Delete Swimmer Disciplines");
+        System.out.println("3. Display list of Swimmers");
+        System.out.println("4. Register Swimmer Results(Training/Competition)");
+        System.out.println("5. Search for Training/Competition results by Swimmer ID");
+        System.out.println("6. Sort by Swimtime");
+        System.out.println("7. Show Member/Result Overview\n");
+        System.out.println("0. Terminate program");
     }
     public void startProgramCoach() {
 
@@ -354,8 +325,33 @@ public class UserInterface {
             }
         }
     }
-    //######################### POSITIONS - Menu displays  ################################
+    public void displayMembersResultsCompTrain() {
+        System.out.println("1. Show Competition Members - Junior");
+        System.out.println("2. Show Competition Members - Senior");
+        System.out.println("3. Show Competition Results");
+        System.out.println("4. Show Training Results");
+        switchInput = scanIntSafely();
+        input.nextLine();
 
+        switch (switchInput) {
+            case 1: {
+                showCompetitionJunior();
+                break;
+            }
+            case 2: {
+                showCompetitionSenior();
+                break;
+            }
+            case 3: {
+                showResultListCompetition();
+                break;
+            }
+            case 4: {
+                showResultListTraining();
+                break;
+            }
+        }
+    }
     //######################### Adding Member  ################################
     public void generateSwimmer() {
         int memberID = controller.nextMemberID(); //her kaldes metode som tager antal poster i memberslist plus 1
@@ -382,10 +378,8 @@ public class UserInterface {
             }
         }
         boolean activePassive = askForActivity(); //Metode, tjekker for aktivitet.
-
         boolean decidingWhatTypeOfSwimmer = compOrExerciseSwimmer(); //Assigner, om der skal laves et konkurrence eller motionist objekt.
 
-        //TODO: Refactor med henblik på læsbarhed. Flyt if blokke ud i separate metoder og kald dem her i generateSwimmer()
         if (decidingWhatTypeOfSwimmer) {
             System.out.println("During this registration you will be able to select one swim discipline for the member.");
             System.out.println("Afterwards, you will be able to set multiple disciplines for selected swimmer.\n");
@@ -498,13 +492,11 @@ public class UserInterface {
                                     "if the date of the result was the 12th of December in 1992.");
                         }
                     }
-
                     SwimDiscipline disciplineName = userPromptSwimDiscipline(); //Denne metode spørger om brugerinput med tilhørende sysoutbeskeder.
 
                     System.out.println("Type the swim time:");
                     double swimTime = scanDoubleSafely();
                     input.nextLine();
-
                     System.out.println("Type the placement:");
                     int placementCompetition = scanIntSafely();
                     input.nextLine();
@@ -582,17 +574,6 @@ public class UserInterface {
         }
         return null;
     }
-    /* tjek med ovenstående:
-    UPSWDInput = input.nextLine().toLowerCase();
-        if (UPSWDInput.equals("breaststroke") || UPSWDInput.equals("backstroke") || UPSWDInput.equals("frontcrawl") || UPSWDInput.equals("butterfly") || UPSWDInput.equals("null")) {
-            return findSwimDisciplineEnum(UPSWDInput.toUpperCase());
-
-        } else {
-            System.out.println("No valid input. Please try again.");
-            return userPromptSwimDiscipline();
-
-
-        }*/
 
     //#########################  Member - Set multiple swim disciplines  ################################
     public void setMultipleDisciplines() {
