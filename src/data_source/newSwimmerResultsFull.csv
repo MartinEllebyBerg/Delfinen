@@ -5,38 +5,68 @@ true;18;Aarhus;Aarhus Derby;2009-12-12;Backstroke;14.5;2
 false;16;null;null;2012-12-12;Breaststroke;12.5;0
 true;8;Horsens;Horsens Svømmehygge;2008-12-12;Frontcrawl;12.3;14
 false;49;null;null;2014-12-12;Breaststroke;21.0;0
-false;1;null;null;2014-12-12;Breaststroke;21.0;0
-false;2;null;null;2014-12-12;Breaststroke;21.0;0
-false;50;null;null;2014-12-12;Breaststroke;21.0;0
-false;12;null;null;2014-12-12;Breaststroke;21.0;0
-false;12;null;null;2014-12-12;Breaststroke;21.0;0
-false;12;null;null;2014-12-12;Breaststroke;21.0;0
-true;8;Horsens;Horsens Svømmehygge;2008-12-12;Frontcrawl;12.3;4
-true;8;Horsens;Horsens Svømmehygge;2008-12-12;Frontcrawl;8.3;4
-true;8;Horsens;Horsens Svømmehygge;2008-12-12;Frontcrawl;12.3;4
-true;11;Horsens;Horsens Svømmehygge;2008-12-12;Frontcrawl;12.3;4
-true;8;Horsens;Horsens Svømmehygge;2008-12-12;Frontcrawl;6.3;4
-true;12;Horsens;Horsens Svømmehygge;2008-12-12;Frontcrawl;12.3;4
-true;8;Horsens;Horsens Svømmehygge;2008-12-12;Frontcrawl;12.3;4
-true;18;Aarhus;Aarhus Derby;2009-12-12;Backstroke;14.5;2
-true;18;Aarhus;Aarhus Derby;2009-12-12;Backstroke;14.5;2
-true;18;Aarhus;Aarhus Derby;2009-12-12;Backstroke;14.5;2
-true;18;Aarhus;Aarhus Derby;2009-12-12;Backstroke;14.5;2
-true;18;Aarhus;Aarhus Derby;2009-12-12;Backstroke;14.5;2
-true;18;Aarhus;Aarhus Derby;2009-12-12;Backstroke;14.5;2
-true;8;Horsens;Horsens Svømmehygge;2008-12-12;Frontcrawl;12.3;4
-true;8;Horsens;Horsens Svømmehygge;2008-12-12;Frontcrawl;12.3;4
-true;8;Horsens;Horsens Svømmehygge;2008-12-12;Frontcrawl;12.3;4
-true;8;Horsens;Horsens Svømmehygge;2008-12-12;Frontcrawl;12.3;4
-true;8;Horsens;Horsens Svømmehygge;2008-12-12;Frontcrawl;12.3;4
-true;8;Horsens;Horsens Svømmehygge;2008-12-12;Frontcrawl;12.3;4
-true;8;Horsens;Horsens Svømmehygge;2008-12-12;Frontcrawl;12.3;4
-false;13;null;null;2012-12-12;Butterfly;18.5;0
-false;13;null;null;2012-12-12;Butterfly;18.5;0
-false;13;null;null;2012-12-12;Butterfly;18.5;0
-false;13;null;null;2012-12-12;Butterfly;18.5;0
-false;13;null;null;2012-12-12;Butterfly;18.5;0
-false;13;null;null;2012-12-12;Butterfly;18.5;0
-false;13;null;null;2012-12-12;Butterfly;18.5;0
-false;13;null;null;2012-12-12;Butterfly;18.5;0
+false;1;null;null;2013-11-11;Breaststroke;22.0;0
+false;2;null;null;2014-01-01;Breaststroke;20.5;0
+false;50;null;null;2014-02-02;Breaststroke;21.5;0
+false;12;null;null;2015-03-03;Breaststroke;19.0;0
+false;15;null;null;2014-12-10;Breaststroke;20.0;0
+false;18;null;null;2014-12-15;Breaststroke;21.2;0
+true;8;Horsens;Horsens Svømmehygge;2008-12-13;Frontcrawl;12.5;4
+true;8;Horsens;Horsens Svømmehygge;2008-12-14;Frontcrawl;8.3;4
+true;9;Horsens;Horsens Svømmehygge;2008-12-15;Frontcrawl;13.3;4
+true;11;Horsens;Horsens Svømmehygge;2008-12-16;Frontcrawl;14.3;4
+true;8;Horsens;Horsens Svømmehygge;2008-12-17;Frontcrawl;6.3;4
+true;12;Horsens;Horsens Svømmehygge;2008-12-18;Frontcrawl;12.8;4
+true;10;Horsens;Horsens Svømmehygge;2008-12-19;Frontcrawl;11.3;4
+true;18;Aarhus;Aarhus Derby;2009-12-13;Backstroke;14.7;2
+true;17;Aarhus;Aarhus Derby;2009-12-14;Backstroke;14.6;2
+true;18;Aarhus;Aarhus Derby;2009-12-15;Backstroke;14.8;2
+true;19;Aarhus;Aarhus Derby;2009-12-16;Backstroke;15.0;2
+true;20;Aarhus;Aarhus Derby;2009-12-17;Backstroke;15.1;2
+true;21;Aarhus;Aarhus Derby;2009-12-18;Backstroke;15.2;2
+true;22;Aarhus;Aarhus Derby;2009-12-19;Backstroke;15.3;2
+true;23;Horsens;Horsens Svømmehygge;2008-12-20;Frontcrawl;12.6;4
+true;24;Horsens;Horsens Svømmehygge;2008-12-21;Frontcrawl;12.7;4
+true;25;Horsens;Horsens Svømmehygge;2008-12-22;Frontcrawl;12.9;4
+true;26;Horsens;Horsens Svømmehygge;2008-12-23;Frontcrawl;13.1;4
+true;27;Horsens;Horsens Svømmehygge;2008-12-24;Frontcrawl;13.0;4
+true;28;Horsens;Horsens Svømmehygge;2008-12-25;Frontcrawl;13.2;4
+true;29;Horsens;Horsens Svømmehygge;2008-12-26;Frontcrawl;13.4;4
+false;13;null;null;2012-12-12;Butterfly;18.6;0
+false;14;null;null;2012-12-13;Butterfly;18.7;0
+false;15;null;null;2012-12-14;Butterfly;18.8;0
+false;16;null;null;2012-12-15;Butterfly;18.9;0
+false;17;null;null;2012-12-16;Butterfly;19.0;0
+false;18;null;null;2012-12-17;Butterfly;19.1;0
+false;19;null;null;2012-12-18;Butterfly;19.2;0
+false;20;null;null;2012-12-19;Butterfly;19.3;0
 false;14;null;null;2024-02-26;Backstroke;31.5;0
+true;1;Esbjerg;Esbjerg Mesterskab;2010-05-21;Butterfly;12.4;1
+true;2;Odense;Odense Open;2011-06-18;Backstroke;15.6;3
+true;3;Aalborg;Aalborg Cup;2012-07-14;Frontcrawl;14.7;5
+false;4;null;null;2013-08-12;Breaststroke;13.2;0
+true;5;Roskilde;Roskilde Stævne;2014-09-09;Backstroke;16.1;4
+false;6;null;null;2015-10-10;Butterfly;17.4;0
+true;7;Frederiksberg;Frederiksberg Finale;2016-11-11;Frontcrawl;12.9;6
+false;8;null;null;2017-12-12;Breaststroke;18.0;0
+true;9;Viborg;Viborg Vinter;2018-01-13;Backstroke;11.4;7
+false;10;null;null;2019-02-14;Butterfly;19.2;0
+true;11;Randers;Randers Stævne;2020-03-15;Frontcrawl;17.3;8
+false;12;null;null;2021-04-16;Breaststroke;20.4;0
+true;13;Silkeborg;Silkeborg Sprint;2022-05-17;Butterfly;14.6;9
+false;14;null;null;2023-06-18;Backstroke;15.2;0
+true;15;Herning;Herning Høst;2024-07-19;Frontcrawl;13.5;10
+false;16;null;null;2025-08-20;Breaststroke;18.1;0
+true;17;Kolding;Kolding Konkurrence;2026-09-21;Backstroke;17.5;11
+false;18;null;null;2027-10-22;Butterfly;16.4;0
+true;19;Helsingør;Helsingør Hold;2028-11-23;Frontcrawl;12.7;12
+false;20;null;null;2029-12-24;Breaststroke;21.6;0
+true;21;Næstved;Næstved Næste;2030-01-25;Backstroke;16.3;13
+false;22;null;null;2031-02-26;Butterfly;18.9;0
+true;23;Thisted;Thisted Turnering;2032-03-27;Frontcrawl;12.5;14
+false;24;null;null;2033-04-28;Breaststroke;22.1;0
+true;25;Hørsholm;Hørsholm Hattrick;2034-05-29;Backstroke;14.5;15
+false;26;null;null;2035-06-30;Butterfly;17.8;0
+true;27;Gladsaxe;Gladsaxe Grand Prix;2036-07-31;Frontcrawl;13.6;16
+false;28;null;null;2037-08-01;Breaststroke;20.7;0
+true;29;Hillerød;Hiller
