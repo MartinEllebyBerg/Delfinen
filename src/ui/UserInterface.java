@@ -18,14 +18,16 @@ public class UserInterface {
 
     //CONSTRUCTOR
     public UserInterface() {
+
         controller = new Controller();
         input = new Scanner(System.in);
+        delfinenUISetPosition();
     }
 
     //METHODS
 
     //######################### Determine position within Delfinen to get a different UI  ################################
-    public void DelfinenUISetPosition() {
+    public void delfinenUISetPosition() {
         //controller.hardCodedData();
         System.out.println("Welcome to Delfinen's member administration program. Please input your role within Delfinen.");
         System.out.println("CHAIRMAN | TREASURER | COACH");
