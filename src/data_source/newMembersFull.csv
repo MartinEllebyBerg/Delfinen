@@ -24,15 +24,15 @@
 24;Bertil;Sørensen;1996-10-10;true;true;Butterfly;Frontcrawl;Null;Null
 25;Maria;Glavind;1996-12-24;true;false;Backstroke;Null;Null;Null
 26;Jens;Jensen;2005-10-10;true;false;Butterfly;Frontcrawl;Null;Null
-27;Peter;Petersen;2001-01-01;true;false
+27;Peter;Petersen;2001-01-01;true;true
 28;Knud;Knudsen;2005-02-25;true;true;Backstroke;Null;Null;Null
-29;Shawn;Spencer;1982-05-14;true;false;Breaststroke;Null;Null;Null
+29;Shawn;Spencer;1982-05-14;true;true;Breaststroke;Null;Null;Null
 30;Peter;Heide;1985-05-05;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
 31;Simone;Suhr;1991-06-30;false;false;Null;Null;Butterfly;Breaststroke
 32;Martin;Høyer;1992-08-01;true;true;Null;Backstroke;Null;Breaststroke
-33;Johnny;Trantow;1968-09-14;true;false;Null;Null;Null;Null
+33;Johnny;Trantow;1968-09-14;true;true;Null;Null;Null;Null
 34;Gustav;Holte;2010-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
-35;Lucas;Strikert;2011-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
+35;Lucas;Strikert;2011-03-15;true;true;Frontcrawl;Backstroke;Butterfly;Breaststroke
 36;Philippa;Parry;2011-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
 37;Lærke;Ettrup;2011-12-12;false;false;Backstroke;Null;Null;Null
 38;Carl;Beier;2009-12-12;true;false;Backstroke;Null;Null;Null
@@ -40,14 +40,14 @@
 40;Carlton;Lassiter;1974-02-25;false;true;Butterfly;Null;Null;Null
 41;Silas;Scherling;2009-08-28;true;false;Butterfly;Null;Null;Null
 42;Mads;Geisler;2007-10-10;true;true;Butterfly;Frontcrawl;Null;Null
-43;Jens;Bomholt;2008-12-24;true;false;Backstroke;Null;Null;Null
+43;Jens;Bomholt;2008-12-24;true;true;Backstroke;Null;Null;Null
 44;Natascha;Jenkins;2007-10-12;true;false;Butterfly;Frontcrawl;Null;Null
-45;Caroline;Møller;2007-01-01;true;false
+45;Caroline;Møller;2007-01-01;true;true
 46;Mikkel;Scherling;1981-08-28;true;false;Butterfly;Null;Null;Null
 47;Gustav;Nilsson;2008-10-10;true;true;Butterfly;Frontcrawl;Null;Null
 48;Johannes;Jakobsen;2010-12-24;true;false;Backstroke;Null;Null;Null
 49;Troels;Jakobsen;1972-10-12;true;false;Butterfly;Frontcrawl;Null;Null
-50;Bo Mikael;Nilsson;1974-01-01;true;false
+50;Bo Mikael;Nilsson;1974-01-01;true;true
 51;Sofie;Andersen;1987-11-23;true;false;Frontcrawl;Butterfly;Backstroke;Null
 52;Lone;Mikkelsen;1978-07-17;true;false;Backstroke;Breaststroke;Null;Null
 53;Mikkel;Jørgensen;1990-01-19;true;true;Frontcrawl;Null;Null;Null
@@ -56,17 +56,17 @@
 56;Oliver;Madsen;1995-06-25;true;false;Breaststroke;Null;Null;Null
 57;Karin;Larsen;1988-03-08;true;true;Butterfly;Breaststroke;Null;Null
 58;Lucas;Jensen;2000-02-15;true;false;Frontcrawl;Butterfly;Null;Null
-59;Maja;Poulsen;1992-08-21;true;false;Backstroke;Breaststroke;Null;Null
+59;Maja;Poulsen;1992-08-21;true;true;Backstroke;Breaststroke;Null;Null
 60;Andreas;Svendsen;1979-04-03;true;false;Breaststroke;Null;Null;Null
 61;Nina;Thomsen;2003-11-13;true;true;Frontcrawl;Butterfly;Null;Null
-62;Frederik;Hansen;2001-02-28;true;false;Backstroke;Null;Null;Null
+62;Frederik;Hansen;2001-02-28;true;true;Backstroke;Null;Null;Null
 63;Louise;Christensen;1991-07-04;true;false;Breaststroke;Null;Null;Null
 64;Jakob;Olsen;1997-09-20;true;true;Butterfly;Backstroke;Null;Null
 65;Therese;Pedersen;1986-03-29;true;false;Backstroke;Breaststroke;Null;Null
 66;Simon;Mortensen;1994-01-15;true;false;Breaststroke;Frontcrawl;Null;Null
 67;Karen;Knudsen;1975-12-24;true;true;Butterfly;Null;Null;Null
 68;Magnus;Simonsen;1989-04-11;true;false;Backstroke;Breaststroke;Null;Null
-69;Pernille;Andersen;1996-07-16;true;false;Breaststroke;Null;Null;Null
+69;Pernille;Andersen;1996-07-16;true;true;Breaststroke;Null;Null;Null
 70;Jonas;Laursen;2004-02-17;true;true;Butterfly;Null;Null;Null
 71;Anette;Kjeldsen;1970-11-23;true;false;Backstroke;Null;Null;Null
 72;Thomas;Bach;2008-08-14;true;false;Breaststroke;Null;Null;Null
@@ -74,7 +74,7 @@
 74;Sille;Petersen;2005-01-26;true;false;Backstroke;Null;Null;Null
 75;Lars;Kirkegaard;1984-04-15;true;false;Breaststroke;Null;Null;Null
 76;Ingrid;Lund;2009-09-11;true;true;Butterfly;Backstroke;Null;Null
-77;David;Schmidt;2000-12-18;true;false;Backstroke;Null;Null;Null
+77;David;Schmidt;2000-12-18;true;true;Backstroke;Null;Null;Null
 78;Heidi;Andersen;1993-03-07;true;false;Breaststroke;Null;Null;Null
 79;Erik;Rasmussen;1991-10-10;true;true;Butterfly;Frontcrawl;Null;Null
 80;Charlotte;Vestergaard;1973-02-25;true;false;Backstroke;Null;Null;Null
@@ -95,7 +95,7 @@
 95;Anja;Brodersen;1998-12-19;true;false;Backstroke;Null;Null;Null
 96;Henning;Toft;1976-11-20;true;false;Breaststroke;Null;Null;Null
 97;Charlotte;Mogensen;1981-09-25;true;true;Butterfly;Backstroke;Null;Null
-98;Kasper;Leth;1985-02-13;true;false;Backstroke;Null;Null;Null
+98;Kasper;Leth;1985-02-13;true;true;Backstroke;Null;Null;Null
 99;Rikke;Brandt;1979-05-22;true;false;Breaststroke;Null;Null;Null
 100;Henriette;Juhl;1994-07-04;true;true;Butterfly;Null;Null;Null
 101;Daniel;Olba;1998-12-12;true;false;Backstroke;Null;Null;Null
