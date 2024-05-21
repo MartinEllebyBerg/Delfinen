@@ -17,7 +17,6 @@ public class Data {
     private ArrayList<ResultSwimmer> searchListResult;
     private int indexToBeChanged;
 
-
     //CONSTRUCTOR
     public Data() {
         membersList = new ArrayList<>();
@@ -29,7 +28,6 @@ public class Data {
         seniorList = new ArrayList<>();
         searchListResult = new ArrayList<>();
     }
-
 
     //METHODS
     //######################### Find & Search Methods ################################
@@ -46,6 +44,7 @@ public class Data {
         }
         return null;
     }
+
     public CompetitionMember findCompetitionMemberById(int idToFind) {
         for (Member member : getMembersList()) {
             if (member.getMemberID() == idToFind && member instanceof CompetitionMember) {
@@ -54,6 +53,7 @@ public class Data {
         }
         return null;
     }
+
     public ArrayList<Member> searchMember(String name) {
         searchMatch.clear();
         for (Member member : membersList) {
@@ -63,6 +63,7 @@ public class Data {
         }
         return searchMatch;
     }
+
     public void findIndexToBeChanged(int memberID) {
         for (Member m : membersList) {
             if (m.getMemberID() == memberID) {
@@ -70,6 +71,7 @@ public class Data {
             }
         }
     }
+
     public String findNameByIndex() {
         String memberFirstName = null;
         String memberLastName = null;
@@ -81,6 +83,7 @@ public class Data {
         }
         return memberFirstName + " " + memberLastName;
     }
+
     public String findSwimmersResultTraining(Member m) {
         int idToReference = m.getMemberID();
         int count = 1;
@@ -142,14 +145,17 @@ public class Data {
         }
         return result;
     }
+
     public void copyResultListToListToBeSorted() {
         for (ResultSwimmer rs : resultList) {
             listToBeSorted.add(rs);
         }
     }
+
     public ArrayList<ResultSwimmer> getListToBeSorted() {
         return listToBeSorted;
     }
+
     public ArrayList<Member> getSearchMatch() {
         return searchMatch;
     }
@@ -159,20 +165,20 @@ public class Data {
         Collections.sort(membersList); //Her bruger vi comparabel fra Member, som sørger for sortering på memberID
         return membersList;
     }
+
     public void addToMembersList(Member member) {
         membersList.add(member);
     }
+
     public int nextMemberID() {
         int result = 0;
         result = membersList.size() + 1;
         return result;
     }
+
     //######################### Methods for ArrayList resultlist ################################
     public ArrayList<ResultSwimmer> getResultList() {
         return resultList;
-    }
-    public void addSwimResultToResultList(ResultSwimmer rs) {
-        resultList.add(rs);
     }
 
     //######################### Calculation & Forecasting ################################
@@ -185,6 +191,7 @@ public class Data {
         }
         return totalForecast;
     }
+
     public double calculateTotalForecastPlus5Youth() {
         double forecastYouth = 0.0;
         double forecastSenior = 0.0;
@@ -201,6 +208,7 @@ public class Data {
         }
         return totalForecast;
     }
+
     public double calculateTotalForecastPlus5Senior() {
         double forecastYouth = 0.0;
         double forecastSenior = 0.0;
@@ -243,6 +251,7 @@ public class Data {
         }
         return result.toString();
     }
+
     //######################### Member Payment ################################
     public void registerPayment() {
         for (int i = 0; i < membersList.size(); i++) {
@@ -251,6 +260,7 @@ public class Data {
             }
         }
     }
+
     public ArrayList<String> printOverduePayments() {
         ArrayList<String> overduePayments = new ArrayList<>();
         for (Member member : membersList) {
@@ -260,6 +270,7 @@ public class Data {
         }
         return overduePayments;
     }
+
     public double sumOverduePayments() {
         double result = 0.0;
         for (Member member : membersList) {
@@ -269,68 +280,17 @@ public class Data {
         }
         return result;
     }
-    public void combineMemberAndResult(int memberID) {
-        System.out.println("Her køres metoden hvor de to lister kombineres, hvis der er identisk memberID, og det gemmes i ny Array");
-        System.out.println(" ");
-        for (Member m : membersList) {
-            for (ResultSwimmer r : resultList) {
-                if (m.getMemberID() == r.getMemberID()) {
-                    String[] combinedData = { //I denne nye arrayList har jeg lavet alt om til String..
-                            String.valueOf(m.getMemberID()), //combinedData[0]
-                            m.getFirstName(), //combinedData[1]
-                            m.getLastName(), //combinedData[2]
-                            String.valueOf(r.getResultDate()), //combinedData[3]
-                            String.valueOf(r.getSwimDiscipline()), //combinedData[4]
-                            String.valueOf(r.getSwimTime()), //combinedData[5]
-                            r.getCompetitionName(), //combinedData[6]
-                            r.getCompetitionLocation(), //combinedData[7]
-                            String.valueOf(r.getPlacementCompetition()) //combinedData[8]
-                    };
-                    searchList.add(combinedData);
-                }
-            }
-        }
-    }
-    public String testPrintSavedArrayListWithCombinedData() { //TODO: Skal denne metode fjernes?
-        String result = "";
-        System.out.println("List of swimmers with either their data from competition stored or training data:");
-        for (String[] combinedData : searchList) {
-            StringBuilder sb = new StringBuilder();
-            sb.append(String.format("%-5s", combinedData[0])); //String.format er lig med en form for tabulator
-            sb.append(String.format("%-15s", combinedData[1]));
-            sb.append(String.format("%-15s", combinedData[2]));
-            sb.append(String.format("%-15s", combinedData[3]));
-            sb.append(String.format("%-15s", combinedData[4]));
-            sb.append(String.format("%-10s", combinedData[5]));
-            sb.append(String.format("%-30s", combinedData[6]));
-            sb.append(String.format("%-20s", combinedData[7]));
-            sb.append(String.format("%-15s", combinedData[8]));
-            result = sb.toString();
-            //TODO: Ingen sysouts i andre klasser end UI
-
-        } return result;
-    }
 
     //######################### Getters ################################
-    public int getIndexToBeChanged() {
-        return indexToBeChanged;
-    }
     public ArrayList<Member> getJuniorList() {
         return juniorList;
     }
-
     public ArrayList<Member> getSeniorList() {
         return seniorList;
     }
-
     public ArrayList<ResultSwimmer> getSearchListResult() {
         return searchListResult;
     }
-
-    public ArrayList<String[]> getSearchListString() {
-        return searchList;
-    }
-
     //######################### Adding SwimResult objects ################################
     public void addSwimResultTraining(boolean isCompetitive, int memberID, SwimDiscipline swimDiscipline, double swimTime, LocalDate resultDate) {
         resultList.add(new ResultSwimmer(isCompetitive, memberID, swimDiscipline, swimTime, resultDate));
@@ -341,7 +301,6 @@ public class Data {
     }
 
     //######################### Copying from ResultList to searchList ################################
-    //TODO: Mangler at kunne kun printe Competetitionresultater
     public void showResultListCompetition() {
         searchListResult.clear();
         for (ResultSwimmer r : resultList) {
@@ -350,6 +309,7 @@ public class Data {
             }
         }
     }
+
     public void showResultListTraining() {
         searchListResult.clear();
         for (ResultSwimmer r : resultList) {
@@ -358,8 +318,6 @@ public class Data {
             }
         }
     }
-
-    //TODO: Metode til at printe resultatlister fra træning
 
     //######################### Sorting methods ################################
     public String sortBySwimTime() {
@@ -372,15 +330,10 @@ public class Data {
             listToBeSorted.sort(new disciplineComparator().thenComparing(new swimTimeComparator()));
 
             result += returnSortJuniorSeniorSwimTime(totalCount, maxAmountOfResultsToPrint, seniorAge, listToBeSorted, SwimDiscipline.BREASTSTROKE);
-
             result += returnSortJuniorSeniorSwimTime(totalCount, maxAmountOfResultsToPrint, seniorAge, listToBeSorted, SwimDiscipline.BACKSTROKE);
-
             result += returnSortJuniorSeniorSwimTime(totalCount, maxAmountOfResultsToPrint, seniorAge, listToBeSorted, SwimDiscipline.FRONTCRAWL);
-
             result += returnSortJuniorSeniorSwimTime(totalCount, maxAmountOfResultsToPrint, seniorAge, listToBeSorted, SwimDiscipline.BUTTERFLY);
 
-
-            System.out.println("DEBUG: Vi er i if blok og listToBeSorted er IKKE tom, linje 395.");
         } else {
             result = "There was an error sorting the list. (Error: Data.L454)";
         }
@@ -398,6 +351,7 @@ public class Data {
             }
         }
     }
+
     public void printCompetitionSenior() {
         seniorList.clear();
         for (Member m : membersList) {

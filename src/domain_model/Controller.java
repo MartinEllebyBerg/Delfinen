@@ -2,29 +2,25 @@ package domain_model;
 
 import data_source.Filehandler;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Controller {
 
     //ATTRIBUTES
-    Data data;
+    private Data data;
     private Filehandler fh = new Filehandler();
-
 
     //CONSTRUCTOR
     public Controller() {
         data = new Data();
         loadAllMembersFromList(getMembersList()); //denne sørger for at Medlemslisten csv bliver downloaded ved opstart
         loadSavedMemberResults(getResultList());//denne sørger for at reg tider downloades ved opstart af programmet
-
     }
-
 
     //METHODS
     //######################### Methods for Data class ################################
-
-
     //#########################  Save & Load - Members  ################################
     public void saveAllMembersToList(ArrayList<Member> arr) {
         fh.saveListOfAllMembers(arr);
@@ -54,16 +50,12 @@ public class Controller {
     public double calculateTotalRateForecast(){
         return data.calculateTotalForecast();
     }
-
-    public double calculateTotalRateForecastPlus5Youth () {
+    public double calculateTotalRateForecastPlus5Youth() {
         return data.calculateTotalForecastPlus5Youth();
     }
-
-    public double calculateTotalRateForecastPlus5Senior () {
+    public double calculateTotalRateForecastPlus5Senior() {
         return data.calculateTotalForecastPlus5Senior();
     }
-
-
 
     //######################### Methods for Data class - Memberslist ################################
     public ArrayList<Member> getMembersList() {
@@ -75,9 +67,6 @@ public class Controller {
     //######################### Methods for Data class - Resultlist ################################
     public ArrayList<ResultSwimmer> getResultList() {
         return data.getResultList();
-    }
-    public void addSwimResultToResultList(ResultSwimmer rs) {
-        data.addSwimResultToResultList(rs);
     }
 
 
@@ -102,16 +91,12 @@ public class Controller {
         data.addSwimResultTraining(isCompetitive,memberID, swimDiscipline, swimTime, resultDate);
     }
 
-    public void addSwimResultCompetition(boolean isCompetitive, int memberID, String competitionLocation,String competitionName, LocalDate resultDate, SwimDiscipline swimDiscipline, double swimTime, int placementCompetition) {
-        data.addSwimResultCompetition(isCompetitive,memberID, competitionLocation, competitionName, resultDate, swimDiscipline, swimTime, placementCompetition);
+    public void addSwimResultCompetition(boolean isCompetitive, int memberID, String competitionLocation, String competitionName, LocalDate resultDate, SwimDiscipline swimDiscipline, double swimTime, int placementCompetition) {
+        data.addSwimResultCompetition(isCompetitive, memberID, competitionLocation, competitionName, resultDate, swimDiscipline, swimTime, placementCompetition);
     }
     //######################### Methods for Data class - Sorting ################################
     public String sortBySwimTime() {
         return data.sortBySwimTime();
-    }
-
-    public void printResultListCompetition() {
-        data.showResultListCompetition();
     }
 
     public Member findMemberById(int idToFind) {
@@ -141,9 +126,6 @@ public class Controller {
     //######################### Methods for Data class - SearchList Getter ################################
     public ArrayList<ResultSwimmer> getSearchList() {
         return data.getSearchListResult();
-    }
-    public ArrayList<String[]> getSearchListString() {
-        return data.getSearchListString();
     }
 
     //######################### Methods for Data class - ResultListComp/Train ################################
@@ -176,21 +158,5 @@ public class Controller {
     }
     public void registerPayment() {
         data.registerPayment();
-    }
-
-    public int getIndexToBeChanged (){
-        return data.getIndexToBeChanged();
-    }
-
-
-
-    public void combineMemberAndResult(int memberID) {
-        data.combineMemberAndResult(memberID);
-    }
-    public String testPrintSavedArrayListWithCombinedData (){
-        return data.testPrintSavedArrayListWithCombinedData();
-    }
-    public void testStringBuilder() {
-        data.testPrintSavedArrayListWithCombinedData();
     }
 }

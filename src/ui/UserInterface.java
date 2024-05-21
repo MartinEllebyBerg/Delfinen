@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class UserInterface {
 
     //ATTRIBUTES
-    Controller controller;
-    Scanner input;
+    private Controller controller;
+    private Scanner input;
     private final int SENTINEL = 0;
     private int switchInput = -1;
 
@@ -25,10 +25,8 @@ public class UserInterface {
     }
 
     //METHODS
-
     //######################### Determine position within Delfinen to get a different UI  ################################
     public void delfinenUISetPosition() {
-        //controller.hardCodedData();
         System.out.println("Welcome to Delfinen's member administration program. Please input your role within Delfinen.");
         System.out.println("CHAIRMAN | TREASURER | COACH");
         boolean condition = true;
@@ -61,56 +59,6 @@ public class UserInterface {
     }
 
     //######################### Different UI based on position within Delfinen  ################################
-    //TODO: Dette er den gamle startprogram metode, som ikke kaldes nu....slet når sikker på ikke skal bruges
-    public void startProgramAll() {
-
-        while (switchInput != SENTINEL) {
-            System.out.println("Delfinen - DEBUG - ALL CHOICES");
-            System.out.println(" ");
-            System.out.println("1. Add Swimmer");
-            System.out.println("2. Add Swimmer results-NOTIMPLEMENTED-");
-            System.out.println("3. Register Swimmer Payments -NOTIMPLEMENTED-");
-            System.out.println("4. Display list of Swimmers\n");
-            System.out.println("9. Terminate program");
-
-            System.out.print("> ");
-            switchInput = scanIntSafely();
-            input.nextLine();
-
-            switch (switchInput) {
-
-                case 1: {
-                    generateSwimmer();
-                    break;
-                }
-                case 2: {
-                    addSwimmerResults();
-                    break;
-                }
-                case 3: {
-                    //
-                }
-                case 4: {
-                    displayListofMembers();
-                    break;
-                }
-                case 5: {
-                    setMultipleDisciplines();
-                    break;
-                }
-                case 6: { //test af metoder
-                    //findMemberSearchWithNewArray();
-                    deleteSwimDisciplines();
-                    break;
-                }
-                case 9: {
-                    System.out.println("Terminating application.");
-                    break; //Failsafe
-                }
-            }
-        }
-    }
-
     //######################### Chairman menu(s)  ################################
     public void displayMenuChairman() {
         System.out.println(" ");
@@ -131,8 +79,7 @@ public class UserInterface {
             switchInput = scanIntSafely();
             input.nextLine();
 
-            switch (switchInput) { //TODO: Rette cases, duplicate displaylist, mangler delete swimmer disciplines.
-
+            switch (switchInput) {
                 case 1: {
                     generateSwimmer();
                     break;
@@ -151,8 +98,8 @@ public class UserInterface {
                 }
                 case 5: {
                     displayMembersResultsCompTrain();
+                    break;
                 }
-
                 case 0: {
                     System.out.println("Terminating application.");
                     break; //Failsafe
@@ -224,7 +171,6 @@ public class UserInterface {
                 break;
             }
         }
-
     }
 
     //######################### Treasurer Menu  ################################
@@ -298,7 +244,6 @@ public class UserInterface {
             input.nextLine();
 
             switch (switchInput) {
-
                 case 1: {
                     setMultipleDisciplines();
                     break;
@@ -324,7 +269,7 @@ public class UserInterface {
                     break;
                 }
                 case 7: {
-                    sortBySwimTime(); //TODO: "Crasher", hvis medlemslisten og resultatlisten ikke er fyldt ved eksekvering. Har implementeret exception handling de relevante steder, men funktionen vil ikke virke ved tom medlems- og resultatliste.
+                    sortBySwimTime();
                     break;
                 }
                 case 0: {
@@ -437,7 +382,7 @@ public class UserInterface {
                     SwimDiscipline disciplineName = userPromptSwimDiscipline(); //Denne metode spørger om brugerinput med tilhørende sysoutbeskeder.
 
                     System.out.println("Type the swim time:");
-                    double swimTime = scanDoubleSafely();//TODO: vi skal have noget exception handling her...jeg kan ikke få den til at godtage et tal med decimaler
+                    double swimTime = scanDoubleSafely();
                     input.nextLine();
 
                     LocalDate localDate = null;
@@ -569,21 +514,6 @@ public class UserInterface {
         System.out.println("\nPlease type in which swim discipline to register.");
         System.out.println("Valid choices include breaststroke, backstroke, frontcrawl, butterfly or null.");
 
-        /* //WIP
-        while (true) {
-            switch (UPSWDInput) {
-                case "breaststroke", "backstroke", "frontcrawl", "butterfly", "null" -> {
-                    return findSwimDisciplineEnum(UPSWDInput.toUpperCase());
-                }
-                case "done", "exit" -> {
-                    return null;
-                }
-                default -> {
-                    System.out.println("No valid input. Please try again.");
-                }
-            }
-        }
-        */
         while (true) {
             if (UPSWDInput.equals("done")) {
                 break;
@@ -652,6 +582,7 @@ public class UserInterface {
         }
         saveMembersToList();
     }
+
     public boolean hasAvailableDisciplines(CompetitionMember member) { //Tjekker om member objektets 4 svømmediscipliner er sandt til null.(Det er 3 per default.
         return member.getSwimDiscipline1() == SwimDiscipline.NULL ||
                 member.getSwimDiscipline2() == SwimDiscipline.NULL ||
@@ -679,7 +610,7 @@ public class UserInterface {
         System.out.println("You have picked: " + memberFirstName + " " + memberLastName);
 
         if (memberToFind instanceof CompetitionMember downcastedMemberToFind) {
-            //TODO: Fjerne muligheder ved null svømmediscipliner
+            //TODO (NICE-TO): Fjerne muligheder ved null svømmediscipliner
             System.out.println("1. " + downcastedMemberToFind.getSwimDiscipline1());
             System.out.println("2. " + downcastedMemberToFind.getSwimDiscipline2());
             System.out.println("3. " + downcastedMemberToFind.getSwimDiscipline3());
@@ -718,9 +649,10 @@ public class UserInterface {
         saveMembersToList();
     }
 
-    public void showAllDataSpecificMember() {
+    public void showAllDataSpecificMember() { //TODO:
         System.out.println("Enter memberID of the member you want to see all data registered on.");
         int memberID = scanIntSafely();
+        input.nextLine();
         System.out.println(controller.showDataSpecificMember(memberID));
     }
 
@@ -739,6 +671,7 @@ public class UserInterface {
             System.out.println("No members with that name has been registered.");
         }
     }
+
     public void searchForMemberResultIdToId() {
         System.out.println("Please input the member ID of which you wish to access training or competition results.");
         System.out.print("> ");
@@ -751,7 +684,6 @@ public class UserInterface {
         } else {
             System.out.println("Something went wrong. No member ID or result ID was found. Try again with an active member list or load the list from the CSV file.");
         }
-
     }
 
     //######################### See list of members  ################################
@@ -774,7 +706,6 @@ public class UserInterface {
     }
 
     //######################### Economic forecasting  ################################
-    //TODO: NICE_TO if we can make a forecast based on the age next year, saying we have the current members with current status.
     public void calculateTotalRateForecast() {
         System.out.println(" ");
         System.out.println("Calculation of expected income (payment membership rate) based on current membership status: ");
@@ -898,7 +829,6 @@ public class UserInterface {
         }
         System.out.println(controller.sortBySwimTime());
     }
-
 
     //######################### Scanning int & doubles safely - recursion  ################################
     private int scanIntSafely() { //Metode til at fange hvis man skriver et bogstav i en int scanner, der ellers vil melde en fejl

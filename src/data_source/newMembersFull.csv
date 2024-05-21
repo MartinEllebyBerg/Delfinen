@@ -3,7 +3,7 @@
 3;Daniel;Jensen;1986-04-26;false;false;Frontcrawl;Backstroke;Null;Null
 4;Dora;Jensen;2001-03-25;true;false
 5;Hans;Hansen;2005-08-26;true;true;Frontcrawl;Backstroke;Butterfly;Breaststroke
-6;Jannik;Petersen;1985-05-25;true;false
+6;Jannik;Petersen;1985-05-25;true;true
 7;Peter;Hansen;2012-05-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
 8;Signe;Hansen;2004-03-15;true;true;Frontcrawl;Backstroke;Butterfly;Breaststroke
 9;Ulrik;Hansen;2016-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
@@ -99,3 +99,4 @@
 99;Rikke;Brandt;1979-05-22;true;false;Breaststroke;Null;Null;Null
 100;Henriette;Juhl;1994-07-04;true;true;Butterfly;Null;Null;Null
 101;Daniel;Olba;1998-12-12;true;false;Backstroke;Null;Null;Null
+102;Max;Elleby;1958-10-16;true;false

@@ -25,6 +25,7 @@ public class ResultSwimmer {
         this.swimTime = swimTime;
         this.placementCompetition = placementCompetition;
     }
+    
     public ResultSwimmer(boolean isCompetitive, int memberID, SwimDiscipline swimDiscipline, double swimTime, LocalDate resultDate){
         this.isCompetitive = isCompetitive;
         this.memberID = memberID;
@@ -32,9 +33,7 @@ public class ResultSwimmer {
         this.swimTime = swimTime;
         this.resultDate = resultDate;
     }
-
-
-
+    
     //METHODS
     //######################### Getter methods  ################################
     public int getMemberID() {
@@ -63,6 +62,7 @@ public class ResultSwimmer {
     }
 
     //######################### Setter methods  ################################
+    // Vi bruger ikke setterne pt., men lader dem stå for skalérbarheden :-)
     public void setSwimDiscipline(SwimDiscipline swimDiscipline) {
         this.swimDiscipline = swimDiscipline;
     }
@@ -92,7 +92,6 @@ public class ResultSwimmer {
     //######################### toString methods  ################################
     @Override
     public String toString() {
-        //TODO: Gøre begge toString metoder lidt pænere. Eventuelt en ifblok, der tjekker på den nye boolean isCompetitive og derefter retter til
         return "MemberID: " + memberID+
                 " | SwimDiscipline: " + swimDiscipline +
                 " | SwimTime: " + swimTime +
@@ -110,8 +109,6 @@ public class ResultSwimmer {
                 " | PlacementCompetition: " + placementCompetition +
                 " | CompetitionDate: " + resultDate;
     }
-
-    //Er den relevant?
     public String toStringTraining() {
         return "SwimID: " + memberID +
                 " | SwimDiscipline: " + swimDiscipline +
@@ -149,5 +146,4 @@ public class ResultSwimmer {
         }
         return result;
     }
-
 }

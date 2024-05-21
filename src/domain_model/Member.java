@@ -10,13 +10,11 @@ public class Member implements Comparable<Member> {
     private String lastName;
     private LocalDate birthday;
     private boolean memberActive;
-    //private static int nextMemberID = 1; //statisk attribut til at sammentælle memberID og sørge for unikt nummer.
     private int memberID;
     private int yearsOfAge;
     private double rate;
     private boolean paymentRegistered;
-
-
+    
     //CONSTRUCTOR
     public Member(int memberID, String firstName, String lastName, LocalDate birthday, boolean memberActive, boolean paymentRegistered) {
         this.memberID = memberID;
@@ -26,7 +24,6 @@ public class Member implements Comparable<Member> {
         this.memberActive = memberActive;
         this.paymentRegistered = paymentRegistered;
 
-        //memberID = nextMemberID++;
         calculateYearOfMember();
         calculateMembershipRate();
     }
@@ -36,31 +33,24 @@ public class Member implements Comparable<Member> {
     public double getRate() {
         return rate;
     }
-
     public String getFirstName() {
         return firstName;
     }
-
     public String getLastName() {
         return lastName;
     }
-
     public LocalDate getBirthday() {
         return birthday;
     }
-
     public boolean getIsMemberActive() {
         return memberActive;
     }
-
     public int getMemberID() {
         return memberID;
     }
-
     public int getYearsOfAge() {
         return yearsOfAge;
     }
-
     public boolean isPaymentRegistered() {
         return paymentRegistered;
     }
@@ -78,7 +68,6 @@ public class Member implements Comparable<Member> {
     }
 
     public void calculateMembershipRate() {
-
         if (memberActive == false) {
             rate = 500.00;
         } else if (yearsOfAge < 18) {
@@ -89,7 +78,6 @@ public class Member implements Comparable<Member> {
             rate = 1200.00;
         }
     }
-
 
     //######################### toString() Methods ################################
     @Override

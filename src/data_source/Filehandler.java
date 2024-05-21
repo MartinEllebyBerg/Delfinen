@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Filehandler {
 
-    public Filehandler () {
+    public Filehandler() {
     }
 
     //#########################  Save & Load - Members  ################################
@@ -50,7 +50,6 @@ public class Filehandler {
                     swimDiscipline4 = SwimDiscipline.valueOf(values[9].toUpperCase());
 
                 } catch (IllegalArgumentException e) {
-                    System.out.println("Invalid Discipline: " + values[6]);
                 }
                 arr.add(new CompetitionMember(memberID, firstName, lastName, birthDay, memberActive, paymentRegistered, swimDiscipline1,
                         swimDiscipline2, swimDiscipline3, swimDiscipline4));
@@ -58,11 +57,10 @@ public class Filehandler {
         }
         scannerInput.close();
         return arr;
-
     }
+
     public void saveListOfAllMembers(ArrayList<Member> list) {
         try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/newMembersFull.csv"))) {
-
             for (Member member : list) {
                 if (member instanceof CompetitionMember downcastMember) {
                     String memberString = String.format("%d;%s;%s;%s;%b;%b;%s;%s;%s;%s",
@@ -89,32 +87,31 @@ public class Filehandler {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error saving movies: " + e.getMessage());
             e.printStackTrace();
         }
     }
+
     //#########################  Save & Load - Results  ################################
     public void saveAllResults(ArrayList<ResultSwimmer> list) {
         try (PrintWriter output = new PrintWriter(new FileWriter("src/data_source/newSwimmerResultsFull.csv"))) {
 
             for (ResultSwimmer comp : list) {
-                    String compString = String.format("%s;%d;%s;%s;%s;%s;%s;%d",
-                    comp.isCompetitive(),
-                    comp.getMemberID(),
-                    comp.getCompetitionLocation(),
-                    comp.getCompetitionName(),
-                    comp.getResultDate().format(DateTimeFormatter.ISO_LOCAL_DATE),
-                    comp.getSwimDiscipline(),
-                    comp.getSwimTime(),
-                    comp.getPlacementCompetition());
-                    output.println(compString);
-
+                String compString = String.format("%s;%d;%s;%s;%s;%s;%s;%d",
+                        comp.isCompetitive(),
+                        comp.getMemberID(),
+                        comp.getCompetitionLocation(),
+                        comp.getCompetitionName(),
+                        comp.getResultDate().format(DateTimeFormatter.ISO_LOCAL_DATE),
+                        comp.getSwimDiscipline(),
+                        comp.getSwimTime(),
+                        comp.getPlacementCompetition());
+                output.println(compString);
             }
         } catch (IOException e) {
-            System.out.println("Error saving movies: " + e.getMessage());
             e.printStackTrace();
         }
     }
+
     public ArrayList<ResultSwimmer> loadSavedMemberResults(ArrayList<ResultSwimmer> arr) { //Load competitionMembers
         File file = new File("src/data_source/newSwimmerResultsFull.csv");
         Scanner scannerInput = null;
@@ -123,16 +120,14 @@ public class Filehandler {
         try {
             scannerInput = new Scanner(file);
         } catch (FileNotFoundException e) {
-            System.out.println("Sorry something went wrong with loading the MovieCollection.");
             throw new RuntimeException(e);
         }
 
         while (scannerInput.hasNext()) {
-
             String line = scannerInput.nextLine();
             String[] values = line.split(";");
 
-            if(values.length == numOfAttributesCompetitiveConstructor) { //Competition result.
+            if (values.length == numOfAttributesCompetitiveConstructor) { //Competition result.
                 boolean isCompetitive = Boolean.parseBoolean(values[0]);
 
                 int memberID = Integer.parseInt(values[1]);
@@ -145,8 +140,7 @@ public class Filehandler {
 
                 try {
                     swimDiscipline1 = SwimDiscipline.valueOf(values[5].toUpperCase());
-                }catch(IllegalArgumentException e) {
-                    System.out.println("DEBUG: Invalid discipline: "+values[4]);
+                } catch (IllegalArgumentException e) {
                 }
 
                 arr.add(new ResultSwimmer(isCompetitive, memberID, competitionLocation, competitionName, resultDate, swimDiscipline1,
@@ -158,21 +152,16 @@ public class Filehandler {
                 double swimTime = Double.parseDouble(values[3]);
                 LocalDate resultDate = LocalDate.parse(values[4], DateTimeFormatter.ISO_LOCAL_DATE);
 
-
                 SwimDiscipline swimDiscipline1 = null;
                 try {
                     swimDiscipline1 = SwimDiscipline.valueOf(values[2].toUpperCase());
                 } catch (IllegalArgumentException e) {
-                    System.out.println("Invalid Discipline: " + values[2]);
                 }
                 arr.add(new ResultSwimmer(isCompetitive, memberID, swimDiscipline1, swimTime, resultDate));
             } else {
-                //TODO: fjern sysout fra filehandler linje 69-70
-                System.out.println("DEBUG: Fejl ved tilføjelse af member objekt. Filehandler, linje 69.");
             }
         }
         scannerInput.close();
         return arr;
-
     }
 }
