@@ -28,9 +28,9 @@
 28;Knud;Knudsen;2005-02-25;true;true;Backstroke;Null;Null;Null
 29;Shawn;Spencer;1982-05-14;true;false;Breaststroke;Null;Null;Null
 30;Peter;Heide;1985-05-05;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
-31;Simone;Suhr;1991-06-30;false;false;null;null;Butterfly;Breaststroke
-32;Martin;Høyer;1992-08-01;true;true;null;Backstroke;null;Breaststroke
-33;Johnny;Trantow;1968-09-14;true;false;null;null;null;null;
+31;Simone;Suhr;1991-06-30;false;false;Null;Null;Butterfly;Breaststroke
+32;Martin;Høyer;1992-08-01;true;true;Null;Backstroke;Null;Breaststroke
+33;Johnny;Trantow;1968-09-14;true;false;Null;Null;Null;Null
 34;Gustav;Holte;2010-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
 35;Lucas;Strikert;2011-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
 36;Philippa;Parry;2011-03-15;true;false;Frontcrawl;Backstroke;Butterfly;Breaststroke
@@ -98,3 +98,4 @@
 98;Kasper;Leth;1985-02-13;true;false;Backstroke;Null;Null;Null
 99;Rikke;Brandt;1979-05-22;true;false;Breaststroke;Null;Null;Null
 100;Henriette;Juhl;1994-07-04;true;true;Butterfly;Null;Null;Null
+101;Daniel;Olba;1998-12-12;true;false;Backstroke;Null;Null;Null

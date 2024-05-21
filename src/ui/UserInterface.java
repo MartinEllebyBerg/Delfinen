@@ -569,6 +569,7 @@ public class UserInterface {
         System.out.println("\nPlease type in which swim discipline to register.");
         System.out.println("Valid choices include breaststroke, backstroke, frontcrawl, butterfly or null.");
 
+        /* //WIP
         while (true) {
             switch (UPSWDInput) {
                 case "breaststroke", "backstroke", "frontcrawl", "butterfly", "null" -> {
@@ -582,7 +583,7 @@ public class UserInterface {
                 }
             }
         }
-        /*
+        */
         while (true) {
             if (UPSWDInput.equals("done")) {
                 break;
@@ -598,7 +599,6 @@ public class UserInterface {
             }
         }
         return null;
-        */
     }
 
     //#########################  Member - Set multiple swim disciplines  ################################
