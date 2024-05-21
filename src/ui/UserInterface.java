@@ -823,6 +823,9 @@ public class UserInterface {
                 System.out.println("\nPayment has now been registered on the member.");
             } else if (switchInput == 2) {
                 registerPayment();
+            } else {
+                System.out.println("Please choose either 1 or 2");
+                registerPayment();
             }
         }
         saveMembersToList();
