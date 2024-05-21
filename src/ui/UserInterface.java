@@ -651,6 +651,8 @@ public class UserInterface {
                     break;
                 }
             }
+        } else {
+            System.out.println("You cannot delete swimdisciplines on an exercise member.");
         }
         saveMembersToList();
     }
