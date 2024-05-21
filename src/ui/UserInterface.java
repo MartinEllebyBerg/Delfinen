@@ -655,13 +655,6 @@ public class UserInterface {
         saveMembersToList();
     }
 
-    public void showAllDataSpecificMember() { //TODO:
-        System.out.println("Enter memberID of the member you want to see all data registered on.");
-        int memberID = scanIntSafely();
-        input.nextLine();
-        System.out.println(controller.showDataSpecificMember(memberID));
-    }
-
     //#########################  Member - Search methods ################################
     public void findMemberSearchWithNewArray() {
         System.out.println("Please type in the first name of the member you are looking for.");

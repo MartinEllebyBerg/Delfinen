@@ -239,7 +239,7 @@ public class Data {
                         if (!r.getCompetitionName().equals("null")) {
                             result.append("\nCompetition: ").append(r.getCompetitionName());
                         } else {
-                            result.append("\nTraining result");
+                            result.append("\nTraining result: ");
                         }
                         result.append("\nSwimDiscipline: ").append(r.getSwimDiscipline())
                                 .append(", time: ").append(r.getSwimTime())
