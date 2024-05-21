@@ -2,6 +2,7 @@ package ui;
 
 import domain_model.*;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -19,7 +20,12 @@ public class UserInterface {
     //CONSTRUCTOR
     public UserInterface() {
 
-        controller = new Controller();
+        try {
+            controller = new Controller();
+        } catch (FileNotFoundException e) {
+            System.out.println("Something went wrong loading the list."+e.getMessage());
+            throw new RuntimeException(e);
+        }
         input = new Scanner(System.in);
         delfinenUISetPosition();
     }

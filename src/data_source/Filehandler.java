@@ -14,17 +14,13 @@ public class Filehandler {
     }
 
     //#########################  Save & Load - Members  ################################
-    public ArrayList<Member> loadSavedAllMembersList(ArrayList<Member> arr) { //Load competitionMembers
+    public ArrayList<Member> loadSavedAllMembersList(ArrayList<Member> arr) throws FileNotFoundException { //Load competitionMembers
         File file = new File("src/data_source/newMembersFull.csv");
         Scanner scannerInput = null;
         int numOfAttributesExerciseConstructor = 6;
         int numOfAttributesCompConstructor = 10;
-        try {
-            scannerInput = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            System.out.println("Sorry something went wrong with loading the Memberslist.");
-            throw new RuntimeException(e);
-        }
+        scannerInput = new Scanner(file);
+
         while (scannerInput.hasNext()) {
             String line = scannerInput.nextLine();
             String[] values = line.split(";");

@@ -13,7 +13,7 @@ public class Controller {
     private Filehandler fh = new Filehandler();
 
     //CONSTRUCTOR
-    public Controller() {
+    public Controller() throws FileNotFoundException {
         data = new Data();
         loadAllMembersFromList(getMembersList()); //denne sørger for at Medlemslisten csv bliver downloaded ved opstart
         loadSavedMemberResults(getResultList());//denne sørger for at reg tider downloades ved opstart af programmet
@@ -25,7 +25,8 @@ public class Controller {
     public void saveAllMembersToList(ArrayList<Member> arr) {
         fh.saveListOfAllMembers(arr);
     }
-    public ArrayList<Member> loadAllMembersFromList(ArrayList<Member> arr) {
+
+    public ArrayList<Member> loadAllMembersFromList(ArrayList<Member> arr) throws FileNotFoundException {
         return fh.loadSavedAllMembersList(arr);
     }
 
@@ -42,12 +43,13 @@ public class Controller {
     public ArrayList<ResultSwimmer> getListToBeSorted() {
         return data.getListToBeSorted();
     }
+
     public void copyResultListToListToBeSorted() {
         data.copyResultListToListToBeSorted();
     }
 
     //#########################  Forecasting Methods  ################################
-    public double calculateTotalRateForecast(){
+    public double calculateTotalRateForecast() {
         return data.calculateTotalForecast();
     }
     public double calculateTotalRateForecastPlus5Youth() {
@@ -64,6 +66,7 @@ public class Controller {
     public void addToMembersList(Member member) {
         data.addToMembersList(member);
     }
+
     //######################### Methods for Data class - Resultlist ################################
     public ArrayList<ResultSwimmer> getResultList() {
         return data.getResultList();
@@ -74,12 +77,10 @@ public class Controller {
     public ArrayList<Member> getSearchMatch() {
         return data.getSearchMatch();
     }
-
-    public ArrayList<String> printOverduePayments(){
+    public ArrayList<String> printOverduePayments() {
         return data.printOverduePayments();
     }
-
-    public double sumOverduePayments () {
+    public double sumOverduePayments() {
         return data.sumOverduePayments();
     }
     public ArrayList<Member> searchMember(String name) {
@@ -88,12 +89,13 @@ public class Controller {
 
     //######################### Methods for Data class - add ResultSwimmer to list ################################
     public void addSwimResultTraining(boolean isCompetitive, int memberID, SwimDiscipline swimDiscipline, double swimTime, LocalDate resultDate) {
-        data.addSwimResultTraining(isCompetitive,memberID, swimDiscipline, swimTime, resultDate);
+        data.addSwimResultTraining(isCompetitive, memberID, swimDiscipline, swimTime, resultDate);
     }
 
     public void addSwimResultCompetition(boolean isCompetitive, int memberID, String competitionLocation, String competitionName, LocalDate resultDate, SwimDiscipline swimDiscipline, double swimTime, int placementCompetition) {
         data.addSwimResultCompetition(isCompetitive, memberID, competitionLocation, competitionName, resultDate, swimDiscipline, swimTime, placementCompetition);
     }
+
     //######################### Methods for Data class - Sorting ################################
     public String sortBySwimTime() {
         return data.sortBySwimTime();
@@ -111,14 +113,16 @@ public class Controller {
     public void printCompetitionJunior() {
         data.printCompetitionJunior();
     }
+
     public void printCompetitionSenior() {
         data.printCompetitionSenior();
     }
 
     //######################### Methods for Data class - Getters Junior/Senior Lists ################################
     public ArrayList<Member> getJuniorList() {
-       return data.getJuniorList();
+        return data.getJuniorList();
     }
+
     public ArrayList<Member> getSeniorList() {
         return data.getSeniorList();
     }
@@ -132,6 +136,7 @@ public class Controller {
     public void showResultListCompetition() {
         data.showResultListCompetition();
     }
+
     public void showResultListTraining() {
         data.showResultListTraining();
     }
@@ -141,7 +146,7 @@ public class Controller {
         return data.nextMemberID();
     }
 
-    public String showDataSpecificMember(int memberID){
+    public String showDataSpecificMember(int memberID) {
         return data.showDataSpecificMember(memberID);
     }
 
@@ -149,13 +154,14 @@ public class Controller {
         return data.findSwimmersResultTraining(m);
     }
 
-    public void findIndexToBeChanged (int memberID) {
+    public void findIndexToBeChanged(int memberID) {
         data.findIndexToBeChanged(memberID);
     }
 
-    public String findNameByIndex(){
+    public String findNameByIndex() {
         return data.findNameByIndex();
     }
+
     public void registerPayment() {
         data.registerPayment();
     }
